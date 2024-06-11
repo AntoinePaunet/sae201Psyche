@@ -1,19 +1,36 @@
 package jeu.ihm;
 
+import jeu.Controleur;
 import jeu.ihm.*;
 import javax.swing.*;
 
-
+/**
+ * Cette classe gère la fenetre du menu principal du jeu.
+ * @author Antione Paunet,			IUT du Havre
+ * @author Mael Vauthier,			IUT du Havre
+ * @author Martin Ravenel,			IUT du Havre
+ * @author Fanch EVEN,				IUT du Havre
+ * @author Nahel KOCHAT,			IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
+ * @author Louis THOMAZEAU-AGULLO,	IUT du Havre
+ * @version 1.0 , 2024-05-23
+ */
 public class FrameChoix extends JFrame
 {
 	private PanelChoixJoueur panelChoixJoueur;
+	private Controleur ctrl;
 
-
-	public FrameChoix()
+	/**
+	 * Constructeur de la frame de Choix du joueur
+	 * @param ctrl le Controleur qui lance le programme
+	 */
+	public FrameChoix(Controleur ctrl)
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
-		this.setSize    ( 550,200 );
+		this.setSize    ( 700,200 );
 		this.setLocation(  300, 300 );
+
+		this.ctrl = ctrl;
 
 
 		// Création et ajout du Panel
@@ -26,13 +43,19 @@ public class FrameChoix extends JFrame
 		this.setVisible(true);
 	}
 
-	// Crée le plateau des joueurs et ferme cette fenêtre
+	/**
+	 * Méthode de lancement des FrameJoueur correspondant à leur choix
+	 */
 	public void creerFrameJoueur()
 	{
-		new FrameJoueur(this.panelChoixJoueur.getText1(), 1);
-		new FrameJoueur(this.panelChoixJoueur.getText2(), 2);
+		new FrameJoueur(this.panelChoixJoueur.getText1(), 1, ctrl);
+		new FrameJoueur(this.panelChoixJoueur.getText2(), 2, ctrl);
 		this.dispose();
 	}
 
+	public static void main( String[] args )
+	{
+		//new FrameChoix();
+	}
 
 }

@@ -6,6 +6,18 @@ import java.util.Arrays;
 import jeu.ihm.*;
 import jeu.metier.*;
 
+/**
+ * Cette classe créé l'interface graphique gérée par le controleur.
+ * Elle s'occupe de charger des éléments sur la page graphique
+ * @author Antione Paunet,			IUT du Havre
+ * @author Mael Vauthier,			IUT du Havre
+ * @author Martin Ravenel,			IUT du Havre
+ * @author Fanch EVEN,				IUT du Havre
+ * @author Nahel KOCHAT,			IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
+ * @author Louis THOMAZEAU-AGULLO,	IUT du Havre
+ * @version 1.0 , 2024-05-23
+ */
 public class Controleur 
 {
 	private Joueur j1;
@@ -25,13 +37,25 @@ public class Controleur
 
 		this.init();
 		this.initJetonPossession();
-		new FrameChoix();
+		new FrameChoix(this);
 
 		while (!this.finPartie)
 		{
 			if (this.tourJ1)
 			{
+				if (this.estValide(this.j1, this.tabMine.get(0)))
 
+				this.j1.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
+				this.j1.addMineRecup(this.tabMine.get(0));
+				return;
+			}
+
+			else
+			{
+				if (this.estValide(this.j2, this.tabMine.get(0)))
+
+				this.j2.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
+				this.j2.addMineRecup(this.tabMine.get(0));
 				return;
 			}
 		}
@@ -117,8 +141,24 @@ public class Controleur
 		}
 	}
 
+	public Joueur getJoueur1 ()
+	{
+		return this.j1;
+	}
+
+	public Joueur getJoueur2 ()
+	{
+		return this.j2;
+	}
+
 	public static void main (String[] arg)
 	{
-		new Controleur();
+		Controleur ctrl = new Controleur();
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(16));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(1));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(22));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(29));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
 	}
 }

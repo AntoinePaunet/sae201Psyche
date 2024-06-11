@@ -3,6 +3,17 @@ package jeu.ihm;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * Cette classe créé la Frame sur laquelle les joueurs vont jouer. Elle affiche le plateau et tous les pions des joueurs.
+ * @author Antione Paunet,			IUT du Havre
+ * @author Mael Vauthier,			IUT du Havre
+ * @author Martin Ravenel,			IUT du Havre
+ * @author Fanch EVEN,				IUT du Havre
+ * @author Nahel KOCHAT,			IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
+ * @author Louis THOMAZEAU-AGULLO,	IUT du Havre
+ * @version 1.0 , 2024-05-23
+ */
 public class FrameJeu extends JFrame
 {
 	private PanelCarte panelCarte;
@@ -11,6 +22,9 @@ public class FrameJeu extends JFrame
 	private JMenuItem enregistrerF;
 	private JMenuItem supprimerF;
 
+	/**
+	 * Constructeur de la Frame du jeu
+	 */
 	public FrameJeu()
 	{
 		this.setTitle("L'Âge de Psyché");
@@ -32,8 +46,10 @@ public class FrameJeu extends JFrame
 
 	}
 
+/*
 	public static void main( String[] args )
 	{
 		new FrameJeu();
 	}
+*/
 }
