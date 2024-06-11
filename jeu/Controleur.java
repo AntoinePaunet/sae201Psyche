@@ -20,7 +20,7 @@ public class Controleur
 {
 	private Joueur j1;
 	private Joueur j2;
-	private ArrayList<Sommet> 		tabSeg;
+	private ArrayList<Sommet> 		tabSommet;
 
 	private boolean tourJ1;
 	private boolean finPartie;
@@ -29,7 +29,7 @@ public class Controleur
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
-		this.tabSeg 		= new ArrayList<>(30);
+		this.tabSommet 		= new ArrayList<>(30);
 		this.tourJ1=true;
 		this.finPartie = false;
 
@@ -41,19 +41,19 @@ public class Controleur
 		{
 			if (this.tourJ1)
 			{
-				if (this.estValide(this.j1, this.tabSeg.get(0)))
+				if (this.estValide(this.j1, this.tabSommet.get(0)))
 
-				this.j1.ajouterMateriaux (this.tabSeg.get(0).prendreMateriaux());
-				this.j1.addSegRecup(this.tabSeg.get(0));
+				this.j1.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
+				this.j1.addSommetRecup(this.tabSommet.get(0));
 				return;
 			}
 
 			else
 			{
-				if (this.estValide(this.j2, this.tabSeg.get(0)))
+				if (this.estValide(this.j2, this.tabSommet.get(0)))
 
-				this.j2.ajouterMateriaux (this.tabSeg.get(0).prendreMateriaux());
-				this.j2.addSegRecup(this.tabSeg.get(0));
+				this.j2.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
+				this.j2.addSommetRecup(this.tabSommet.get(0));
 				return;
 			}
 		}
@@ -122,11 +122,11 @@ public class Controleur
 			tmpMat = new Materiaux(tmpLst.remove(rndm));
 
 			tmpZone = Integer.parseInt( tabNomSeg[cpt].substring( 1, 2 ) );
-			this.tabSeg.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
+			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
 
 		//Ajout de la zone de départ
-		this.tabSeg.add( new Sommet(0, null, 442, 475, null, true));
+		this.tabSommet.add( new Sommet(0, null, 442, 475, null, true));
 
 	}
 
@@ -152,11 +152,11 @@ public class Controleur
 	public static void main (String[] arg)
 	{
 		Controleur ctrl = new Controleur();
-		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(10));
-		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(16));
-		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(1 ));
-		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(22));
-		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(29));
-		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(10));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
 	}
 }
