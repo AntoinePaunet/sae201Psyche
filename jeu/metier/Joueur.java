@@ -22,7 +22,9 @@ public class Joueur
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
 	}
 
+
 	public void setNomJoueur(String nom){this.nomJoueur=nom;}
+
 
 	public boolean ajouterMateriaux(Materiaux m)
 	{

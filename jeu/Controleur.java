@@ -24,9 +24,34 @@ public class Controleur
 		this.finPartie = false;
 
 		this.init();
+		this.initJetonPossession();
 		new FrameChoix();
 
+		while (!this.finPartie)
+		{
+			if (this.tourJ1)
+			{
+
+				return;
+			}
+		}
+	}
+
+	public boolean estValide(Joueur j, Mine m)
+	{
+		if (m.getMateriaux()==null) {return false;}
+
+		if ((j==this.j1 && !this.tourJ1) || (j==this.j2 && this.tourJ1)){return false;}
 		
+		for (int i=0; i<m.getTabRoute().size(); i++)
+		{
+			if (m.getRoute(i).getMineSommet().getMateriaux()==null || m.getRoute(i).getMineArrive().getMateriaux()==null)
+			{
+				return true ;
+			}
+		}
+
+		return false;
 	}
 
 
@@ -77,16 +102,18 @@ public class Controleur
 			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 2 ) );
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
+
 		//Ajout de la zone de départ
 		this.tabMine.add( new Mine(0, null, 442, 475, null, true));
+
 	}
 
 	private void initJetonPossession()
 	{
 		for (int i=0; i<25; i++)
 		{
-			this.j1.addJetonPossession(new JetonPossession(j1));
-			this.j2.addJetonPossession(new JetonPossession(j2));
+			j1.addJetonPossession(new JetonPossession(j1));
+			j2.addJetonPossession(new JetonPossession(j2));
 		}
 	}
 

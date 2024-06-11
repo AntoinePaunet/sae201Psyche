@@ -29,8 +29,8 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 		this.add(lblNomJoueur2 = new JLabel("  Entrez le nom du joueur Syndiat Astral : "));
 		this.add(txtJoueur2    = new JTextField()                                    );
 
-		this.add(btnSauvegarder = new JButton("SAUVEGARDER"));
-		this.add(btnAnnuler = new JButton("ANNULER"));
+		this.add(btnSauvegarder = new JButton("Sauvegarder"));
+		this.add(btnAnnuler = new JButton("Quitter"));
 
 
 		this.btnSauvegarder.addActionListener(this);
@@ -53,18 +53,18 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 
 
 	public void actionPerformed(ActionEvent e)
-    {
-        if( e.getSource().equals(this.btnSauvegarder) )
-        {	
+	{
+		if( e.getSource().equals(this.btnSauvegarder) )
+		{	
 			//Si les texteField sont écrits, alors change le nom du joueur
-			if (this.txtJoueur1.getText() != null && this.txtJoueur2.getText() != null)
+			if (!this.txtJoueur1.getText().isEmpty() && !this.txtJoueur2.getText().isEmpty() )
 			{
 				this.frameChoix.creerFrameJoueur();
 			}
 		}
 
 		if( e.getSource().equals(this.btnAnnuler) )
-        {
+		{
 			//Ferme la fenêtre
 			this.frameChoix.dispose();
 		}
