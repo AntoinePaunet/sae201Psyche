@@ -55,7 +55,7 @@ public class FrameChoix extends JFrame
  /*
 	public static void main( String[] args )
 	{
-		new FrameChoix();
+		//new FrameChoix();
 	}
 */
 
