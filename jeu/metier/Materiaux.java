@@ -8,8 +8,6 @@ public class Materiaux implements IRessource
 	private String 	nom;
 	private Couleur couleur;
 
-	private int x;
-	private int y;
 
 	public static int nbPiece;
 
@@ -25,7 +23,7 @@ public class Materiaux implements IRessource
 	@param int y donne la coordonnée y;
 	 */
 
-	public Materiaux(String nom, int x, int y)
+	public Materiaux(String nom)
 	{
 		if(!Materiaux.verif.contains(nom))
 		{
@@ -33,8 +31,6 @@ public class Materiaux implements IRessource
 		}
 
 		this.nom 	= nom;
-		this.x 		= x;
-		this.y 		= y;
 
 		switch (this.nom)
 		{
