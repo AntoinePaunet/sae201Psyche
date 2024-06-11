@@ -3,8 +3,7 @@ package jeu.metier;
 import java.util.ArrayList;
 
 /**
- * Cette classe créé l'interface graphique gérée par le controleur.
- * Elle s'occupe de charger des éléments sur la page graphique
+ * Cette classe d'instansié les mines
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
@@ -26,6 +25,19 @@ public class Sommet
 
 
     private Materiaux materiaux;
+
+    /**
+	 * Constructeure
+	 *
+	 * @param numMine     numéro de la mine
+	 * @param nomCoul     nom de la couleur de la mine
+	 * @param x           postion x
+	 * @param y           postion y
+	 * @param materiaux   matérieux assignée a la mine
+	 * @param estDepart   boolean qui permt de savoir si c'est la frame de départ du jeux
+	 * 
+	 * 
+	 */
     
     public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart )
     {
@@ -38,29 +50,50 @@ public class Sommet
 		this.routes = new ArrayList<>(10);
     }
 
+<<<<<<< Updated upstream:jeu/metier/Sommet.java
     public int       getNumSom()    { return this.numSom;    }
+=======
+
+
+    public int       getNumMine()   { return this.numMine;   }
+>>>>>>> Stashed changes:jeu/metier/Mine.java
     public String    getNomCoul()   { return this.nomCoul;   }
     public int       getX()         { return this.x;         }
     public int       getY()         { return this.y;         }
     public Materiaux getMateriaux() { return this.materiaux; }
     public boolean   getDepard()    { return this.depart;    }
 
+
 	public void addRoute(Route r)
 	{
 		this.routes.add(r);
 	}
 
+    /**
+	 * @param  i numéro de la route
+	 * @return retourne la route
+	 * 
+	 */
 	public Route getRoute(int i)
 	{
 		return this.routes.get(i);
 	}
 
+    /**
+	 * 
+	 * @return retourne la tableau de routes
+	 * 
+	 */
 	public ArrayList<Route> getTabRoute()
 	{
 		return this.routes;
 	}
 
-
+     /**
+	 * 
+	 * @return retourne le matérieau prit
+	 * 
+	 */
 	public Materiaux prendreMateriaux ()
 	{
 		Materiaux temp=this.materiaux;
