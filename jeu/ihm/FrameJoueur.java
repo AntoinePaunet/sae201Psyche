@@ -34,15 +34,6 @@ public class FrameJoueur extends JFrame
 		else
 			this.ajoutImage(0,0, "bgSyndicat.png", JLayeredPane.DEFAULT_LAYER);
 
-        /*
-        //Mise en place du fond d'écran
-		this.setIconImage(new ImageIcon(getClass().getResource("/images/paprika.png")).getImage());
-        ImageIcon backgroundImage = new ImageIcon(getClass().getResource("/images/plateau.png"));
-        JLabel backgroundLabel = new JLabel(backgroundImage);
-        backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
-        this.panel.add(backgroundLabel, JLayeredPane.DEFAULT_LAYER);
-		*/
-
         this.add( this.panelFond );
 		/*
         this.setFocusable(true);
@@ -61,7 +52,7 @@ public class FrameJoueur extends JFrame
      */
     public void ajoutImage(int x, int y, String url, int layer)
     {
-        ImageIcon image = new ImageIcon(getClass().getResource("/images/" + url));
+        ImageIcon image = new ImageIcon(getClass().getResource("images/" + url));
         JLabel imgLabel = new JLabel(image);
         imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
         this.panelFond.add(imgLabel, layer);
