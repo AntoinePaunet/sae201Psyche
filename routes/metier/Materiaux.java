@@ -11,7 +11,17 @@ public class Materiaux implements IRessource
 
 	public static int nbPiece;
 
+	//Permet de vérifier qu'on génère un minerais qui existe bel et bien.
 	public static final ArrayList<String> verif = new ArrayList<>(Arrays.asList("AU", "AG", "FE", "AL", "NI", "PT", "CO", "TI", "NR"));
+
+
+	/*
+	La classe matériaux permet de générer un nouveau minerai ou de la monnaie et permet ainsi de le positionner sur la
+	frame avec ses coordonnées.
+	@param String nom donne le nom scientifique du minerai / monnaie
+	@param int x donne la coordonnée x;
+	@param int y donne la coordonnée y;
+	 */
 
 	public Materiaux(String nom, int x, int y)
 	{
@@ -36,7 +46,7 @@ public class Materiaux implements IRessource
 			case "TI" : this.couleur = Couleur.VERT; 	break;
 			case "NR" : this.couleur = Couleur.CIAN; 	break;
 		}
-		
+
 		Materiaux.nbPiece++;
 	}
 
@@ -69,6 +79,8 @@ public class Materiaux implements IRessource
 	{
 		this.y = y;
 	}
+
+
 
 	public String toString()
 	{
