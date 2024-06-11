@@ -13,14 +13,16 @@ public class Materiaux implements IRessource
 
 	public static final ArrayList<String> verif = new ArrayList<>(Arrays.asList("AU", "AG", "FE", "AL", "NI", "PT", "CO", "TI", "NR"));
 
-	Materiaux(String nom)
+	public Materiaux(String nom, int x, int y)
 	{
 		if(!Materiaux.verif.contains(nom))
 		{
 			return;
 		}
 
-		this.nom = nom;
+		this.nom 	= nom;
+		this.x 		= x;
+		this.y 		= y;
 
 		switch (this.nom)
 		{
@@ -34,7 +36,7 @@ public class Materiaux implements IRessource
 			case "TI" : this.couleur = Couleur.VERT; 	break;
 			case "NR" : this.couleur = Couleur.CIAN; 	break;
 		}
-
+		
 		Materiaux.nbPiece++;
 	}
 
