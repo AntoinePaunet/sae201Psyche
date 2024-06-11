@@ -31,7 +31,7 @@ public class Controleur
 		{
 			if (this.tourJ1)
 			{
-				if (this.estValide(this.j1, new Mine()))
+				if( this.estValide(this.j1, new Mine()) )
 				return;
 			}
 		}

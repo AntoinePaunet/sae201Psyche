@@ -1,6 +1,5 @@
 package jeu.ihm;
 
-import jeu.ihm.*;
 import javax.swing.*;
 
 
