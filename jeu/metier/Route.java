@@ -16,6 +16,8 @@ public class Route
 	private Sommet sommetAr;
 	private int  secSommet;
 
+	private Joueur joueur;
+
 	public Route ( Sommet SommetDep, Sommet SommetAr, int SecSommet )
 	{
 		this.sommetDep  = sommetDep;
@@ -23,6 +25,7 @@ public class Route
 		this.sommetAr=sommetAr;
 		this.sommetDep.addRoute(this);
 		this.sommetAr.addRoute(this);
+		this.joueur=null;
 	}
 
 	public Sommet getSommetDep  () { return this.sommetDep;  }
@@ -31,5 +34,6 @@ public class Route
 
 	public void setSecSommet  ( Sommet sommetDep  ) { this.sommetDep = sommetDep;   }
 	public void setSommetAr   ( int  secSommet ) { this.secSommet = secSommet; }
+	public void setJoueur (Joueur j) {this.joueur = joueur;}
 
 }
