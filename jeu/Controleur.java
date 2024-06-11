@@ -2,7 +2,6 @@ package jeu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import jeu.ihm.*;
 import jeu.metier.*;
@@ -65,7 +64,10 @@ public class Controleur
 
 			rndm = (int)(Math.random()*(32-cpt));
 
+			System.out.println(tmpLst.get(rndm) + " " + tmpLst.size() + " " + rndm);
+
 			tmpMat = new Materiaux(tmpLst.remove(rndm));
+
 
 			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 2 ) );
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
