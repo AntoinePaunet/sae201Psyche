@@ -2,12 +2,12 @@ package jeu.metier;
 
 public class JetonPossession
 {
-	private Plateau joueur ;
+	private Joueur joueur ;
 
 	private int x;
 	private int y;
 
-	public JetonPossession (Plateau joueur)
+	public JetonPossession (Joueur joueur)
 	{
 		this.joueur=joueur;
 	}
