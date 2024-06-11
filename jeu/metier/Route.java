@@ -48,7 +48,7 @@ public class Route
 	public void setSecSommet  ( Sommet sommetDep  ) { this.sommetDep = sommetDep;   }
 	public void setSommetAr   ( int  secSommet ) { this.secSommet = secSommet; }
 
-	public void setJoueur (Joueur j) {this.joueur = joueur;}
+	public void setJoueur (Joueur j) {this.joueur = j;}
 
 
 }
