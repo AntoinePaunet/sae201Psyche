@@ -116,6 +116,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
             this.add(panelCarte, BorderLayout.CENTER);
 
             //Mise en place du fond
+			/* 
             ImageIcon backgroundImage = new ImageIcon(this.getClass().getResource("/images/backGround.jpg"));
 
             JLabel backgroundLabel = new JLabel(backgroundImage);
@@ -123,10 +124,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
             backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
 
             this.panelCarte.add(backgroundLabel);
+			*/
         }
     }
 
-	public void main (String[]args)
+	public static void main (String[]args)
 	{
 		new FrameDemarrage();
 	}
