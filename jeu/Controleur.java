@@ -2,7 +2,6 @@ package jeu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import jeu.ihm.*;
 import jeu.metier.*;
@@ -35,7 +34,7 @@ public class Controleur
 		int[] 		tabCooY    = new int[]    { 92,  111,  187,  175,	 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
 
-		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AR", "CO", "NI", "PT" };
+		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AG", "CO", "NI", "PT" };
 
 		ArrayList<String> tmpLst = new ArrayList<>(Arrays.asList("NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR"));
 
@@ -53,7 +52,7 @@ public class Controleur
 		//Génération des mines
 		for(int cpt = 0; cpt < tabNomMine.length ; cpt++)
 		{
-			switch ( tabNomMine[cpt].substring( 0, 0 ) )
+			switch ( tabNomMine[cpt].substring( 0, 1 ) )
 			{
 				case "J" -> tmpCoul = "Jaune";
 				case "B" -> tmpCoul = "Bleu";
@@ -71,7 +70,8 @@ public class Controleur
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
 
-		System.out.println(this.tabMine);
+		for ( Mine mine : tabMine )
+			System.out.println(mine.toString());
 	}
 
 	private void initJetonPossession()

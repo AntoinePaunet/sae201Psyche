@@ -1,7 +1,5 @@
 package jeu.ihm;
 
-import jeu.metier.Joueur;
-
 import javax.swing.*;
 
 
@@ -25,10 +23,7 @@ public class FrameChoix extends JFrame
 		
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		this.setVisible(true);
-
-
 	}
 
 	public void creerFrameJoueur()
@@ -40,7 +35,6 @@ public class FrameChoix extends JFrame
 
 	public static void main( String[] args )
 	{
-		
 		new FrameChoix();
 	}
 }

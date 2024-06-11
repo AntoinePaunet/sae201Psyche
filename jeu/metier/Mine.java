@@ -17,6 +17,8 @@ public class Mine
         this.numMine    = numMine;
         this.nomCoul    = nomCoul;
         this.materiaux  = materiaux;
+        this.x          = x;
+        this.y          = y;
         this.depart     = estDepart;
     }
 
@@ -26,5 +28,6 @@ public class Mine
     public int       getY()         { return this.y;         }
     public Materiaux getMateriaux() { return this.materiaux; }
     public boolean   getDepard()    { return this.depart;    }
+    public String    toString()     { return "Num : " + this.numMine + " Coul : " + this.nomCoul + " Depart " + this.depart + " x : " + this.x + " y : " + this.y + " Matériau : " + this.materiaux + "\n"; }
 
 }
