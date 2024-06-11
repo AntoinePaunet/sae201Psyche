@@ -7,6 +7,7 @@ public class FrameChoix extends JFrame
 {
 	private PanelChoixJoueur panelChoixJoueur;
 
+
 	public FrameChoix()
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
@@ -23,6 +24,13 @@ public class FrameChoix extends JFrame
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+	}
+
+	public void creerFrameJoueur()
+	{
+		new FrameJoueur(this.panelChoixJoueur.getText1(), 1);
+		new FrameJoueur(this.panelChoixJoueur.getText2(), 2);
+		this.dispose();
 	}
 
 	public static void main( String[] args )
