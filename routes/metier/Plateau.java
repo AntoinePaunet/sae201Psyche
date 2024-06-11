@@ -17,7 +17,7 @@ public class Plateau
 			return true;
 		}
 
-		for (int i=0; i<this.tabPlteau.length; i++)
+		for (int i=0; i<this.tabPlateau.length; i++)
 		{
 			if (this.tabPlateau[i][0]==null)
 			{
@@ -28,7 +28,7 @@ public class Plateau
 
 			if (this.tabPlateau[i][0].toString().equals(m.toString()))
 			{
-				for (int j=0; j<this.tabPlteau[0].length; i++)
+				for (int j=0; j<this.tabPlateau[0].length; i++)
 				{
 					if (this.tabPlateau[i][j]==null)
 					{
