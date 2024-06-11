@@ -3,15 +3,13 @@ package routes.vue;
 import javax.swing.*;
 import java.awt.event.*;
 
-
 public class FrameJeu extends JFrame
 {
 	private PanelCarte panelCarte;
-	private JPanel panelScore;
+	private JPanel     panelScore;
 
-
-	private JMenuItem     enregistrerF;
-	private JMenuItem     supprimerF;
+	private JMenuItem enregistrerF;
+	private JMenuItem supprimerF;
 
 	public FrameJeu()
 	{
@@ -21,14 +19,11 @@ public class FrameJeu extends JFrame
 		//this.ctrl = ctrl;
 
 
-
-
-
 		// Création et ajout du Panel
 		this.panelCarte = new PanelCarte();
 		this.add(this.panelCarte);
 
-		
+
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

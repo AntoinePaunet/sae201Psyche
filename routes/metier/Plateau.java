@@ -24,7 +24,7 @@ public class Plateau
 				this.tabPlateau[i][0]=m;
 				return true;
 			}
-				
+
 
 			if (this.tabPlateau[i][0].toString().equals(m.toString()))
 			{
