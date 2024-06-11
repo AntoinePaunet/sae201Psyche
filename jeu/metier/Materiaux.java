@@ -53,33 +53,11 @@ public class Materiaux implements IRessource
 		return this.couleur;
 	}
 
-	public int getX()
-	{
-		return this.x;
-	}
-
-	public int getY()
-	{
-		return this.y;
-	}
-
 	public String getNom()
 	{
 		return this.nom;
 	}
-
-	public void setX(int x)
-	{
-		this.x = x;
-	}
-
-	public void setY(int y)
-	{
-		this.y = y;
-	}
-
-
-
+	
 	public String toString()
 	{
 		return this.nom;
