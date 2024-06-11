@@ -1,7 +1,5 @@
 package jeu.ihm;
 
-import jeu.metier.Joueur;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
