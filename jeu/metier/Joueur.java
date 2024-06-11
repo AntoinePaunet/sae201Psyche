@@ -26,5 +26,6 @@ public class Joueur
 	public String getNomJoueur        () { return this.nomJoueur        ; }
 	/*public String getPlateauIndividuel() { return this.plateauIndividuel; }*/
 	
+	public void setNomJoueur(String nomJ) { this.nomJoueur = nomJ; }
 
 }
