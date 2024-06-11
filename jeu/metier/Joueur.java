@@ -20,7 +20,7 @@ public class Joueur
 	private Materiaux[][] tabPlateau;
 	private Materiaux[] tabPiece;
 	private ArrayList<JetonPossession> tabJetonPossession;
-	private ArrayList<Mine> tabMineRecup;
+	private ArrayList<Sommet> tabSommetRecup;
 
 	private int score ;
 	private String detailScore;
@@ -33,7 +33,7 @@ public class Joueur
 		this.tabPlateau = new Materiaux [4][8];
 		this.tabPiece   = new Materiaux [8];
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
-		this.tabMineRecup = new ArrayList<Mine>();
+		this.tabSommetRecup = new ArrayList<Sommet>();
 	}
 
 
@@ -99,10 +99,10 @@ public class Joueur
 	}
 
 
-	public void addMineRecup (Mine m)
+	public void addSommetRecup (Sommet s)
 	{
-		this.tabMineRecup.add(m);
-		this.ajouterMateriaux(m.getMateriaux());
+		this.tabSommetRecup.add(s);
+		this.ajouterMateriaux(s.getMateriaux());
 	}
 
 	//Ajouter des jetons
