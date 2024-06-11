@@ -25,12 +25,18 @@ public class PanelCarte extends JPanel
 	private final int RAYON = 30;
 	private Graphics2D g2;
 
+	/**
+	 * Constructeur du panel
+	 */
 	public PanelCarte()
 	{
 		this.setBackground( new Color( 909090 ));
 	}
 
-
+	/**
+	 * Méthode de dessins
+	 * @param g l'instance de Graphics2D utilisée sur ce panel
+	 */
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
@@ -60,5 +66,4 @@ public class PanelCarte extends JPanel
 		this.g2.drawString( nomP1, x1-10, y1-5 );
 		this.g2.drawString( nomP2, x2-10, y2-5 );
 	}
-
 }

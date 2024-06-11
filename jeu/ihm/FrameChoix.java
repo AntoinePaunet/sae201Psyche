@@ -5,8 +5,7 @@ import jeu.ihm.*;
 import javax.swing.*;
 
 /**
- * Cette classe créé l'interface graphique gérée par le controleur.
- * Elle s'occupe de charger des éléments sur la page graphique
+ * Cette classe gère la fenetre du menu principal du jeu.
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
@@ -21,6 +20,10 @@ public class FrameChoix extends JFrame
 	private PanelChoixJoueur panelChoixJoueur;
 	private Controleur ctrl;
 
+	/**
+	 * Constructeur de la frame de Choix du joueur
+	 * @param ctrl le Controleur qui lance le programme
+	 */
 	public FrameChoix(Controleur ctrl)
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
@@ -40,17 +43,20 @@ public class FrameChoix extends JFrame
 		this.setVisible(true);
 	}
 
-	// Crée le plateau des joueurs et ferme cette fenêtre
+	/**
+	 * Méthode de lancement des FrameJoueur correspondant à leur choix
+	 */
 	public void creerFrameJoueur()
 	{
 		new FrameJoueur(this.panelChoixJoueur.getText1(), 1, ctrl);
 		new FrameJoueur(this.panelChoixJoueur.getText2(), 2, ctrl);
 		this.dispose();
 	}
-
+ /*
 	public static void main( String[] args )
 	{
 		//new FrameChoix();
 	}
+*/
 
 }

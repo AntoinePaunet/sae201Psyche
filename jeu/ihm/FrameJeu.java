@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 /**
- * Cette classe créé l'interface graphique gérée par le controleur.
- * Elle s'occupe de charger des éléments sur la page graphique
+ * Cette classe créé la Frame sur laquelle les joueurs vont jouer. Elle affiche le plateau et tous les pions des joueurs.
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
@@ -23,6 +22,9 @@ public class FrameJeu extends JFrame
 	private JMenuItem enregistrerF;
 	private JMenuItem supprimerF;
 
+	/**
+	 * Constructeur de la Frame du jeu
+	 */
 	public FrameJeu()
 	{
 		this.setTitle("L'Âge de Psyché");
@@ -44,8 +46,10 @@ public class FrameJeu extends JFrame
 
 	}
 
+/*
 	public static void main( String[] args )
 	{
 		new FrameJeu();
 	}
+*/
 }
