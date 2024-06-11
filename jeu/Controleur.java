@@ -62,7 +62,7 @@ public class Controleur
 				case "M" -> tmpCoul = "Marron";
 			}
 
-			rndm = (int)(Math.random()*(32-cpt));
+			rndm = (int)(Math.random()*(40-cpt));
 
 			tmpMat = new Materiaux(tmpLst.remove(rndm));
 

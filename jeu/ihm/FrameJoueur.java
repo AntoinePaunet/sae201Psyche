@@ -17,7 +17,6 @@ import java.awt.Color;
 public class FrameJoueur extends JFrame
 {
     private JPanel panelFond;
-	private JLabel lblnimp;
 
     /**
      * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
@@ -26,7 +25,6 @@ public class FrameJoueur extends JFrame
     public FrameJoueur(String nomJoueur, int j)
     {
 		this.setTitle( "Plateau de " + nomJoueur );
-        //this.setTitle( "Plateau de " + j.getNom() );
 
         this.setSize( 900 , 535 );
         this.panelFond = new JPanel();
@@ -36,9 +34,6 @@ public class FrameJoueur extends JFrame
 		else
 			this.panelFond.setBackground( new Color(200,200,30) );
 
-		this.setBackground( new Color( 250,250,250) );
-
-		this.lblnimp = new JLabel("stp jveux un bg");
         /*
         //Mise en place du fond d'écran
 		this.setIconImage(new ImageIcon(getClass().getResource("/images/paprika.png")).getImage());
@@ -47,8 +42,6 @@ public class FrameJoueur extends JFrame
         backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
         this.panel.add(backgroundLabel, JLayeredPane.DEFAULT_LAYER);
 		*/
-
-		this.panelFond.add(this.lblnimp);
 
         this.add( this.panelFond );
 		/*
