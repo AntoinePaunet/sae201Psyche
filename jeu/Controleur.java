@@ -19,6 +19,7 @@ public class Controleur
 		this.tabMine 		= new ArrayList<>(30);
 
 		this.init();
+		new FrameChoix();
 	}
 
 
