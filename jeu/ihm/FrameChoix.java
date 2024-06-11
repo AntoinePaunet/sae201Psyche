@@ -12,8 +12,8 @@ public class FrameChoix extends JFrame
 	public FrameChoix()
 	{
 		this.setTitle("Choix des joueurs et de leur plateau");
-		this.setSize    ( 500,1400 );
-		this.setLocation(  0, 0 );
+		this.setSize    ( 500,300 );
+		this.setLocation(  300, 300 );
 		//this.ctrl = ctrl;
 
 
