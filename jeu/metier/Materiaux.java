@@ -27,6 +27,7 @@ public class Materiaux implements IRessource
 	{
 		if(!Materiaux.verif.contains(nom))
 		{
+			System.out.println("oui");
 			return;
 		}
 
