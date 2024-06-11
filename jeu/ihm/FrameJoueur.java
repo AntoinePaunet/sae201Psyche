@@ -23,9 +23,9 @@ public class FrameJoueur extends JFrame
      * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
      * Contient tout les éléments graphiques
      */
-    public FrameJoueur(String nomJoueur, int j /* Joueur j */ )
+    public FrameJoueur(String nomJoueur, int j)
     {
-		this.setTitle( "Plateau de joueur " + String.valueOf(j) );
+		this.setTitle( "Plateau de " + nomJoueur );
         //this.setTitle( "Plateau de " + j.getNom() );
 
         this.setSize( 900 , 535 );
