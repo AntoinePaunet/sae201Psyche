@@ -39,7 +39,7 @@ public class Controleur
 
 	public boolean estValide(Joueur j, Mine m)
 	{
-		if (m.getMateriaux==null) {return false;}
+		if (m.getMateriaux()==null) {return false;}
 		
 		if ()
 	}

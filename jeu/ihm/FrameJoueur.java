@@ -30,9 +30,9 @@ public class FrameJoueur extends JFrame
         this.panelFond = new JPanel();
 
 		if( j == 1 )
-			this.panelFond.setBackground( new Color(60,60,30) );
+			this.ajoutImage(0,0, "bgSolaire.png", JLayeredPane.DEFAULT_LAYER);
 		else
-			this.panelFond.setBackground( new Color(200,200,30) );
+			this.ajoutImage(0,0, "bgSyndicat.png", JLayeredPane.DEFAULT_LAYER);
 
         /*
         //Mise en place du fond d'écran
@@ -59,12 +59,12 @@ public class FrameJoueur extends JFrame
      * @param y Coordonnée de l'ordonnée de l'image à placer
      * @param url lien de l'image dans le dossier image.
      */
-    public void ajoutImage(int x, int y, String url)
+    public void ajoutImage(int x, int y, String url, int layer)
     {
         ImageIcon image = new ImageIcon(getClass().getResource("/images/" + url));
         JLabel imgLabel = new JLabel(image);
         imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
-        this.panelFond.add(imgLabel, JLayeredPane.DRAG_LAYER);
+        this.panelFond.add(imgLabel, layer);
     }
 
 }
