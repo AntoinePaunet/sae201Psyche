@@ -12,7 +12,7 @@ public class FrameChoix extends JFrame
 	public FrameChoix()
 	{
 		this.setTitle("Choix des joueurs et de leur plateau");
-		this.setSize    ( 500,300 );
+		this.setSize    ( 450,200 );
 		this.setLocation(  300, 300 );
 		//this.ctrl = ctrl;
 
@@ -32,6 +32,7 @@ public class FrameChoix extends JFrame
 
 	public static void main( String[] args )
 	{
-		new FrameJeu();
+		Joueur[] joueurs = null;
+		new FrameChoix(joueurs);
 	}
 }
