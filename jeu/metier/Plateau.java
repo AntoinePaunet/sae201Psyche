@@ -1,6 +1,9 @@
 package jeu.metier;
 
-public class Plateau 
+import java.util.List;
+import java.util.ArrayList;
+
+public class Plateau
 {
 	private Materiaux tabPlateau[][];
 	private Materiaux tabPiece[];
