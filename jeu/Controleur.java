@@ -9,15 +9,15 @@ import jeu.metier.*;
 
 public class Controleur 
 {
-	private Plateau j1;
-	private Plateau j2;
+	private Joueur j1;
+	private Joueur j2;
 	private ArrayList<Mine> 		tabMine;
 	private ArrayList<Materiaux> 	tabMateriaux;
 
 	public Controleur()
 	{
-		this.j1      		= new Plateau ();
-		this.j2      		= new Plateau ();
+		this.j1      		= new Joueur ();
+		this.j2      		= new Joueur ();
 		this.tabMine 		= new ArrayList<>(30);
 		this.tabMateriaux 	= new ArrayList<>(40);
 
