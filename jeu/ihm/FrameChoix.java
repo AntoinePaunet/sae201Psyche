@@ -13,7 +13,7 @@ public class FrameChoix extends JFrame
 	public FrameChoix(Controleur ctrl)
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
-		this.setSize    ( 550,200 );
+		this.setSize    ( 700,200 );
 		this.setLocation(  300, 300 );
 
 		this.ctrl = ctrl;
@@ -37,5 +37,9 @@ public class FrameChoix extends JFrame
 		this.dispose();
 	}
 
+	public static void main( String[] args )
+	{
+		new FrameChoix();
+	}
 
 }

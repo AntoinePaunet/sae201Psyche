@@ -31,7 +31,7 @@ public class FrameJoueur extends JFrame
     {
 		this.setTitle( "Plateau de " + nomJoueur );
 
-        this.setSize( 900 , 535 );
+        this.setSize( 500 , 400 );
         this.panelFond = new JPanel();
 
 		this.ctrl = ctrl;

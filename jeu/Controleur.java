@@ -31,7 +31,7 @@ public class Controleur
 		{
 			if (this.tourJ1)
 			{
-
+				if (this.estValide(this.j1, new Mine()))
 				return;
 			}
 		}
@@ -115,6 +115,16 @@ public class Controleur
 			j1.addJetonPossession(new JetonPossession(j1));
 			j2.addJetonPossession(new JetonPossession(j2));
 		}
+	}
+
+	public Joueur getJoueur1 ()
+	{
+		return this.j1;
+	}
+
+	public Joueur getJoueur2 ()
+	{
+		return this.j2;
 	}
 
 	public static void main (String[] arg)
