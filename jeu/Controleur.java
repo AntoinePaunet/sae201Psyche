@@ -24,9 +24,8 @@ public class Controleur
 		this.finPartie = false;
 
 		this.init();
+		this.initJetonPossession();
 		new FrameChoix();
-
-		
 	}
 
 
