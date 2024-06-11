@@ -26,7 +26,21 @@ public class Controleur
 		this.init();
 		new FrameChoix();
 
+		while (!finPartie)
+		{
+			if (tourJ1)
+			{
+
+				j1.ajouterMateriaux();
+			}
+		}
+	}
+
+	public boolean estValide(Joueur j, Mine m)
+	{
+		if (m.getMateriaux==null) {return false;}
 		
+		if ()
 	}
 
 
@@ -78,16 +92,16 @@ public class Controleur
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
 
-		this.tabMine.add( new Mine(0, null, 442, 475, null, true));
-		System.out.println(this.tabMine);
+		for ( Mine mine : tabMine )
+			System.out.println(mine.toString());
 	}
 
 	private void initJetonPossession()
 	{
 		for (int i=0; i<25; i++)
 		{
-			this.j1.addJetonPossession(new JetonPossession(j1));
-			this.j2.addJetonPossession(new JetonPossession(j2));
+			j1.addJetonPossession(new JetonPossession(j1));
+			j2.addJetonPossession(new JetonPossession(j2));
 		}
 	}
 
