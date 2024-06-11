@@ -29,7 +29,7 @@ public class Sommet
     
     public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart )
     {
-        this.numSom    = numSom;
+        this.numSom     = numSom;
         this.nomCoul    = nomCoul;
         this.materiaux  = materiaux;
         this.x          = x;
