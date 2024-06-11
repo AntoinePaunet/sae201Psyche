@@ -1,6 +1,7 @@
 package jeu.ihm;
 
 import jeu.metier.Joueur;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -20,7 +21,7 @@ public class FrameChoix extends JFrame
 
 
 		// Création et ajout du Panel
-		this.panelChoixJoueur = new PanelChoixJoueur();
+		this.panelChoixJoueur = new PanelChoixJoueur(new Joueur[10]);
 		this.add(this.panelChoixJoueur);
 
 		
