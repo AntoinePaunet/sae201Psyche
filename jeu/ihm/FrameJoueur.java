@@ -65,7 +65,6 @@ public class FrameJoueur extends JFrame
 	/**
 	 * Méthode de mise a jour de l'affichage des plateaux des joueurs
 	 */
-
 	public void refresh()
 	{
 		int x = 80;
