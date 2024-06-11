@@ -11,8 +11,8 @@ import java.util.ArrayList;
  * @author Martin Ravenel,			IUT du Havre
  * @author Fanch EVEN,				IUT du Havre
  * @author Nahel KOCHAT,			IUT du Havre
- * @author Anas AARAB Vauthier,		IUT du Havre
- * @author Louis THOMAZEAU-AGUILLO,	IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
+ * @author Louis THOMAZEAU-AGULLO,	IUT du Havre
  * @version 1.0 , 2024-05-23
  */
 public class Joueur 
@@ -59,7 +59,7 @@ public class Joueur
 
 			if (this.tabPlateau[i][0].toString().equals(m.toString()))
 			{
-				for (int j=0; j<this.tabPlateau[0].length; i++)
+				for (int j=0; j<this.tabPlateau[0].length; j++)
 				{
 					if (this.tabPlateau[i][j]==null)
 					{
@@ -100,6 +100,7 @@ public class Joueur
 	public void addMineRecup (Mine m)
 	{
 		this.tabMineRecup.add(m);
+		this.ajouterMateriaux(m.getMateriaux());
 	}
 
 	//Ajouter des jetons
