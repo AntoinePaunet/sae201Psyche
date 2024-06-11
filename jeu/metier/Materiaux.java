@@ -57,7 +57,7 @@ public class Materiaux implements IRessource
 	{
 		return this.nom;
 	}
-	
+
 	public String toString()
 	{
 		return this.nom;

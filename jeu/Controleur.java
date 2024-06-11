@@ -23,7 +23,7 @@ public class Controleur
 	}
 
 
-	private void initMine()
+	private void init()
 	{
 		String tmpCoul = "";
 		int    tmpZone = -1;
@@ -54,6 +54,8 @@ public class Controleur
 	private void initMateriaux()
 	{
 		String[] 	tabNom 	= new String[]{	"FE", "PT", "AG", "NR", "CO", "AL", "NI", "NI", "AL", "AU", "TI", "AG", "NR", "AU", "FE", "PT", "TI", "AG", "NR", "CO", "AU", "FE", "NR", "AL", "NI", "AG", "TI", "FE", "NR", "PT"};
+
+
 
 		for(int i = 0; i < tabNom.length ; i++)
 		{
