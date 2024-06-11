@@ -79,6 +79,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				System.out.println("Annuler");
 		}
 
+
+
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
@@ -121,5 +123,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
             this.panelCarte.add(backgroundLabel);
         }
     }
+
+	public static void main( String[] args )
+	{
+		new FrameDemarrage();
+	}
 }
 
