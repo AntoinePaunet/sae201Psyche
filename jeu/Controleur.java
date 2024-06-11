@@ -13,16 +13,14 @@ import jeu.metier.*;
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
  * @author Fanch EVEN,				IUT du Havre
- * @author Nahel KOCHAT,			IUT du Havre
  * @author Anas AARAB,				IUT du Havre
- * @author Louis THOMAZEAU-AGULLO,	IUT du Havre
  * @version 1.0 , 2024-05-23
  */
 public class Controleur 
 {
 	private Joueur j1;
 	private Joueur j2;
-	private ArrayList<Mine> 		tabMine;
+	private ArrayList<Sommet> 		tabMine;
 
 	private boolean tourJ1;
 	private boolean finPartie;
