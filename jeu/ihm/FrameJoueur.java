@@ -42,11 +42,13 @@ public class FrameJoueur extends JFrame
 
 		if( j == 1 )
 		{
+			this.setLocation( 100, 550 );
 			this.ajoutImage(0,0, "bgSolaire.png", 0);
 			this.joueur = ctrl.getJoueur1();
 		}
 		else
 		{
+			this.setLocation( 600, 550 );
 			this.ajoutImage(0,0, "bgSyndicat.png", 0);
 			this.joueur = ctrl.getJoueur2();
 		}
@@ -63,7 +65,6 @@ public class FrameJoueur extends JFrame
 	/**
 	 * Méthode de mise a jour de l'affichage des plateaux des joueurs
 	 */
-
 	public void refresh()
 	{
 		int x = 80;
@@ -81,7 +82,16 @@ public class FrameJoueur extends JFrame
 			x = 80;
 			y += 120;
 		}
-		System.out.println(Arrays.deepToString(this.joueur.getTableMateriaux()));
+
+
+		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) //affichage des pièces
+		{
+			if(this.joueur.getTabPiece()[i] != null)
+			{
+				this.ajoutImage(x,y, "NR.png", 1); //Démo donc seulement pièces de bronze
+				x += 85;
+			}
+		}
 
 	}
 
