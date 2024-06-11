@@ -1,10 +1,13 @@
 package jeu.metier;
 
+import jeu.metier.*;
+import java.util.ArrayList;
+
 public class Plateau 
 {
 	private Materiaux tabPlateau[][];
 	private Materiaux tabPiece[];
-	private List<JetonPossession> tabJetonPossession;
+	private ArrayList<JetonPossession> tabJetonPossession;
 
 	private int score ;
 	private String detailScore;
@@ -69,7 +72,7 @@ public class Plateau
 	}
 
 	//récupérer les jetons
-	public List<JetonPossession> getTabJetonPossession ()
+	public ArrayList<JetonPossession> getTabJetonPossession ()
 	{
 		return this.tabJetonPossession;
 	}
