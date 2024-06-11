@@ -42,18 +42,20 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e)
     {
         if( e.getSource().equals(this.btnSauvegarder) )
-        {
+        {	
+			//Si les texteField sont écrits, alors change le nom du joueur
 			if (this.txtJoueur1.getText() != null && this.txtJoueur2.getText() != null)
 			{
 				joueurs[0].setNomJoueur(this.txtJoueur1.getText());
 				joueurs[1].setNomJoueur(this.txtJoueur2.getText());
 			}
-			
+			//Ferme la fenêtre
 			this.dispose();
 		}
 
 		if( e.getSource().equals(this.btnAnnuler) )
         {
+			//Ferme la fenêtre
 			this.dispose();
 		}
 	}

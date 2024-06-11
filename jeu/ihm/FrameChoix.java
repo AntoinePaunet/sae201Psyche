@@ -14,7 +14,6 @@ public class FrameChoix extends JFrame
 		this.setTitle("Choix des joueurs et de leur plateau");
 		this.setSize    ( 450,200 );
 		this.setLocation(  300, 300 );
-		//this.ctrl = ctrl;
 
 
 		// Création et ajout du Panel
@@ -32,7 +31,7 @@ public class FrameChoix extends JFrame
 
 	public static void main( String[] args )
 	{
-		Joueur[] joueurs = null;
+		Joueur[] joueurs = {null, null};
 		new FrameChoix(joueurs);
 	}
 }

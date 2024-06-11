@@ -12,15 +12,19 @@ public class Mine
 
     private Materiaux materiaux;
     
-    public Mine( int numMine, String nomCoul )
+    public Mine( int numMine, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart )
     {
-        this.numMine = numMine;
-        this.nomCoul = nomCoul;
+        this.numMine    = numMine;
+        this.nomCoul    = nomCoul;
+        this.materiaux  = materiaux;
+        this.depart     = estDepart;
     }
 
-    public int    getNumMine() { return this.numMine; }
-    public String getNomCoul() { return this.nomCoul; }
-
-    
+    public int       getNumMine()   { return this.numMine;   }
+    public String    getNomCoul()   { return this.nomCoul;   }
+    public int       getX()         { return this.x;         }
+    public int       getY()         { return this.y;         }
+    public Materiaux getMateriaux() { return this.materiaux; }
+    public boolean   getDepard()    { return this.depart;    }
 
 }
