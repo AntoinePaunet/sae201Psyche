@@ -42,11 +42,13 @@ public class FrameJoueur extends JFrame
 
 		if( j == 1 )
 		{
+			this.setLocation( 100, 550 );
 			this.ajoutImage(0,0, "bgSolaire.png", 0);
 			this.joueur = ctrl.getJoueur1();
 		}
 		else
 		{
+			this.setLocation( 600, 550 );
 			this.ajoutImage(0,0, "bgSyndicat.png", 0);
 			this.joueur = ctrl.getJoueur2();
 		}
