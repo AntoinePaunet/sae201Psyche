@@ -2,6 +2,8 @@ package jeu.ihm;
 
 import jeu.Controleur;
 import jeu.metier.Jeton;
+import jeu.metier.Joueur;
+import jeu.metier.Materiaux;
 
 import javax.swing.*;
 
@@ -22,6 +24,7 @@ public class FrameJoueur extends JFrame
     private JPanel panelFond;
 
 	private Controleur ctrl;
+	private Joueur joueur;
 
     /**
      * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
@@ -37,9 +40,16 @@ public class FrameJoueur extends JFrame
 		this.ctrl = ctrl;
 
 		if( j == 1 )
+		{
 			this.ajoutImage(0,0, "bgSolaire.png", JLayeredPane.DEFAULT_LAYER);
+			this.joueur = ctrl.getJoueur1();
+		}
 		else
+		{
 			this.ajoutImage(0,0, "bgSyndicat.png", JLayeredPane.DEFAULT_LAYER);
+			this.joueur = ctrl.getJoueur2();
+		}
+
 
         this.add( this.panelFond );
 
@@ -51,7 +61,23 @@ public class FrameJoueur extends JFrame
 
 	public void refresh()
 	{
-		for(Jeton this.ctrl.)
+		int x = 80;
+		int y = 20;
+		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) //Affichage des épices
+		{
+			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
+			{
+				if(this.joueur.getTableMateriaux()[i][j] != null)
+				{
+					this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", JLayeredPane.PALETTE_LAYER);
+				}
+				x += 160;
+			}
+			x = 80;
+			y += 120;
+		}
+
+
 	}
 
 
