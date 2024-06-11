@@ -45,6 +45,12 @@ public class Mine
 		return this.routes.get(i);
 	}
 
+	public ArrayList<Route> getTabRoute()
+	{
+		return this.routes;
+	}
+
+
 	public Materiaux prendreMateriaux ()
 	{
 		Materiaux temp=this.materiaux;
@@ -52,7 +58,7 @@ public class Mine
 		this.materiaux=null;
 		return temp;
 	}
-	
+
     public String    toString()     { return "Num : " + this.numMine + " Coul : " + this.nomCoul + " Depart " + this.depart + " x : " + this.x + " y : " + this.y + " Matériau : " + this.materiaux + "\n"; }
 
 }

@@ -27,21 +27,31 @@ public class Controleur
 		this.initJetonPossession();
 		new FrameChoix();
 
-		while (!finPartie)
+		while (!this.finPartie)
 		{
-			if (tourJ1)
+			if (this.tourJ1)
 			{
 
-				j1.ajouterMateriaux();
+				return;
 			}
 		}
 	}
 
 	public boolean estValide(Joueur j, Mine m)
 	{
-		if (m.getMateriaux==null) {return false;}
+		if (m.getMateriaux()==null) {return false;}
+
+		if ((j==this.j1 && this.tourJ1) || (j==this.j2 && !this.tourJ1))
 		
-		if ()
+		for (int i=0; i<m.getTabRoute().size(); i++)
+		{
+			if (m.getRoute(i).getMineSommet().getMateriaux()==null || m.getRoute(i).getMineArrive().getMateriaux()==null)
+			{
+				return true ;
+			}
+		}
+
+		return false;
 	}
 
 
