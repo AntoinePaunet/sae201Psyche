@@ -14,7 +14,6 @@ import java.util.ArrayList;
  */
 public class Mine
 {
-
     private int     numMine;
     private String  nomCoul;
     private boolean depart;
