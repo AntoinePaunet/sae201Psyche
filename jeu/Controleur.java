@@ -69,17 +69,14 @@ public class Controleur
 			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 2 ) );
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
-
-		for ( Mine mine : tabMine )
-			System.out.println(mine.toString());
 	}
 
 	private void initJetonPossession()
 	{
 		for (int i=0; i<25; i++)
 		{
-			j1.addJetonPossession(new JetonPossession(j1));
-			j2.addJetonPossession(new JetonPossession(j2));
+			this.j1.addJetonPossession(new JetonPossession(j1));
+			this.j2.addJetonPossession(new JetonPossession(j2));
 		}
 	}
 
