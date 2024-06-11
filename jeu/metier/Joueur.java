@@ -46,7 +46,7 @@ public class Joueur
 			return true;
 		}
 
-		for (int i=0; i<this.tabPlateau.length; i++)
+		for (int i=this.tabPlateau.length-1; i>0; i--)
 		{
 			if (this.tabPlateau[i][0]==null)
 			{
@@ -55,13 +55,13 @@ public class Joueur
 			}
 
 
-			if (this.tabPlateau[0][i].toString().equals(m.toString()))
+			if (this.tabPlateau[i][0].toString().equals(m.toString()))
 			{
 				for (int j=0; j<this.tabPlateau[0].length; j++)
 				{
-					if (this.tabPlateau[i][j]==null)
+					if (this.tabPlateau[j][i]==null)
 					{
-						this.tabPlateau[i][0]=m;
+						this.tabPlateau[0][i]=m;
 						return true;
 					}
 						

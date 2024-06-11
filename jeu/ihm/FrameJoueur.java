@@ -94,7 +94,7 @@ public class FrameJoueur extends JFrame
      */
     public void ajoutImage(int x, int y, String url, int layer)
     {
-        ImageIcon image = new ImageIcon(getClass().getResource("images/" + url));
+        ImageIcon image = new ImageIcon("images/" + url);
         JLabel imgLabel = new JLabel(image);
         imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
         this.panelFond.add(imgLabel, Integer.valueOf(layer));
