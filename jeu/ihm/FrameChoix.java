@@ -13,6 +13,7 @@ import javax.swing.*;
  * @author Anas AARAB,				IUT du Havre
  * @version 1.0 , 2024-05-23
  */
+
 public class FrameChoix extends JFrame
 {
 	private PanelChoixJoueur panelChoixJoueur;

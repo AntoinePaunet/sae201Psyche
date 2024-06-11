@@ -4,8 +4,7 @@ import jeu.metier.*;
 import java.util.ArrayList;
 
 /**
- * Cette classe créé l'interface graphique gérée par le controleur.
- * Elle s'occupe de charger des éléments sur la page graphique
+ * Cette classe permet d'instancié les joueurs 
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
