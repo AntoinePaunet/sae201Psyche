@@ -70,9 +70,8 @@ public class Controleur
 			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 2 ) );
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
-
+		//Ajout de la zone de départ
 		this.tabMine.add( new Mine(0, null, 442, 475, null, true));
-		System.out.println(this.tabMine);
 	}
 
 	private void initJetonPossession()
