@@ -71,7 +71,8 @@ public class Controleur
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
 
-		System.out.println(this.tabMine);
+		for ( Mine mine : tabMine )
+			System.out.println(mine.toString());
 	}
 
 	private void initJetonPossession()
