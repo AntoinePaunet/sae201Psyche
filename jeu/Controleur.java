@@ -154,7 +154,7 @@ public class Controleur
 		Controleur ctrl = new Controleur();
 		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(10));
 		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(16));
-		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(1));
+		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(1 ));
 		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(22));
 		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(29));
 		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(10));
