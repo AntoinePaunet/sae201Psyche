@@ -11,7 +11,7 @@ public class FrameChoix extends JFrame
 	private Joueur[]         joueurs         ;
 
 
-	public FrameChoix(Joueur[] joueurs)
+	public FrameChoix()
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
 		this.setSize    ( 450,200 );
