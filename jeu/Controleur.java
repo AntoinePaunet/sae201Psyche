@@ -21,7 +21,7 @@ public class Controleur
 		this.tabMine 		= new ArrayList<>(30);
 		this.tabMateriaux 	= new ArrayList<>(40);
 
-		this.initMateriaux();
+		this.init();
 	}
 
 
@@ -72,21 +72,6 @@ public class Controleur
 			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 1 ) );
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
-	}
-
-
-	private void initMateriaux()
-	{
-		String[] 	tabNom 	= new String[]{	"FE", "PT", "AG", "NR", "CO", "AL", "NI", "NI", "AL", "AU", "TI", "AG", "NR", "AU", "FE", "PT", "TI", "AG", "NR", "CO", "AU", "FE", "NR", "AL", "NI", "AG", "TI", "FE", "NR", "PT"};
-
-
-
-		for(int i = 0; i < tabNom.length ; i++)
-		{
-			this.tabMateriaux.add( new Materiaux(tabNom[i]) );
-		}
-
-		System.out.println(this.tabMateriaux.size());
 	}
 
 	private void initJetonPossession()
