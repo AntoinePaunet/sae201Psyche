@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 public class Joueur 
 {
-	private Materiaux tabPlateau[][];
-	private Materiaux tabPiece[];
+	private Materiaux[][] tabPlateau;
+	private Materiaux[] tabPiece;
 	private ArrayList<JetonPossession> tabJetonPossession;
+	private ArrayList<Mine> tabMineRecup;
 
 	private int score ;
 	private String detailScore;
@@ -20,6 +21,7 @@ public class Joueur
 		this.tabPlateau = new Materiaux [4][8];
 		this.tabPiece   = new Materiaux [8];
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
+		this.tabMineRecup = new ArrayList<Mine>();
 	}
 
 
@@ -59,6 +61,16 @@ public class Joueur
 		return false;
 	}
 
+	public Materiaux[][] getTableMateriaux()
+	{
+		return this.tabPlateau;
+	}
+
+	public Materiaux[] getTabPiece()
+	{
+		return this.tabPiece;
+	}
+
 	public boolean ajouterPiece(Materiaux m)
 	{
 		for (int i=0; i<this.tabPiece.length; i++)
@@ -70,6 +82,12 @@ public class Joueur
 			}
 		}
 		return false;
+	}
+
+
+	public void addMineRecup (Mine m)
+	{
+		this.tabMineRecup.add(m);
 	}
 
 	//Ajouter des jetons

@@ -31,7 +31,19 @@ public class Controleur
 		{
 			if (this.tourJ1)
 			{
-				if (this.estValide(this.j1, new Mine()))
+				if (this.estValide(this.j1, this.tabMine.get(0)))
+
+				this.j1.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
+				this.j1.addMineRecup(this.tabMine.get(0));
+				return;
+			}
+
+			else
+			{
+				if (this.estValide(this.j2, this.tabMine.get(0)))
+
+				this.j2.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
+				this.j2.addMineRecup(this.tabMine.get(0));
 				return;
 			}
 		}
