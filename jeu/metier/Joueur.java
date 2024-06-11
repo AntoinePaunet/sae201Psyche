@@ -6,7 +6,7 @@ public class Joueur
 	/*
 	La classe joueur permet de créer un nouveau joueur.
 	@param String nom donne son nom au joueur
-	@param FrameJoueur plateauIndividuel lui  
+	@param FrameJoueur plateauIndividuel permet d'acceder au plateau du joueur 
 	 */
 
 	private FrameJoueur plateauIndividuel;
