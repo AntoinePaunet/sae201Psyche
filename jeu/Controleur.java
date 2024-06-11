@@ -39,26 +39,26 @@ public class Controleur
 		this.initJetonPossession();
 		new FrameChoix(this);
 
-		while (!this.finPartie)
-		{
-			if (this.tourJ1)
-			{
-				if (this.estValide(this.j1, this.tabMine.get(0)))
-
-				this.j1.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
-				this.j1.addMineRecup(this.tabMine.get(0));
-				return;
-			}
-
-			else
-			{
-				if (this.estValide(this.j2, this.tabMine.get(0)))
-
-				this.j2.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
-				this.j2.addMineRecup(this.tabMine.get(0));
-				return;
-			}
-		}
+//		while (!this.finPartie)
+//		{
+//			if (this.tourJ1)
+//			{
+//				if (this.estValide(this.j1, this.tabMine.get(0)))
+//
+//				this.j1.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
+//				this.j1.addMineRecup(this.tabMine.get(0));
+//				return;
+//			}
+//
+//			else
+//			{
+//				if (this.estValide(this.j2, this.tabMine.get(0)))
+//
+//				this.j2.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
+//				this.j2.addMineRecup(this.tabMine.get(0));
+//				return;
+//			}
+//		}
 	}
 
 	public boolean estValide(Joueur j, Mine m)
@@ -155,10 +155,19 @@ public class Controleur
 	{
 		Controleur ctrl = new Controleur();
 		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
+		System.out.println(ctrl.tabMine.get(10));
 		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(16));
+		System.out.println(ctrl.tabMine.get(16));
 		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(1));
+		System.out.println(ctrl.tabMine.get(1));
 		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(22));
+		System.out.println(ctrl.tabMine.get(22));
 		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(29));
+		System.out.println(ctrl.tabMine.get(29));
 		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
+		System.out.println(ctrl.tabMine.get(10));
+
+
+
 	}
 }

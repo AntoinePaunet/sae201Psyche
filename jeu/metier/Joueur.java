@@ -48,25 +48,27 @@ public class Joueur
 			return true;
 		}
 
-		for (int i=0; i<this.tabPlateau.length; i++)
+
+		for(int i = 0 ; i < this.tabPlateau[0].length ; i++)
 		{
-			if (this.tabPlateau[i][0]==null)
+			if(this.tabPlateau[1][i] == null || this.tabPlateau[2][i] == null || this.tabPlateau[0][i] == null || this.tabPlateau[3][i] == null) //Il faut que les cases soient vides pour y placer les éléments
 			{
-				this.tabPlateau[i][0]=m;
-				return true;
-			}
-
-
-			if (this.tabPlateau[i][0].toString().equals(m.toString()))
-			{
-				for (int j=0; j<this.tabPlateau[0].length; j++)
+				if(this.tabPlateau[3][i] != null && this.tabPlateau[3][i].getNom().equals(m.getNom())) //Si on a la même ressource que dans le tableau
 				{
-					if (this.tabPlateau[i][j]==null)
+					for(int i2 = tabPlateau.length-1 ; i2 > -1 ; i2--) //On fait dans le sens inverse afin de placer les éléments de bas en haut dans le tableau
 					{
-						this.tabPlateau[i][0]=m;
-						return true;
+						if(this.tabPlateau[i2][i] == null)
+						{
+							this.tabPlateau[i2][i] = m;
+							return true;
+						}
 					}
-						
+
+				}
+				else if(this.tabPlateau[3][i] == null) //Si la ressource n'est pas la même
+				{
+					this.tabPlateau[3][i] = m;
+					return true;
 				}
 			}
 		}
