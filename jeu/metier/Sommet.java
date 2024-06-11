@@ -14,10 +14,10 @@ import java.util.ArrayList;
  * @author Louis THOMAZEAU-AGUILLO,	IUT du Havre
  * @version 1.0 , 2024-05-23
  */
-public class Mine
+public class Sommet
 {
 
-    private int     numMine;
+    private int     numSom;
     private String  nomCoul;
     private boolean depart;
 
@@ -29,9 +29,9 @@ public class Mine
 
     private Materiaux materiaux;
     
-    public Mine( int numMine, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart )
+    public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart )
     {
-        this.numMine    = numMine;
+        this.numSom    = numSom;
         this.nomCoul    = nomCoul;
         this.materiaux  = materiaux;
         this.x          = x;
@@ -40,7 +40,7 @@ public class Mine
 		this.routes = new ArrayList<>(10);
     }
 
-    public int       getNumMine()   { return this.numMine;   }
+    public int       getNumSom()   { return this.numSom;   }
     public String    getNomCoul()   { return this.nomCoul;   }
     public int       getX()         { return this.x;         }
     public int       getY()         { return this.y;         }
@@ -71,6 +71,6 @@ public class Mine
 		return temp;
 	}
 
-    public String    toString()     { return "Num : " + this.numMine + " Coul : " + this.nomCoul + " Depart " + this.depart + " x : " + this.x + " y : " + this.y + " Matériau : " + this.materiaux + "\n"; }
+    public String    toString()     { return "Num : " + this.numSom + " Coul : " + this.nomCoul + " Depart " + this.depart + " x : " + this.x + " y : " + this.y + " Matériau : " + this.materiaux + "\n"; }
 
 }
