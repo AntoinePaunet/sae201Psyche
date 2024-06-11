@@ -20,7 +20,7 @@ public class Controleur
 {
 	private Joueur j1;
 	private Joueur j2;
-	private ArrayList<Sommet> 		tabMine;
+	private ArrayList<Sommet> 		tabSommet;
 
 	private boolean tourJ1;
 	private boolean finPartie;
@@ -29,7 +29,7 @@ public class Controleur
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
-		this.tabMine 		= new ArrayList<>(30);
+		this.tabSommet 		= new ArrayList<>(30);
 		this.tourJ1=true;
 		this.finPartie = false;
 
@@ -41,19 +41,19 @@ public class Controleur
 		{
 			if (this.tourJ1)
 			{
-				if (this.estValide(this.j1, this.tabMine.get(0)))
+				if (this.estValide(this.j1, this.tabSommet.get(0)))
 
-				this.j1.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
-				this.j1.addMineRecup(this.tabMine.get(0));
+				this.j1.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
+				this.j1.addMineRecup(this.tabSommet.get(0));
 				return;
 			}
 
 			else
 			{
-				if (this.estValide(this.j2, this.tabMine.get(0)))
+				if (this.estValide(this.j2, this.tabSommet.get(0)))
 
-				this.j2.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
-				this.j2.addMineRecup(this.tabMine.get(0));
+				this.j2.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
+				this.j2.addMineRecup(this.tabSommet.get(0));
 				return;
 			}
 		}
@@ -122,11 +122,11 @@ public class Controleur
 			tmpMat = new Materiaux(tmpLst.remove(rndm));
 
 			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 2 ) );
-			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
+			this.tabSommet.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
 
 		//Ajout de la zone de départ
-		this.tabMine.add( new Mine(0, null, 442, 475, null, true));
+		this.tabSommet.add( new Mine(0, null, 442, 475, null, true));
 
 	}
 
@@ -152,11 +152,11 @@ public class Controleur
 	public static void main (String[] arg)
 	{
 		Controleur ctrl = new Controleur();
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(16));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(1));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(22));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(29));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabSommet.get(10));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabSommet.get(16));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabSommet.get(1));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabSommet.get(22));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabSommet.get(29));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabSommet.get(10));
 	}
 }
