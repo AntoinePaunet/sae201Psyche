@@ -3,8 +3,9 @@ package jeu.metier;
 public class Mine
 {
 
-    private int    numMine;
-    private String nomCoul;
+    private int     numMine;
+    private String  nomCoul;
+    private boolean depart;
     
     public Mine( int numMine, String nomCoul )
     {
