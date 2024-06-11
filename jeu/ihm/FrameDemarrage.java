@@ -83,6 +83,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			*/
 		}
 
+
+
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
@@ -126,7 +128,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
         }
     }
 
-	public void main (String[]args)
+	public static void main (String[]args)
 	{
 		new FrameDemarrage();
 	}
