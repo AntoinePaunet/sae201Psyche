@@ -12,13 +12,36 @@ public class Controleur
 	private Joueur j2;
 	private ArrayList<Mine> 		tabMine;
 
+	private boolean tourJ1;
+	private boolean finPartie;
+
 	public Controleur()
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.tabMine 		= new ArrayList<>(30);
+		this.tourJ1=true;
+		this.finPartie = false;
 
 		this.init();
+		this.initJetonPossession();
+		new FrameChoix();
+
+		while (!finPartie)
+		{
+			if (tourJ1)
+			{
+
+				j1.ajouterMateriaux();
+			}
+		}
+	}
+
+	public boolean estValide(Joueur j, Mine m)
+	{
+		if (m.getMateriaux==null) {return false;}
+		
+		if ()
 	}
 
 
@@ -70,8 +93,9 @@ public class Controleur
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
 
-		for ( Mine mine : tabMine )
-			System.out.println(mine.toString());
+		//Ajout de la zone de départ
+		this.tabMine.add( new Mine(0, null, 442, 475, null, true));
+
 	}
 
 	private void initJetonPossession()
