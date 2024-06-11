@@ -5,8 +5,8 @@ public class Plateau
 
 	public Plateau()
 	{
-		this.tabPlateau = new Materiaux [4][8] ;
-		this.tabPiece  = new Materiaux [8] ;
+		this.tabPlateau = new Materiaux [4][8];
+		this.tabPiece   = new Materiaux [8];
 	}
 
 	public boolean ajouterMateriaux(Materiaux m)
@@ -22,7 +22,7 @@ public class Plateau
 			if (this.tabPlateau[i][0]==null)
 			{
 				this.tabPlateau[i][0]=m;
-				return true ;
+				return true;
 			}
 				
 
@@ -33,7 +33,7 @@ public class Plateau
 					if (this.tabPlateau[i][j]==null)
 					{
 						this.tabPlateau[i][0]=m;
-						return true ;
+						return true;
 					}
 						
 				}
@@ -49,9 +49,9 @@ public class Plateau
 			if (this.tabPiece[i]==null)
 			{
 				this.tabPiece[i]=m;
-				return true
+				return true;
 			}
 		}
-		return false ;
+		return false;
 	}
 }
