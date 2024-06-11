@@ -65,7 +65,6 @@ public class FrameJoueur extends JFrame
 	/**
 	 * Méthode de mise a jour de l'affichage des plateaux des joueurs
 	 */
-
 	public void refresh()
 	{
 		int x = 80;
@@ -83,7 +82,16 @@ public class FrameJoueur extends JFrame
 			x = 80;
 			y += 120;
 		}
-		System.out.println(Arrays.deepToString(this.joueur.getTableMateriaux()));
+
+
+		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) //affichage des pièces
+		{
+			if(this.joueur.getTabPiece()[i] != null)
+			{
+				this.ajoutImage(x,y, "NR.png", 1); //Démo donc seulement pièces de bronze
+				x += 85;
+			}
+		}
 
 	}
 
@@ -96,7 +104,7 @@ public class FrameJoueur extends JFrame
      */
     public void ajoutImage(int x, int y, String url, int layer)
     {
-        ImageIcon image = new ImageIcon(getClass().getResource("images/" + url));
+        ImageIcon image = new ImageIcon("images/" + url);
         JLabel imgLabel = new JLabel(image);
         imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
         this.panelFond.add(imgLabel, Integer.valueOf(layer));

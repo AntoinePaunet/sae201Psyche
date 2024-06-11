@@ -15,9 +15,11 @@ public class Route
 	private Sommet sommetAr;
 	private int  secSommet;
 
-<<<<<<< Updated upstream
+	private Joueur joueur;
+
+
 	public Route ( Sommet SommetDep, Sommet SommetAr, int SecSommet )
-=======
+
 
 	/**
 	 * Constructeure
@@ -28,52 +30,25 @@ public class Route
 	 * 
 	 * 
 	 */
-	public Route ( Mine mineSommet, Mine mineArrive, int mineSection )
->>>>>>> Stashed changes
+	
 	{
 		this.sommetDep  = sommetDep;
 		this.secSommet = secSommet;
 		this.sommetAr=sommetAr;
 		this.sommetDep.addRoute(this);
 		this.sommetAr.addRoute(this);
+		this.joueur=null;
 	}
 
-<<<<<<< Updated upstream
+
 	public Sommet getSommetDep  () { return this.sommetDep;  }
 	public int  getSecSommet () { return this.secSommet; }
 	public Sommet getSommetAr  () { return this.sommetAr;  }
 
 	public void setSecSommet  ( Sommet sommetDep  ) { this.sommetDep = sommetDep;   }
 	public void setSommetAr   ( int  secSommet ) { this.secSommet = secSommet; }
-=======
-	/**
-	 * 
-	 * @return retourne le sommet
-	 * 
-	 */
-	public Mine getMineSommet  () { return this.mineSommet;  }
 
-	/**
-	 *
-	 * @return retourne le nombre de section 
-	 * 
-	 */
-	public int  getMineSection () { return this.mineSection; }
-	public Mine getMineArrive  () { return this.mineArrive;  }
+	public void setJoueur (Joueur j) {this.joueur = j;}
 
-	/**
-	 *
-	 * @params prend en paramétre la mine de départ pour l'affercter a la routes
-	 * 
-	 */
-	public void setMineSommet  ( Mine mineSommet  ) { this.mineSommet = mineSommet;   }
-
-	/**
-	 *
-	 * @params affecte le nombre de section 
-	 * 
-	 */	
-	public void setMineSection ( int  mineSection ) { this.mineSection = mineSection; }
->>>>>>> Stashed changes
 
 }
