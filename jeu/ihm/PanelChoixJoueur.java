@@ -17,18 +17,19 @@ public class PanelChoixJoueur extends JFrame implements ActionListener
 	private JButton btnSauvegarder;
 	private JButton btnAnnuler    ;
 
-	private Joueur[] joueurs;
+	private FrameChoix frameChoix;
 
-	public PanelChoixJoueur(Joueur[] joueurs)
+	public PanelChoixJoueur(FrameChoix frameChoix)
 	{
 
 		this.setLayout(new GridLayout(3, 2));
+		this.frameChoix = frameChoix;
 
 		this.add(lblNomJoueur1 = new JLabel("  Entrez le nom du joueur numéro 1 "));
 		this.add(txtJoueur1    = new JTextField()                                    );
 
-		this.add(lblNomJoueur1 = new JLabel("  Entrez le nom du joueur numéro 2 "));
-		this.add(txtJoueur1    = new JTextField()                                    );
+		this.add(lblNomJoueur2 = new JLabel("  Entrez le nom du joueur numéro 2 "));
+		this.add(txtJoueur2    = new JTextField()                                    );
 
 		this.add(btnSauvegarder = new JButton("SAUVEGARDER"));
 		this.add(btnAnnuler = new JButton("ANNULER"));
@@ -48,17 +49,17 @@ public class PanelChoixJoueur extends JFrame implements ActionListener
 			//Si les texteField sont écrits, alors change le nom du joueur
 			if (this.txtJoueur1.getText() != null && this.txtJoueur2.getText() != null)
 			{
-				joueurs[0].setNomJoueur(this.txtJoueur1.getText());
-				joueurs[1].setNomJoueur(this.txtJoueur2.getText());
+				//joueurs[0].setNomJoueur(this.txtJoueur1.getText());
+				//joueurs[1].setNomJoueur(this.txtJoueur2.getText());
 			}
 			//Ferme la fenêtre
-			this.dispose();
+			this.frameChoix.dispose();
 		}
 
 		if( e.getSource().equals(this.btnAnnuler) )
         {
 			//Ferme la fenêtre
-			this.dispose();
+			this.frameChoix.dispose();
 		}
 	}
 }

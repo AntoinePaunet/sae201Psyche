@@ -40,6 +40,7 @@ public class Controleur
 		ArrayList<String> tmpLst = new ArrayList<>(Arrays.asList("NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR"));
 
 
+		//génération du tableau contenant les noms des matériaux possibles
 		for(int i = 0 ; i < tabNomsMat.length ; i++)
 		{
 			for(int j = 0; j < 4 ; j++)
@@ -49,9 +50,10 @@ public class Controleur
 		}
 
 
+		//Génération des mines
 		for(int cpt = 0; cpt < tabNomMine.length ; cpt++)
 		{
-			switch ( tabNomMine[cpt].substring( 0, 0 ) )
+			switch ( tabNomMine[cpt].substring( 0, 1 ) )
 			{
 				case "J" -> tmpCoul = "Jaune";
 				case "B" -> tmpCoul = "Bleu";
