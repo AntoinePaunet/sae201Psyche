@@ -7,9 +7,7 @@ package jeu.metier;
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
  * @author Fanch EVEN,				IUT du Havre
- * @author Nahel KOCHAT,			IUT du Havre
  * @author Anas AARAB,				IUT du Havre
- * @author Louis THOMAZEAU-AGULLO,	IUT du Havre
  * @version 1.0 , 2024-05-23
  */
 public class Route
