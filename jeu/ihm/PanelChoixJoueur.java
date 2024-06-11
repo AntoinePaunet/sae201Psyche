@@ -39,11 +39,13 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 
 	}
 
+	//@return le String contenu dans txtJoueur1.getText()
 	public String getText1()
 	{
 		return this.txtJoueur1.getText();
 	}
 
+	//@return le String contenu dans txtJoueur2.getText()
 	public String getText2()
 	{
 		return this.txtJoueur2.getText();
