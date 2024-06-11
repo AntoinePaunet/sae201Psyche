@@ -1,9 +1,9 @@
-package routes.vue;
+package jeu.ihm;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import java.swing.*;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.GridLayout;
 import java.awt.event.*;

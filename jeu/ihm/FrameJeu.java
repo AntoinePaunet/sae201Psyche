@@ -1,19 +1,17 @@
-package routes.vue;
+package jeu.ihm;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-
-public class FramePlateau extends JFrame
+public class FrameJeu extends JFrame
 {
 	private PanelCarte panelCarte;
 	private JPanel     panelScore;
 
+	private JMenuItem enregistrerF;
+	private JMenuItem supprimerF;
 
-	private JMenuItem     enregistrerF;
-	private JMenuItem     supprimerF;
-
-	public FramePlateau()
+	public FrameJeu()
 	{
 		this.setTitle("L'Âge de Psyché");
 		this.setSize    ( 1920,1080 );
@@ -36,6 +34,6 @@ public class FramePlateau extends JFrame
 
 	public static void main( String[] args )
 	{
-		new FramePlateau();
+		new FrameJeu();
 	}
 }

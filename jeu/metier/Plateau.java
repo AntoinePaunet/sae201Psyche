@@ -1,3 +1,5 @@
+package jeu.metier;
+
 public class Plateau 
 {
 	private Materiaux tabPlateau[][];

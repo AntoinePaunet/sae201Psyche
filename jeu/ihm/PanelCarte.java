@@ -1,4 +1,4 @@
-package routes.vue;
+package jeu.ihm;
 
 import javax.swing.JPanel;
 

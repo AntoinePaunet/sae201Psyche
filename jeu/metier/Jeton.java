@@ -1,3 +1,4 @@
+package jeu.metier;
 public class Jeton
 {
 	private IRessource type;

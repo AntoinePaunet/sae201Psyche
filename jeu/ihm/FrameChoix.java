@@ -1,4 +1,4 @@
-package routes.vue;
+package jeu.ihm;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -9,7 +9,7 @@ public class FrameChoix extends JFrame
 	private PanelChoixJoueur panelChoixJoueur;
 
 
-	public FrameJeu()
+	public FrameChoix()
 	{
 		this.setTitle("Choix des joueurs et de leur plateau");
 		this.setSize    ( 500,1400 );
@@ -17,12 +17,9 @@ public class FrameChoix extends JFrame
 		//this.ctrl = ctrl;
 
 
-
-
-
 		// Création et ajout du Panel
-		this.panelCarte = new PanelCarte();
-		this.add(this.panelCarte);
+		this.panelChoixJoueur = new PanelChoixJoueur();
+		this.add(this.panelChoixJoueur);
 
 		
 		// Gestion de la fermeture de la fenêtre

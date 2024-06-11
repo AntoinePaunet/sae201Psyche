@@ -1,3 +1,5 @@
+package jeu.metier;
+
 public class JetonPossession
 {
 	private Plateau joueur ;
