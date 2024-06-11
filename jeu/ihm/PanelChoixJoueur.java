@@ -43,8 +43,8 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
         {
 			if (this.txtJoueur1.getText() != null && this.txtJoueur2.getText() != null)
 			{
-				joueurs[0].changerNom(this.txtJoueur1.getText());
-				joueurs[1].changerNom(this.txtJoueur2.getText());
+				joueurs[0].setNomJoueur(this.txtJoueur1.getText());
+				joueurs[1].setNomJoueur(this.txtJoueur2.getText());
 			}
 			
 			this.dispose();
