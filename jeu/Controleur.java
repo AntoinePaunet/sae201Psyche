@@ -87,6 +87,15 @@ public class Controleur
 		System.out.println(this.tabMateriaux.size());
 	}
 
+	private void initJetonPossession()
+	{
+		for (int i=0; i<25; i++)
+		{
+			j1.addJetonPossession(new JetonPossession(j1));
+			j2.addJetonPossession(new JetonPossession(j2));
+		}
+	}
+
 	public static void main (String[] arg)
 	{
 		new Controleur();
