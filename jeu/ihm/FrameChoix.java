@@ -12,16 +12,16 @@ public class FrameChoix extends JFrame
 	private Joueur[]         joueurs         ;
 
 
-	public FrameChoix(Joueur[] joueurs)
+	public FrameChoix()
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
 		this.setSize    ( 450,200 );
 		this.setLocation(  300, 300 );
-		this.joueurs = joueurs;
+		//this.joueurs = joueurs;
 
 
 		// Création et ajout du Panel
-		this.panelChoixJoueur = new PanelChoixJoueur(new Joueur[10]);
+		this.panelChoixJoueur = new PanelChoixJoueur(this);
 		this.add(this.panelChoixJoueur);
 
 		
@@ -35,6 +35,7 @@ public class FrameChoix extends JFrame
 
 	public static void main( String[] args )
 	{
-		new FrameChoix(null);
+		
+		new FrameChoix();
 	}
 }
