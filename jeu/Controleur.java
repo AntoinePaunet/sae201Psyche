@@ -9,17 +9,15 @@ import jeu.metier.*;
 
 public class Controleur 
 {
-	private Plateau j1;
-	private Plateau j2;
+	private Joueur j1;
+	private Joueur j2;
 	private ArrayList<Mine> 		tabMine;
-	private ArrayList<Materiaux> 	tabMateriaux;
 
 	public Controleur()
 	{
-		this.j1      		= new Plateau ();
-		this.j2      		= new Plateau ();
+		this.j1      		= new Joueur ();
+		this.j2      		= new Joueur ();
 		this.tabMine 		= new ArrayList<>(30);
-		this.tabMateriaux 	= new ArrayList<>(40);
 
 		this.init();
 	}
@@ -32,9 +30,9 @@ public class Controleur
 		int rndm;
 		Materiaux tmpMat;
 
-		String[] 	tabNomMine = {"J1","J5","J2","J3","J4","B2","B3","B4","B6","B8","G0","G1","G2","G3","G4","V2","V3","V4","V6","V8","R1","R2","R3","R4","R5","M1","M2","M3","M4","M5"};
-		int[] 		tabCooX = new int[]{	 336,  265,  317,  394,	 251,  336,	 414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
-		int[] 		tabCooY = new int[]{	  92,  111,  187,  175,	 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
+		String[] 	tabNomMine = new String[] {"J1", "J5", "J2", "J3", "J4", "B2", "B3", "B4", "B6", "B8", "G0", "G1", "G2", "G3", "G4", "V2", "V3", "V4", "V6", "V8", "R1", "R2", "R3", "R4", "R5", "M1", "M2", "M3", "M4", "M5"};
+		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394,	 251,  336,	 414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
+		int[] 		tabCooY    = new int[]    { 92,  111,  187,  175,	 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
 
 		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AR", "CO", "NI", "PT" };
@@ -46,11 +44,9 @@ public class Controleur
 		{
 			for(int j = 0; j < 4 ; j++)
 			{
-				tmpLst.add(tabNomsMat[j]);
+				tmpLst.add(tabNomsMat[i]);
 			}
 		}
-
-		System.out.println(tmpLst);
 
 
 		for(int cpt = 0; cpt < tabNomMine.length ; cpt++)
@@ -65,13 +61,15 @@ public class Controleur
 				case "M" -> tmpCoul = "Marron";
 			}
 
-			rndm = (int)( Math.random()*32 - cpt);
+			rndm = (int)(Math.random()*(32-cpt));
 
 			tmpMat = new Materiaux(tmpLst.remove(rndm));
 
-			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 1 ) );
+			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 2 ) );
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
+
+		System.out.println(this.tabMine);
 	}
 
 	private void initJetonPossession()

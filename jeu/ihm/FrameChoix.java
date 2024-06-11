@@ -3,7 +3,6 @@ package jeu.ihm;
 import jeu.metier.Joueur;
 
 import javax.swing.*;
-import java.awt.event.*;
 
 
 public class FrameChoix extends JFrame
@@ -12,7 +11,7 @@ public class FrameChoix extends JFrame
 	private Joueur[]         joueurs         ;
 
 
-	public FrameChoix()
+	public FrameChoix(Joueur[] joueurs)
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
 		this.setSize    ( 450,200 );
