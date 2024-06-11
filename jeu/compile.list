@@ -8,7 +8,7 @@
 ./metier/Jeton.java
 ./metier/JetonPossession.java
 ./metier/Materiaux.java
-./metier/Mine.java
+./metier/Sommet.java
 ./metier/Route.java
 ./metier/Couleur.java
 ./metier/Joueur.java

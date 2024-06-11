@@ -12,24 +12,24 @@ package jeu.metier;
  */
 public class Route
 {
-	private Mine mineSommet;
-	private Mine mineArrive;
-	private int  mineSection;
+	private Sommet sommetDep;
+	private Sommet sommetAr;
+	private int  secSommet;
 
-	public Route ( Mine mineSommet, Mine mineArrive, int mineSection )
+	public Route ( Sommet SommetDep, Sommet SommetAr, int SecSommet )
 	{
-		this.mineSommet  = mineSommet;
-		this.mineSection = mineSection;
-		this.mineArrive=mineArrive;
-		this.mineSommet.addRoute(this);
-		this.mineArrive.addRoute(this);
+		this.sommetDep  = sommetDep;
+		this.secSommet = secSommet;
+		this.sommetAr=sommetAr;
+		this.sommetDep.addRoute(this);
+		this.sommetAr.addRoute(this);
 	}
 
-	public Mine getMineSommet  () { return this.mineSommet;  }
-	public int  getMineSection () { return this.mineSection; }
-	public Mine getMineArrive  () { return this.mineArrive;  }
+	public Sommet getSommetDep  () { return this.sommetDep;  }
+	public int  getSecSommet () { return this.secSommet; }
+	public Sommet getSommetAr  () { return this.sommetAr;  }
 
-	public void setMineSommet  ( Mine mineSommet  ) { this.mineSommet = mineSommet;   }
-	public void setMineSection ( int  mineSection ) { this.mineSection = mineSection; }
+	public void setSecSommet  ( Sommet sommetDep  ) { this.sommetDep = sommetDep;   }
+	public void setSommetAr   ( int  secSommet ) { this.secSommet = secSommet; }
 
 }

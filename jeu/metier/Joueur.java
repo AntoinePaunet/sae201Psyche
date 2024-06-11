@@ -18,7 +18,7 @@ public class Joueur
 	private Materiaux[][] tabPlateau;
 	private Materiaux[] tabPiece;
 	private ArrayList<JetonPossession> tabJetonPossession;
-	private ArrayList<Mine> tabMineRecup;
+	private ArrayList<Sommet> tabSegRecup;
 
 	private int score ;
 	private String detailScore;
@@ -31,7 +31,7 @@ public class Joueur
 		this.tabPlateau = new Materiaux [4][8];
 		this.tabPiece   = new Materiaux [8];
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
-		this.tabMineRecup = new ArrayList<Mine>();
+		this.tabSegRecup = new ArrayList<Sommet>();
 	}
 
 
@@ -55,7 +55,7 @@ public class Joueur
 			}
 
 
-			if (this.tabPlateau[i][0].toString().equals(m.toString()))
+			if (this.tabPlateau[0][i].toString().equals(m.toString()))
 			{
 				for (int j=0; j<this.tabPlateau[0].length; j++)
 				{
@@ -95,9 +95,9 @@ public class Joueur
 	}
 
 
-	public void addMineRecup (Mine m)
+	public void addSegRecup (Sommet m)
 	{
-		this.tabMineRecup.add(m);
+		this.tabSegRecup.add(m);
 		this.ajouterMateriaux(m.getMateriaux());
 	}
 
