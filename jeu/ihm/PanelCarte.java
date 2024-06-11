@@ -47,6 +47,6 @@ public class PanelCarte extends JPanel
 
 		this.g2.drawString( nomP1, x1-10, y1-5 );
 		this.g2.drawString( nomP2, x2-10, y2-5 );
-		}
+	}
 
 }
