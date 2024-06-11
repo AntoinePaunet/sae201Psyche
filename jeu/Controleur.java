@@ -13,16 +13,14 @@ import jeu.metier.*;
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
  * @author Fanch EVEN,				IUT du Havre
- * @author Nahel KOCHAT,			IUT du Havre
- * @author Anas AARAB Vauthier,		IUT du Havre
- * @author Louis THOMAZEAU-AGUILLO,	IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
  * @version 1.0 , 2024-05-23
  */
 public class Controleur 
 {
 	private Joueur j1;
 	private Joueur j2;
-	private ArrayList<Mine> 		tabMine;
+	private ArrayList<Sommet> 		tabSeg;
 
 	private boolean tourJ1;
 	private boolean finPartie;
@@ -31,7 +29,7 @@ public class Controleur
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
-		this.tabMine 		= new ArrayList<>(30);
+		this.tabSeg 		= new ArrayList<>(30);
 		this.tourJ1=true;
 		this.finPartie = false;
 
@@ -39,29 +37,29 @@ public class Controleur
 		this.initJetonPossession();
 		new FrameChoix(this);
 
-//		while (!this.finPartie)
-//		{
-//			if (this.tourJ1)
-//			{
-//				if (this.estValide(this.j1, this.tabMine.get(0)))
-//
-//				this.j1.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
-//				this.j1.addMineRecup(this.tabMine.get(0));
-//				return;
-//			}
-//
-//			else
-//			{
-//				if (this.estValide(this.j2, this.tabMine.get(0)))
-//
-//				this.j2.ajouterMateriaux (this.tabMine.get(0).prendreMateriaux());
-//				this.j2.addMineRecup(this.tabMine.get(0));
-//				return;
-//			}
-//		}
+		while (!this.finPartie)
+		{
+			if (this.tourJ1)
+			{
+				if (this.estValide(this.j1, this.tabSeg.get(0)))
+
+				this.j1.ajouterMateriaux (this.tabSeg.get(0).prendreMateriaux());
+				this.j1.addSegRecup(this.tabSeg.get(0));
+				return;
+			}
+
+			else
+			{
+				if (this.estValide(this.j2, this.tabSeg.get(0)))
+
+				this.j2.ajouterMateriaux (this.tabSeg.get(0).prendreMateriaux());
+				this.j2.addSegRecup(this.tabSeg.get(0));
+				return;
+			}
+		}
 	}
 
-	public boolean estValide(Joueur j, Mine m)
+	public boolean estValide(Joueur j, Sommet m)
 	{
 		if (m.getMateriaux()==null) {return false;}
 
@@ -69,7 +67,7 @@ public class Controleur
 		
 		for (int i=0; i<m.getTabRoute().size(); i++)
 		{
-			if (m.getRoute(i).getMineSommet().getMateriaux()==null || m.getRoute(i).getMineArrive().getMateriaux()==null)
+			if (m.getRoute(i).getSommetDep().getMateriaux()==null || m.getRoute(i).getSommetAr().getMateriaux()==null)
 			{
 				return true ;
 			}
@@ -86,7 +84,7 @@ public class Controleur
 		int rndm;
 		Materiaux tmpMat;
 
-		String[] 	tabNomMine = new String[] {"J1", "J5", "J2", "J3", "J4", "B2", "B3", "B4", "B6", "B8", "G0", "G1", "G2", "G3", "G4", "V2", "V3", "V4", "V6", "V8", "R1", "R2", "R3", "R4", "R5", "M1", "M2", "M3", "M4", "M5"};
+		String[] 	tabNomSeg = new String[] {"J1", "J5", "J2", "J3", "J4", "B2", "B3", "B4", "B6", "B8", "G0", "G1", "G2", "G3", "G4", "V2", "V3", "V4", "V6", "V8", "R1", "R2", "R3", "R4", "R5", "M1", "M2", "M3", "M4", "M5"};
 		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394,	 251,  336,	 414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
 		int[] 		tabCooY    = new int[]    { 92,  111,  187,  175,	 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
@@ -106,10 +104,10 @@ public class Controleur
 		}
 
 
-		//Génération des mines
-		for(int cpt = 0; cpt < tabNomMine.length ; cpt++)
+		//Génération des Sommet
+		for(int cpt = 0; cpt < tabNomSeg.length ; cpt++)
 		{
-			switch ( tabNomMine[cpt].substring( 0, 1 ) )
+			switch ( tabNomSeg[cpt].substring( 0, 1 ) )
 			{
 				case "J" -> tmpCoul = "Jaune";
 				case "B" -> tmpCoul = "Bleu";
@@ -123,12 +121,12 @@ public class Controleur
 
 			tmpMat = new Materiaux(tmpLst.remove(rndm));
 
-			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 2 ) );
-			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
+			tmpZone = Integer.parseInt( tabNomSeg[cpt].substring( 1, 2 ) );
+			this.tabSeg.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
 
 		//Ajout de la zone de départ
-		this.tabMine.add( new Mine(0, null, 442, 475, null, true));
+		this.tabSeg.add( new Sommet(0, null, 442, 475, null, true));
 
 	}
 
@@ -154,20 +152,11 @@ public class Controleur
 	public static void main (String[] arg)
 	{
 		Controleur ctrl = new Controleur();
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
-		System.out.println(ctrl.tabMine.get(10));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(16));
-		System.out.println(ctrl.tabMine.get(16));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(1));
-		System.out.println(ctrl.tabMine.get(1));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(22));
-		System.out.println(ctrl.tabMine.get(22));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(29));
-		System.out.println(ctrl.tabMine.get(29));
-		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
-		System.out.println(ctrl.tabMine.get(10));
-
-
-
+		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(10));
+		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(16));
+		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(1 ));
+		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(22));
+		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(29));
+		ctrl.getJoueur1().addSegRecup(ctrl.tabSeg.get(10));
 	}
 }
