@@ -1,18 +1,22 @@
 package jeu.ihm;
 
+import jeu.Controleur;
+import jeu.ihm.*;
 import javax.swing.*;
 
 
 public class FrameChoix extends JFrame
 {
 	private PanelChoixJoueur panelChoixJoueur;
+	private Controleur ctrl;
 
-
-	public FrameChoix()
+	public FrameChoix(Controleur ctrl)
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
 		this.setSize    ( 700,200 );
 		this.setLocation(  300, 300 );
+
+		this.ctrl = ctrl;
 
 
 		// Création et ajout du Panel
@@ -28,8 +32,8 @@ public class FrameChoix extends JFrame
 	// Crée le plateau des joueurs et ferme cette fenêtre
 	public void creerFrameJoueur()
 	{
-		new FrameJoueur(this.panelChoixJoueur.getText1(), 1);
-		new FrameJoueur(this.panelChoixJoueur.getText2(), 2);
+		new FrameJoueur(this.panelChoixJoueur.getText1(), 1, ctrl);
+		new FrameJoueur(this.panelChoixJoueur.getText2(), 2, ctrl);
 		this.dispose();
 	}
 
