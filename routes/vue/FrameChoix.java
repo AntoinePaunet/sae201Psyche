@@ -4,28 +4,27 @@ import javax.swing.*;
 import java.awt.event.*;
 
 
-public class FramePlateau extends JFrame
+public class FrameChoix extends JFrame
 {
-	private PanelCarte panelCarte;
-	private JPanel     panelScore;
+	private PanelChoixJoueur panelChoixJoueur;
 
 
-	private JMenuItem     enregistrerF;
-	private JMenuItem     supprimerF;
-
-	public FramePlateau()
+	public FrameJeu()
 	{
-		this.setTitle("L'Âge de Psyché");
-		this.setSize    ( 1920,1080 );
+		this.setTitle("Choix des joueurs et de leur plateau");
+		this.setSize    ( 500,1400 );
 		this.setLocation(  0, 0 );
 		//this.ctrl = ctrl;
+
+
+
 
 
 		// Création et ajout du Panel
 		this.panelCarte = new PanelCarte();
 		this.add(this.panelCarte);
 
-
+		
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -36,6 +35,6 @@ public class FramePlateau extends JFrame
 
 	public static void main( String[] args )
 	{
-		new FramePlateau();
+		new FrameJeu();
 	}
 }

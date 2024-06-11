@@ -49,29 +49,6 @@ public enum Couleur
 
 
 	/**
-	 * Renvoie un nom d'image d'épice
-	 *
-	 * @return le nom de l'épice.png afin d'être utilisée dans l'interface
-	 */
-
-	public String getSymbole()
-	{
-		String res = "";
-		switch( this.name() ) //Selon la couleur de l'épice
-		{
-			case "BLANC" 	: res = "sesame"; 	break;
-			case "JAUNE" 	: res = "curcuma"; 	break;
-			case "ROUGE" 	: res = "paprika"; 	break;
-			case "ORANGE" 	: res = "safran"; 	break;
-			case "VIOLET" 	: res = "sumac";  	break;
-			case "BRUN" 	: res = "canelle"; 	break;
-			case "VERT" 	: res = "cardamone";break;
-			case "NOIR" 	: res = "poivre";   break;
-		}
-		return res + ".png";
-	}
-
-	/**
 	 * Donne le nombre d'instance de Couleur
 	 *
 	 * @return l'entier correpondant au nombre d'instance de Couleur.
