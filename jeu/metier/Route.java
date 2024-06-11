@@ -15,21 +15,17 @@ public class Route
 	private Sommet sommetAr;
 	private int  secSommet;
 
-<<<<<<< Updated upstream
-	public Route ( Sommet SommetDep, Sommet SommetAr, int SecSommet )
-=======
 
 	/**
-	 * Constructeure
+	 * Constructeur
 	 *
-	 * @param mineSommet  mine de départ
-	 * @param mineArrive  mine d'arrive
-	 * @param mineSection nombre de section
+	 * @param SommetDep  mine de départ
+	 * @param SommetAr  mine d'arrive
+	 * @param SecSommet nombre de section
 	 * 
 	 * 
 	 */
-	public Route ( Mine mineSommet, Mine mineArrive, int mineSection )
->>>>>>> Stashed changes
+	public Route ( Sommet SommetDep, Sommet SommetAr, int SecSommet )
 	{
 		this.sommetDep  = sommetDep;
 		this.secSommet = secSommet;
