@@ -28,6 +28,15 @@ public class Mine
     public int       getY()         { return this.y;         }
     public Materiaux getMateriaux() { return this.materiaux; }
     public boolean   getDepard()    { return this.depart;    }
+
+	public Materiaux prendreMateriaux ()
+	{
+		Materiaux temp=this.materiaux;
+
+		this.materiaux=null;
+		return temp;
+	}
+	
     public String    toString()     { return "Num : " + this.numMine + " Coul : " + this.nomCoul + " Depart " + this.depart + " x : " + this.x + " y : " + this.y + " Matériau : " + this.materiaux + "\n"; }
 
 }
