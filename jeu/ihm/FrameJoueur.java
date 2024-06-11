@@ -26,13 +26,19 @@ public class FrameJoueur extends JFrame
     {
 		this.setTitle( "Plateau de " + nomJoueur );
 
-        this.setSize( 900 , 535 );
+        this.setSize( 500 , 400 );
         this.panelFond = new JPanel();
 
 		if( j == 1 )
+		{
 			this.panelFond.setBackground( new Color(60,60,30) );
+			this.setLocation(  300, 300 );
+		}
 		else
+		{
 			this.panelFond.setBackground( new Color(200,200,30) );
+			this.setLocation(  900, 300 );
+		}
 
         /*
         //Mise en place du fond d'écran
