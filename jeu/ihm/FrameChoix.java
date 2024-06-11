@@ -1,5 +1,6 @@
 package jeu.ihm;
 
+import jeu.metier.Joueur;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -7,13 +8,15 @@ import java.awt.event.*;
 public class FrameChoix extends JFrame
 {
 	private PanelChoixJoueur panelChoixJoueur;
+	private Joueur[]         joueurs         ;
 
 
-	public FrameChoix()
+	public FrameChoix(Joueur[] joueurs)
 	{
-		this.setTitle("Choix des joueurs et de leur plateau");
+		this.setTitle   ("Choix des joueurs et de leur plateau");
 		this.setSize    ( 450,200 );
 		this.setLocation(  300, 300 );
+		this.joueurs = joueurs;
 
 
 		// Création et ajout du Panel
@@ -31,7 +34,6 @@ public class FrameChoix extends JFrame
 
 	public static void main( String[] args )
 	{
-		Joueur[] joueurs = {null, null};
-		new FrameChoix(joueurs);
+		new FrameChoix(null);
 	}
 }
