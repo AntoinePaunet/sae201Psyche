@@ -1,5 +1,7 @@
 package jeu.metier;
 
+import java.util.ArrayList;
+
 public class Mine
 {
 
@@ -9,6 +11,9 @@ public class Mine
 
     private int x;
     private int y;
+
+	private ArrayList<Route> routes;
+
 
     private Materiaux materiaux;
     
@@ -20,6 +25,7 @@ public class Mine
         this.x          = x;
         this.y          = y;
         this.depart     = estDepart;
+		this.routes = new ArrayList<>(10);
     }
 
     public int       getNumMine()   { return this.numMine;   }
@@ -28,6 +34,16 @@ public class Mine
     public int       getY()         { return this.y;         }
     public Materiaux getMateriaux() { return this.materiaux; }
     public boolean   getDepard()    { return this.depart;    }
+
+	public void addRoute(Route r)
+	{
+		this.routes.add(r);
+	}
+
+	public Route getRoute(int i)
+	{
+		return this.routes.get(i);
+	}
 
 	public Materiaux prendreMateriaux ()
 	{

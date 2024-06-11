@@ -24,6 +24,7 @@ public class Controleur
 		this.finPartie = false;
 
 		this.init();
+		this.initJetonPossession();
 		new FrameChoix();
 
 		while (!finPartie)
@@ -92,8 +93,9 @@ public class Controleur
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
 
-		for ( Mine mine : tabMine )
-			System.out.println(mine.toString());
+		//Ajout de la zone de départ
+		this.tabMine.add( new Mine(0, null, 442, 475, null, true));
+
 	}
 
 	private void initJetonPossession()
