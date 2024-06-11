@@ -41,7 +41,7 @@ public class Controleur
 	{
 		if (m.getMateriaux()==null) {return false;}
 
-		if ((j==this.j1 && !this.tourJ1) || (j==this.j2 && this.tourJ1)) {return false ;}
+		if ((j==this.j1 && !this.tourJ1) || (j==this.j2 && this.tourJ1)){return false;}
 		
 		for (int i=0; i<m.getTabRoute().size(); i++)
 		{
