@@ -25,7 +25,7 @@ public class Controleur
 
 		this.init();
 		this.initJetonPossession();
-		new FrameChoix();
+		new FrameChoix(this);
 
 		while (!this.finPartie)
 		{

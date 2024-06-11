@@ -1,5 +1,8 @@
 package jeu.ihm;
 
+import jeu.Controleur;
+import jeu.metier.Jeton;
+
 import javax.swing.*;
 
 import java.awt.Color;
@@ -18,16 +21,20 @@ public class FrameJoueur extends JFrame
 {
     private JPanel panelFond;
 
+	private Controleur ctrl;
+
     /**
      * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
      * Contient tout les éléments graphiques
      */
-    public FrameJoueur(String nomJoueur, int j)
+    public FrameJoueur(String nomJoueur, int j, Controleur ctrl)
     {
 		this.setTitle( "Plateau de " + nomJoueur );
 
-        this.setSize( 900 , 535 );
+        this.setSize( 500 , 400 );
         this.panelFond = new JPanel();
+
+		this.ctrl = ctrl;
 
 		if( j == 1 )
 			this.ajoutImage(0,0, "bgSolaire.png", JLayeredPane.DEFAULT_LAYER);
@@ -35,13 +42,17 @@ public class FrameJoueur extends JFrame
 			this.ajoutImage(0,0, "bgSyndicat.png", JLayeredPane.DEFAULT_LAYER);
 
         this.add( this.panelFond );
-		/*
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-		*/
+
+		this.refresh();
+
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
     }
+
+	public void refresh()
+	{
+		for(Jeton this.ctrl.)
+	}
 
 
     /**
