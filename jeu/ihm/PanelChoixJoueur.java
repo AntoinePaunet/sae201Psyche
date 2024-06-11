@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class PanelChoixJoueur extends JPanel implements ActionListener
+public class PanelChoixJoueur extends JFrame implements ActionListener
 {
 	private JLabel lblNomJoueur1;
 	private JLabel lblNomJoueur2;
@@ -16,6 +16,8 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 
 	private JButton btnSauvegarder;
 	private JButton btnAnnuler    ;
+
+	private Joueur[] joueurs;
 
 	public PanelChoixJoueur(Joueur[] joueurs)
 	{

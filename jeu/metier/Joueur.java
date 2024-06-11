@@ -1,31 +1,155 @@
 package jeu.metier;
 
-public class Joueur
+import jeu.metier.*;
+import java.util.ArrayList;
+
+public class Joueur 
 {
+	private Materiaux tabPlateau[][];
+	private Materiaux tabPiece[];
+	private ArrayList<JetonPossession> tabJetonPossession;
 
-
-	
-
-	/*
-	La classe joueur permet de créer un nouveau joueur.
-	@param String nom donne son nom au joueur
-	@param FrameJoueur plateauIndividuel permet d'acceder au plateau du joueur 
-	 */
-	/*private FrameJoueur plateauIndividuel;*/
+	private int score ;
+	private String detailScore;
 
 	private String nomJoueur;
 
-	public Joueur(/*FrameJoueur plateauIndividuel,*/ String nomJoueur)
+	public Joueur()
 	{
-
-		/*this.plateauIndividuel = plateauIndividuel;*/
-		this.nomJoueur = nomJoueur;
-
+		this.nomJoueur = "default";
+		this.tabPlateau = new Materiaux [4][8];
+		this.tabPiece   = new Materiaux [8];
+		this.tabJetonPossession = new ArrayList<JetonPossession>();
 	}
 
-	public String getNomJoueur        () { return this.nomJoueur        ; }
-	/*public String getPlateauIndividuel() { return this.plateauIndividuel; }*/
-	
-	public void setNomJoueur(String nomJ) { this.nomJoueur = nomJ; }
+	public void setNomJoueur(String nom){this.nomJoueur=nom;}
 
+	public boolean ajouterMateriaux(Materiaux m)
+	{
+		if (m.toString().equals("NR"))
+		{
+			this.ajouterPiece(m);
+			return true;
+		}
+
+		for (int i=0; i<this.tabPlateau.length; i++)
+		{
+			if (this.tabPlateau[i][0]==null)
+			{
+				this.tabPlateau[i][0]=m;
+				return true;
+			}
+
+
+			if (this.tabPlateau[i][0].toString().equals(m.toString()))
+			{
+				for (int j=0; j<this.tabPlateau[0].length; i++)
+				{
+					if (this.tabPlateau[i][j]==null)
+					{
+						this.tabPlateau[i][0]=m;
+						return true;
+					}
+						
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean ajouterPiece(Materiaux m)
+	{
+		for (int i=0; i<this.tabPiece.length; i++)
+		{
+			if (this.tabPiece[i]==null)
+			{
+				this.tabPiece[i]=m;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//Ajouter des jetons
+	public void addJetonPossession(JetonPossession j)
+	{
+		this.tabJetonPossession.add(j);
+	}
+
+	//récupérer les jetons
+	public ArrayList<JetonPossession> getTabJetonPossession ()
+	{
+		return this.tabJetonPossession;
+	}
+
+	//enlever les jetons
+	public void enleverJetonsPossession ()
+	{
+		this.tabJetonPossession.remove(0);
+	}
+
+	public void score()
+	{
+		int[] scoresCol = {20,10,0,2           };
+		int[] scoresLig = {0,4,9,16,25,36,49,64};
+		//Affichage des détails
+		int score, scoreMonnaie, scoreCol, scoreLig;
+		String detail = "Detail :\n ";
+
+
+		//Compteur pour le score des Monnaies
+		scoreMonnaie = 0;
+		for (int i = 1; i < this.tabPiece.length; i++)
+		{
+			if (this.tabPiece[i] != null)
+				scoreMonnaie = (i+1)*(i+1);
+		}
+
+		detail += "Monnaies      : " + scoreMonnaie + " pt \n ";
+
+		score = scoreMonnaie;
+
+
+		//Compteur pour le score des colonnes
+		int cptCol = 0;
+		
+		while (cptCol < this.tabPlateau[0].length) // 0 - 7
+			for (int i = 0 ; i < this.tabPlateau.length; i++) // 0 - 3
+			{
+				scoreCol = 0;
+				if  (this.tabPlateau[i][cptCol] != null)
+					scoreCol=scoresLig[i];
+				detail += "Colonne " + (cptCol+1) + "   : " + String.format("%2d", scoreCol) + " pt\n ";
+				score += scoreCol;
+
+				cptCol++;
+			}
+
+
+		//Compteur pour le score des lignes
+		int cptRessource= 0;
+		int cptLig 		= 1;
+		int cptPieceLig = 0;
+		
+
+		for(int i = 0; i < this.tabPlateau.length ; i++) //0 - 3
+		{
+			scoreLig = 0;
+			for(int j = 0 ; j < this.tabPlateau[i].length ; j++) //0 - 7
+			{
+				if(this.tabPlateau[i][j] != null)
+					cptRessource++;
+			}
+
+			scoreLig += scoresLig[cptRessource];
+			detail += "Ligne   " + (i + 1) + "   : " + String.format("%2d", scoreLig) + " pt\n ";
+			score  += scoreLig;
+
+			cptRessource = 0;
+		}
+
+		this.score = score;
+		this.detailScore = detail;
+
+	}
 }
