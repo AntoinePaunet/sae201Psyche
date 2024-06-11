@@ -15,7 +15,7 @@ public class PanelCarte extends JPanel
 
 	public PanelCarte()
 	{
-		this.setBackground( new Color( 909090 ));
+		this.setBackground( new Color( 666666 ));
 	}
 
 

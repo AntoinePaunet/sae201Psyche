@@ -12,14 +12,21 @@ public class Controleur
 	private Joueur j2;
 	private ArrayList<Mine> 		tabMine;
 
+	private boolean tourJ1;
+	private boolean finPartie;
+
 	public Controleur()
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.tabMine 		= new ArrayList<>(30);
+		this.tourJ1=true;
+		this.finPartie = false;
 
 		this.init();
 		new FrameChoix();
+
+		
 	}
 
 
