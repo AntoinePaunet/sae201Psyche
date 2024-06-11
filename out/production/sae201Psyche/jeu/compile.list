@@ -1,5 +1,6 @@
 ./ihm/FrameChoix.java
 ./ihm/FrameJeu.java
+./ihm/FrameJoueur.java
 ./ihm/PanelCarte.java
 ./ihm/PanelChoixJoueur.java
 
