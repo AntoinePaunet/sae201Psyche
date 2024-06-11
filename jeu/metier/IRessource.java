@@ -1,7 +1,6 @@
 package jeu.metier;
 /**
- * Cette classe créé l'interface graphique gérée par le contrôleur.
- * Elle s'occupe de charger des éléments sur la page graphique
+ * Cette classe gère le type des jetons et matériaux, afin que les mêmes méthodes s'appliquent sur ses deux types d'Objets.
  * @author Antoine Paunet,          IUT du Havre
  * @author Maël Vauthier,           IUT du Havre
  * @author Martin Ravenel,          IUT du Havre
