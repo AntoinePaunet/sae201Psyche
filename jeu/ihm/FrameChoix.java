@@ -8,10 +8,9 @@ import javax.swing.*;
 public class FrameChoix extends JFrame
 {
 	private PanelChoixJoueur panelChoixJoueur;
-	private Joueur[]         joueurs         ;
 
 
-	public FrameChoix(Joueur[] joueurs)
+	public FrameChoix()
 	{
 		this.setTitle   ("Choix des joueurs et de leur plateau");
 		this.setSize    ( 450,200 );
@@ -30,6 +29,13 @@ public class FrameChoix extends JFrame
 		this.setVisible(true);
 
 
+	}
+
+	public void creerFrameJoueur()
+	{
+		new FrameJoueur(this.panelChoixJoueur.getText1(), 1);
+		new FrameJoueur(this.panelChoixJoueur.getText2(), 2);
+		this.dispose();
 	}
 
 	public static void main( String[] args )
