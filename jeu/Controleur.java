@@ -53,7 +53,7 @@ public class Controleur
 		//Génération des mines
 		for(int cpt = 0; cpt < tabNomMine.length ; cpt++)
 		{
-			switch ( tabNomMine[cpt].substring( 0, 0 ) )
+			switch ( tabNomMine[cpt].substring( 0, 1 ) )
 			{
 				case "J" -> tmpCoul = "Jaune";
 				case "B" -> tmpCoul = "Bleu";
