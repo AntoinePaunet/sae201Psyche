@@ -10,7 +10,9 @@ import java.util.ArrayList;
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
  * @author Fanch EVEN,				IUT du Havre
- * @author Anas AARAB,				IUT du Havre
+ * @author Nahel KOCHAT,			IUT du Havre
+ * @author Anas AARAB Vauthier,		IUT du Havre
+ * @author Louis THOMAZEAU-AGUILLO,	IUT du Havre
  * @version 1.0 , 2024-05-23
  */
 public class Joueur 
@@ -18,7 +20,7 @@ public class Joueur
 	private Materiaux[][] tabPlateau;
 	private Materiaux[] tabPiece;
 	private ArrayList<JetonPossession> tabJetonPossession;
-	private ArrayList<Sommet> tabSegRecup;
+	private ArrayList<Mine> tabMineRecup;
 
 	private int score ;
 	private String detailScore;
@@ -31,7 +33,7 @@ public class Joueur
 		this.tabPlateau = new Materiaux [4][8];
 		this.tabPiece   = new Materiaux [8];
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
-		this.tabSegRecup = new ArrayList<Sommet>();
+		this.tabMineRecup = new ArrayList<Mine>();
 	}
 
 
@@ -46,25 +48,27 @@ public class Joueur
 			return true;
 		}
 
-		for (int i=this.tabPlateau.length-1; i>0; i--)
+
+		for(int i = 0 ; i < this.tabPlateau[0].length ; i++)
 		{
-			if (this.tabPlateau[i][0]==null)
+			if(this.tabPlateau[1][i] == null || this.tabPlateau[2][i] == null || this.tabPlateau[0][i] == null || this.tabPlateau[3][i] == null) //Il faut que les cases soient vides pour y placer les éléments
 			{
-				this.tabPlateau[i][0]=m;
-				return true;
-			}
-
-
-			if (this.tabPlateau[i][0].toString().equals(m.toString()))
-			{
-				for (int j=0; j<this.tabPlateau[0].length; j++)
+				if(this.tabPlateau[3][i] != null && this.tabPlateau[3][i].getNom().equals(m.getNom())) //Si on a la même ressource que dans le tableau
 				{
-					if (this.tabPlateau[j][i]==null)
+					for(int i2 = tabPlateau.length-1 ; i2 > -1 ; i2--) //On fait dans le sens inverse afin de placer les éléments de bas en haut dans le tableau
 					{
-						this.tabPlateau[0][i]=m;
-						return true;
+						if(this.tabPlateau[i2][i] == null)
+						{
+							this.tabPlateau[i2][i] = m;
+							return true;
+						}
 					}
-						
+
+				}
+				else if(this.tabPlateau[3][i] == null) //Si la ressource n'est pas la même
+				{
+					this.tabPlateau[3][i] = m;
+					return true;
 				}
 			}
 		}
@@ -95,9 +99,9 @@ public class Joueur
 	}
 
 
-	public void addSegRecup (Sommet m)
+	public void addMineRecup (Mine m)
 	{
-		this.tabSegRecup.add(m);
+		this.tabMineRecup.add(m);
 		this.ajouterMateriaux(m.getMateriaux());
 	}
 

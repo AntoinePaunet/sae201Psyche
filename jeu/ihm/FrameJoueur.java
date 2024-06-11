@@ -74,7 +74,7 @@ public class FrameJoueur extends JFrame
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
 				{
-					this.ajoutImage(y, x, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
+					this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
 				}
 				x += 160;
 			}
