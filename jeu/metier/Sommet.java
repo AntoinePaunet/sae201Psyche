@@ -50,13 +50,7 @@ public class Sommet
 		this.routes = new ArrayList<>(10);
     }
 
-<<<<<<< Updated upstream:jeu/metier/Sommet.java
     public int       getNumSom()    { return this.numSom;    }
-=======
-
-
-    public int       getNumMine()   { return this.numMine;   }
->>>>>>> Stashed changes:jeu/metier/Mine.java
     public String    getNomCoul()   { return this.nomCoul;   }
     public int       getX()         { return this.x;         }
     public int       getY()         { return this.y;         }
