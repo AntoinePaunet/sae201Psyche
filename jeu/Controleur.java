@@ -9,17 +9,19 @@ public class Controleur
 {
 	private Plateau j1;
 	private Plateau j2;
-	private ArrayList<Mine> tabMine;
+	private ArrayList<Mine> 		tabMine;
+	private ArrayList<Materiaux> 	tabMateriaux;
 
 	public Controleur()
 	{
-		this.j1      = new Plateau ();
-		this.j2      = new Plateau ();
-		this.tabMine = new ArrayList<Mine>();
+		this.j1      		= new Plateau ();
+		this.j2      		= new Plateau ();
+		this.tabMine 		= new ArrayList<>(30);
+		this.tabMateriaux 	= new ArrayList<>(40);
 	}
 
 
-	public void initMine()
+	private void initMine()
 	{
 		String tmpCoul = "";
 		int    tmpZone = -1;
@@ -39,16 +41,23 @@ public class Controleur
 			}
 
 			tmpZone = Integer.parseInt( mine.substring( 1, 1 ) );
-
 			this.tabMine.add( new Mine( tmpZone, tmpCoul ) );
- 
 		}
-	
+	}
+
+
+	private void initMateriaux()
+	{
+		int[] tabCooX = new int[]{};
+		int[] tabCooY = new int[]{};
+
+
+		this.tabMateriaux.add( new Materiaux("NR", 0, 0) );
+
 	}
 
 	public static void main (String[] arg)
 	{
-
 		new Controleur();
 	}
 }
