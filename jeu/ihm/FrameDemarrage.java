@@ -1,3 +1,5 @@
+package jeu.ihm;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -73,10 +75,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 			int returnVal = fc.showOpenDialog(this);
 
+			/*
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 				this.ctrl.setFichierImage(fc.getSelectedFile().getAbsolutePath());
 			else
 				System.out.println("Annuler");
+			*/
 		}
 
 		// Fermeture de l'application
@@ -121,5 +125,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
             this.panelCarte.add(backgroundLabel);
         }
     }
+
+	public void main (String[]args)
+	{
+		new FrameDemarrage();
+	}
 }
 
