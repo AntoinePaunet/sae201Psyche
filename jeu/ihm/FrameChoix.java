@@ -34,5 +34,8 @@ public class FrameChoix extends JFrame
 		this.dispose();
 	}
 
-
+	public static void main( String[] args )
+	{
+		new FrameChoix();
+	}
 }
