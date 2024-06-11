@@ -3,6 +3,7 @@
 ./ihm/FrameJoueur.java
 ./ihm/PanelCarte.java
 ./ihm/PanelChoixJoueur.java
+./ihm/FrameDemarrage.java
 
 ./metier/IRessource.java
 ./metier/Jeton.java

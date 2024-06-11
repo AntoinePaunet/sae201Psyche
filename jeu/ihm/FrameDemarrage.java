@@ -1,3 +1,5 @@
+package jeu.ihm;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -73,10 +75,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 			int returnVal = fc.showOpenDialog(this);
 
+			/*
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 				this.ctrl.setFichierImage(fc.getSelectedFile().getAbsolutePath());
 			else
 				System.out.println("Annuler");
+			*/
 		}
 
 
@@ -124,7 +128,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
         }
     }
 
-	public static void main( String[] args )
+	public void main (String[]args)
 	{
 		new FrameDemarrage();
 	}
