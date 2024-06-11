@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 
-public class FrameJeu extends JFrame
+public class FramePlateau extends JFrame
 {
 	private PanelCarte panelCarte;
 	private JPanel panelScore;
@@ -13,7 +13,7 @@ public class FrameJeu extends JFrame
 	private JMenuItem     enregistrerF;
 	private JMenuItem     supprimerF;
 
-	public FrameJeu()
+	public FramePlateau()
 	{
 		this.setTitle("L'Âge de Psyché");
 		this.setSize    ( 1920,1080 );
@@ -39,6 +39,6 @@ public class FrameJeu extends JFrame
 
 	public static void main( String[] args )
 	{
-		new FrameJeu();
+		new FramePlateau();
 	}
 }
