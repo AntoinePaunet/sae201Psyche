@@ -8,9 +8,7 @@ import java.awt.*;
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
  * @author Fanch EVEN,				IUT du Havre
- * @author Nahel KOCHAT,			IUT du Havre
- * @author Anas AARAB Vauthier,		IUT du Havre
- * @author Louis THOMAZEAU-AGUILLO,	IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
  * @version 1.0 , 2024-05-23
  */
 
