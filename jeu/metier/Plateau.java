@@ -4,6 +4,7 @@ public class Plateau
 {
 	private Materiaux tabPlateau[][];
 	private Materiaux tabPiece[];
+	private List<JetonPossession> tabJetonPossession;
 
 	private int score ;
 	private String detailScore;
@@ -12,6 +13,7 @@ public class Plateau
 	{
 		this.tabPlateau = new Materiaux [4][8];
 		this.tabPiece   = new Materiaux [8];
+		this.tabJetonPossession = new ArrayList<JetonPossession>();
 	}
 
 	public boolean ajouterMateriaux(Materiaux m)
@@ -58,6 +60,24 @@ public class Plateau
 			}
 		}
 		return false;
+	}
+
+	//Ajouter des jetons
+	public void addJetonPossession(JetonPossession j)
+	{
+		this.tabJetonPossession.add(j);
+	}
+
+	//récupérer les jetons
+	public List<JetonPossession> getTabJetonPossession ()
+	{
+		return this.tabJetonPossession;
+	}
+
+	//enlever les jetons
+	public void enleverJetonsPossession ()
+	{
+		this.tabJetonPossession.remove(0);
 	}
 
 	public void score()
