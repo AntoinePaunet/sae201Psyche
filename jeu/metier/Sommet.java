@@ -38,7 +38,7 @@ public class Sommet
 		this.routes = new ArrayList<>(10);
     }
 
-    public int       getNumSom()   { return this.numSom;   }
+    public int       getNumSom()    { return this.numSom;    }
     public String    getNomCoul()   { return this.nomCoul;   }
     public int       getX()         { return this.x;         }
     public int       getY()         { return this.y;         }
