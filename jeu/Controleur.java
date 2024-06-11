@@ -29,6 +29,8 @@ public class Controleur
 	{
 		String tmpCoul = "";
 		int    tmpZone = -1;
+		int rndm;
+		Materiaux tmpMat;
 
 		String[] 	tabNomMine = {"J1","J5","J2","J3","J4","B2","B3","B4","B6","B8","G0","G1","G2","G3","G4","V2","V3","V4","V6","V8","R1","R2","R3","R4","R5","M1","M2","M3","M4","M5"};
 		int[] 		tabCooX = new int[]{	 336,  265,  317,  394,	 251,  336,	 414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
@@ -63,9 +65,9 @@ public class Controleur
 				case "M" -> tmpCoul = "Marron";
 			}
 
-			int rndm = (int)( Math.random()*32 - cpt);
+			rndm = (int)( Math.random()*32 - cpt);
 
-			Materiaux tmpMat = new Materiaux(tmpLst.remove(rndm));
+			tmpMat = new Materiaux(tmpLst.remove(rndm));
 
 			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 1 ) );
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
