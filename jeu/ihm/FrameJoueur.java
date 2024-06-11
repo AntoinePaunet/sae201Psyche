@@ -8,6 +8,7 @@ import jeu.metier.Materiaux;
 import javax.swing.*;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 /**
  * Cette classe créé l'interface graphique gérée par le controleur.
@@ -24,7 +25,7 @@ import java.awt.Color;
 
 public class FrameJoueur extends JFrame
 {
-    private JPanel panelFond;
+    private JLayeredPane panelFond;
 
 	private Controleur ctrl;
 	private Joueur joueur;
@@ -38,18 +39,18 @@ public class FrameJoueur extends JFrame
 		this.setTitle( "Plateau de " + nomJoueur );
 
         this.setSize( 500 , 400 );
-        this.panelFond = new JPanel();
+        this.panelFond = new JLayeredPane();
 
 		this.ctrl = ctrl;
 
 		if( j == 1 )
 		{
-			this.ajoutImage(0,0, "bgSolaire.png", JLayeredPane.DEFAULT_LAYER);
+			this.ajoutImage(0,0, "bgSolaire.png", 0);
 			this.joueur = ctrl.getJoueur1();
 		}
 		else
 		{
-			this.ajoutImage(0,0, "bgSyndicat.png", JLayeredPane.DEFAULT_LAYER);
+			this.ajoutImage(0,0, "bgSyndicat.png", 0);
 			this.joueur = ctrl.getJoueur2();
 		}
 
@@ -72,14 +73,14 @@ public class FrameJoueur extends JFrame
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
 				{
-					this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", JLayeredPane.PALETTE_LAYER);
+					this.ajoutImage(y, x, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
 				}
 				x += 160;
 			}
 			x = 80;
 			y += 120;
 		}
-
+		System.out.println(Arrays.deepToString(this.joueur.getTableMateriaux()));
 
 	}
 
@@ -95,7 +96,7 @@ public class FrameJoueur extends JFrame
         ImageIcon image = new ImageIcon(getClass().getResource("images/" + url));
         JLabel imgLabel = new JLabel(image);
         imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
-        this.panelFond.add(imgLabel, layer);
+        this.panelFond.add(imgLabel, Integer.valueOf(layer));
     }
 
 }

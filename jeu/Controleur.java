@@ -154,5 +154,11 @@ public class Controleur
 	public static void main (String[] arg)
 	{
 		Controleur ctrl = new Controleur();
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(16));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(1));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(22));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(29));
+		ctrl.getJoueur1().addMineRecup(ctrl.tabMine.get(10));
 	}
 }
