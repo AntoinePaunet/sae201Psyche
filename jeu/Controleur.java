@@ -12,14 +12,21 @@ public class Controleur
 	private Joueur j2;
 	private ArrayList<Mine> 		tabMine;
 
+	private boolean tourJ1;
+	private boolean finPartie;
+
 	public Controleur()
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.tabMine 		= new ArrayList<>(30);
+		this.tourJ1=true;
+		this.finPartie = false;
 
 		this.init();
 		new FrameChoix();
+
+		
 	}
 
 
@@ -70,9 +77,8 @@ public class Controleur
 			tmpZone = Integer.parseInt( tabNomMine[cpt].substring( 1, 2 ) );
 			this.tabMine.add( new Mine( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
 		}
-
+		//Ajout de la zone de départ
 		this.tabMine.add( new Mine(0, null, 442, 475, null, true));
-		System.out.println(this.tabMine);
 	}
 
 	private void initJetonPossession()
