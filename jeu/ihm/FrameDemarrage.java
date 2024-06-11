@@ -14,6 +14,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiQuitter      ;
 	private JMenuItem     menuiScenario     ;
 
+	private JButton btnJouer;
+
 	public FrameDemarrage ()
 	{
 		this.setTitle   ("L'age de psyché");
@@ -48,13 +50,18 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		menuBar.add(menuScenario);
 
 		this.setJMenuBar( menuBar );
+		
 
+
+		// Création et ajout du bouton Jouer
+		this.btnJouer = new JButton("Jouer");
 
 		// Activation des composants
 		this.menuiAjouterSommet.addActionListener ( this );
 		this.menuiAjouterArrete.addActionListener ( this );
 		this.menuiOuvrir       .addActionListener ( this );
 		this.menuiQuitter      .addActionListener ( this );
+		this
 
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,6 +89,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				System.out.println("Annuler");
 			*/
 		}
+
+
 
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
