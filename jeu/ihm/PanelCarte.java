@@ -9,8 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.event.*;
 
 /**
- * Cette classe créé l'interface graphique gérée par le controleur.
- * Elle s'occupe de charger des éléments sur la page graphique
+ * Cette classe correspond au Panel sur lequel est affiché la carte ainsi
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre

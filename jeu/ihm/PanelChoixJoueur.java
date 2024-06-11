@@ -5,8 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * Cette classe créé l'interface graphique gérée par le controleur.
- * Elle s'occupe de charger des éléments sur la page graphique
+ * Cette classe correspond au Panel où les joueurs peuvent séléctionner leurs pseudonymes ainsi que leur faction.
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
@@ -29,6 +28,10 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 
 	private FrameChoix frameChoix;
 
+	/**
+	 * Constructeur du Panel de choix des joueurs.
+	 * @param frameChoix la Frame sur laquelle ce Panel est utilisé
+	 */
 	public PanelChoixJoueur(FrameChoix frameChoix)
 	{
 
@@ -47,21 +50,11 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 
 		this.btnSauvegarder.addActionListener(this);
 		this.btnAnnuler.addActionListener    (this);
-
-
 	}
 
-	//@return le String contenu dans txtJoueur1.getText()
-	public String getText1()
-	{
-		return this.txtJoueur1.getText();
-	}
+	public String getText1() { return this.txtJoueur1.getText(); yy}
 
-	//@return le String contenu dans txtJoueur2.getText()
-	public String getText2()
-	{
-		return this.txtJoueur2.getText();
-	}
+	public String getText2() { return this.txtJoueur2.getText(); }
 
 
 	public void actionPerformed(ActionEvent e)
