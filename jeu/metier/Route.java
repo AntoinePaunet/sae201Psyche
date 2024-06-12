@@ -17,20 +17,17 @@ public class Route
 
 	private Joueur joueur;
 
-
-	public Route ( Sommet SommetDep, Sommet SommetAr, int SecSommet )
-
-
 	/**
-	 * Constructeure
+	 * Constructeur
 	 *
-	 * @param mineSommet  mine de départ
+	 * @param sommetDep  mine de départ
 	 * @param mineArrive  mine d'arrive
 	 * @param mineSection nombre de section
-	 * 
-	 * 
+	 *
+	 *
 	 */
-	
+
+	public Route ( Sommet sommetDep, Sommet sommetAr, int secSommet )
 	{
 		this.sommetDep  = sommetDep;
 		this.secSommet = secSommet;

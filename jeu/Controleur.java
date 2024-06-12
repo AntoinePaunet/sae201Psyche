@@ -27,7 +27,7 @@ public class Controleur
 
 	private boolean tourJ1;
 	private boolean finPartie;
-	private FrameDemarrage frameDemarrage;
+	public  FrameDemarrage frameDemarrage;
 
 	public Controleur() throws IOException
 	{
@@ -251,10 +251,10 @@ public class Controleur
 	public void lireRoute(String ligne) {
 		String[] routeInfo = ligne.split("\t");
 
-		int nbTroncon = Integer.parseInt(routeInfo[0]);
+		int nbTroncon = Integer.parseInt(routeInfo[2]);
 
-		Sommet smtA = this.rechercheSommet(routeInfo[1]);
-		Sommet smtB = this.rechercheSommet(routeInfo[2]);
+		Sommet smtA = this.rechercheSommet(routeInfo[0]);
+		Sommet smtB = this.rechercheSommet(routeInfo[1]);
 
 		if (smtA != null && smtB != null) // Si la ville recherché n'existe plus
 		{
@@ -334,7 +334,9 @@ public class Controleur
 
 	public Sommet rechercheSommet(String numSmt)
 	{
-		for (Sommet s : this.tabSommet) {
+		for (Sommet s : this.tabSommet)
+		{
+
 			if (s.getNumSom() == Integer.parseInt(numSmt))
 				return s;
 		}
@@ -347,11 +349,14 @@ public class Controleur
 
 	public static void main (String[] arg) throws IOException {
 		Controleur ctrl = new Controleur();
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
+		if(ctrl.tabSommet.size() >= 29)
+		{
+			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
+			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
+			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
+			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
+			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
+			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
+		}
 	}
 }
