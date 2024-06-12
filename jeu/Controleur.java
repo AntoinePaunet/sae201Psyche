@@ -76,14 +76,11 @@ public class Controleur
 
 	public boolean estValide(Joueur j, Route r)
 	{
-		//verifie si quelqu'un est deja sur la route
-		if (r.getJoueur()!=null) {return false;}
+		if (r.getJoueur()==null) {return false;}
 
-		//Verifie si c'est le tour du joueur
 		if (j==this.j1 && !this.tourJ1){return false;} 
 		if (j==this.j2 && this.tourJ1){return false;} 
 		
-		//verifie si l'un des deux sommet deja pris ou non
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetAr().getMateriaux()==null)
 		{
 			return true ;
@@ -91,16 +88,6 @@ public class Controleur
 
 		return false ;
 
-	}
-
-	public ArrayList<Sommet> getTabSommet()
-	{
-		return this.tabSommet;
-	}
-
-	public ArrayList<Route> getTabRoute()
-	{
-		return this.tabRoute;
 	}
 
 
@@ -197,6 +184,7 @@ public class Controleur
 			nomFichier = "data.txt";
 			fichier.createNewFile();
 			this.initFicher(fichier);
+			System.out.println("ok");
 			return;
 		}
 		System.out.println("ok2");
@@ -204,7 +192,7 @@ public class Controleur
 
 		try {
 			System.out.println(nomFichier);
-			FileReader fr = new FileReader("src/data.txt");
+			FileReader fr = new FileReader(fichier);
 			Scanner sc = new Scanner(fr);
 
 			// Vider les tableaux pour ne pas refaire trop de variables
@@ -378,4 +366,7 @@ public class Controleur
 			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
 		}
 	}
+
+	public ArrayList<Sommet> getTabSommet() { return this.tabSommet; }
+	public ArrayList<Route> getTabRoute  () { return this.tabRoute;  }
 }
