@@ -37,7 +37,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.ctrl = ctrl;
 		this.setTitle   ("L'age de psyché");
 		this.setSize    (800,750  );
-		this.setLocation(50, 50             );
+		this.setLocation(0, 0             );
 		this.setVisible (true                 );
 
 		this.panelJouer  = new PanelJouer(      );
