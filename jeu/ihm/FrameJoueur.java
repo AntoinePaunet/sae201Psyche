@@ -35,20 +35,20 @@ public class FrameJoueur extends JFrame
     {
 		this.setTitle( "Plateau de " + nomJoueur );
 
-        this.setSize( 500 , 400 );
+        this.setSize( 700 , 550 );
         this.panelFond = new JLayeredPane();
 
 		this.ctrl = ctrl;
 
 		if( j == 1 )
 		{
-			this.setLocation( 100, 550 );
+			this.setLocation( 1100, 0 );
 			this.ajoutImage(0,0, "bgSolaire.png", 0);
 			this.joueur = ctrl.getJoueur1();
 		}
 		else
 		{
-			this.setLocation( 600, 550 );
+			this.setLocation( 1100, 550 );
 			this.ajoutImage(0,0, "bgSyndicat.png", 0);
 			this.joueur = ctrl.getJoueur2();
 		}
