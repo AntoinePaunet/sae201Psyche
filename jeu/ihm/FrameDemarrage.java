@@ -154,7 +154,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
-			new FrameRoute( this.ctrl ); 
+			new FrameModification( this.ctrl ); 
 		
 
 		// Fermeture de l'application
