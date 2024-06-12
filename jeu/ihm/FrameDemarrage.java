@@ -5,6 +5,7 @@ import jeu.Controleur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -88,6 +89,20 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		if( e.getSource() == this.menuiOuvrir )
 		{
 			JFileChooser fc = new JFileChooser();
+			File chooserFile = new File(System.getProperty("user.dir") + "/jeu/src");
+
+			try 
+			{
+				chooserFile = chooserFile.getCanonicalFile();
+			} 
+			catch (Exception i) 
+			{
+            // En cas d'erreur, imprimer le message d'erreur
+            System.out.println(i.getMessage());
+            // Utiliser le répertoire actuel par défaut
+        	
+			}
+			fc.setCurrentDirectory(chooserFile);
 
 			int returnVal = fc.showOpenDialog(this);
 
@@ -95,15 +110,13 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				this.panelReseau.changerFond(fc.getSelectedFile().getAbsolutePath());
 					this.panelReseau.cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				try
-				{
+				try {
 					this.ctrl.lectureFichier(this.panelReseau.cheminFichier);
-					this.ctrl.lireRoute(getName());
-				}
-				catch( IOException ex )
-				{
+				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
+				
+				
 			}
 			else
 			{
@@ -111,6 +124,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			}
 			
 		}
+
+
+		// Fermeture de l'application
+		if ( e.getSource() == this.menuiQuitter )
+			System.exit(0);
+		
 
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
