@@ -93,6 +93,16 @@ public class Controleur
 
 	}
 
+	public ArrayList<Sommet> getTabSommet()
+	{
+		return this.tabSommet;
+	}
+
+	public ArrayList<Route> getTabRoute()
+	{
+		return this.tabRoute;
+	}
+
 
 	private void init()
 	{
@@ -187,7 +197,6 @@ public class Controleur
 		{
 			fichier.createNewFile();
 			this.initFicher(fichier);
-			System.out.println("ok");
 			return;
 		}
 
