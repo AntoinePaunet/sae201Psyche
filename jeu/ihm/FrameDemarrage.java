@@ -6,6 +6,7 @@ import jeu.Controleur;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -92,6 +93,20 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		if( e.getSource() == this.menuiOuvrir )
 		{
 			JFileChooser fc = new JFileChooser();
+			File chooserFile = new File("src");
+
+			try 
+			{
+				chooserFile = new File((new File("src").getCanonicalPath()));
+			} 
+			catch (Exception i) 
+			{
+            // En cas d'erreur, imprimer le message d'erreur
+            System.out.println(i.getMessage());
+            // Utiliser le répertoire actuel par défaut
+        	
+			}
+			fc.setCurrentDirectory(chooserFile);
 
 			int returnVal = fc.showOpenDialog(this);
 
