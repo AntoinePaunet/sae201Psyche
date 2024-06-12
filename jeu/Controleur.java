@@ -298,29 +298,29 @@ public class Controleur
 		while (sc.hasNextLine())
 			donnesFichier += sc.nextLine() + "\n";
 
-		if (!donnesFichier.contains(numSmt+"")) // Vérification de doubles dans le fichier texte
+		String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[SOMMET]"),
+				donnesFichier.indexOf("\n["));
+		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
+
+		if(!(materiaux == null))
+			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\n\n") + donneesRoutes;
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+
+		try
 		{
-			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[SOMMET]"),
-					donnesFichier.indexOf("\n["));
-			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
-
-			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\t" + "\n\n") + donneesRoutes;
-
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
-
-			try {
-				this.tabSommet.add(new Sommet(numSmt, nomCoul, x, y, materiaux, estDepart)); // creation de la ville
-				writer.write(donnesFichier);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			writer.close();
+			writer.write(donnesFichier);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		writer.close();
+
 		sc.close();
 	}
 
-	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException {
+	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException
+	{
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
@@ -333,8 +333,8 @@ public class Controleur
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
-		try {
-			this.tabRoute.add(new Route(smtA, smtB, nbTroncons));
+		try
+		{
 			writer.write(donnesFichier);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -346,17 +346,10 @@ public class Controleur
 
 
 
-
-
-
-
-
-
 	public Sommet rechercheSommet(String numSmt)
 	{
 		for (Sommet s : this.tabSommet)
 		{
-
 			if (s.getNumSom() == Integer.parseInt(numSmt))
 				return s;
 		}
@@ -364,6 +357,18 @@ public class Controleur
 	}
 
 
+	public void sauvegarde() throws IOException
+	{
+		for(Route r : this.tabRoute)
+		{
+			this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons());
+		}
+
+		for(Sommet s : this.tabSommet)
+		{
+			this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false);
+		}
+	}
 
 
 

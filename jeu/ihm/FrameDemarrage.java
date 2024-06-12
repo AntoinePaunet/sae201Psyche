@@ -181,7 +181,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			// création des composants;
 			this.btnJouer = new JButton("Jouer");
 			this.add(this.btnJouer);
-
 		}
 	}
 /*
