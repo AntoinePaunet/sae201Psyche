@@ -268,7 +268,7 @@ public class Controleur
 
 
 
-	public void ecrireSommet(int numSmt, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart) throws IOException
+	public void ecrireSommet(Sommet smt) throws IOException
 	{
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
@@ -278,18 +278,18 @@ public class Controleur
 		while (sc.hasNextLine())
 			donnesFichier += sc.nextLine() + "\n";
 
-		if (!donnesFichier.contains(numSmt+"")) // Vérification de doubles dans le fichier texte
+		if (!donnesFichier.contains(smt.getNumSom()+"")) // Vérification de doubles dans le fichier texte
 		{
 			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[SOMMET]"),
 					donnesFichier.indexOf("\n["));
 			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\t" + "\n\n") + donneesRoutes;
+			donnesFichier = donneesVilles + (smt.getNumSom() + "\t" + smt.getNomCoul() + "\t" + smt.getX() + "\t" + smt.getY() + "\t" + smt.getMateriaux().getNom() + "\t" + false + "\t" + "\n\n") + donneesRoutes;
 
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
 			try {
-				this.tabSommet.add(new Sommet(numSmt, nomCoul, x, y, materiaux, estDepart)); // creation de la ville
+				this.tabSommet.add(smt); // creation de la ville
 				writer.write(donnesFichier);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -300,7 +300,8 @@ public class Controleur
 		sc.close();
 	}
 
-	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException {
+	public void ecrireRoute(Route route) throws IOException
+	{
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
@@ -309,12 +310,12 @@ public class Controleur
 		while (sc.hasNextLine())
 			donnesFichier += sc.nextLine() + "\n";
 
-		donnesFichier += (nbTroncons + "\t" + smtA.getNumSom() + "\t" + smtB.getNumSom() + "\n");
+		donnesFichier += (route.getSommetDep().getNumSom() + "\t" + route.getSommetAr().getNumSom() + "\t" + route.getNbTroncons() + "\n");
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
 		try {
-			this.tabRoute.add(new Route(smtA, smtB, nbTroncons));
+			this.tabRoute.add(route);
 			writer.write(donnesFichier);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -325,20 +326,22 @@ public class Controleur
 	}
 
 
-
-
-
-
-
-
-
 	public Sommet rechercheSommet(String numSmt)
 	{
 		for (Sommet s : this.tabSommet)
 		{
-
 			if (s.getNumSom() == Integer.parseInt(numSmt))
 				return s;
+		}
+		return null;
+	}
+
+	public Route rechercheRoute(int smtDep, int smtArr, int troncons)
+	{
+		for(Route r : this.tabRoute)
+		{
+			if( r.getSommetDep().getNumSom() == smtDep && r.getSommetAr().getNumSom() == smtArr && r.getNbTroncons() == troncons)
+				return r;
 		}
 		return null;
 	}
@@ -347,8 +350,12 @@ public class Controleur
 
 
 
-	public static void main (String[] arg) throws IOException {
+	public static void main (String[] arg) throws IOException
+	{
 		Controleur ctrl = new Controleur();
+
+		ctrl.ecrireSommet(new Sommet(3,"Jaune",150,500,new Materiaux("FE"), false));
+		ctrl.ecrireRoute(new Route(ctrl.rechercheSommet(1+""),ctrl.rechercheSommet(3+""),1));
 		if(ctrl.tabSommet.size() >= 29)
 		{
 			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
