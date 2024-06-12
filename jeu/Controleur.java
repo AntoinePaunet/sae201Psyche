@@ -71,7 +71,7 @@ public class Controleur
 		if (j==this.j1 && !this.tourJ1){return false;} 
 		if (j==this.j2 && this.tourJ1){return false;} 
 		
-		for (int i=0; i<m.getTabRoute().size(); i++)
+		for (int i=0; i<this.getTabRoute().size(); i++)
 		{
 			if (m.getRoute(i).getSommetDep().getMateriaux()==null || m.getRoute(i).getSommetAr().getMateriaux()==null)
 			{
