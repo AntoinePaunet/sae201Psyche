@@ -37,7 +37,7 @@ public class FrameChoix extends JFrame
 
 		
 		// Gestion de la fermeture de la fenêtre
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
 
