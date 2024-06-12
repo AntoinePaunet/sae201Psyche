@@ -158,11 +158,9 @@ public class Controleur
 			fichier = new File(nomFichier);
 			fichier.createNewFile();
 			this.initFicher(fichier);
-			System.out.println("ok");
 			return;
 		}
 		fichier = new File(nomFichier);
-		System.out.println("ok2");
 		
 
 		try {
@@ -214,7 +212,7 @@ public class Controleur
 
 
 
-		System.out.println(tabSommet);
+		System.out.println("Nb sommet " + tabSommet);
 	}
 
 
