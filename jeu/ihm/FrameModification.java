@@ -91,7 +91,7 @@ public class FrameModification extends JFrame implements ActionListener
 
 		if ( e.getSource() == this.creerRoute )
 		{
-			//this.ctrl.ecrireRoute(smtDepart, smtArrivee, nbTroncon);
+			new FrameRoute( this.ctrl );
 		}
 
 		if ( e.getSource() == this.enregistrerF )
