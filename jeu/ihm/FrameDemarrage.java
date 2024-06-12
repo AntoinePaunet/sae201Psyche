@@ -57,11 +57,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.btnJouer = new JButton("Jouer");
 
 		// Activation des composants
-		this.menuiAjouterSommet.addActionListener ( this );
-		this.menuiAjouterArrete.addActionListener ( this );
-		this.menuiOuvrir       .addActionListener ( this );
-		this.menuiQuitter      .addActionListener ( this );
-		this
+		this.menuiAjouterSommet.addActionListener( this );
+		this.menuiAjouterArrete.addActionListener( this );
+		this.menuiOuvrir       .addActionListener( this );
+		this.menuiQuitter      .addActionListener( this );
+		this.menuiScenario     .addActionListener(this);
 
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,12 +82,15 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 			int returnVal = fc.showOpenDialog(this);
 
-			/*
 			if (returnVal == JFileChooser.APPROVE_OPTION)
-				this.ctrl.setFichierImage(fc.getSelectedFile().getAbsolutePath());
+			{
+				System.out.println(fc.getSelectedFile().getAbsolutePath());
+			}
 			else
+			{
 				System.out.println("Annuler");
-			*/
+			}
+			
 		}
 
 
