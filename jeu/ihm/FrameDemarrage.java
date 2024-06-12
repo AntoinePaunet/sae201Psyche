@@ -1,12 +1,16 @@
 package jeu.ihm;
 
 import javax.swing.*;
+
+import jeu.Controleur;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class FrameDemarrage extends JFrame implements ActionListener
 {
 	private PanelReseau panelReseau;
+	private PanelJouer panelJouer;
 
 	private JMenuItem     menuiAjouterSommet;
 	private JMenuItem     menuiAjouterArrete;
@@ -14,10 +18,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiQuitter      ;
 	private JMenuItem     menuiScenario     ;
 
-	private JButton btnJouer;
+	private Controleur ctrl;
 
-	public FrameDemarrage ()
+	public FrameDemarrage(Controleur ctrl)
 	{
+		this.ctrl = ctrl;
+
 		this.setTitle   ("L'age de psyché");
 		this.setSize    (1040,950         );
 		this.setLocation(50, 50           );
@@ -51,17 +57,16 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		this.setJMenuBar( menuBar );
 		
+		//Création et ajout du Panel Jouer
+		this.add(this.panelJouer);
 
-
-		// Création et ajout du bouton Jouer
-		this.btnJouer = new JButton("Jouer");
 
 		// Activation des composants
-		this.menuiAjouterSommet.addActionListener ( this );
-		this.menuiAjouterArrete.addActionListener ( this );
-		this.menuiOuvrir       .addActionListener ( this );
-		this.menuiQuitter      .addActionListener ( this );
-		this
+		this.menuiAjouterSommet .addActionListener( this );
+		this.menuiAjouterArrete .addActionListener( this );
+		this.menuiOuvrir        .addActionListener( this );
+		this.menuiQuitter       .addActionListener( this );
+		this.panelJouer.btnJouer.addActionListener( this );
 
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,6 +94,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				System.out.println("Annuler");
 			*/
 		}
+
+		if( e.getSource() == this.panelJouer.btnJouer )
+			new FrameChoix( this.ctrl );
 
 
 
@@ -119,7 +127,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
             this.panelCarte = new JPanel ();
 
 
-
             // positionnement des composants
             this.add(panelAjout, BorderLayout.NORTH );
             this.add(panelCarte, BorderLayout.CENTER);
@@ -137,9 +144,26 @@ public class FrameDemarrage extends JFrame implements ActionListener
         }
     }
 
+
+    public class PanelJouer extends JPanel
+    {
+		private JButton btnJouer;
+
+        public PanelJouer()
+        {
+            this.setLayout(new BorderLayout(0,0));
+
+            // création des composants;
+			this.btnJouer = new JButton("Jouer");
+			this.add(this.btnJouer);
+
+        }
+    }
+/*
 	public static void main (String[]args)
 	{
 		new FrameDemarrage();
 	}
+*/
 }
 
