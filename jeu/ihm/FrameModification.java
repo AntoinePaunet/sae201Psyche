@@ -86,7 +86,12 @@ public class FrameModification extends JFrame implements ActionListener
 
 		if ( e.getSource() == this.enregistrerF )
 		{
-			//this.ctrl.enregistrerData();
+			try{
+				this.ctrl.sauvegarde();
+			} catch (IOException ex) {
+				System.out.println("Erreur de sauvegarde");
+			}
+			
 		}
 
 		if ( e.getSource() == this.supprimerF )
@@ -97,11 +102,11 @@ public class FrameModification extends JFrame implements ActionListener
 	}
 
 	public PanelCarte getPanelCarte () {return this.panelC;}
-/* 
+
 	public static void main (String[]args) throws IOException
 	{
 		Controleur ctrl = new Controleur(); 
 		new FrameModification(ctrl);
 	}
-*/
+
 }

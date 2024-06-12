@@ -30,7 +30,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiQuitter      ;
 
 
-
+	/**
+	 * Constructeur de la frame de démarrage
+	 * @param ctrl permet d'accéder au controleur dans les frames qui en découlent
+	 */
 	public FrameDemarrage( Controleur ctrl )
 	{
 		this.ctrl = ctrl;
@@ -80,6 +83,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		
 	}
 
+	/**
+	 * Réalise une action lorsqu'on clique sur la menubar
+	 * @param e est un événement lié à un composant du panel
+	 */
 	public void actionPerformed ( ActionEvent e )
 	{
 		// Syso pour confirmer l'action
@@ -128,7 +135,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		}
 
 
-		// Fermeture de l'application
+		/**
+		 * Ferme l'application
+		 */
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
 		
