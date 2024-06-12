@@ -34,6 +34,9 @@ public class PanelRoutes extends JPanel implements ActionListener
     private JComboBox<String> lstVilleDep;
     private JComboBox<String> lstVilleArrive;
 
+	/**
+	 * Constructeur du Panel d'édition des routes.
+	 */
     public PanelRoutes( Controleur ctrl)
     {
 
@@ -46,7 +49,9 @@ public class PanelRoutes extends JPanel implements ActionListener
     }
 
 
-
+	/**
+	 * Initialise tous les composants du panel d'édition des routes.
+	 */
     public void panelInput()
     {
         this.panelInput = new JPanel() ;
@@ -75,6 +80,7 @@ public class PanelRoutes extends JPanel implements ActionListener
         this.add( panelInput );
 
     }
+
 
     public void initListe()
     {
@@ -153,9 +159,6 @@ public class PanelRoutes extends JPanel implements ActionListener
             if ( Integer.parseInt( (String) ( this.lstVilleDep.getSelectedItem() ) )== ville.getNumSom()) { vDep = ville; }
 
         }
-
-
         this.ctrl.ajouterRoute(vDep, vArr, tr);
-
     }
 }
