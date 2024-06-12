@@ -186,7 +186,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.btnModifier = new JButton("Modifier une carte");
 		
 			this.add(this.btnModifier, BorderLayout.CENTER);
-			this.add(this.btnJouer,    BorderLayout.CENTER);
+			this.add(this.btnJouer,    BorderLayout.SOUTH);
 
 		}
 	}
