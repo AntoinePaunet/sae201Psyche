@@ -9,6 +9,8 @@ import java.awt.event.*;
 
 public class FrameDemarrage extends JFrame implements ActionListener
 {
+	private Controleur ctrl;
+
 	private PanelReseau panelReseau;
 	private PanelJouer panelJouer;
 
@@ -17,12 +19,14 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiScenario     ;
 
 
-	public FrameDemarrage()
+	public FrameDemarrage( Controleur ctrl )
 	{
+		this.ctrl = ctrl;
 		this.setTitle   ("L'age de psyché");
 		this.setSize    (1040,950  );
 		this.setLocation(50, 50             );
 		this.setVisible (true                 );
+
 		this.panelJouer  = new PanelJouer(      );
 		this.panelReseau = new PanelReseau(     );
 
@@ -91,8 +95,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		}
 
 		if( e.getSource() == this.panelJouer.btnJouer )
-			new FrameChoix();
-
+			new FrameChoix( this );
 
 
 		// Fermeture de l'application
