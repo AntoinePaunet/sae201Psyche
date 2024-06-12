@@ -370,15 +370,7 @@ public class Controleur
 	{
 		Controleur ctrl = new Controleur();
 
-		if(ctrl.tabSommet.size() >= 29)
-		{
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
-		}
+		
 	}
 
 	public ArrayList<Sommet> getTabSommet() { return this.tabSommet; }
