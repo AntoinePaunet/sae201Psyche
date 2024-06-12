@@ -49,8 +49,6 @@ public class PanelCarte extends JPanel
 
 		String nomP1 = "P1" , nomP2 = "P2";
 
-		System.out.println(this.ctrl.getTabSommet().get(0));
-
 		int x1 = this.ctrl.getTabSommet().get(0).getX(), y1 = this.ctrl.getTabSommet().get(0).getY();
 		int x2 = ctrl.getTabSommet().get(1).getX(), y2 = ctrl.getTabSommet().get(1).getY();
 
@@ -93,7 +91,7 @@ public class PanelCarte extends JPanel
 
 				if(isNearLine(e.getPoint()))
 				{
-					System.out.println("Clic");
+					System.out.println(r);
 				}
 			}
 		}

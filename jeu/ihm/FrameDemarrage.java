@@ -6,6 +6,7 @@ import jeu.Controleur;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -26,8 +27,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private PanelJouer panelJouer;
 
 	private JMenuItem     menuiOuvrir       ;
-	private JMenuItem     menuiQuitter      ;
 	private JMenuItem     menuiScenario     ;
+	private JMenuItem     menuiQuitter      ;
+
 
 
 	public FrameDemarrage( Controleur ctrl )
@@ -45,21 +47,20 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		// Création et ajout de la barre de menu
 		JMenuBar  menuBar  = new JMenuBar(       );
 		JMenu menuOuvrir   = new JMenu("Ouvrir"  );
-		JMenu menuQuitter  = new JMenu("Quitter" );
 		JMenu menuScenario = new JMenu("Scénario");
-
+		JMenu menuQuitter  = new JMenu("Quitter" );
 
 		this.menuiOuvrir        = new JMenuItem("Importer des données");
-		this.menuiQuitter       = new JMenuItem("Quitter"             );
 		this.menuiScenario      = new JMenuItem("Lancer un scénario"  );
+		this.menuiQuitter       = new JMenuItem("Quitter"             );
 
 		menuOuvrir  .add(this.menuiOuvrir       );
-		menuQuitter .add(this.menuiQuitter      );
 		menuScenario.add(this.menuiScenario     );
+		menuQuitter .add(this.menuiQuitter      );
 
 		menuBar.add(menuOuvrir  );
-		menuBar.add(menuQuitter );
 		menuBar.add(menuScenario);
+		menuBar.add(menuQuitter );
 
 		this.setJMenuBar( menuBar );
 		
@@ -97,6 +98,15 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
 				this.panelReseau.changerFond(fc.getSelectedFile().getAbsolutePath());
+					this.panelReseau.cheminFichier = fc.getSelectedFile().getAbsolutePath();
+				try {
+					this.ctrl.lectureFichier(this.panelReseau.cheminFichier);
+					this.ctrl.lireRoute(getName());
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
 			}
 			else
 			{
@@ -125,6 +135,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		private JPanel panelAjout;
 		private JPanel panelCarte;
+		private String cheminFichier;
 
 		public PanelReseau ( )
 		{
@@ -173,12 +184,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		}
 	}
-
+/*
 	public static void main (String[]args) throws IOException
 	{
 		Controleur ctrl = new Controleur();
 		new FrameDemarrage(ctrl);
 	}
-
+*/
 }
 
