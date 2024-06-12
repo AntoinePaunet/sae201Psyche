@@ -118,15 +118,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 				
-				
 			}
 			else
 			{
 				System.out.println("Annuler");
 			}
-			
 		}
-
 
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
