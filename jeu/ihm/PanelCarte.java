@@ -4,10 +4,14 @@ import jeu.Controleur;
 import jeu.metier.Route;
 import jeu.metier.Sommet;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Cette classe correspond au Panel sur lequel est affiché la carte ainsi
@@ -23,16 +27,22 @@ public class PanelCarte extends JPanel
 	private final int RAYON = 30;
 	private Graphics2D g2;
 	private Controleur ctrl;
+	private BufferedImage image;
+
 
 	/**
 	 * Constructeur du panel
 	 */
 	public PanelCarte(Controleur ctrl)
 	{
-		this.setBackground( new Color( 909090 ));
+		try {
+			this.image = ImageIO.read(new File("jeu/src/images/bgPlateau.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
 		this.ctrl = ctrl;
-
-
 		this.addMouseListener( new GereSouris() );
 	}
 
@@ -46,6 +56,8 @@ public class PanelCarte extends JPanel
 		super.paintComponent(g);
 
 		this.g2 = (Graphics2D) g;
+
+		g2.drawImage(this.image, 0,0, this);
 
 
 		this.g2.setStroke (new BasicStroke (2.0f));
@@ -105,7 +117,7 @@ public class PanelCarte extends JPanel
 		private boolean isNearLine(Point p) {
 			// Calculer la distance entre le point de clic et la ligne
 			double distance = distanceARoute(p, ptSmt1, ptSmt2);
-			return distance <= 5; //5px de tolérance
+			return distance <= 25; //5px de tolérance
 		}
 
 		// Calculer la distance entre un point et un segment de ligne

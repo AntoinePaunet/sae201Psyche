@@ -1,5 +1,6 @@
 package jeu.ihm;
 
+import jeu.Controleur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -26,21 +27,25 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 
 	private FrameChoix frameChoix;
 
+	private Controleur ctrl;
+
 	/**
 	 * Constructeur du Panel de choix des joueurs.
 	 * @param frameChoix la Frame sur laquelle ce Panel est utilisé
 	 */
-	public PanelChoixJoueur(FrameChoix frameChoix)
+	public PanelChoixJoueur(FrameChoix frameChoix, Controleur ctrl)
 	{
+
+		this.ctrl=ctrl; 
 
 		this.setLayout(new GridLayout(3, 2));
 		this.frameChoix = frameChoix;
 
 		this.add(lblNomJoueur1 = new JLabel("  Entrez le nom du joueur Corporation Solaire : "));
-		this.add(txtJoueur1    = new JTextField()                                    );
+		this.add(txtJoueur1    = new JTextField( "Joueur 1"                                   ));
 
 		this.add(lblNomJoueur2 = new JLabel("  Entrez le nom du joueur Syndiat Astral : "));
-		this.add(txtJoueur2    = new JTextField()                                    );
+		this.add(txtJoueur2    = new JTextField( "Joueur 2"                              ));
 		this.txtJoueur1.setSize(100, 30);
 
 		this.add(btnSauvegarder = new JButton("Lancer le jeu (ENTREE)"));
@@ -99,6 +104,8 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 			//Si les texteField sont écrits, alors change le nom du joueur
 			if (!this.txtJoueur1.getText().isEmpty() && !this.txtJoueur2.getText().isEmpty() )
 			{
+				this.ctrl.getJoueur1().setNomJoueur(txtJoueur1.getText());
+				this.ctrl.getJoueur2().setNomJoueur(txtJoueur2.getText());
 				this.frameChoix.creerFrameJoueur();
 			}
 		}
