@@ -1,3 +1,13 @@
 #!/bin/bash
-javac -encoding utf8 Controleur.java metier/*.java ihm/*.java -d class 2>&1 | tee compileErrors.log
+
+# Compilation Java
+javac -encoding utf8 Controleur.java metier/*.java ihm/*.java -d class > >(tee compileErrors.log) 2> >(tee compileErrors.log >&2)
+
+# Vérification du statut de la compilation
+if [ $? -ne 0 ]; then
+    echo "Erreurs de compilation. Veuillez consulter le fichier compileErrors.log pour plus de détails."
+    exit 1
+fi
+
+# Copie des fichiers source dans le répertoire de sortie
 cp -r "src" "class/jeu/src"
