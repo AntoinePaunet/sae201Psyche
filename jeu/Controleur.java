@@ -42,7 +42,7 @@ public class Controleur
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.lectureFichier(null);
-		
+
 	}
 
 	public boolean estValide(Joueur j, Route r)
@@ -62,6 +62,43 @@ public class Controleur
 
 		return false ;
 
+	}
+
+	public void jouer (Route r)
+	{
+		if (!this.finPartie)
+		{
+			if (this.tourJ1)
+			{
+				if (this.estValide( this.j1, r))
+				{
+					r.setJoueur(this.j1);
+
+					if (r.getSommetDep().getMateriaux()!=null)
+						this.j1.addSommetRecup(r.getSommetDep());
+					
+					if (r.getSommetArr().getMateriaux()!=null)
+						this.j1.addSommetRecup(r.getSommetArr());
+					
+					this.tourJ1= !this.tourJ1;
+				}
+			}
+			else
+			{
+				if (this.estValide(this.j2, r))
+				{
+					r.setJoueur(this.j2);
+
+					if (r.getSommetDep().getMateriaux()!=null)
+						this.j2.addSommetRecup(r.getSommetDep());
+					
+					if (r.getSommetArr().getMateriaux()!=null)
+						this.j2.addSommetRecup(r.getSommetArr());
+					
+					this.tourJ1= !this.tourJ1;
+				}
+			}
+		}
 	}
 
 

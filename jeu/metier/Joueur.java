@@ -101,7 +101,7 @@ public class Joueur
 	public void addSommetRecup (Sommet s)
 	{
 		this.tabSommetRecup.add(s);
-		this.ajouterMateriaux(s.getMateriaux());
+		this.ajouterMateriaux(s.prendreMateriaux());
 	}
 
 	//Ajouter des jetons
