@@ -93,7 +93,7 @@ public class PanelRoutes extends JPanel implements ActionListener
         for ( int cpt = 0; cpt < data.length; cpt++ )
         {
 
-            data[ cpt ] = ( tabVille.get( cpt ).getNumSom( ) ) + "";
+            data[ cpt ] = ( tabVille.get( cpt ).getNumSom( ) ) + " "  + tabVille.get( cpt ).getNomCoul();
 
         }
 
@@ -120,7 +120,7 @@ public class PanelRoutes extends JPanel implements ActionListener
         String[][]  data     = new String[ lstRoute.size() ][ 3 ];
         
         // nom des colonnes
-        String[] columnNames = {"VilleDep", "VilleArr", "nbTroncons"};
+        String[] columnNames = {"SommetDep", "SommetArr", "nbTroncons"};
         
         for ( int lig = 0; lig < ( lstRoute ).size(); lig++ )
         {
@@ -155,10 +155,14 @@ public class PanelRoutes extends JPanel implements ActionListener
 
         for ( Sommet ville : this.ctrl.getTabSommet() )
         {
-            if ( Integer.parseInt( (String) ( this.lstVilleArrive.getSelectedItem() ) )== ville.getNumSom() ) { vArr = ville; }
-            if ( Integer.parseInt( (String) ( this.lstVilleDep.getSelectedItem() ) )== ville.getNumSom()) { vDep = ville; }
+            if ( ( this.lstVilleArrive.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ); { vArr = ville; }
+            
+            if ( ( this.lstVilleDep.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ); { vDep = ville; }
 
         }
-        this.ctrl.ajouterRoute(vDep, vArr, tr);
+
+
+       // this.ctrl.ajouterRoute(vDep, vArr, tr);
+
     }
 }
