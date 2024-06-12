@@ -1,6 +1,8 @@
 package jeu.ihm;
 
 import jeu.Controleur;
+import jeu.metier.Route;
+import jeu.metier.Sommet;
 
 import javax.swing.JPanel;
 
@@ -32,7 +34,11 @@ public class PanelCarte extends JPanel
 	{
 		this.setBackground( new Color( 909090 ));
 		this.ctrl = ctrl;
+
+
+		this.addMouseListener( new GereSouris() );
 	}
+
 
 	/**
 	 * Méthode de dessins
@@ -42,11 +48,11 @@ public class PanelCarte extends JPanel
 	{
 		super.paintComponent(g);
 
-		System.out.println("T");
-
 		this.g2 = (Graphics2D) g;
 
 		String nomP1 = "P1" , nomP2 = "P2";
+
+		System.out.println(this.ctrl.getTabSommet().get(0));
 
 		int x1 = this.ctrl.getTabSommet().get(0).getX(), y1 = this.ctrl.getTabSommet().get(0).getY();
 		int x2 = ctrl.getTabSommet().get(1).getX(), y2 = ctrl.getTabSommet().get(1).getY();
@@ -69,4 +75,18 @@ public class PanelCarte extends JPanel
 		this.g2.drawString( nomP1, x1-10, y1-5 );
 		this.g2.drawString( nomP2, x2-10, y2-5 );
 	}
+
+
+
+	private class GereSouris extends MouseAdapter
+	{
+		private Sommet villeChoisie ;
+		private Route routeChoisie;
+
+		public void mousePressed( MouseEvent e)
+		{
+
+		}
+	}
+
 }

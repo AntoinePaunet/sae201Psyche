@@ -160,19 +160,22 @@ public class Controleur
 
 	public void lectureFichier(String nomFichier) throws IOException
 	{
-		if (nomFichier == null)
-			nomFichier = "data.txt";
+
 		File fichier = new File(nomFichier);
 
-		if(getClass().getClassLoader().getResource(nomFichier) == null)
+		if (nomFichier == null)
 		{
+			nomFichier = "data.txt";
 			fichier.createNewFile();
 			this.initFicher(fichier);
 			return;
 		}
+		System.out.println("ok2");
+		
 
 		try {
-			FileReader fr = new FileReader(nomFichier);
+			System.out.println(nomFichier);
+			FileReader fr = new FileReader("src/data.txt");
 			Scanner sc = new Scanner(fr);
 
 			// Vider les tableaux pour ne pas refaire trop de variables
@@ -199,11 +202,13 @@ public class Controleur
 					if (etapeLecture == 1 && !ligne.equals("[SOMMET]")) {
 						if (!ligne.isEmpty()) {
 							lireSommet(ligne);
+							System.out.println(ligne);
 						}
 					}
 					if (etapeLecture == 2) {
 						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]")) {
 							lireRoute(ligne);
+							System.out.println(ligne);
 						}
 					}
 

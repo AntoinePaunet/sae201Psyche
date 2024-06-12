@@ -30,7 +30,7 @@ public class FrameJeu extends JFrame
 	public FrameJeu(Controleur ctrl)
 	{
 		this.setTitle("L'Âge de Psyché");
-		this.setSize    ( 1920,1080 );
+		this.setSize    ( 1000,1000 );
 		this.setLocation(  0, 0 );
 		this.ctrl = ctrl;
 
