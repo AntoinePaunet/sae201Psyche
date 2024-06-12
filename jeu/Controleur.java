@@ -81,7 +81,10 @@ public class Controleur
 		if (j==this.j1 && !this.tourJ1){return false;} 
 		if (j==this.j2 && this.tourJ1){return false;} 
 		
-		if (r.getSommetDep().getMateriaux()==null || r.getSommetAr().getMateriaux()==null)
+
+		//verifie si l'un des deux sommet deja pris ou non
+		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
+
 		{
 			return true ;
 		}
@@ -176,17 +179,18 @@ public class Controleur
 
 	public void lectureFichier(String nomFichier) throws IOException
 	{
-
-		File fichier = new File(nomFichier);
+		File fichier;
 
 		if (nomFichier == null)
 		{
 			nomFichier = "data.txt";
+			fichier = new File(nomFichier);
 			fichier.createNewFile();
 			this.initFicher(fichier);
 			System.out.println("ok");
 			return;
 		}
+		fichier = new File(nomFichier);
 		System.out.println("ok2");
 		
 
