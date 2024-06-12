@@ -34,7 +34,7 @@ public class FrameChoix extends JFrame
 
 
 		// Création et ajout du Panel
-		this.panelChoixJoueur = new PanelChoixJoueur(this);
+		this.panelChoixJoueur = new PanelChoixJoueur(this, this.ctrl);
 		this.add(this.panelChoixJoueur);
 
 		

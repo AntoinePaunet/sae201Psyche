@@ -45,13 +45,9 @@ public class Controleur
 
 	}
 
-	public boolean estValide(Joueur j, Route r)
+	public boolean estValide(Route r)
 	{
-		if (r.getJoueur()==null) {return false;}
-
-		if (j==this.j1 && !this.tourJ1){return false;} 
-		if (j==this.j2 && this.tourJ1){return false;} 
-		
+		if (r.getJoueur()!=null) {return false;}
 
 		//verifie si l'un des deux sommet deja pris ou non
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
@@ -63,12 +59,14 @@ public class Controleur
 
 	public void jouer (Route r)
 	{
-		System.out.print(r);
+		
 		if (!this.finPartie)
 		{
+			System.out.print(r);
 			if (this.tourJ1)
 			{
-				if (this.estValide( this.j1, r))
+				
+				if (this.estValide(r))
 				{
 					r.setJoueur(this.j1);
 
@@ -85,7 +83,7 @@ public class Controleur
 			}
 			else
 			{
-				if (this.estValide(this.j2, r))
+				if (this.estValide( r))
 				{
 					r.setJoueur(this.j2);
 
@@ -179,8 +177,15 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(14), this.tabSommet.get(10), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(6), this.tabSommet.get(13), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(14), this.tabSommet.get(15), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(15), this.tabSommet.get(7), 2));
-
+		this.tabRoute.add(new Route(this.tabSommet.get(16), this.tabSommet.get(7), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(16), this.tabSommet.get(17), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(9), this.tabSommet.get(17), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(18), this.tabSommet.get(this.tabSommet.size()-1), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(this.tabSommet.size()-1), this.tabSommet.get(13), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(this.tabSommet.size()-1), this.tabSommet.get(19), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(18), this.tabSommet.get(11), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(14), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(20), 1));
 
 
 	}
