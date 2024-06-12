@@ -30,13 +30,17 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiQuitter      ;
 
 
-
+	/**
+	 * Constructeur de la frame de démarrage
+	 * @param ctrl permet d'accéder au controleur dans les frames qui en découlent
+	 */
 	public FrameDemarrage( Controleur ctrl )
 	{
 		this.ctrl = ctrl;
 		this.setTitle   ("L'age de psyché");
 		this.setSize    (800,750  );
 		this.setLocation(0, 0             );
+		this.setLayout(new FlowLayout());
 
 		this.panelBoutons  = new PanelBoutons();
 		this.panelReseau = new PanelReseau();
@@ -48,7 +52,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
 
-		this.menuiOuvrir        = new JMenuItem("Importer unue carte");
+		this.menuiOuvrir        = new JMenuItem("Importer une carte");
 		this.menuiScenario      = new JMenuItem("Lancer un scénario"  );
 		this.menuiQuitter       = new JMenuItem("Quitter"             );
 
@@ -63,8 +67,16 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setJMenuBar( menuBar );
 		
 		//Création et ajout du Panel Jouer
-		this.add(this.panelBoutons, BorderLayout.CENTER );
+		this.add(this.panelBoutons);
 
+		// Création des raccourcis clavier
+		menuOuvrir.setMnemonic('O');
+		menuScenario.setMnemonic('S');
+		menuQuitter.setMnemonic('Q');
+
+		this.menuiOuvrir.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiScenario.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiQuitter.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
 		// Activation des composants
 		this.menuiOuvrir        .addActionListener( this );
@@ -75,11 +87,14 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		this.setVisible (true                 );
+		this.setVisible (true);
 		
 	}
 
+	/**
+	 * Réalise une action lorsqu'on clique sur la menubar
+	 * @param e est un événement lié à un composant du panel
+	 */
 	public void actionPerformed ( ActionEvent e )
 	{
 		// Syso pour confirmer l'action
@@ -118,15 +133,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 				
-				
 			}
 			else
 			{
 				System.out.println("Annuler");
 			}
-			
 		}
-
 
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
@@ -196,18 +208,25 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 	public class PanelBoutons extends JPanel
 	{
+		private JPanel panelBtnJouer, panelBtnModifier;
 		private JButton btnJouer, btnModifier;
 
 		public PanelBoutons()
 		{
-			this.setLayout(new BorderLayout(0,0));
+			this.setLayout(new GridLayout(2,1));
 
 			// création des composants;
+			this.panelBtnJouer = new JPanel();
+			this.panelBtnModifier = new JPanel();
+
 			this.btnJouer = new JButton("Jouer");
 			this.btnModifier = new JButton("Modifier une carte");
 		
-			this.add(this.btnModifier, BorderLayout.CENTER);
-			this.add(this.btnJouer,    BorderLayout.SOUTH);
+			this.panelBtnModifier.add( this.btnModifier );
+			this.panelBtnJouer.add(this.btnJouer);
+
+			this.add(this.panelBtnModifier);
+			this.add(this.panelBtnJouer);
 
 			
 

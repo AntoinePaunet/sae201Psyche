@@ -127,9 +127,9 @@ public class Controleur
 		int rndm;
 		Materiaux tmpMat;
 
-		String[] 	tabNomSeg = new String[] {"V4", "V8", "V2", "V3", "V6", "B6", "B8", "R5", "R3", "R1", "G2", "B3", "B4", "B2", "G4", "J3", "R4", "R2", "M2", "G0", "J1", "J4", "M5", "M3", "M4", "M1", "G3", "G1", "J5", "J2"};
-		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394, 251,  336,  414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
-		int[] 		tabCooY    = new int[]    {  92,  111,  187,  175, 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
+		String[] 	tabNomSmt = new String[] { "V4", "V8", "V2", "V3","V6", "B6", "B8", "R5", "R3", "R1", "G2", "B3", "B4", "B2", "G4", "J3", "R4", "R2", "M2", "G0", "J1", "J4", "M5", "M3", "M4", "M1", "G3", "G1", "J5", "J2"};
+		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394, 251,  336,  414,  80,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
+		int[] 		tabCooY    = new int[]    {  92,  111,  187,  175, 239,  284,  270,  300,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
 
 		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AG", "CO", "NI", "PT" };
@@ -148,9 +148,9 @@ public class Controleur
 
 
 		//Génération des Sommet
-		for(int cpt = 0; cpt < tabNomSeg.length ; cpt++)
+		for(int cpt = 0; cpt < tabNomSmt.length ; cpt++)
 		{
-			switch ( tabNomSeg[cpt].substring( 0, 1 ) )
+			switch ( tabNomSmt[cpt].substring( 0, 1 ) )
 			{
 				case "J" -> tmpCoul = "Jaune";
 				case "B" -> tmpCoul = "Bleu";
@@ -164,14 +164,66 @@ public class Controleur
 
 			tmpMat = new Materiaux(tmpLst.remove(rndm));
 
-			tmpZone = Integer.parseInt( tabNomSeg[cpt].substring( 1, 2 ) );
+			tmpZone = Integer.parseInt( tabNomSmt[cpt].substring( 1, 2 ) );
 			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
+
 		}
 
 		//Ajout de la zone de départ
 		this.tabSommet.add( new Sommet(0, null, 442, 475, null, true));
 
+
+		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(1), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(2), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(1), this.tabSommet.get(2), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(3), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(2), this.tabSommet.get(3), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(4), this.tabSommet.get(2), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(4), this.tabSommet.get(5), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(5), this.tabSommet.get(2), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(6), this.tabSommet.get(3), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(7), this.tabSommet.get(4), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(7), this.tabSommet.get(8), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(8), this.tabSommet.get(4), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(9), this.tabSommet.get(6), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(9), this.tabSommet.get(8), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(10), this.tabSommet.get(13), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(11), this.tabSommet.get(9), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(11), this.tabSommet.get(5), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(11), this.tabSommet.get(12), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(12), this.tabSommet.get(13), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(12), this.tabSommet.get(6), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(14), this.tabSommet.get(10), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(6), this.tabSommet.get(13), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(14), this.tabSommet.get(15), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(16), this.tabSommet.get(7), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(16), this.tabSommet.get(17), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(9), this.tabSommet.get(17), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(18), this.tabSommet.get(this.tabSommet.size()-1), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(this.tabSommet.size()-1), this.tabSommet.get(13), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(this.tabSommet.size()-1), this.tabSommet.get(19), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(18), this.tabSommet.get(11), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(14), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(20), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(20), this.tabSommet.get(21), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(21), this.tabSommet.get(15), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(22), this.tabSommet.get(23), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(22), this.tabSommet.get(17), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(23), this.tabSommet.get(24), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(24), this.tabSommet.get(25), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(23), this.tabSommet.get(18), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(25), this.tabSommet.get(this.tabSommet.size()-1), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(26), this.tabSommet.get(19), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(26), this.tabSommet.get(20), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(27), this.tabSommet.get(26), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(27), this.tabSommet.get(25), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(27), this.tabSommet.get(28), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(28), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(28), this.tabSommet.get(20), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(21), 2));
 	}
+
+
 
 	private void initJetonPossession()
 	{
@@ -391,15 +443,7 @@ public class Controleur
 	{
 		Controleur ctrl = new Controleur();
 
-		if(ctrl.tabSommet.size() >= 29)
-		{
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
-			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
-		}
+		
 	}
 
 
