@@ -10,5 +10,5 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 rem Afficher la structure du répertoire src
-echo Structure du répertoire src :
-dir /s /b /ad src > srcStructure.log
+
+exit 1
