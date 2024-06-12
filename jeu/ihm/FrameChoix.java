@@ -48,6 +48,7 @@ public class FrameChoix extends JFrame
 	{
 		new FrameJoueur(this.panelChoixJoueur.getText1(), 1, ctrl);
 		new FrameJoueur(this.panelChoixJoueur.getText2(), 2, ctrl);
+		new FrameJeu();
 		this.dispose();
 	}
 /*
