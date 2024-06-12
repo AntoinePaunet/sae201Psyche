@@ -42,26 +42,35 @@ public class Controleur
 		new FrameDemarrage(this);
 		this.lectureFichier();
 
-//		while (!this.finPartie)
-//		{
-//			if (this.tourJ1)
-//			{
-//				if (this.estValide(this.j1, this.tabSommet.get(0)))
-//
-//				this.j1.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
-//				this.j1.addSommetRecup(this.tabSommet.get(0));
-//				return;
-//			}
-//
-//			else
-//			{
-//				if (this.estValide(this.j2, this.tabSommet.get(0)))
-//
-//				this.j2.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
-//				this.j2.addSommetRecup(this.tabSommet.get(0));
-//				return;
-//			}
-//		}
+		/*/
+
+		while (!this.finPartie)
+		{
+			Route temp = new Route(tabSommet.get(0),tabSommet.get(1 ),1);
+
+			if (this.tourJ1)
+			{
+				
+				if (this.estValide(this.j1,temp))
+				{
+					temp.setJoueur = this.j1;
+					this.j1.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
+					this.j1.addSommetRecup(this.tabSommet.get(0));
+					return;
+				}
+
+				
+			}
+
+			else
+			{
+				if (this.estValide(this.j1,new Route(tabSommet.get(0),tabSommet.get(1 ),1)))
+				temp.setJoueur = this.j2;
+				this.j2.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
+				this.j2.addSommetRecup(this.tabSommet.get(0));
+				return;
+			}
+		}*/
 	}
 
 	public boolean estValide(Joueur j, Route r)
