@@ -55,10 +55,7 @@ public class Controleur
 
 		//verifie si l'un des deux sommet deja pris ou non
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
-
-		{
 			return true ;
-		}
 
 		return false ;
 
