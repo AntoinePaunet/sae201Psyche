@@ -22,7 +22,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 {
 	private Controleur ctrl;
 
-	private PanelReseau panelReseau;
 	private PanelBoutons panelBoutons;
 
 	private JMenuItem     menuiOuvrir       ;
@@ -31,7 +30,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 	private FrameChoix	  FrameChoix;
 
-
+	/**
+	 * Constructeur de la frame de démarrage
+	 * @param ctrl permet d'accéder au controleur dans les frames qui en découlent
+	 */
 	public FrameDemarrage( Controleur ctrl )
 	{
 		this.ctrl = ctrl;
@@ -41,7 +43,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setLayout(new FlowLayout());
 
 		this.panelBoutons  = new PanelBoutons();
-		this.panelReseau = new PanelReseau();
 
 
 		// Création et ajout de la barre de menu
@@ -50,7 +51,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
 
-		this.menuiOuvrir        = new JMenuItem("Importer unue carte");
+		this.menuiOuvrir        = new JMenuItem("Importer une carte");
 		this.menuiScenario      = new JMenuItem("Lancer un scénario"  );
 		this.menuiQuitter       = new JMenuItem("Quitter"             );
 
@@ -67,6 +68,14 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		//Création et ajout du Panel Jouer
 		this.add(this.panelBoutons);
 
+		// Création des raccourcis clavier
+		menuOuvrir.setMnemonic('O');
+		menuScenario.setMnemonic('S');
+		menuQuitter.setMnemonic('Q');
+
+		this.menuiOuvrir.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiScenario.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiQuitter.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
 		// Activation des composants
 		this.menuiOuvrir        .addActionListener( this );
@@ -81,8 +90,13 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		
 	}
 
+	/**
+	 * Réalise une action lorsqu'on clique sur la menubar
+	 * @param e est un événement lié à un composant du panel
+	 */
 	public void actionPerformed ( ActionEvent e )
 	{
+		String cheminFichier;
 		// Syso pour confirmer l'action
 		if ( e.getSource() instanceof JMenuItem )
 			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
@@ -111,10 +125,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
-				this.panelReseau.changerFond(fc.getSelectedFile().getAbsolutePath());
-					this.panelReseau.cheminFichier = fc.getSelectedFile().getAbsolutePath();
+				cheminFichier = fc.getSelectedFile().getAbsolutePath();
 				try {
-					this.ctrl.lectureFichier(this.panelReseau.cheminFichier);
+					this.ctrl.lectureFichier(cheminFichier);
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
@@ -141,7 +154,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
-			new FrameModification( this.ctrl ); 
+			new FrameRoute( this.ctrl ); 
 		
 
 		// Fermeture de l'application
@@ -149,51 +162,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			System.exit(0);
 	}
 
-	public PanelReseau getPanelR()
-	{
-		return this.panelReseau;
-	}
-
 	public FrameChoix getFrameChoix(){return this.FrameChoix;}
-
-	public class PanelReseau extends JPanel
-	{
-
-		private JPanel panelAjout;
-		private JPanel panelCarte;
-		private String cheminFichier;
-
-		public PanelReseau()
-		{
-
-			this.setLayout(new BorderLayout(0,0));
-
-			// création des composants;
-			this.panelAjout = new JPanel ();
-			this.panelCarte = new JPanel ();
-
-
-			// positionnement des composants
-			this.add(panelAjout, BorderLayout.NORTH );
-			this.add(panelCarte, BorderLayout.CENTER);
-
-			this.changerFond("/images/bgSyndicat.png");
-
-		}
-		public void changerFond(String cheminAbsolu)
-		{
-			//Mise en place du fond
-
-			ImageIcon backgroundImage = new ImageIcon(cheminAbsolu);
-
-			JLabel backgroundLabel = new JLabel(backgroundImage);
-
-			backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
-
-			this.panelCarte.add(backgroundLabel);
-		}
-
-	}
 
 
 	public class PanelBoutons extends JPanel

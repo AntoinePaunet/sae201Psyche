@@ -29,27 +29,37 @@ public class FrameModification extends JFrame implements ActionListener
 
 		JMenu menuCreer = new JMenu("Creer");
 		JMenu menuEnreg = new JMenu("Enregistrer");
-		JMenu menusup = new JMenu("supprimer");
+		JMenu menuSup = new JMenu("Supprimer");
 
-		this.creerSommet = new JMenuItem ("Sommet" );
-		this.creerRoute  = new JMenuItem ("Route");
+		this.creerSommet = new JMenuItem ("Créer un Sommet");
+		this.creerRoute  = new JMenuItem ("Créer une Route");
 
-		this.enregistrerF = new JMenuItem ("enregistrer");
-		this.supprimerF   = new JMenuItem ("supprimer");
+		this.enregistrerF = new JMenuItem ("Enregistrer la carte");
+		this.supprimerF   = new JMenuItem ("Supprimer la carte");
 		
 		menuCreer.add( this.creerSommet );
 		menuCreer.addSeparator();
 		menuCreer.add( this.creerRoute );
 
 		menuEnreg.add(this.enregistrerF);
-		menusup.add(this.supprimerF);
+		menuSup.add(this.supprimerF);
 
 		menubMaBarre.add( menuCreer );
 		menubMaBarre.add( menuEnreg );
-		menubMaBarre.add( menusup );
+		menubMaBarre.add( menuSup );
 
 		this.setJMenuBar( menubMaBarre );
 		
+		// Création des raccourcis clavier
+		menuCreer.setMnemonic('C');
+		menuEnreg.setMnemonic('S');
+		menuSup.setMnemonic('P');
+
+		this.creerSommet.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK) );
+		this.creerRoute.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK) );
+		this.supprimerF.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK) );
+		this.enregistrerF.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
+
 
 		this.creerSommet .addActionListener ( this );
 		this.creerRoute  .addActionListener ( this );
@@ -87,6 +97,7 @@ public class FrameModification extends JFrame implements ActionListener
 		if ( e.getSource() == this.enregistrerF )
 		{
 			//this.ctrl.enregistrerData();
+			this.dispose();
 		}
 
 		if ( e.getSource() == this.supprimerF )
@@ -97,11 +108,11 @@ public class FrameModification extends JFrame implements ActionListener
 	}
 
 	public PanelCarte getPanelCarte () {return this.panelC;}
-/* 
+
 	public static void main (String[]args) throws IOException
 	{
 		Controleur ctrl = new Controleur(); 
 		new FrameModification(ctrl);
 	}
-*/
+
 }

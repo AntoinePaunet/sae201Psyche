@@ -57,6 +57,27 @@ public class Controleur
 
 	}
 
+
+	public ArrayList<Sommet> getTabSommet() 
+	{ 
+		ArrayList<Sommet> tempSommet = new ArrayList<Sommet>();
+
+		for ( Sommet som : this.tabSommet )
+			tempSommet.add(som);
+
+		return tempSommet;
+	}
+
+	public ArrayList<Route> getTabRoute() 
+	{ 
+		ArrayList<Route> tempRoute = new ArrayList<Route>();
+
+		for ( Route rot : this.tabRoute )
+			tempRoute.add(rot);
+
+		return tempRoute;
+	}
+
 	public void jouer (Route r)
 	{
 		
@@ -153,6 +174,7 @@ public class Controleur
 
 		//Ajout de la zone de départ
 		this.tabSommet.add( new Sommet(0, null, 442, 475, null, true));
+
 
 		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(1), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(2), 1));
@@ -404,7 +426,7 @@ public class Controleur
 		}
 	}
 
-
+	public void ajouterRoute( Sommet sommetDep, Sommet sommetAri, int nbTroncon) { this.tabRoute.add( new Route(sommetDep, sommetAri, nbTroncon) ); }
 
 	public static void main (String[] arg) throws IOException
 	{
@@ -413,6 +435,6 @@ public class Controleur
 		
 	}
 
-	public ArrayList<Sommet> getTabSommet() { return this.tabSommet; }
-	public ArrayList<Route> getTabRoute  () { return this.tabRoute;  }
+
+
 }
