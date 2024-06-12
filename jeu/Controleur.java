@@ -189,14 +189,17 @@ public class Controleur
 
 	public void lectureFichier(String nomFichier) throws IOException
 	{
+		File fichier;
+
 		if (nomFichier == null)
 		{
 			nomFichier = "data.txt";
+			fichier = new File(nomFichier);
 			fichier.createNewFile();
 			this.initFicher(fichier);
 			return;
 		}
-		File fichier = new File(nomFichier);
+		fichier = new File(nomFichier);
 		System.out.println("ok2");
 		
 
