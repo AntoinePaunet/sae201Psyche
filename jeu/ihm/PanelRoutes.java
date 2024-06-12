@@ -60,7 +60,7 @@ public class PanelRoutes extends JPanel implements ActionListener
         
         this.inputRoute = new JTextField();
 
-        this.btnAjouteRoute = new JButton( "Ajouter" );
+        this.btnAjouteRoute = new JButton( "Ajouter/Supprimer" );
         
         this.panelInput.add( new JLabel("VilleDep : ") );
         this.panelInput.add( scrollPaneLstVilleDep    );
@@ -162,7 +162,7 @@ public class PanelRoutes extends JPanel implements ActionListener
 
         }
 
-        this.ctrl.ajouterRoute(vDep, vArr, tr);
+        this.ctrl.ajouterOuSupprimerRoute(vDep, vArr, tr);
 
         this.ctrl.MajFrameModification();
 

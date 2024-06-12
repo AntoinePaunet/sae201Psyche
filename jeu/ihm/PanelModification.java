@@ -10,7 +10,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.*;
 
-public class PanelModification extends JPanel implements ActionListener
+public class PanelModification extends JPanel
 {
 	
 	private Controleur ctrl;
@@ -22,16 +22,13 @@ public class PanelModification extends JPanel implements ActionListener
 	
 		this.ctrl = ctrl;		
 
-		//GereSouris gereSouris = new GereSouris();
 		
-		//this.addMouseListener( gereSouris );
-		//this.addMouseMotionListener( gereSouris );
 	}
 
-	public void actionPerformed(ActionEvent e)
-	{
-		this.repaint();
-	}
+	// public void actionPerformed(ActionEvent e)
+	// {
+	// 	this.repaint();
+	// }
 
 
 	public void paintComponent(Graphics g)
@@ -150,37 +147,7 @@ public class PanelModification extends JPanel implements ActionListener
 		}
 
 	}
-/* 
-	private class GereSouris extends MouseAdapter 
-	{
-		private Sommet sommetChoisi ;
-		
-		public void mousePressed( MouseEvent e)
-		{
-
-			this.sommetChoisi = ctrl.possede( e.getX(), e.getY() );
-			
-			if ( this.sommetChoisi != null )
-				System.out.println("Sommet choisie " + sommetChoisi.getNom());
-
-		}
+ 
 	
-		
-		public void mouseDragged( MouseEvent e )
-		{
-
-			if ( villeChoisie != null )
-			{	
-				ctrl.modifierVille(e.getX(), e.getY(), villeChoisie.getIdVille() );
-				// Rafréchire la frame
-				PanelReseau.this.repaint();
-			}
-			
-		}
-			
 	
-		
-	}	
-	*/
-
 }

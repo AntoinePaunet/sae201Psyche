@@ -100,7 +100,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		String cheminFichier;
 		// Syso pour confirmer l'action
 		if ( e.getSource() instanceof JMenuItem )
-			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
+			//System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
 
 		
 		// Importation des fichiers
@@ -116,7 +116,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			catch (Exception i) 
 			{
             // En cas d'erreur, imprimer le message d'erreur
-            System.out.println(i.getMessage());
+            //System.out.println(i.getMessage());
             // Utiliser le répertoire actuel par défaut
         	
 			}
@@ -136,7 +136,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			}
 			else
 			{
-				System.out.println("Annuler");
+				//System.out.println("Annuler");
 			}
 		}
 
