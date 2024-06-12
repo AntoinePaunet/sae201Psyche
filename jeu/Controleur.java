@@ -442,6 +442,8 @@ public class Controleur
 		}
 	}
 
+	public void MajFrameModification() { this.frameDemarrage.getFrameModification().repaint(); }
+
 	public void ajouterRoute( Sommet sommetDep, Sommet sommetAri, int nbTroncon) { this.tabRoute.add( new Route(sommetDep, sommetAri, nbTroncon) ); }
 
 	public static void main (String[] arg) throws IOException

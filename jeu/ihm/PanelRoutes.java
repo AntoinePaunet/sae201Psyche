@@ -147,16 +147,18 @@ public class PanelRoutes extends JPanel implements ActionListener
 
 		if( inputRoute.getText()==null ) return ;
 
+
         for ( Sommet ville : this.ctrl.getTabSommet() )
         {
-            if ( ( this.lstVilleArrive.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ); { vArr = ville; }
+            if ( ( (String)this.lstVilleArrive.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ){ vArr = ville; }
             
-            if ( ( this.lstVilleDep.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ); { vDep = ville; }
+            if ( ( (String)this.lstVilleDep.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ){ vDep = ville; }
 
         }
 
+        this.ctrl.ajouterRoute(vDep, vArr, tr);
 
-       // this.ctrl.ajouterRoute(vDep, vArr, tr);
+        this.ctrl.MajFrameModification();
 
     }
 }

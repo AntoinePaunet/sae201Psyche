@@ -28,7 +28,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiScenario     ;
 	private JMenuItem     menuiQuitter      ;
 
-	private FrameChoix	  FrameChoix;
+	private FrameChoix	       frameChoix;
+	private FrameModification frameModification;
 
 	/**
 	 * Constructeur de la frame de démarrage
@@ -147,14 +148,14 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
 		{
-			this.FrameChoix = new FrameChoix( this.ctrl );
+			this.frameChoix = new FrameChoix( this.ctrl );
 		}
 			
 
 		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
-			new FrameModification( this.ctrl ); 
+			this.frameModification = new FrameModification( this.ctrl ); 
 		
 
 		// Fermeture de l'application
@@ -162,8 +163,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			System.exit(0);
 	}
 
-	public FrameChoix getFrameChoix(){return this.FrameChoix;}
-
+	public FrameChoix getFrameChoix(){return this.frameChoix;}
+	public FrameModification getFrameModification(){return this.frameModification;}
 
 	public class PanelBoutons extends JPanel
 	{
