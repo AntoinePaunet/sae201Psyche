@@ -86,7 +86,7 @@ public class Controleur
 		}
 
 		return false ;
-		
+
 	}
 
 
@@ -346,11 +346,11 @@ public class Controleur
 
 	public static void main (String[] arg) throws IOException {
 		Controleur ctrl = new Controleur();
-//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
-//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
-//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
-//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
-//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
-//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
+		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
 	}
 }
