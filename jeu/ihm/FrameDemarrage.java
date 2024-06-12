@@ -37,6 +37,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setTitle   ("L'age de psyché");
 		this.setSize    (800,750  );
 		this.setLocation(0, 0             );
+		this.setLayout(new FlowLayout());
 
 		this.panelBoutons  = new PanelBoutons();
 		this.panelReseau = new PanelReseau();
@@ -63,7 +64,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setJMenuBar( menuBar );
 		
 		//Création et ajout du Panel Jouer
-		this.add(this.panelBoutons, BorderLayout.CENTER );
+		this.add(this.panelBoutons);
 
 
 		// Activation des composants
@@ -75,8 +76,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		this.setVisible (true                 );
+		this.setVisible (true);
 		
 	}
 
@@ -193,18 +193,25 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 	public class PanelBoutons extends JPanel
 	{
+		private JPanel panelBtnJouer, panelBtnModifier;
 		private JButton btnJouer, btnModifier;
 
 		public PanelBoutons()
 		{
-			this.setLayout(new BorderLayout(0,0));
+			this.setLayout(new GridLayout(2,1));
 
 			// création des composants;
+			this.panelBtnJouer = new JPanel();
+			this.panelBtnModifier = new JPanel();
+
 			this.btnJouer = new JButton("Jouer");
 			this.btnModifier = new JButton("Modifier une carte");
 		
-			this.add(this.btnModifier, BorderLayout.CENTER);
-			this.add(this.btnJouer,    BorderLayout.SOUTH);
+			this.panelBtnModifier.add( this.btnModifier );
+			this.panelBtnJouer.add(this.btnJouer);
+
+			this.add(this.panelBtnModifier);
+			this.add(this.panelBtnJouer);
 
 			
 
