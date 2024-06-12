@@ -105,7 +105,7 @@ public class PanelCarte extends JPanel
 		private boolean isNearLine(Point p) {
 			// Calculer la distance entre le point de clic et la ligne
 			double distance = distanceARoute(p, ptSmt1, ptSmt2);
-			return distance <= 5; //5px de tolérance
+			return distance <= 25; //5px de tolérance
 		}
 
 		// Calculer la distance entre un point et un segment de ligne

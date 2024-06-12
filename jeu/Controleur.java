@@ -45,13 +45,9 @@ public class Controleur
 
 	}
 
-	public boolean estValide(Joueur j, Route r)
+	public boolean estValide(Route r)
 	{
-		if (r.getJoueur()==null) {return false;}
-
-		if (j==this.j1 && !this.tourJ1){return false;} 
-		if (j==this.j2 && this.tourJ1){return false;} 
-		
+		if (r.getJoueur()!=null) {return false;}
 
 		//verifie si l'un des deux sommet deja pris ou non
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
@@ -61,13 +57,37 @@ public class Controleur
 
 	}
 
+
+	public ArrayList<Sommet> getTabSommet() 
+	{ 
+		ArrayList<Sommet> tempSommet = new ArrayList<Sommet>();
+
+		for ( Sommet som : this.tabSommet )
+			tempSommet.add(som);
+
+		return tempSommet;
+	}
+
+	public ArrayList<Route> getTabRoute() 
+	{ 
+		ArrayList<Route> tempRoute = new ArrayList<Route>();
+
+		for ( Route rot : this.tabRoute )
+			tempRoute.add(rot);
+
+		return tempRoute;
+	}
+
 	public void jouer (Route r)
 	{
+		
 		if (!this.finPartie)
 		{
+			System.out.print(r);
 			if (this.tourJ1)
 			{
-				if (this.estValide( this.j1, r))
+				
+				if (this.estValide(r))
 				{
 					r.setJoueur(this.j1);
 
@@ -77,12 +97,14 @@ public class Controleur
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetArr());
 					
+					this.frameDemarrage.getFrameChoix().getF1().refresh();
+					
 					this.tourJ1= !this.tourJ1;
 				}
 			}
 			else
 			{
-				if (this.estValide(this.j2, r))
+				if (this.estValide( r))
 				{
 					r.setJoueur(this.j2);
 
@@ -92,6 +114,8 @@ public class Controleur
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetArr());
 					
+					this.frameDemarrage.getFrameChoix().getF2().refresh();
+
 					this.tourJ1= !this.tourJ1;
 				}
 			}
@@ -184,22 +208,8 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(18), this.tabSommet.get(11), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(14), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(20), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(20), this.tabSommet.get(21), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(21), this.tabSommet.get(15), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(22), this.tabSommet.get(23), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(22), this.tabSommet.get(17), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(23), this.tabSommet.get(24), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(24), this.tabSommet.get(25), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(23), this.tabSommet.get(18), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(25), this.tabSommet.get(this.tabSommet.size()-1), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(26), this.tabSommet.get(19), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(26), this.tabSommet.get(20), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(27), this.tabSommet.get(26), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(27), this.tabSommet.get(25), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(27), this.tabSommet.get(28), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(28), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(28), this.tabSommet.get(20), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(21), 2));
+
+
 	}
 
 
@@ -416,7 +426,7 @@ public class Controleur
 		}
 	}
 
-
+	public void ajouterRoute( Sommet sommetDep, Sommet sommetAri, int nbTroncon) { this.tabRoute.add( new Route(sommetDep, sommetAri, nbTroncon) ); }
 
 	public static void main (String[] arg) throws IOException
 	{
@@ -425,6 +435,6 @@ public class Controleur
 		
 	}
 
-	public ArrayList<Sommet> getTabSommet() { return this.tabSommet; }
-	public ArrayList<Route> getTabRoute  () { return this.tabRoute;  }
+
+
 }

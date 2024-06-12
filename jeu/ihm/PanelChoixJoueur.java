@@ -1,5 +1,6 @@
 package jeu.ihm;
 
+import jeu.Controleur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -26,12 +27,16 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 
 	private FrameChoix frameChoix;
 
+	private Controleur ctrl;
+
 	/**
 	 * Constructeur du Panel de choix des joueurs.
 	 * @param frameChoix la Frame sur laquelle ce Panel est utilisé
 	 */
-	public PanelChoixJoueur(FrameChoix frameChoix)
+	public PanelChoixJoueur(FrameChoix frameChoix, Controleur ctrl)
 	{
+
+		this.ctrl=ctrl; 
 
 		this.setLayout(new GridLayout(3, 2));
 		this.frameChoix = frameChoix;
@@ -99,6 +104,8 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 			//Si les texteField sont écrits, alors change le nom du joueur
 			if (!this.txtJoueur1.getText().isEmpty() && !this.txtJoueur2.getText().isEmpty() )
 			{
+				this.ctrl.getJoueur1().setNomJoueur(txtJoueur1.getText());
+				this.ctrl.getJoueur2().setNomJoueur(txtJoueur2.getText());
 				this.frameChoix.creerFrameJoueur();
 			}
 		}
