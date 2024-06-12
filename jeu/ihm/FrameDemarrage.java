@@ -101,7 +101,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 					this.panelReseau.cheminFichier = fc.getSelectedFile().getAbsolutePath();
 				try {
 					this.ctrl.lectureFichier(this.panelReseau.cheminFichier);
-					this.ctrl.lireRoute(getName());
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
