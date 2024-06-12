@@ -1,6 +1,7 @@
 @echo off
+
 rem Compilation Java
-javac -encoding utf8 Controleur.java metier\*.java ihm\*.java -d class 2>&1 | tee compileErrors.log
+javac -encoding utf8 Controleur.java metier\*.java ihm\*.java -d class > compileErrors.log 2> compileErrors.log
 
 rem Vérification du statut de la compilation
 if %ERRORLEVEL% NEQ 0 (
@@ -8,6 +9,6 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b %ERRORLEVEL%
 )
 
-rem Copie des fichiers source dans le répertoire de sortie
-xcopy /s /i "src" "class\jeu\src"
-
+rem Afficher la structure du répertoire src
+echo Structure du répertoire src :
+dir /s /b /ad src > srcStructure.log
