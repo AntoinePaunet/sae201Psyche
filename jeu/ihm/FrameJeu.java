@@ -30,7 +30,7 @@ public class FrameJeu extends JFrame
 	public FrameJeu(Controleur ctrl)
 	{
 		this.setTitle("L'Âge de Psyché");
-		this.setSize    ( 1000,1000 );
+		this.setSize    ( 1000,750 );
 		this.setLocation(  0, 0 );
 		this.ctrl = ctrl;
 
@@ -48,9 +48,10 @@ public class FrameJeu extends JFrame
 
 	}
 
-
+/*
 	public static void main( String[] args ) throws IOException
 	{
 		new FrameJeu(new Controleur());
 	}
+*/
 }

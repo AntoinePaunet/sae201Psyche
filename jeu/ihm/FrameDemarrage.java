@@ -137,7 +137,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		private JPanel panelCarte;
 		private String cheminFichier;
 
-		public PanelReseau ( )
+		public PanelReseau()
 		{
 
 			this.setLayout(new BorderLayout(0,0));
