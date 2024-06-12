@@ -74,7 +74,7 @@ public class Controleur
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
-					if (r.getSommetArr().getMateriaux()!=nul l)
+					if (r.getSommetArr().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetArr());
 					
 					this.tourJ1= !this.tourJ1;
