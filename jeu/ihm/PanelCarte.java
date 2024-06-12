@@ -89,7 +89,6 @@ public class PanelCarte extends JPanel
 
 		public void mousePressed( MouseEvent e)
 		{
-			System.out.println(ctrl.getTabSommet());
 			for(Route r : ctrl.getTabRoute())
 			{
 				this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
@@ -97,7 +96,7 @@ public class PanelCarte extends JPanel
 
 				if(isNearLine(e.getPoint()))
 				{
-					System.out.println("AAA");
+					ctrl.jouer(r);
 				}
 			}
 		}
@@ -106,7 +105,6 @@ public class PanelCarte extends JPanel
 		private boolean isNearLine(Point p) {
 			// Calculer la distance entre le point de clic et la ligne
 			double distance = distanceARoute(p, ptSmt1, ptSmt2);
-			System.out.println(distance);
 			return distance <= 5; //5px de tolérance
 		}
 

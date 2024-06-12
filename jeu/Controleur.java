@@ -43,48 +43,19 @@ public class Controleur
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.lectureFichier(null);
 
-		/*/
-
-		while (!this.finPartie)
-		{
-			Route temp = new Route(tabSommet.get(0),tabSommet.get(1 ),1);
-
-			if (this.tourJ1)
-			{
-				
-				if (this.estValide(this.j1,temp))
-				{
-					temp.setJoueur = this.j1;
-					this.j1.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
-					this.j1.addSommetRecup(this.tabSommet.get(0));
-					return;
-				}
-
-				
-			}
-
-			else
-			{
-				if (this.estValide(this.j1,new Route(tabSommet.get(0),tabSommet.get(1 ),1)))
-				temp.setJoueur = this.j2;
-				this.j2.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
-				this.j2.addSommetRecup(this.tabSommet.get(0));
-				return;
-			}
-		}*/
 	}
 
 	public boolean estValide(Joueur j, Route r)
 	{
-		//verifie si quelqu'un est deja sur la route
-		if (r.getJoueur()!=null) {return false;}
+		if (r.getJoueur()==null) {return false;}
 
-		//Verifie si c'est le tour du joueur
 		if (j==this.j1 && !this.tourJ1){return false;} 
 		if (j==this.j2 && this.tourJ1){return false;} 
 		
+
 		//verifie si l'un des deux sommet deja pris ou non
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
+
 		{
 			return true ;
 		}
@@ -93,14 +64,41 @@ public class Controleur
 
 	}
 
-	public ArrayList<Sommet> getTabSommet()
+	public void jouer (Route r)
 	{
-		return this.tabSommet;
-	}
+		if (!this.finPartie)
+		{
+			if (this.tourJ1)
+			{
+				if (this.estValide( this.j1, r))
+				{
+					r.setJoueur(this.j1);
 
-	public ArrayList<Route> getTabRoute()
-	{
-		return this.tabRoute;
+					if (r.getSommetDep().getMateriaux()!=null)
+						this.j1.addSommetRecup(r.getSommetDep());
+					
+					if (r.getSommetArr().getMateriaux()!=null)
+						this.j1.addSommetRecup(r.getSommetArr());
+					
+					this.tourJ1= !this.tourJ1;
+				}
+			}
+			else
+			{
+				if (this.estValide(this.j2, r))
+				{
+					r.setJoueur(this.j2);
+
+					if (r.getSommetDep().getMateriaux()!=null)
+						this.j2.addSommetRecup(r.getSommetDep());
+					
+					if (r.getSommetArr().getMateriaux()!=null)
+						this.j2.addSommetRecup(r.getSommetArr());
+					
+					this.tourJ1= !this.tourJ1;
+				}
+			}
+		}
 	}
 
 
@@ -111,9 +109,9 @@ public class Controleur
 		int rndm;
 		Materiaux tmpMat;
 
-		String[] 	tabNomSeg = new String[] {"J1", "J5", "J2", "J3", "J4", "B2", "B3", "B4", "B6", "B8", "G0", "G1", "G2", "G3", "G4", "V2", "V3", "V4", "V6", "V8", "R1", "R2", "R3", "R4", "R5", "M1", "M2", "M3", "M4", "M5"};
-		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394,	 251,  336,	 414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
-		int[] 		tabCooY    = new int[]    { 92,  111,  187,  175,	 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
+		String[] 	tabNomSeg = new String[] {"V4", "V8", "V2", "V3", "V6", "B6", "B8", "R5", "R3", "R1", "G2", "B3", "B4", "B2", "G4", "J3", "R4", "R2", "M2", "G0", "J1", "J4", "M5", "M3", "M4", "M1", "G3", "G1", "J5", "J2"};
+		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394, 251,  336,  414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
+		int[] 		tabCooY    = new int[]    {  92,  111,  187,  175, 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
 
 		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AG", "CO", "NI", "PT" };
@@ -200,12 +198,11 @@ public class Controleur
 			return;
 		}
 		fichier = new File(nomFichier);
-		System.out.println("ok2");
 		
 
 		try {
 			System.out.println(nomFichier);
-			FileReader fr = new FileReader("src/data.txt");
+			FileReader fr = new FileReader(fichier);
 			Scanner sc = new Scanner(fr);
 
 			// Vider les tableaux pour ne pas refaire trop de variables
@@ -252,7 +249,7 @@ public class Controleur
 
 
 
-		System.out.println(tabSommet);
+		System.out.println("Nb sommet " + tabSommet);
 	}
 
 
@@ -372,8 +369,10 @@ public class Controleur
 
 
 
-	public static void main (String[] arg) throws IOException {
+	public static void main (String[] arg) throws IOException
+	{
 		Controleur ctrl = new Controleur();
+
 		if(ctrl.tabSommet.size() >= 29)
 		{
 			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
@@ -384,4 +383,7 @@ public class Controleur
 			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
 		}
 	}
+
+	public ArrayList<Sommet> getTabSommet() { return this.tabSommet; }
+	public ArrayList<Route> getTabRoute  () { return this.tabRoute;  }
 }

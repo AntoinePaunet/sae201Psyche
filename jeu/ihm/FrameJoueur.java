@@ -1,14 +1,9 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.metier.Jeton;
 import jeu.metier.Joueur;
-import jeu.metier.Materiaux;
 
 import javax.swing.*;
-
-import java.awt.Color;
-import java.util.Arrays;
 
 /**
  * Cette classe créé la Frame correspondant aux plateaux individuels des joueurs. Elle affiche leur score et leurs jetons.
