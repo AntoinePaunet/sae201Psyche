@@ -109,5 +109,10 @@ public class FrameJoueur extends JFrame
         imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
         this.panelFond.add(imgLabel, Integer.valueOf(layer));
     }
-
+/*
+	public static void main( String[] args )
+	{
+		new FrameJoueur();
+	}
+*/
 }
