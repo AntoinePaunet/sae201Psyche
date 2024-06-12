@@ -1,8 +1,0 @@
-[SOMMET]
-1	Jaune	150	200	TI	false
-2	Bleu	500	400	FE	false
-3	Jaune	150	500	FE	false	
-
-[ROUTES]
-1	2	2
-1	3	1

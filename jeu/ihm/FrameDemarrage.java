@@ -6,6 +6,7 @@ import jeu.Controleur;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -97,6 +98,15 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
 				this.panelReseau.changerFond(fc.getSelectedFile().getAbsolutePath());
+					this.panelReseau.cheminFichier = fc.getSelectedFile().getAbsolutePath();
+				try {
+					this.ctrl.lectureFichier(this.panelReseau.cheminFichier);
+					this.ctrl.lireRoute(getName());
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
 			}
 			else
 			{
@@ -125,6 +135,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		private JPanel panelAjout;
 		private JPanel panelCarte;
+		private String cheminFichier;
 
 		public PanelReseau ( )
 		{
