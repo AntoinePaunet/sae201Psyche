@@ -327,8 +327,10 @@ public class Controleur
 
 
 
-	public static void main (String[] arg) throws IOException {
+	public static void main (String[] arg) throws IOException
+	{
 		Controleur ctrl = new Controleur();
+
 		if(ctrl.tabSommet.size() >= 29)
 		{
 			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
