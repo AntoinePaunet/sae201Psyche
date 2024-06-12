@@ -162,7 +162,7 @@ public class PanelRoutes extends JPanel implements ActionListener
         }
 
 
-       // this.ctrl.ajouterRoute(vDep, vArr, tr);
+        this.ctrl.ajouterRoute(vDep, vArr, tr);
 
     }
 }

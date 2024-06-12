@@ -57,7 +57,7 @@ public class PanelCarte extends JPanel
 
 		this.g2 = (Graphics2D) g;
 
-		g2.drawImage(this.image, 0,0, this);
+		g2.drawImage(this.image, 20,0, this);
 
 
 		this.g2.setStroke (new BasicStroke (2.0f));
@@ -67,17 +67,20 @@ public class PanelCarte extends JPanel
 
 		for(Sommet s : ctrl.getTabSommet())
 		{
-			int x = s.getX();
-			int y = s.getY();
+			if(s.getNomCoul() != null) //Si pas le départ
+			{
+				int x = s.getX();
+				int y = s.getY();
 
-			this.g2.setStroke (new BasicStroke (2.0f));
+				this.g2.setStroke (new BasicStroke (2.0f));
 
-			this.g2.setColor( new Color(000060) );
+				this.g2.setColor( new Color(000060) );
 
-			this.g2.drawOval( x , y , this.RAYON, this.RAYON );
-			this.g2.fillOval( x , y , this.RAYON, this.RAYON );
+				this.g2.drawOval( x , y , this.RAYON, this.RAYON );
+				this.g2.fillOval( x , y , this.RAYON, this.RAYON );
 
-			this.g2.drawString( s.getNumSom() + s.getNomCoul(), x-10, y-5 );
+				this.g2.drawString( s.getNumSom() + s.getNomCoul(), x-10, y-5 );
+			}
 		}
 
 		for(Route r : ctrl.getTabRoute())
