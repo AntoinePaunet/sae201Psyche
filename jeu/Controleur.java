@@ -63,6 +63,7 @@ public class Controleur
 
 	public void jouer (Route r)
 	{
+		System.out.print(r);
 		if (!this.finPartie)
 		{
 			if (this.tourJ1)
@@ -76,6 +77,8 @@ public class Controleur
 					
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetArr());
+					
+					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
 				}
@@ -92,6 +95,8 @@ public class Controleur
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetArr());
 					
+					this.frameDemarrage.getFrameChoix().getF2().refresh();
+
 					this.tourJ1= !this.tourJ1;
 				}
 			}

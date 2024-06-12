@@ -49,5 +49,10 @@ public class Route
 	public void setJoueur (Joueur j) {this.joueur = j;}
 	public Joueur getJoueur() {return this.joueur;}
 
+	public String toString()
+	{
+		return "\n"+this.sommetDep+"\n--------\n"+this.sommetAr+"    ("+this.troncons+" )"+ "   p:"+this.joueur+"\n";
+	}
+
 
 }

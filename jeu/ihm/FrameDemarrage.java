@@ -29,6 +29,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiScenario     ;
 	private JMenuItem     menuiQuitter      ;
 
+	private FrameChoix	  FrameChoix;
 
 
 	public FrameDemarrage( Controleur ctrl )
@@ -132,7 +133,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
-			new FrameChoix( this.ctrl );
+		{
+			this.FrameChoix = new FrameChoix( this.ctrl );
+		}
+			
 
 		
 		// Gestion du bouton Modifier
@@ -150,6 +154,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		return this.panelReseau;
 	}
 
+	public FrameChoix getFrameChoix(){return this.FrameChoix;}
 
 	public class PanelReseau extends JPanel
 	{

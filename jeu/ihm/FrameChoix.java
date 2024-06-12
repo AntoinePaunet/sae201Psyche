@@ -19,6 +19,8 @@ public class FrameChoix extends JFrame
 	private PanelChoixJoueur panelChoixJoueur;
 	private Controleur ctrl;
 
+	private FrameJoueur    f1, f2;
+
 	/**
 	 * Constructeur de la frame de Choix du joueur
 	 * @param ctrl le Controleur qui lance le programme
@@ -46,11 +48,21 @@ public class FrameChoix extends JFrame
 	 */
 	public void creerFrameJoueur()
 	{
-		new FrameJoueur(this.panelChoixJoueur.getText1(), 1, ctrl);
-		new FrameJoueur(this.panelChoixJoueur.getText2(), 2, ctrl);
+		this.f1 = new FrameJoueur(this.panelChoixJoueur.getText1(), 1, ctrl);
+		this.f2 = new FrameJoueur(this.panelChoixJoueur.getText2(), 2, ctrl);
 		new FrameJeu(this.ctrl);
 		this.dispose();
 		this.ctrl.frameDemarrage.dispose();
+	}
+
+	public FrameJoueur getF1 ()
+	{
+		return this.f1;
+	}
+
+	public FrameJoueur getF2 ()
+	{
+		return this.f2;
 	}
 /*
 	public static void main( String[] args )
