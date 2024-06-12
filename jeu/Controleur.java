@@ -160,16 +160,17 @@ public class Controleur
 
 	public void lectureFichier(String nomFichier) throws IOException
 	{
-
-		File fichier = new File(nomFichier);
+		File fichier;
 
 		if (nomFichier == null)
 		{
 			nomFichier = "data.txt";
+			fichier = new File(nomFichier);
 			fichier.createNewFile();
 			this.initFicher(fichier);
 			return;
 		}
+		fichier = new File(nomFichier);
 		System.out.println("ok2");
 		
 
