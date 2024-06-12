@@ -27,7 +27,7 @@ public class Controleur
 
 	private boolean tourJ1;
 	private boolean finPartie;
-	private FrameDemarrage frameDemarrage;
+	public  FrameDemarrage frameDemarrage;
 
 	public Controleur() throws IOException
 	{
