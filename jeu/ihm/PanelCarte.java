@@ -4,10 +4,14 @@ import jeu.Controleur;
 import jeu.metier.Route;
 import jeu.metier.Sommet;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Cette classe correspond au Panel sur lequel est affiché la carte ainsi
@@ -23,16 +27,22 @@ public class PanelCarte extends JPanel
 	private final int RAYON = 30;
 	private Graphics2D g2;
 	private Controleur ctrl;
+	private BufferedImage image;
+
 
 	/**
 	 * Constructeur du panel
 	 */
 	public PanelCarte(Controleur ctrl)
 	{
-		this.setBackground( new Color( 909090 ));
+		try {
+			this.image = ImageIO.read(new File("jeu/src/images/bgPlateau.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
 		this.ctrl = ctrl;
-
-
 		this.addMouseListener( new GereSouris() );
 	}
 
@@ -47,6 +57,8 @@ public class PanelCarte extends JPanel
 
 		this.g2 = (Graphics2D) g;
 
+		g2.drawImage(this.image, 20,0, this);
+
 
 		this.g2.setStroke (new BasicStroke (2.0f));
 		int adjCercle = this.RAYON / 2 ;
@@ -55,17 +67,20 @@ public class PanelCarte extends JPanel
 
 		for(Sommet s : ctrl.getTabSommet())
 		{
-			int x = s.getX();
-			int y = s.getY();
+			if(s.getNomCoul() != null) //Si pas le départ
+			{
+				int x = s.getX();
+				int y = s.getY();
 
-			this.g2.setStroke (new BasicStroke (2.0f));
+				this.g2.setStroke (new BasicStroke (2.0f));
 
-			this.g2.setColor( new Color(000060) );
+				this.g2.setColor( new Color(000060) );
 
-			this.g2.drawOval( x , y , this.RAYON, this.RAYON );
-			this.g2.fillOval( x , y , this.RAYON, this.RAYON );
+				this.g2.drawOval( x , y , this.RAYON, this.RAYON );
+				this.g2.fillOval( x , y , this.RAYON, this.RAYON );
 
-			this.g2.drawString( s.getNumSom() + s.getNomCoul(), x-10, y-5 );
+				this.g2.drawString( s.getNumSom() + s.getNomCoul(), x-10, y-5 );
+			}
 		}
 
 		for(Route r : ctrl.getTabRoute())

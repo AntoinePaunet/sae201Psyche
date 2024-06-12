@@ -62,8 +62,8 @@ public class FrameJoueur extends JFrame
 	 */
 	public void refresh()
 	{
-		int x = 80;
-		int y = 20;
+		int x = 0;
+		int y = 500;
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++)
 		{
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
@@ -72,10 +72,10 @@ public class FrameJoueur extends JFrame
 				{
 					this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
 				}
-				x += 160;
+				x += 60;
 			}
 			x = 80;
-			y += 120;
+			y -= 80;
 		}
 
 
@@ -83,8 +83,8 @@ public class FrameJoueur extends JFrame
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
-				this.ajoutImage(x,y, "NR.png", 1);
-				x += 85;
+				this.ajoutImage(x,400, "NR.png", 1);
+				x += 60;
 			}
 		}
 

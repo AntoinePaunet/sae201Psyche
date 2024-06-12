@@ -19,6 +19,7 @@ public class Joueur
 	private Materiaux[][] tabPlateau;
 	private Materiaux[] tabPiece;
 	private ArrayList<JetonPossession> tabJetonPossession;
+	private int 		nbJetonsUtiliser;
 	private ArrayList<Sommet> tabSommetRecup;
 
 	private int score ;
@@ -33,9 +34,11 @@ public class Joueur
 		this.tabPiece   = new Materiaux [8];
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
+		this.nbJetonsUtiliser=0;
 	}
 
 
+	public void utiliserUnJetons () {this.nbJetonsUtiliser++;}
 	public void setNomJoueur(String nom){this.nomJoueur=nom;}
 
 
