@@ -189,9 +189,6 @@ public class Controleur
 
 	public void lectureFichier(String nomFichier) throws IOException
 	{
-
-		File fichier = new File(nomFichier);
-
 		if (nomFichier == null)
 		{
 			nomFichier = "data.txt";
@@ -199,6 +196,7 @@ public class Controleur
 			this.initFicher(fichier);
 			return;
 		}
+		File fichier = new File(nomFichier);
 		System.out.println("ok2");
 		
 
