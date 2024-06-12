@@ -41,7 +41,7 @@ public class Controleur
 		this.init();
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
-		this.lectureFichier();
+		this.lectureFichier(null);
 
 		/*/
 
