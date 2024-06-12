@@ -94,7 +94,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			
 		}
 
-		if( e.getSource() == this.panelJouer.bfwsrftnJouer )
+		if( e.getSource() == this.panelJouer.btnJouer )
 			new FrameChoix( this.ctrl );
 
 
