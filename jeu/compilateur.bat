@@ -1,6 +1,6 @@
 @echo off
-
-javac -encoding utf8 Controleur.java metier\*.java ihm\*.java -d class > compileErrors.log 2> compileErrors.log
+rem Compilation Java
+javac -encoding utf8 Controleur.java metier\*.java ihm\*.java -d class 2>&1 
 
 rem Vérification du statut de la compilation
 if %ERRORLEVEL% NEQ 0
@@ -9,4 +9,6 @@ if %ERRORLEVEL% NEQ 0
     exit /b %ERRORLEVEL%
 )
 
-exit 1
+rem Copie des fichiers source dans le répertoire de sortie
+xcopy /s /i "src" "class\jeu\src"
+
