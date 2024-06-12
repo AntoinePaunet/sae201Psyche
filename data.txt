@@ -1,4 +1,5 @@
 [SOMMET]
+<<<<<<< HEAD
 4	Vert	336	92	NI	false
 8	Vert	265	111	NR	false
 2	Vert	317	187	NR	false
@@ -29,5 +30,7 @@
 1	Gris	556	586	FE	false
 5	Jaune	696	583	CO	false
 2	Jaune	773	582	NI	false
+=======
+>>>>>>> dd48a38dccf3dd663283abd05f8d179d7579e6dd
 
 [ROUTES]

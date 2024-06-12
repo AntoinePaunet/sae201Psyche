@@ -90,7 +90,6 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 
 	/**
 	 * Réalise une action lorsqu'un bouton est appuyé
-	 * 
 	 * @param e est un événement lié à un composant du panel
 	 */
 	public void actionPerformed(ActionEvent e)
@@ -112,7 +111,7 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 	}
 	
 	/**
-	 * Associe une action à une touche placé sur le composant donné
+	 * Associe une action à une touche placée sur le composant donné.
 	 * 
 	 * @param composant le composant sur lequel est la touche
 	 * @param touche    est associé à l'action
@@ -125,7 +124,6 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 		ActionMap actionCarte = composant.getActionMap();
 
 		inputCarte.put(touche, nomAction);
-
 		actionCarte.put(nomAction, action);
 	}
 }
