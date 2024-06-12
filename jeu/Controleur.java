@@ -27,6 +27,7 @@ public class Controleur
 
 	private boolean tourJ1;
 	private boolean finPartie;
+	private FrameDemarrage frameDemarrage;
 
 	public Controleur() throws IOException
 	{
@@ -39,7 +40,7 @@ public class Controleur
 
 		this.init();
 		this.initJetonPossession();
-		new FrameDemarrage(this);
+		this.frameDemarrage = new FrameDemarrage(this);
 		this.lectureFichier();
 
 //		while (!this.finPartie)
