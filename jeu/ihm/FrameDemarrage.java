@@ -16,12 +16,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiQuitter      ;
 	private JMenuItem     menuiScenario     ;
 
-	private Controleur ctrl;
 
 	public FrameDemarrage()
 	{
-		this.ctrl = ctrl;
-
 		this.setTitle   ("L'age de psyché");
 		this.setSize    (1040,950  );
 		this.setLocation(50, 50             );
@@ -94,7 +91,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		}
 
 		if( e.getSource() == this.panelJouer.btnJouer )
-			new FrameChoix( this.ctrl );
+			new FrameChoix();
 
 
 
