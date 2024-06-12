@@ -1,26 +1,27 @@
 package jeu.ihm;
 
-import jeu.Controleur;
+import jeu.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 
-public class FrameReseau extends JFrame implements ActionListener
+public class FrameModification extends JFrame implements ActionListener
 {
 	
 	private Controleur ctrl;
 
 	private PanelCarte     panelC;
 
-	private JMenuItem     creerVille;
+	private JMenuItem     creerSommet;
 	private JMenuItem     creerRoute;
 
 	private JMenuItem     enregistrerF;
 	private JMenuItem     supprimerF;
 
-	public FrameReseau(Controleur ctrl)
+	public FrameModification(Controleur ctrl)
 	{
-		this.setTitle("Réseau Routier");
+		this.setTitle("Modification");
 		this.setSize    ( 1000,800 );
 		this.setLocation(  150, 50 );
 
@@ -30,13 +31,13 @@ public class FrameReseau extends JFrame implements ActionListener
 		JMenu menuEnreg = new JMenu("Enregistrer");
 		JMenu menusup = new JMenu("supprimer");
 
-		this.creerVille  = new JMenuItem ("Ville" );
-		this.creerRoute = new JMenuItem ("Route");
+		this.creerSommet = new JMenuItem ("Sommet" );
+		this.creerRoute  = new JMenuItem ("Route");
 
 		this.enregistrerF = new JMenuItem ("enregistrer");
-		this.supprimerF = new JMenuItem ("supprimer");
+		this.supprimerF   = new JMenuItem ("supprimer");
 		
-		menuCreer.add( this.creerVille );
+		menuCreer.add( this.creerSommet );
 		menuCreer.addSeparator();
 		menuCreer.add( this.creerRoute );
 
@@ -50,10 +51,10 @@ public class FrameReseau extends JFrame implements ActionListener
 		this.setJMenuBar( menubMaBarre );
 		
 
-		this.creerVille .addActionListener ( this );
-		this.creerRoute.addActionListener ( this );
-		this.enregistrerF.addActionListener( this );
-		this.supprimerF.addActionListener( this );
+		this.creerSommet .addActionListener ( this );
+		this.creerRoute  .addActionListener ( this );
+		this.enregistrerF.addActionListener ( this );
+		this.supprimerF  .addActionListener ( this );
 
 		this.ctrl = ctrl;
 
@@ -73,7 +74,7 @@ public class FrameReseau extends JFrame implements ActionListener
 
 	public void actionPerformed ( ActionEvent e )
 	{
-		if ( e.getSource() == this.creerVille )
+		if ( e.getSource() == this.creerSommet )
 		{
 			//this.ctrl.ouvrirVille();
 		}
@@ -96,5 +97,11 @@ public class FrameReseau extends JFrame implements ActionListener
 	}
 
 	public PanelCarte getPanelCarte () {return this.panelC;}
-
+/* 
+	public static void main (String[]args) throws IOException
+	{
+		Controleur ctrl = new Controleur(); 
+		new FrameModification(ctrl);
+	}
+*/
 }
