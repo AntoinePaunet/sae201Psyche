@@ -43,7 +43,7 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 		this.add(txtJoueur2    = new JTextField()                                    );
 		this.txtJoueur1.setSize(100, 30);
 
-		this.add(btnSauvegarder = new JButton("Sauvegarder"));
+		this.add(btnSauvegarder = new JButton("Lancer le jeu (ENTREE)"));
 		this.add(btnAnnuler = new JButton("Quitter"));
 
 
@@ -58,6 +58,16 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 				btnSauvegarder.doClick();
 			}
 		} );
+
+		toucheAction(this, KeyStroke.getKeyStroke("ESCAPE"), "Fermer (Echap)", new AbstractAction() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				btnAnnuler.doClick();
+			}
+		} );
+
 
 	}
 	/**
