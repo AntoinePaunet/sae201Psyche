@@ -84,7 +84,7 @@ public class Controleur
 		if (j==this.j2 && this.tourJ1){return false;} 
 		
 		//verifie si l'un des deux sommet deja pris ou non
-		if (r.getSommetDep().getMateriaux()==null || r.getSommetAr().getMateriaux()==null)
+		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
 		{
 			return true ;
 		}
