@@ -73,9 +73,10 @@ public class Controleur
 		
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetAr().getMateriaux()==null)
 		{
-			return false;
+			return true ;
 		}
 
+		return false ;
 		
 	}
 
