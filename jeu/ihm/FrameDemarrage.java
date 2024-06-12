@@ -72,7 +72,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		menuScenario.setMnemonic('S');
 		menuQuitter.setMnemonic('Q');
 
-
 		this.menuiOuvrir.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiScenario.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiQuitter.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
@@ -151,7 +150,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
-			new FrameModification( this.ctrl ); 
+			new FrameRoute( this.ctrl ); 
 		
 
 		// Fermeture de l'application
