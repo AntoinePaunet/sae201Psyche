@@ -23,13 +23,12 @@ public class FrameChoix extends JFrame
 	 * Constructeur de la frame de Choix du joueur
 	 * @param ctrl le Controleur qui lance le programme
 	 */
-	public FrameChoix(Controleur ctrl)
+	public FrameChoix( Controleur ctrl )
 	{
+		this.ctrl = ctrl;
 		this.setTitle   ("Choix des joueurs et de leur plateau");
 		this.setSize    ( 700,200 );
 		this.setLocation(  300, 300 );
-
-		this.ctrl = ctrl;
 
 
 		// Création et ajout du Panel
@@ -38,7 +37,7 @@ public class FrameChoix extends JFrame
 
 		
 		// Gestion de la fermeture de la fenêtre
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
 
@@ -51,10 +50,10 @@ public class FrameChoix extends JFrame
 		new FrameJoueur(this.panelChoixJoueur.getText2(), 2, ctrl);
 		this.dispose();
 	}
-
+/*
 	public static void main( String[] args )
 	{
-		//new FrameChoix();
+		new FrameChoix();
 	}
-
+*/
 }

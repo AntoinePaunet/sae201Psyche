@@ -1,7 +1,6 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.ihm.images.*;
 import jeu.metier.Jeton;
 import jeu.metier.Joueur;
 import jeu.metier.Materiaux;
@@ -70,7 +69,7 @@ public class FrameJoueur extends JFrame
 	{
 		int x = 80;
 		int y = 20;
-		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) //Affichage des épices
+		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++)
 		{
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
@@ -85,11 +84,11 @@ public class FrameJoueur extends JFrame
 		}
 
 
-		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) //affichage des pièces
+		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) 
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
-				this.ajoutImage(x,y, "NR.png", 1); //Démo donc seulement pièces de bronze
+				this.ajoutImage(x,y, "NR.png", 1);
 				x += 85;
 			}
 		}
@@ -105,10 +104,15 @@ public class FrameJoueur extends JFrame
      */
     public void ajoutImage(int x, int y, String url, int layer)
     {
-        ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource(url));
+        ImageIcon image = new ImageIcon(getClass().getResource("images/" + url));
         JLabel imgLabel = new JLabel(image);
         imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
         this.panelFond.add(imgLabel, Integer.valueOf(layer));
     }
-
+/*
+	public static void main( String[] args )
+	{
+		new FrameJoueur();
+	}
+*/
 }
