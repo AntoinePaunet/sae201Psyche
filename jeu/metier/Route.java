@@ -13,7 +13,7 @@ public class Route
 {
 	private Sommet sommetDep;
 	private Sommet sommetAr;
-	private int  secSommet;
+	private int  troncons;
 
 	private Joueur joueur;
 
@@ -27,10 +27,10 @@ public class Route
 	 *
 	 */
 
-	public Route ( Sommet sommetDep, Sommet sommetAr, int secSommet )
+	public Route ( Sommet sommetDep, Sommet sommetAr, int troncons )
 	{
 		this.sommetDep  = sommetDep;
-		this.secSommet = secSommet;
+		this.troncons = troncons;
 		this.sommetAr=sommetAr;
 		this.sommetDep.addRoute(this);
 		this.sommetAr.addRoute(this);
@@ -39,11 +39,12 @@ public class Route
 
 
 	public Sommet getSommetDep  () { return this.sommetDep;  }
-	public int  getSecSommet () { return this.secSommet; }
+	public int  getNbTroncons () { return this.troncons; }
 	public Sommet getSommetAr  () { return this.sommetAr;  }
 
+
 	public void setSecSommet  ( Sommet sommetDep  ) { this.sommetDep = sommetDep;   }
-	public void setSommetAr   ( int  secSommet ) { this.secSommet = secSommet; }
+	public void setSommetAr   ( int  troncons ) { this.troncons = troncons; }
 
 	public void setJoueur (Joueur j) {this.joueur = j;}
 	public Joueur getJoueur() {return this.joueur;}
