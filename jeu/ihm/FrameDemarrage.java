@@ -22,7 +22,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 {
 	private Controleur ctrl;
 
-	private PanelReseau panelReseau;
 	private PanelBoutons panelBoutons;
 
 	private JMenuItem     menuiOuvrir       ;
@@ -43,7 +42,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setLayout(new FlowLayout());
 
 		this.panelBoutons  = new PanelBoutons();
-		this.panelReseau = new PanelReseau();
 
 
 		// Création et ajout de la barre de menu
@@ -97,6 +95,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	 */
 	public void actionPerformed ( ActionEvent e )
 	{
+		String cheminFichier;
 		// Syso pour confirmer l'action
 		if ( e.getSource() instanceof JMenuItem )
 			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
@@ -125,10 +124,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
-				this.panelReseau.changerFond(fc.getSelectedFile().getAbsolutePath());
-					this.panelReseau.cheminFichier = fc.getSelectedFile().getAbsolutePath();
+				cheminFichier = fc.getSelectedFile().getAbsolutePath();
 				try {
-					this.ctrl.lectureFichier(this.panelReseau.cheminFichier);
+					this.ctrl.lectureFichier(cheminFichier);
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
@@ -158,51 +156,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
-	}
-
-	public PanelReseau getPanelR()
-	{
-		return this.panelReseau;
-	}
-
-
-	public class PanelReseau extends JPanel
-	{
-
-		private JPanel panelAjout;
-		private JPanel panelCarte;
-		private String cheminFichier;
-
-		public PanelReseau()
-		{
-
-			this.setLayout(new BorderLayout(0,0));
-
-			// création des composants;
-			this.panelAjout = new JPanel ();
-			this.panelCarte = new JPanel ();
-
-
-			// positionnement des composants
-			this.add(panelAjout, BorderLayout.NORTH );
-			this.add(panelCarte, BorderLayout.CENTER);
-
-			this.changerFond("/images/bgSyndicat.png");
-
-		}
-		public void changerFond(String cheminAbsolu)
-		{
-			//Mise en place du fond
-
-			ImageIcon backgroundImage = new ImageIcon(cheminAbsolu);
-
-			JLabel backgroundLabel = new JLabel(backgroundImage);
-
-			backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
-
-			this.panelCarte.add(backgroundLabel);
-		}
-
 	}
 
 
