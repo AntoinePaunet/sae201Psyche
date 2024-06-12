@@ -174,7 +174,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		}
 	}
 
-	public static void main (String[]args) throws IOException {
+	public static void main (String[]args) throws IOException
+	{
 		Controleur ctrl = new Controleur();
 		new FrameDemarrage(ctrl);
 	}

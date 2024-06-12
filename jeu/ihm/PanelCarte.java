@@ -1,5 +1,7 @@
 package jeu.ihm;
 
+import jeu.Controleur;
+
 import javax.swing.JPanel;
 
 import java.awt.BasicStroke;
@@ -21,13 +23,15 @@ public class PanelCarte extends JPanel
 {
 	private final int RAYON = 30;
 	private Graphics2D g2;
+	private Controleur ctrl;
 
 	/**
 	 * Constructeur du panel
 	 */
-	public PanelCarte()
+	public PanelCarte(Controleur ctrl)
 	{
 		this.setBackground( new Color( 909090 ));
+		this.ctrl = ctrl;
 	}
 
 	/**
@@ -38,12 +42,14 @@ public class PanelCarte extends JPanel
 	{
 		super.paintComponent(g);
 
+		System.out.println("T");
+
 		this.g2 = (Graphics2D) g;
 
 		String nomP1 = "P1" , nomP2 = "P2";
 
-		int x1 = 100, y1 = 200; 
-		int x2 = 500, y2 = 700;
+		int x1 = this.ctrl.getTabSommet().get(0).getX(), y1 = this.ctrl.getTabSommet().get(0).getY();
+		int x2 = ctrl.getTabSommet().get(1).getX(), y2 = ctrl.getTabSommet().get(1).getY();
 
 		int adjCercle = this.RAYON / 2 ;
 		// Dessiner l'ensemble des figures
