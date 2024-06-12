@@ -40,7 +40,7 @@ public class Route
 
 	public Sommet getSommetDep  () { return this.sommetDep;  }
 	public int  getNbTroncons () { return this.troncons; }
-	public Sommet getSommetAr  () { return this.sommetAr;  }
+	public Sommet getSommetArr() { return this.sommetAr;  }
 
 
 	public void setSecSommet  ( Sommet sommetDep  ) { this.sommetDep = sommetDep;   }

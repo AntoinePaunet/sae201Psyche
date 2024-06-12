@@ -6,10 +6,7 @@ import jeu.metier.Sommet;
 
 import javax.swing.JPanel;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.*;
 
 /**
@@ -52,8 +49,6 @@ public class PanelCarte extends JPanel
 
 		String nomP1 = "P1" , nomP2 = "P2";
 
-		System.out.println(this.ctrl.getTabSommet().get(0));
-
 		int x1 = this.ctrl.getTabSommet().get(0).getX(), y1 = this.ctrl.getTabSommet().get(0).getY();
 		int x2 = ctrl.getTabSommet().get(1).getX(), y2 = ctrl.getTabSommet().get(1).getY();
 
@@ -83,10 +78,49 @@ public class PanelCarte extends JPanel
 		private Sommet villeChoisie ;
 		private Route routeChoisie;
 
+		private Point ptSmt1;
+		private Point ptSmt2;
+
 		public void mousePressed( MouseEvent e)
 		{
 
+			for(Route r : ctrl.getTabRoute())
+			{
+				this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
+				this.ptSmt2 = new Point(r.getSommetArr().getX(), r.getSommetArr().getY());
+
+				if(isNearLine(e.getPoint()))
+				{
+					System.out.println(r);
+				}
+			}
+		}
+
+
+		private boolean isNearLine(Point p) {
+			// Calculer la distance entre le point de clic et la ligne
+			double distance = distanceARoute(p, ptSmt1, ptSmt2);
+			return distance <= 5; //5px de tolérance
+		}
+
+		// Calculer la distance entre un point et un segment de ligne
+		private double distanceARoute(Point p, Point v, Point w)
+		{
+			double l2 = v.distanceSq(w);
+			if (l2 == 0.0) return p.distance(v);
+			double t = Math.max(0, Math.min(1, resultPoint(p, v, w) / l2));
+			Point projection = new Point((int) (v.x + t * (w.x - v.x)), (int) (v.y + t * (w.y - v.y)));
+			return p.distance(projection);
+		}
+
+		private double resultPoint(Point p, Point v, Point w)
+		{
+			return (p.x - v.x) * (w.x - v.x) + (p.y - v.y) * (w.y - v.y);
 		}
 	}
+
+
+
+
 
 }
