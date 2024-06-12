@@ -35,7 +35,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	{
 		this.ctrl = ctrl;
 		this.setTitle   ("L'age de psyché");
-		this.setSize    (1040,950  );
+		this.setSize    (1500,850  );
 		this.setLocation(50, 50             );
 		this.setVisible (true                 );
 
@@ -185,7 +185,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		}
 	}
 
-	public static void main (String[]args) throws IOException {
+	public static void main (String[]args) throws IOException
+	{
 		Controleur ctrl = new Controleur();
 		new FrameDemarrage(ctrl);
 	}

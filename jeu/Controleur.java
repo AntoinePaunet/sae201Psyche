@@ -76,11 +76,14 @@ public class Controleur
 
 	public boolean estValide(Joueur j, Route r)
 	{
-		if (r.getJoueur()==null) {return false;}
+		//verifie si quelqu'un est deja sur la route
+		if (r.getJoueur()!=null) {return false;}
 
+		//Verifie si c'est le tour du joueur
 		if (j==this.j1 && !this.tourJ1){return false;} 
 		if (j==this.j2 && this.tourJ1){return false;} 
 		
+		//verifie si l'un des deux sommet deja pris ou non
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetAr().getMateriaux()==null)
 		{
 			return true ;
@@ -88,6 +91,16 @@ public class Controleur
 
 		return false ;
 
+	}
+
+	public ArrayList<Sommet> getTabSommet()
+	{
+		return this.tabSommet;
+	}
+
+	public ArrayList<Route> getTabRoute()
+	{
+		return this.tabRoute;
 	}
 
 
@@ -184,7 +197,6 @@ public class Controleur
 			nomFichier = "data.txt";
 			fichier.createNewFile();
 			this.initFicher(fichier);
-			System.out.println("ok");
 			return;
 		}
 		System.out.println("ok2");

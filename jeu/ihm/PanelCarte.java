@@ -1,5 +1,9 @@
 package jeu.ihm;
 
+import jeu.Controleur;
+import jeu.metier.Route;
+import jeu.metier.Sommet;
+
 import javax.swing.JPanel;
 
 import java.awt.BasicStroke;
@@ -21,14 +25,20 @@ public class PanelCarte extends JPanel
 {
 	private final int RAYON = 30;
 	private Graphics2D g2;
+	private Controleur ctrl;
 
 	/**
 	 * Constructeur du panel
 	 */
-	public PanelCarte()
+	public PanelCarte(Controleur ctrl)
 	{
 		this.setBackground( new Color( 909090 ));
+		this.ctrl = ctrl;
+
+
+		this.addMouseListener( new GereSouris() );
 	}
+
 
 	/**
 	 * Méthode de dessins
@@ -42,8 +52,10 @@ public class PanelCarte extends JPanel
 
 		String nomP1 = "P1" , nomP2 = "P2";
 
-		int x1 = 100, y1 = 200; 
-		int x2 = 500, y2 = 700;
+		System.out.println(this.ctrl.getTabSommet().get(0));
+
+		int x1 = this.ctrl.getTabSommet().get(0).getX(), y1 = this.ctrl.getTabSommet().get(0).getY();
+		int x2 = ctrl.getTabSommet().get(1).getX(), y2 = ctrl.getTabSommet().get(1).getY();
 
 		int adjCercle = this.RAYON / 2 ;
 		// Dessiner l'ensemble des figures
@@ -63,4 +75,18 @@ public class PanelCarte extends JPanel
 		this.g2.drawString( nomP1, x1-10, y1-5 );
 		this.g2.drawString( nomP2, x2-10, y2-5 );
 	}
+
+
+
+	private class GereSouris extends MouseAdapter
+	{
+		private Sommet villeChoisie ;
+		private Route routeChoisie;
+
+		public void mousePressed( MouseEvent e)
+		{
+
+		}
+	}
+
 }
