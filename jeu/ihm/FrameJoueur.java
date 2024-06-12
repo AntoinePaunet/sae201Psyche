@@ -1,6 +1,7 @@
 package jeu.ihm;
 
 import jeu.Controleur;
+import jeu.ihm.images.*;
 import jeu.metier.Jeton;
 import jeu.metier.Joueur;
 import jeu.metier.Materiaux;
@@ -104,7 +105,7 @@ public class FrameJoueur extends JFrame
      */
     public void ajoutImage(int x, int y, String url, int layer)
     {
-        ImageIcon image = new ImageIcon("images/" + url);
+        ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource(url));
         JLabel imgLabel = new JLabel(image);
         imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
         this.panelFond.add(imgLabel, Integer.valueOf(layer));

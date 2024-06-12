@@ -1,7 +1,9 @@
 package jeu;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import jeu.ihm.*;
 import jeu.metier.*;
@@ -21,42 +23,45 @@ public class Controleur
 	private Joueur j1;
 	private Joueur j2;
 	private ArrayList<Sommet> 		tabSommet;
+	private ArrayList<Route>		tabRoute;
 
 	private boolean tourJ1;
 	private boolean finPartie;
 
-	public Controleur()
+	public Controleur() throws IOException
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.tabSommet 		= new ArrayList<>(30);
+		this.tabRoute		= new ArrayList<>(60);
 		this.tourJ1=true;
 		this.finPartie = false;
 
 		this.init();
 		this.initJetonPossession();
 		new FrameChoix(this);
+		this.lectureFichier();
 
-		while (!this.finPartie)
-		{
-			if (this.tourJ1)
-			{
-				if (this.estValide(this.j1, this.tabSommet.get(0)))
-
-				this.j1.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
-				this.j1.addSommetRecup(this.tabSommet.get(0));
-				return;
-			}
-
-			else
-			{
-				if (this.estValide(this.j2, this.tabSommet.get(0)))
-
-				this.j2.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
-				this.j2.addSommetRecup(this.tabSommet.get(0));
-				return;
-			}
-		}
+//		while (!this.finPartie)
+//		{
+//			if (this.tourJ1)
+//			{
+//				if (this.estValide(this.j1, this.tabSommet.get(0)))
+//
+//				this.j1.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
+//				this.j1.addSommetRecup(this.tabSommet.get(0));
+//				return;
+//			}
+//
+//			else
+//			{
+//				if (this.estValide(this.j2, this.tabSommet.get(0)))
+//
+//				this.j2.ajouterMateriaux (this.tabSommet.get(0).prendreMateriaux());
+//				this.j2.addSommetRecup(this.tabSommet.get(0));
+//				return;
+//			}
+//		}
 	}
 
 	public boolean estValide(Joueur j, Sommet m)
@@ -149,14 +154,195 @@ public class Controleur
 		return this.j2;
 	}
 
-	public static void main (String[] arg)
+	public void initFicher(File fichier)
 	{
+		try( BufferedWriter writer = new BufferedWriter( new FileWriter(fichier) ) )
+		{
+			writer.write("[SOMMET]\n\n[ROUTES]\n");
+			System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
+		}
+		catch( IOException e ) {}
+	}
+
+
+	public void lectureFichier() throws IOException
+	{
+		File fichier = new File("data.txt");
+
+		if(getClass().getClassLoader().getResource("data.txt") == null)
+		{
+			fichier.createNewFile();
+			this.initFicher(fichier);
+			System.out.println("ok");
+			return;
+		}
+
+		try {
+			FileReader fr = new FileReader("data.txt");
+			Scanner sc = new Scanner(fr);
+
+			// Vider les tableaux pour ne pas refaire trop de variables
+			tabSommet = new ArrayList<Sommet>(tabSommet.size());
+			tabRoute  = new ArrayList<Route>(tabRoute.size());
+
+			int etapeLecture = 0;
+
+			while (sc.hasNextLine()) {
+				String ligne = sc.nextLine();
+
+				if (!ligne.isEmpty()) {
+					if (ligne.equals("[SOMMET]")) {
+						etapeLecture = 1;
+						if (sc.hasNextLine())
+							ligne = sc.nextLine();
+
+					} else if (ligne.equals("[ROUTES]")) {
+						etapeLecture = 2;
+						if (sc.hasNextLine()) {
+							ligne = sc.nextLine();
+						}
+					}
+					if (etapeLecture == 1 && !ligne.equals("[SOMMET]")) {
+						if (!ligne.isEmpty()) {
+							lireSommet(ligne);
+						}
+					}
+					if (etapeLecture == 2) {
+						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]")) {
+							lireRoute(ligne);
+						}
+					}
+
+				}
+			}
+			sc.close();
+			fr.close();
+		} catch (Exception exp) {
+			exp.printStackTrace();
+		}
+
+
+
+		System.out.println(tabSommet);
+	}
+
+
+	public void lireSommet(String ligne) {
+		String[] smtInfo = ligne.split("\t");
+
+		int num = Integer.parseInt(smtInfo[0]);
+		String nom = smtInfo[1];
+		int x = Integer.parseInt(smtInfo[2]);
+		int y = Integer.parseInt(smtInfo[3]);
+		String nomMat = smtInfo[4];
+
+		this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false));
+	}
+
+	public void lireRoute(String ligne) {
+		String[] routeInfo = ligne.split("\t");
+
+		int nbTroncon = Integer.parseInt(routeInfo[0]);
+
+		Sommet smtA = this.rechercheSommet(routeInfo[1]);
+		Sommet smtB = this.rechercheSommet(routeInfo[2]);
+
+		if (smtA != null && smtB != null) // Si la ville recherché n'existe plus
+		{
+			Route r = new Route(smtA, smtB, nbTroncon);
+
+			this.tabRoute.add(r);
+			smtA.addRoute(r);
+			smtB.addRoute(r);
+		}
+	}
+
+
+
+	public void ecrireSommet(int numSmt, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart) throws IOException
+	{
+		FileReader fr = new FileReader("data.txt");
+		Scanner sc = new Scanner(fr);
+
+		String donnesFichier = "";
+
+		while (sc.hasNextLine())
+			donnesFichier += sc.nextLine() + "\n";
+
+		if (!donnesFichier.contains(numSmt+"")) // Vérification de doubles dans le fichier texte
+		{
+			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[SOMMET]"),
+					donnesFichier.indexOf("\n["));
+			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
+
+			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\t" + "\n\n") + donneesRoutes;
+
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+
+			try {
+				this.tabSommet.add(new Sommet(numSmt, nomCoul, x, y, materiaux, estDepart)); // creation de la ville
+				writer.write(donnesFichier);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			writer.close();
+		}
+		sc.close();
+	}
+
+	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException {
+		FileReader fr = new FileReader("data.txt");
+		Scanner sc = new Scanner(fr);
+
+		String donnesFichier = "";
+
+		while (sc.hasNextLine())
+			donnesFichier += sc.nextLine() + "\n";
+
+		donnesFichier += (nbTroncons + "\t" + smtA.getNumSom() + "\t" + smtB.getNumSom() + "\n");
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+
+		try {
+			this.tabRoute.add(new Route(smtA, smtB, nbTroncons));
+			writer.write(donnesFichier);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		writer.close();
+		sc.close();
+	}
+
+
+
+
+
+
+
+
+
+	public Sommet rechercheSommet(String numSmt)
+	{
+		for (Sommet s : this.tabSommet) {
+			if (s.getNumSom() == Integer.parseInt(numSmt))
+				return s;
+		}
+		return null;
+	}
+
+
+
+
+
+	public static void main (String[] arg) throws IOException {
 		Controleur ctrl = new Controleur();
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
-		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
+//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
+//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(16));
+//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(1 ));
+//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(22));
+//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(29));
+//		ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
 	}
 }

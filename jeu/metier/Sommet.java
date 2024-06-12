@@ -29,7 +29,7 @@ public class Sommet
     /**
 	 * Constructeure
 	 *
-	 * @param numMine     numéro de la mine
+	 * @param numSom     numéro de la mine
 	 * @param nomCoul     nom de la couleur de la mine
 	 * @param x           postion x
 	 * @param y           postion y
