@@ -44,7 +44,7 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 		this.txtJoueur1.setSize(100, 30);
 
 		this.add(btnSauvegarder = new JButton("Lancer le jeu (ENTREE)"));
-		this.add(btnAnnuler = new JButton("Quitter"));
+		this.add(btnAnnuler = new JButton("Quitter (ECHAP)"));
 
 
 		this.btnSauvegarder.addActionListener(this);
