@@ -76,11 +76,14 @@ public class Controleur
 
 	public boolean estValide(Joueur j, Route r)
 	{
-		if (r.getJoueur()==null) {return false;}
+		//verifie si quelqu'un est deja sur la route
+		if (r.getJoueur()!=null) {return false;}
 
+		//Verifie si c'est le tour du joueur
 		if (j==this.j1 && !this.tourJ1){return false;} 
 		if (j==this.j2 && this.tourJ1){return false;} 
 		
+		//verifie si l'un des deux sommet deja pris ou non
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetAr().getMateriaux()==null)
 		{
 			return true ;
