@@ -37,7 +37,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setTitle   ("L'age de psyché");
 		this.setSize    (800,750  );
 		this.setLocation(0, 0             );
-		this.setVisible (true                 );
 
 		this.panelBoutons  = new PanelBoutons();
 		this.panelReseau = new PanelReseau();
@@ -76,6 +75,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		this.setVisible (true                 );
+		
 	}
 
 	public void actionPerformed ( ActionEvent e )
@@ -206,6 +208,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		
 			this.add(this.btnModifier, BorderLayout.CENTER);
 			this.add(this.btnJouer,    BorderLayout.SOUTH);
+
+			
 
 		}
 	}
