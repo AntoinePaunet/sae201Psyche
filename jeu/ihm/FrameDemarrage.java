@@ -1,12 +1,10 @@
 package jeu.ihm;
 
-import javax.swing.*;
-
 import jeu.Controleur;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -37,7 +35,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.ctrl = ctrl;
 		this.setTitle   ("L'age de psyché");
 		this.setSize    (800,750  );
-		this.setLocation(50, 50             );
+		this.setLocation(0, 0             );
 		this.setVisible (true                 );
 
 		this.panelJouer  = new PanelJouer(      );
@@ -99,14 +97,15 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				this.panelReseau.changerFond(fc.getSelectedFile().getAbsolutePath());
 					this.panelReseau.cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				try {
+				try
+				{
 					this.ctrl.lectureFichier(this.panelReseau.cheminFichier);
 					this.ctrl.lireRoute(getName());
-				} catch (IOException ex) {
+				}
+				catch( IOException ex )
+				{
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
-				
-				
 			}
 			else
 			{

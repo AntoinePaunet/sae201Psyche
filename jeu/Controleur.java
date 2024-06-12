@@ -195,11 +195,9 @@ public class Controleur
 			fichier = new File(nomFichier);
 			fichier.createNewFile();
 			this.initFicher(fichier);
-			System.out.println("ok");
 			return;
 		}
 		fichier = new File(nomFichier);
-		System.out.println("ok2");
 		
 
 		try {
@@ -251,7 +249,7 @@ public class Controleur
 
 
 
-		System.out.println(tabSommet);
+		System.out.println("Nb sommet " + tabSommet);
 	}
 
 
@@ -366,8 +364,10 @@ public class Controleur
 
 
 
-	public static void main (String[] arg) throws IOException {
+	public static void main (String[] arg) throws IOException
+	{
 		Controleur ctrl = new Controleur();
+
 		if(ctrl.tabSommet.size() >= 29)
 		{
 			ctrl.getJoueur1().addSommetRecup(ctrl.tabSommet.get(10));
