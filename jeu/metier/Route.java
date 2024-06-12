@@ -49,6 +49,7 @@ public class Route
 	public void setSommetAr   ( int  secSommet ) { this.secSommet = secSommet; }
 
 	public void setJoueur (Joueur j) {this.joueur = j;}
+	public Joueur getJoueur() {return this.joueur;}
 
 
 }

@@ -60,11 +60,12 @@ public class Controleur
 		}
 	}
 
-	public boolean estValide(Joueur j, Sommet m)
+	public boolean estValide(Joueur j, Route r)
 	{
-		if (m.getMateriaux()==null) {return false;}
+		if (r.getJoueur()==null) {return false;}
 
-		if ((j==this.j1 && !this.tourJ1) || (j==this.j2 && this.tourJ1)){return false;}
+		if (j==this.j1 && !this.tourJ1){return false;} 
+		if (j==this.j2 && this.tourJ1){return false;} 
 		
 		for (int i=0; i<m.getTabRoute().size(); i++)
 		{
