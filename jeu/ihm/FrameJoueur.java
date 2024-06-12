@@ -69,7 +69,7 @@ public class FrameJoueur extends JFrame
 	{
 		int x = 80;
 		int y = 20;
-		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) //Affichage des épices
+		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++)
 		{
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
@@ -84,11 +84,11 @@ public class FrameJoueur extends JFrame
 		}
 
 
-		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) //affichage des pièces
+		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) 
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
-				this.ajoutImage(x,y, "NR.png", 1); //Démo donc seulement pièces de bronze
+				this.ajoutImage(x,y, "NR.png", 1);
 				x += 85;
 			}
 		}
