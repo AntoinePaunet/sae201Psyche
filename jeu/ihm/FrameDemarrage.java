@@ -6,6 +6,7 @@ import jeu.Controleur;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 /**
  * Cette classe créé l'interface graphique gérée par le controleur.
@@ -173,8 +174,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		}
 	}
 
-	public static void main (String[]args)
-	{
+	public static void main (String[]args) throws IOException {
 		Controleur ctrl = new Controleur();
 		new FrameDemarrage(ctrl);
 	}
