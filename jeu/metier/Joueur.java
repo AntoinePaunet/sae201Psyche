@@ -186,4 +186,9 @@ public class Joueur
 		this.detailScore = detail;
 
 	}
+
+	public String toString ()
+	{
+		return this.nomJoueur;
+	}
 }

@@ -45,13 +45,9 @@ public class Controleur
 
 	}
 
-	public boolean estValide(Joueur j, Route r)
+	public boolean estValide(Route r)
 	{
-		if (r.getJoueur()==null) {return false;}
-
-		if (j==this.j1 && !this.tourJ1){return false;} 
-		if (j==this.j2 && this.tourJ1){return false;} 
-		
+		if (r.getJoueur()!=null) {return false;}
 
 		//verifie si l'un des deux sommet deja pris ou non
 		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
@@ -84,11 +80,14 @@ public class Controleur
 
 	public void jouer (Route r)
 	{
+		
 		if (!this.finPartie)
 		{
+			System.out.print(r);
 			if (this.tourJ1)
 			{
-				if (this.estValide( this.j1, r))
+				
+				if (this.estValide(r))
 				{
 					r.setJoueur(this.j1);
 
@@ -98,12 +97,14 @@ public class Controleur
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetArr());
 					
+					this.frameDemarrage.getFrameChoix().getF1().refresh();
+					
 					this.tourJ1= !this.tourJ1;
 				}
 			}
 			else
 			{
-				if (this.estValide(this.j2, r))
+				if (this.estValide( r))
 				{
 					r.setJoueur(this.j2);
 
@@ -113,6 +114,8 @@ public class Controleur
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetArr());
 					
+					this.frameDemarrage.getFrameChoix().getF2().refresh();
+
 					this.tourJ1= !this.tourJ1;
 				}
 			}
@@ -221,6 +224,8 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(28), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(28), this.tabSommet.get(20), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(21), 2));
+
+
 	}
 
 
