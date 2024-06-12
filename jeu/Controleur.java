@@ -71,15 +71,13 @@ public class Controleur
 		if (j==this.j1 && !this.tourJ1){return false;} 
 		if (j==this.j2 && this.tourJ1){return false;} 
 		
-		for (int i=0; i<m.getTabRoute().size(); i++)
+		if (r.getSommetDep().getMateriaux()==null || r.getSommetAr().getMateriaux()==null)
 		{
-			if (m.getRoute(i).getSommetDep().getMateriaux()==null || m.getRoute(i).getSommetAr().getMateriaux()==null)
-			{
-				return true ;
-			}
+			return true ;
 		}
 
-		return false;
+		return false ;
+		
 	}
 
 
