@@ -12,45 +12,39 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private PanelReseau panelReseau;
 	private PanelJouer panelJouer;
 
-	private JMenuItem     menuiAjouterSommet;
-	private JMenuItem     menuiAjouterArrete;
 	private JMenuItem     menuiOuvrir       ;
 	private JMenuItem     menuiQuitter      ;
 	private JMenuItem     menuiScenario     ;
 
 	private Controleur ctrl;
 
-	public FrameDemarrage(Controleur ctrl)
+	public FrameDemarrage()
 	{
 		this.ctrl = ctrl;
 
 		this.setTitle   ("L'age de psyché");
-		this.setSize    (1040,950         );
-		this.setLocation(50, 50           );
-		this.setVisible (true             );
+		this.setSize    (1040,950  );
+		this.setLocation(50, 50             );
+		this.setVisible (true                 );
+		this.panelJouer  = new PanelJouer(      );
+		this.panelReseau = new PanelReseau(     );
 
 
 		// Création et ajout de la barre de menu
 		JMenuBar  menuBar  = new JMenuBar(       );
-		JMenu menuAjouter  = new JMenu("Ajouter" );
 		JMenu menuOuvrir   = new JMenu("Ouvrir"  );
 		JMenu menuQuitter  = new JMenu("Quitter" );
 		JMenu menuScenario = new JMenu("Scénario");
 
 
-		this.menuiAjouterSommet = new JMenuItem("Ajouter un sommet"   );
-		this.menuiAjouterArrete = new JMenuItem("Ajouter une arrête"  );
 		this.menuiOuvrir        = new JMenuItem("Importer des données");
 		this.menuiQuitter       = new JMenuItem("Quitter"             );
 		this.menuiScenario      = new JMenuItem("Lancer un scénario"  );
 
-		menuAjouter .add(this.menuiAjouterSommet);
-		menuAjouter .add(this.menuiAjouterArrete);
 		menuOuvrir  .add(this.menuiOuvrir       );
 		menuQuitter .add(this.menuiQuitter      );
 		menuScenario.add(this.menuiScenario     );
 
-		menuBar.add(menuAjouter );
 		menuBar.add(menuOuvrir  );
 		menuBar.add(menuQuitter );
 		menuBar.add(menuScenario);
@@ -58,12 +52,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setJMenuBar( menuBar );
 		
 		//Création et ajout du Panel Jouer
-		this.add(this.panelJouer);
+		this.add(this.panelReseau,BorderLayout.CENTER);
+		this.add(this.panelJouer, BorderLayout.EAST );
 
 
 		// Activation des composants
-		this.menuiAjouterSommet .addActionListener( this );
-		this.menuiAjouterArrete .addActionListener( this );
 		this.menuiOuvrir        .addActionListener( this );
 		this.menuiQuitter       .addActionListener( this );
 		this.panelJouer.btnJouer.addActionListener( this );
@@ -91,7 +84,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
-				System.out.println(fc.getSelectedFile().getAbsolutePath());
+				this.panelReseau.changerFond(fc.getSelectedFile().getAbsolutePath());
 			}
 			else
 			{
@@ -110,63 +103,69 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			System.exit(0);
 	}
 
-	public PanelReseau getPanel()
+	public PanelReseau getPanelR()
 	{
 		return this.panelReseau;
 	}
 
 
-    public class PanelReseau extends JPanel
-    {
+	public class PanelReseau extends JPanel
+	{
 
-        private JPanel panelAjout;
-        private JPanel panelCarte;
+		private JPanel panelAjout;
+		private JPanel panelCarte;
 
-        public PanelReseau ( )
-        {
+		public PanelReseau ( )
+		{
 
-            this.setLayout(new BorderLayout(0,0));
+			this.setLayout(new BorderLayout(0,0));
 
-            // création des composants;
-            this.panelAjout = new JPanel ();
-            this.panelCarte = new JPanel ();
-
-
-            // positionnement des composants
-            this.add(panelAjout, BorderLayout.NORTH );
-            this.add(panelCarte, BorderLayout.CENTER);
-
-            //Mise en place du fond
-			/* 
-            ImageIcon backgroundImage = new ImageIcon(this.getClass().getResource("/images/backGround.jpg"));
-
-            JLabel backgroundLabel = new JLabel(backgroundImage);
-
-            backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
-
-            this.panelCarte.add(backgroundLabel);
-			*/
-        }
-    }
+			// création des composants;
+			this.panelAjout = new JPanel ();
+			this.panelCarte = new JPanel ();
 
 
-    public class PanelJouer extends JPanel
-    {
+			// positionnement des composants
+			this.add(panelAjout, BorderLayout.NORTH );
+			this.add(panelCarte, BorderLayout.CENTER);
+
+			this.changerFond("/images/bgSyndicat.png");
+
+		}
+		public void changerFond(String cheminAbsolu)
+		{
+			//Mise en place du fond
+
+			ImageIcon backgroundImage = new ImageIcon(cheminAbsolu);
+
+			JLabel backgroundLabel = new JLabel(backgroundImage);
+
+			backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
+
+			this.panelCarte.add(backgroundLabel);
+		}
+
+	}
+
+
+	public class PanelJouer extends JPanel
+	{
 		private JButton btnJouer;
 
-        public PanelJouer()
-        {
-            this.setLayout(new BorderLayout(0,0));
+		public PanelJouer()
+		{
+			this.setLayout(new BorderLayout(0,0));
 
-            // création des composants;
+			// création des composants;
 			this.btnJouer = new JButton("Jouer");
 			this.add(this.btnJouer);
 
-        }
-    }
-/*
+		}
+	}
+/* 
 	public static void main (String[]args)
 	{
+		
 		new FrameDemarrage();
 	}
 */
