@@ -1,10 +1,12 @@
 package jeu.ihm;
 
+import javax.swing.*;
+
 import jeu.Controleur;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -22,7 +24,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private Controleur ctrl;
 
 	private PanelReseau panelReseau;
-	private PanelBoutons panelBoutons;
+	private PanelJouer panelJouer;
 
 	private JMenuItem     menuiOuvrir       ;
 	private JMenuItem     menuiScenario     ;
@@ -38,8 +40,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setLocation(0, 0             );
 		this.setVisible (true                 );
 
-		this.panelBoutons  = new PanelBoutons();
-		this.panelReseau = new PanelReseau();
+		this.panelJouer  = new PanelJouer(      );
+		this.panelReseau = new PanelReseau(     );
 
 
 		// Création et ajout de la barre de menu
@@ -48,7 +50,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
 
-		this.menuiOuvrir        = new JMenuItem("Importer unue carte");
+		this.menuiOuvrir        = new JMenuItem("Importer des données");
 		this.menuiScenario      = new JMenuItem("Lancer un scénario"  );
 		this.menuiQuitter       = new JMenuItem("Quitter"             );
 
@@ -63,18 +65,20 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setJMenuBar( menuBar );
 		
 		//Création et ajout du Panel Jouer
-		this.add(this.panelBoutons, BorderLayout.CENTER );
+		this.add(this.panelReseau,BorderLayout.CENTER);
+		this.add(this.panelJouer, BorderLayout.EAST );
 
 
 		// Activation des composants
 		this.menuiOuvrir        .addActionListener( this );
 		this.menuiQuitter       .addActionListener( this );
+		this.panelJouer.btnJouer.addActionListener( this );
 		this.menuiScenario      .addActionListener( this );
-		this.panelBoutons.btnJouer.addActionListener( this );
-		this.panelBoutons.btnModifier.addActionListener( this );
+
 
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 
 	public void actionPerformed ( ActionEvent e )
@@ -95,15 +99,13 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				this.panelReseau.changerFond(fc.getSelectedFile().getAbsolutePath());
 					this.panelReseau.cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				try
-				{
+				try {
 					this.ctrl.lectureFichier(this.panelReseau.cheminFichier);
-					this.ctrl.lireRoute(getName());
-				}
-				catch( IOException ex )
-				{
+				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
+				
+				
 			}
 			else
 			{
@@ -112,15 +114,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			
 		}
 
-		// Gestion du bouton Jouer
-		if( e.getSource() == this.panelBoutons.btnJouer )
+		if( e.getSource() == this.panelJouer.btnJouer )
 			new FrameChoix( this.ctrl );
 
-		/*
-		// Gestion du bouton Modifier
-		if( e.getSource() == this.panelBoutons.btnJouer )
-			new FrameChoix( this.ctrl ); 
-		*/
 
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
@@ -173,20 +169,17 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	}
 
 
-	public class PanelBoutons extends JPanel
+	public class PanelJouer extends JPanel
 	{
-		private JButton btnJouer, btnModifier;
+		private JButton btnJouer;
 
-		public PanelBoutons()
+		public PanelJouer()
 		{
 			this.setLayout(new BorderLayout(0,0));
 
 			// création des composants;
 			this.btnJouer = new JButton("Jouer");
-			this.btnModifier = new JButton("Modifier une carte");
-		
-			this.add(this.btnModifier, BorderLayout.CENTER);
-			this.add(this.btnJouer,    BorderLayout.CENTER);
+			this.add(this.btnJouer);
 
 		}
 	}
