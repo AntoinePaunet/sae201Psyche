@@ -31,8 +31,8 @@ public class FrameModification extends JFrame implements ActionListener
 		JMenu menuEnreg = new JMenu("Enregistrer");
 		JMenu menusup = new JMenu("supprimer");
 
-		this.creerSommet = new JMenuItem ("Sommet" );
-		this.creerRoute  = new JMenuItem ("Route");
+		this.creerSommet = new JMenuItem ("Créer un Sommet");
+		this.creerRoute  = new JMenuItem ("Créer une Route");
 
 		this.enregistrerF = new JMenuItem ("enregistrer");
 		this.supprimerF   = new JMenuItem ("supprimer");
@@ -87,6 +87,7 @@ public class FrameModification extends JFrame implements ActionListener
 		if ( e.getSource() == this.enregistrerF )
 		{
 			//this.ctrl.enregistrerData();
+			this.dispose();
 		}
 
 		if ( e.getSource() == this.supprimerF )

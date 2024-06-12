@@ -49,7 +49,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
 
-		this.menuiOuvrir        = new JMenuItem("Importer unue carte");
+		this.menuiOuvrir        = new JMenuItem("Importer une carte");
 		this.menuiScenario      = new JMenuItem("Lancer un scénario"  );
 		this.menuiQuitter       = new JMenuItem("Quitter"             );
 
@@ -66,6 +66,15 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		//Création et ajout du Panel Jouer
 		this.add(this.panelBoutons);
 
+		// Création des raccourcis clavier
+		menuOuvrir.setMnemonic('O');
+		menuScenario.setMnemonic('S');
+		menuQuitter.setMnemonic('Q');
+
+
+		this.menuiOuvrir.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiScenario.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiQuitter.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
 		// Activation des composants
 		this.menuiOuvrir        .addActionListener( this );
