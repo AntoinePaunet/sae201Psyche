@@ -172,12 +172,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		}
 	}
-/* 
+
 	public static void main (String[]args)
 	{
-		
-		new FrameDemarrage();
+		Controleur ctrl = new Controleur();
+		new FrameDemarrage(ctrl);
 	}
-*/
+
 }
 

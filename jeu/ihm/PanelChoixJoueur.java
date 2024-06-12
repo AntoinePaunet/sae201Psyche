@@ -59,6 +59,16 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 			}
 		} );
 
+		toucheAction(this, KeyStroke.getKeyStroke("ESCAPE"), "Fermer (Echap)", new AbstractAction() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				btnAnnuler.doClick();
+			}
+		} );
+
+
 	}
 	/**
 	 * Renvoie le texte entré dans le textField numéro 1
