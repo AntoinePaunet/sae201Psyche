@@ -47,28 +47,34 @@ public class PanelCarte extends JPanel
 
 		this.g2 = (Graphics2D) g;
 
-		String nomP1 = "P1" , nomP2 = "P2";
 
-		int x1 = this.ctrl.getTabSommet().get(0).getX(), y1 = this.ctrl.getTabSommet().get(0).getY();
-		int x2 = ctrl.getTabSommet().get(1).getX(), y2 = ctrl.getTabSommet().get(1).getY();
-
-		int adjCercle = this.RAYON / 2 ;
-		// Dessiner l'ensemble des figures
 		this.g2.setStroke (new BasicStroke (2.0f));
-
+		int adjCercle = this.RAYON / 2 ;
 		this.g2.setColor( new Color(000060) );
 
-		this.g2.drawOval( x1 , y1 , this.RAYON, this.RAYON );
-		this.g2.drawOval( x2 , y2 , this.RAYON, this.RAYON );
 
-		this.g2.fillOval( x1 , y1 , this.RAYON, this.RAYON );
-		this.g2.fillOval( x2 , y2 , this.RAYON, this.RAYON );
+		for(Sommet s : ctrl.getTabSommet())
+		{
+			int x = s.getX();
+			int y = s.getY();
 
+			this.g2.setStroke (new BasicStroke (2.0f));
 
-		this.g2.drawLine(x1 + adjCercle, y1 + adjCercle, x2 + adjCercle, y2 + adjCercle);
+			this.g2.setColor( new Color(000060) );
 
-		this.g2.drawString( nomP1, x1-10, y1-5 );
-		this.g2.drawString( nomP2, x2-10, y2-5 );
+			this.g2.drawOval( x , y , this.RAYON, this.RAYON );
+			this.g2.fillOval( x , y , this.RAYON, this.RAYON );
+
+			this.g2.drawString( s.getNumSom() + s.getNomCoul(), x-10, y-5 );
+		}
+
+		for(Route r : ctrl.getTabRoute())
+		{
+			int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
+			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
+
+			this.g2.drawLine(x1 + adjCercle, y1 + adjCercle, x2 + adjCercle, y2 + adjCercle);
+		}
 	}
 
 
@@ -83,7 +89,6 @@ public class PanelCarte extends JPanel
 
 		public void mousePressed( MouseEvent e)
 		{
-
 			for(Route r : ctrl.getTabRoute())
 			{
 				this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
@@ -91,7 +96,7 @@ public class PanelCarte extends JPanel
 
 				if(isNearLine(e.getPoint()))
 				{
-					System.out.println(r);
+					ctrl.jouer(r);
 				}
 			}
 		}

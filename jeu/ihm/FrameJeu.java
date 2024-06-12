@@ -41,11 +41,27 @@ public class FrameJeu extends JFrame
 
 
 		// Gestion de la fermeture de la fenêtre
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Ne ferme pas automatiquement
+
+		// Ajoute un WindowAdapter pour écouter les événements de fenêtre
+		this.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent e)
+			{
+				try {
+					ctrl.sauvegarde();
+				} catch (IOException ex) {
+					throw new RuntimeException(ex);
+				}
+			}
+		});
+
+		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		this.setVisible(true);
-
-
 	}
 
 /*

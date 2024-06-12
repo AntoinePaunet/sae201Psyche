@@ -74,7 +74,7 @@ public class Controleur
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
-					if (r.getSommetArr().getMateriaux()!=null)
+					if (r.getSommetArr().getMateriaux()!=nul l)
 						this.j1.addSommetRecup(r.getSommetArr());
 					
 					this.tourJ1= !this.tourJ1;
@@ -106,9 +106,9 @@ public class Controleur
 		int rndm;
 		Materiaux tmpMat;
 
-		String[] 	tabNomSeg = new String[] {"J1", "J5", "J2", "J3", "J4", "B2", "B3", "B4", "B6", "B8", "G0", "G1", "G2", "G3", "G4", "V2", "V3", "V4", "V6", "V8", "R1", "R2", "R3", "R4", "R5", "M1", "M2", "M3", "M4", "M5"};
-		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394,	 251,  336,	 414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
-		int[] 		tabCooY    = new int[]    { 92,  111,  187,  175,	 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
+		String[] 	tabNomSeg = new String[] {"V4", "V8", "V2", "V3", "V6", "B6", "B8", "R5", "R3", "R1", "G2", "B3", "B4", "B2", "G4", "J3", "R4", "R2", "M2", "G0", "J1", "J4", "M5", "M3", "M4", "M1", "G3", "G1", "J5", "J2"};
+		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394, 251,  336,  414,  104,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
+		int[] 		tabCooY    = new int[]    {  92,  111,  187,  175, 239,  284,  270,  322,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
 
 		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AG", "CO", "NI", "PT" };
@@ -292,29 +292,29 @@ public class Controleur
 		while (sc.hasNextLine())
 			donnesFichier += sc.nextLine() + "\n";
 
-		if (!donnesFichier.contains(numSmt+"")) // Vérification de doubles dans le fichier texte
+		String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[SOMMET]"),
+				donnesFichier.indexOf("\n["));
+		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
+
+		if(!(materiaux == null))
+			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\n\n") + donneesRoutes;
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+
+		try
 		{
-			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[SOMMET]"),
-					donnesFichier.indexOf("\n["));
-			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
-
-			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\t" + "\n\n") + donneesRoutes;
-
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
-
-			try {
-				this.tabSommet.add(new Sommet(numSmt, nomCoul, x, y, materiaux, estDepart)); // creation de la ville
-				writer.write(donnesFichier);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			writer.close();
+			writer.write(donnesFichier);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		writer.close();
+
 		sc.close();
 	}
 
-	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException {
+	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException
+	{
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
@@ -327,8 +327,8 @@ public class Controleur
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
-		try {
-			this.tabRoute.add(new Route(smtA, smtB, nbTroncons));
+		try
+		{
 			writer.write(donnesFichier);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -340,17 +340,10 @@ public class Controleur
 
 
 
-
-
-
-
-
-
 	public Sommet rechercheSommet(String numSmt)
 	{
 		for (Sommet s : this.tabSommet)
 		{
-
 			if (s.getNumSom() == Integer.parseInt(numSmt))
 				return s;
 		}
@@ -358,6 +351,18 @@ public class Controleur
 	}
 
 
+	public void sauvegarde() throws IOException
+	{
+		for(Route r : this.tabRoute)
+		{
+			this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons());
+		}
+
+		for(Sommet s : this.tabSommet)
+		{
+			this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false);
+		}
+	}
 
 
 
