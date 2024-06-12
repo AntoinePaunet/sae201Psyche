@@ -108,11 +108,11 @@ public class FrameModification extends JFrame implements ActionListener
 	}
 
 	public PanelCarte getPanelCarte () {return this.panelC;}
-/* 
+
 	public static void main (String[]args) throws IOException
 	{
 		Controleur ctrl = new Controleur(); 
 		new FrameModification(ctrl);
 	}
-*/
+
 }
