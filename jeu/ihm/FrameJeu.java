@@ -59,6 +59,8 @@ public class FrameJeu extends JFrame
 			}
 		});
 
+		// Gestion de la fermeture de la fenêtre
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 
