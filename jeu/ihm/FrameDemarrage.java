@@ -48,7 +48,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.panelBoutons = new PanelBoutons();
 
 		// Création et ajout de la barre de menu
-		JMenuBar  menuBar  = new JMenuBar(       );
+		JMenuBar  menuBar  = new JMenuBar(         );
 		JMenu menuOuvrir   = new JMenu("Ouvrir"  );
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
