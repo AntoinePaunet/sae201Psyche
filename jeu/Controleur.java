@@ -564,6 +564,34 @@ public class Controleur
 			 
 	}
 
+	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart ) 
+	{ 
+		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu) ;
+		boolean tempEstSup = false;
+
+		for ( Sommet rt : this.tabSommet )
+		{
+			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepard() == estDepart)
+			{
+				System.out.println("sup");
+				this.tabSommet.remove(rt);
+				tempEstSup = true;
+				break;
+			}
+		}
+		if ( !tempEstSup )
+		{
+			System.out.println("add");
+			this.tabSommet.add( tempSommet );
+			
+		}
+		else
+		{
+			//System.out.println("ok");
+		}
+			 
+	}
+
 	/**
 	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
 	 * @return vrai si c'est au tour du joueur 1, faux si c'et au tour du joueur 2.
