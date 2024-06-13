@@ -68,7 +68,10 @@ public class Controleur
 
 	}
 
-
+	/**
+	 * Renvoie la liste des sommets de la carte
+	 * @return La liste des sommets
+	 */
 	public ArrayList<Sommet> getTabSommet() 
 	{ 
 		ArrayList<Sommet> tempSommet = new ArrayList<Sommet>();
@@ -79,6 +82,10 @@ public class Controleur
 		return tempSommet;
 	}
 
+	/**
+	 * Renvoie la liste des routes de la catre
+	 * @return La liste des routes
+	 */
 	public ArrayList<Route> getTabRoute() 
 	{ 
 		ArrayList<Route> tempRoute = new ArrayList<Route>();
@@ -89,6 +96,10 @@ public class Controleur
 		return tempRoute;
 	}
 
+	/**
+	 * Renvoie la liste des routes
+	 * @param r String contenu dans txtJoueur2.getText()
+	 */
 	public void jouer (Route r)
 	{
 		
@@ -113,7 +124,6 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, 0, null)
 				}
 			}
 			else
