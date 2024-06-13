@@ -82,6 +82,11 @@ public class Controleur
 		return tempSommet;
 	}
 
+	public FrameDemarrage getFrameDemarrage()
+	{
+		return this.frameDemarrage;
+	}
+
 	/**
 	 * Renvoie la liste des routes de la catre
 	 * @return La liste des routes
@@ -124,6 +129,7 @@ public class Controleur
 					
 					this.tourJ1= !this.tourJ1;
 					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, 0, null);
+					this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 				}
 			}
 			else
