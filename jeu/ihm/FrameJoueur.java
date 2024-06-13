@@ -26,6 +26,9 @@ public class FrameJoueur extends JFrame
 	/**
 	 * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
 	 * Contient tout les éléments graphiques
+	 * @param nomJoueur le nom du joueur a qui appartient la frame
+	 * @param j le numéro correspondant au joueur
+	 * @param ctrl le Controleur qui lance la frame
 	 */
 	public FrameJoueur(String nomJoueur, int j, Controleur ctrl)
 	{
@@ -58,6 +61,13 @@ public class FrameJoueur extends JFrame
 		this.setVisible(true);
 	}
 
+	/**
+	 * Méthode qui met a jour le nom de la frame des joueurs en fonction de leur tour de jouer.
+	 * @param nomJoueur le nom du joueur a qui appartient la frame
+	 * @param j le numéro correspondant au joueur
+	 * @param ctrl le Controleur qui lance la frame
+	 * @return Le titre de la frame
+	 */
 	public String majTitre( String nomJoueur , int j , Controleur ctrl )
 	{
 		String s = nomJoueur + " : ";
