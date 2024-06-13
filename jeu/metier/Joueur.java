@@ -100,11 +100,20 @@ public class Joueur
 		return this.tabPlateau;
 	}
 
+	/**
+	 * Renvoie le tableau de pieces du joueur.
+	 * @return le tableau de pieces du joueur
+	 */
 	public Materiaux[] getTabPiece()
 	{
 		return this.tabPiece;
 	}
 
+	/**
+	 * Méthode qui ajoute un matériau au joueur.
+	 * @param m le matériau a ajouter
+	 * @return vrai si l'action a été effectuée, faux sinon.
+	 */
 	public boolean ajouterPiece(Materiaux m)
 	{
 		for (int i=0; i<this.tabPiece.length; i++)
@@ -118,31 +127,45 @@ public class Joueur
 		return false;
 	}
 
-
+	/**
+	 * Méthode qui permet au joueur de récupérer un sommet. Il déclenche aussi la méthode d'ajout de matériau au joueur.
+	 * @param s le sommet a récupérer
+	 */
 	public void addSommetRecup (Sommet s)
 	{
 		this.tabSommetRecup.add(s);
 		this.ajouterMateriaux(s.prendreMateriaux());
 	}
 
-	//Ajouter des jetons
+	/**
+	 * Méthode qui permet de donner des JetonPossession au joueur.
+	 * @param j le jeton a ajouter
+	 */
 	public void addJetonPossession(JetonPossession j)
 	{
 		this.tabJetonPossession.add(j);
 	}
 
-	//récupérer les jetons
+	/**
+	 * Renvoie les JetonPossession du joueur.
+	 * @return les JetonPossession du joueur
+	 */
 	public ArrayList<JetonPossession> getTabJetonPossession ()
 	{
 		return this.tabJetonPossession;
 	}
 
-	//enlever les jetons
+	/**
+	 * Méthode qui enleve un JetonPossession du joueur afin de simuler son utilisation.
+	 */
 	public void enleverJetonsPossession ()
 	{
 		this.tabJetonPossession.remove(0);
 	}
 
+	/**
+	 * Méthode qui calcule le score du joueur.
+	 */
 	public void score()
 	{
 		int[] scoresCol = {20,10,0,2           };
@@ -208,6 +231,10 @@ public class Joueur
 
 	}
 
+	/**
+	 * Renvoie le nom du Joueur sous forme texte.
+	 * @return le nom du Joueur
+	 */
 	public String toString ()
 	{
 		return this.nomJoueur;
