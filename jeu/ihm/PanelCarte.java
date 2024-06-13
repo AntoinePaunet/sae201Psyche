@@ -85,6 +85,15 @@ public class PanelCarte extends JPanel
 				this.g2.drawOval( x , y , this.RAYON, this.RAYON );
 				this.g2.fillOval( x , y , this.RAYON, this.RAYON );
 
+				if (s.getMateriaux()!=null)
+				{
+					this.g2.setColor( new Color(255, 87, 51) );
+					this.g2.drawOval( x+5 , y+5 , this.RAYON/2, this.RAYON/2 );
+					this.g2.fillOval( x+5 , y+5 , this.RAYON/2, this.RAYON/2 );
+					this.g2.setColor( new Color(000060) );
+				}
+				
+
 				this.g2.drawString( s.getNumSom() + s.getNomCoul(), x-10, y-5 );
 			}
 		}
@@ -96,18 +105,15 @@ public class PanelCarte extends JPanel
 
 			int vec1, vec2;
 
-			if (x1<x2){vec1 = 15;}
-			else vec1= -15;
-
-			if (y1<y2){vec2 = 15;}
-			else vec2= -15;
-
+			vec1=0;
+			vec2=0;
+			
 			this.g2.drawLine(x1 + adjCercle+ vec1, y1 + adjCercle + vec2 , x2 + adjCercle + -vec1, y2 + adjCercle + -vec2);
 
-			this.g2.drawOval(x1 + adjCercle+ vec1 -5 , y1 + adjCercle -5 + vec2 , 10,10);
+			/*this.g2.drawOval(x1 + adjCercle+ vec1 -5 , y1 + adjCercle -5 + vec2 , 10,10);
 			this.g2.fillOval(x1 + adjCercle+ vec1 -5 , y1 + adjCercle -5 + vec2 , 10,10);
 			this.g2.drawOval(x2 + adjCercle -5 + -vec1, y2 + adjCercle -5+ -vec2,  10,10);
-			this.g2.fillOval(x2 + adjCercle -5 + -vec1, y2 + adjCercle -5+ -vec2,  10,10);
+			this.g2.fillOval(x2 + adjCercle -5 + -vec1, y2 + adjCercle -5+ -vec2,  10,10);*/
 
 			if (r.getNbTroncons()==2)
 			{
@@ -247,7 +253,7 @@ public class PanelCarte extends JPanel
 		private boolean isNearLine(Point p)
 		{
 			double distance = distanceARoute(p, ptSmt1, ptSmt2);
-			return distance <= 20; //5px de tolérance
+			return distance <= 15; //5px de tolérance
 		}
 
 	/**

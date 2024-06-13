@@ -1,4 +1,0 @@
-[SOMMET]
-4	Vert	336	92	AU	false
-
-[ROUTES]

@@ -128,13 +128,14 @@ public class PanelRoutes extends JPanel implements ActionListener {
         String[][] data = new String[lstRoute.size()][3];
 
         // nom des colonnes
-        String[] columnNames = { "SommetDep", "SommetArr", "nbTroncons" };
-
-        for (int lig = 0; lig < (lstRoute).size(); lig++) {
-
-            data[lig][0] = (lstRoute.get(lig)).getSommetDep().getNumSom() + "";
-            data[lig][1] = (lstRoute.get(lig)).getSommetArr().getNumSom() + "";
-            data[lig][2] = (lstRoute.get(lig)).getNbTroncons() + "";
+        String[] columnNames = {"SommetDep", "SommetArr", "nbTroncons"};
+        
+        for ( int lig = 0; lig < ( lstRoute ).size(); lig++ )
+        {
+            
+            data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getNumSom() + "";
+            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getNumSom() + "";
+            data[ lig ][ 2 ] = ( lstRoute.get( lig ) ).getNbTroncons() + ""  ;
 
         }
 

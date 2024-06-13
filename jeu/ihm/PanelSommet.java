@@ -148,7 +148,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 	 * Réalise une action lorsqu'un bouton ou le tableau est appuyé
 	 * @param e est un événement lié à un composant du panel
 	 */
-	public void actionPerformed( ActionEvent e )
+	public void actionPerformed( ActionEvent e ) 
 	{
 		int idVille    =0;
 		String nomVile =null;
@@ -168,10 +168,12 @@ public class PanelSommet extends JPanel  implements ActionListener
 			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
 			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
 		}
-		else if ( !(this.txtNomCouleur.getText().isEmpty() ||
-                    this.txtNumero.getText().isEmpty()     ||  
-                    this.txtX.getText().isEmpty()          ||
-                    this.txtY.getText().isEmpty() 
+		else if ( !((
+						this.txtNomCouleur.getText().isBlank() ||
+						this.txtNumero.getText().isBlank()     ||
+						this.txtX.getText().isBlank()          ||
+						this.txtY.getText().isBlank()         )&&
+						selectedRowIndex == -1
 					)
 				)
 		{
@@ -186,36 +188,37 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 		if (e.getSource() == this.btnAjouterSommet)
 		{
-			try
+			if ((
+				 this.txtNomCouleur.getText().isBlank() ||
+				 this.txtNumero.getText().isBlank()     ||
+				 this.txtX.getText().isBlank()          ||
+				 this.txtY.getText().isBlank()         )&&
+				 selectedRowIndex == -1
+
+			   )
 			{
-				if ( this.txtNomCouleur.getText().isBlank() ||
-					 this.txtNumero.getText().isBlank()     ||
-					 this.txtX.getText().isBlank()          ||
-					 this.txtY.getText().isBlank()            )
-				{
-					this.lblErreur.setText("<html> Tous les champs  <br> ne sont pas complétés. </html>");
-				}
-				else
-				{
-					this.lblErreur.setText("");
-
-					this.ctrl.ecrireSommet(Integer.parseInt(this.txtNumero.getText()), this.txtNomCouleur.getText(),
-					Integer.parseInt(this.txtX.getText()), Integer.parseInt(this.txtY.getText()),
-					new Materiaux("AU"), false);
-					System.out.println("sommet ajouté normalement");
-
-					DefaultTableModel model = (DefaultTableModel) table.getModel();
-					model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
-
-					this.ctrl.MajFrameModification();
-					
-				}
-					
+				this.lblErreur.setText("<html> Tous les champs  <br> ne sont pas complétés. </html>");
 			}
-			catch (IOException ex)
+			else
 			{
-				System.out.println("Erreur dans le catch");
-				JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+				this.lblErreur.setText("");
+				
+				System.out.println(idVille + " " + nomVile + " " + x + " " + y + " " + false);
+
+				this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
+				
+				System.out.println("sommet ajouté ou suppresion du sommet effectué ");
+
+				
+				// DefaultTableModel model = (DefaultTableModel) table.getModel();
+				// model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
+				this.ctrl.MajFrameModification();
+
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
+
+				this.ctrl.MajFrameModification();
+				
 			}
 			
 			

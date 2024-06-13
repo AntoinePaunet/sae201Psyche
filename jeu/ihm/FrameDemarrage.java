@@ -130,7 +130,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
 				try {
-					this.ctrl.lectureFichier(cheminFichier);
+					this.ctrl.getEditionFichier().lectureFichier(cheminFichier);
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}

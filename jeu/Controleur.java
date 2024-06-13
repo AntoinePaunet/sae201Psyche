@@ -22,13 +22,15 @@ public class Controleur
 {
 	private Joueur j1;
 	private Joueur j2;
-	private ArrayList<Sommet> 	tabSommet;
-	private ArrayList<Route>	tabRoute;
+	protected ArrayList<Sommet> 	tabSommet;
+	protected ArrayList<Route>	tabRoute;
 	private boolean             estJeu;
 
 	private boolean tourJ1;
 	private boolean finPartie;
 	public  FrameDemarrage frameDemarrage;
+
+	private EditionFichier editionFichier;
 
 	/**
 	 * Constructeur du controleur
@@ -37,16 +39,26 @@ public class Controleur
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
-		this.tabSommet 		= new ArrayList<>(30);
-		this.tabRoute		= new ArrayList<>(60);
+		this.editionFichier = new EditionFichier(this);
+		this.tabSommet 		= this.editionFichier.getTabSommet();
+		this.tabRoute		= this.editionFichier.getTabRoute();
 		this.tourJ1 = true;
 		this.finPartie = false;
 		this.estJeu = false;
 
-		this.init();
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
-		this.lectureFichier(null);
+		this.editionFichier.lectureFichier("data.txt");
+	}
+
+	public void setTabSommet(ArrayList<Sommet> tabSmt)
+	{
+		this.tabSommet = tabSmt;
+	}
+
+	public void setTabRoute(ArrayList<Route> tabRt)
+	{
+		this.tabRoute = tabRt;
 	}
 
 	/**
@@ -55,6 +67,11 @@ public class Controleur
 	 */
 	public boolean getEstJeu() { return estJeu; }
 
+
+	public EditionFichier getEditionFichier()
+	{
+		return this.editionFichier;
+	}
 	/**
 	 * A completer.
 	 * @param estJeu le Jeu
@@ -72,7 +89,7 @@ public class Controleur
 		if (r.getJoueur()!=null) {return false;}
 
 		//verifie si l'un des deux sommet deja pris ou non
-		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
+		if (r.getSommetDep().getMateriaux()==null || r.getsommetArr().getMateriaux()==null)
 			return true ;
 
 		return false ;
@@ -139,7 +156,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, 0, null);
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, this.j1, null);
 					
 				}
 			}
@@ -153,13 +170,14 @@ public class Controleur
 						this.j2.addSommetRecup(r.getSommetDep());
 					
 					if (r.getSommetArr().getMateriaux()!=null)
-						this.j2.addSommetRecup(r.getSommetArr());
+						this.j2.addSommetRecup(r.getsommetArr());
 
 					this.j2.utiliserUnJetons();
 					
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, this.j2, null);
 					this.tourJ1= !this.tourJ1;
 				}
 			}
@@ -171,7 +189,7 @@ public class Controleur
 	/**
 	 * Méthode qui initialise le jeu. Elle met donc en place la carte, ses chemins et ses sommets.
 	 */
-	private void init()
+	public void init() throws IOException
 	{
 		String tmpCoul = "";
 		int    tmpZone = -1;
@@ -232,11 +250,12 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(4), this.tabSommet.get(2), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(4), this.tabSommet.get(5), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(5), this.tabSommet.get(2), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(5), this.tabSommet.get(6), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(6), this.tabSommet.get(3), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(7), this.tabSommet.get(4), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(7), this.tabSommet.get(8), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(8), this.tabSommet.get(4), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(9), this.tabSommet.get(6), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(9), this.tabSommet.get(5), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(9), this.tabSommet.get(8), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(10), this.tabSommet.get(13), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(11), this.tabSommet.get(9), 1));
@@ -273,7 +292,7 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(28), this.tabSommet.get(20), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(21), 2));
 
-
+		this.editionFichier.sauvegarde();
 	}
 
 	/**
@@ -308,211 +327,6 @@ public class Controleur
 		return this.j2;
 	}
 
-	/**
-	 * Méthode qui initialise un writer afin d'écrire la carte dans un fichier.
-	 * @param ficher le fichier dans lequel le writer va écrire
-	 */
-	public void initFicher(File fichier)
-	{
-		try( BufferedWriter writer = new BufferedWriter( new FileWriter(fichier) ) )
-		{
-			writer.write("[SOMMET]\n\n[ROUTES]\n");
-			//System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
-		}
-		catch( IOException e ) {}
-	}
-
-	/**
-	 * Méthode qui initialise un lecteur de fichierafin d'y lire la carte du jeu.
-	 * @param nomFichier le fichier dans lequel le writer va lire
-	 */
-	public void lectureFichier(String nomFichier) throws IOException
-	{
-		File fichier;
-
-		if (nomFichier == null)
-		{
-			nomFichier = "data.txt";
-			fichier = new File(nomFichier);
-			fichier.createNewFile();
-			this.initFicher(fichier);
-			return;
-		}
-		fichier = new File(nomFichier);
-		
-
-		try
-		{
-			//System.out.println(nomFichier);
-			FileReader fr = new FileReader(fichier);
-			Scanner sc = new Scanner(fr);
-
-			// Vider les tableaux pour ne pas refaire trop de variables
-			tabSommet = new ArrayList<Sommet>(tabSommet.size());
-			tabRoute  = new ArrayList<Route>(tabRoute.size());
-
-			int etapeLecture = 0;
-
-			while (sc.hasNextLine())
-			{
-				String ligne = sc.nextLine();
-
-				if (!ligne.isEmpty())
-				{
-					if (ligne.equals("[SOMMET]"))
-					{
-						etapeLecture = 1;
-						if (sc.hasNextLine())
-							ligne = sc.nextLine();
-
-					}
-					else if (ligne.equals("[ROUTES]"))
-					{
-						etapeLecture = 2;
-						if (sc.hasNextLine())
-						{
-							ligne = sc.nextLine();
-						}
-					}
-
-					if (etapeLecture == 1 && !ligne.equals("[SOMMET]"))
-					{
-						if (!ligne.isEmpty())
-						{
-							lireSommet(ligne);
-							//System.out.println(ligne);
-						}
-					}
-					if (etapeLecture == 2)
-					{
-						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]"))
-						{
-							lireRoute(ligne);
-							//System.out.println(ligne);
-						}
-					}
-
-				}
-			}
-			sc.close();
-			fr.close();
-		}
-		catch( Exception exp ) { exp.printStackTrace();	}
-
-		//System.out.println("Nb sommet " + tabSommet);
-	}
-
-	/**
-	 * Méthode qui crée et ajoute un sommet dans la liste des sommets a partir d'une ligne d'un fichier texte.
-	 * @param ligne la ligne où se trouve les données du sommet
-	 */
-	public void lireSommet(String ligne)
-	{
-		String[] smtInfo = ligne.split("\t");
-
-		int num = Integer.parseInt(smtInfo[0]);
-		String nom = smtInfo[1];
-		int x = Integer.parseInt(smtInfo[2]);
-		int y = Integer.parseInt(smtInfo[3]);
-		String nomMat = smtInfo[4];
-
-		this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false));
-	}
-
-	/**
-	 * Méthode qui crée et ajoute une route dans la liste des routes a partir d'une ligne d'un fichier texte.
-	 * @param ligne la ligne où se trouve les données de la route
-	 */
-	public void lireRoute(String ligne)
-	{
-		String[] routeInfo = ligne.split("\t");
-
-		int nbTroncon = Integer.parseInt(routeInfo[2]);
-
-		Sommet smtA = this.rechercheSommet(routeInfo[0]);
-		Sommet smtB = this.rechercheSommet(routeInfo[1]);
-
-		if (smtA != null && smtB != null) // Si la ville recherché n'existe plus
-		{
-			Route r = new Route(smtA, smtB, nbTroncon);
-
-			this.tabRoute.add(r);
-			smtA.addRoute(r);
-			smtB.addRoute(r);
-		}
-	}
-
-
-	/**
-	 * Méthode qui écrit et ajoute un sommet dans le fichier texte corrspondant à la carte.
-	 * @param numSmt le numéro du sommet
-	 * @param nomCoul la couleur du sommet
-	 * @param x l'abcisse du sommet sur la carte
-	 * @param y l'ordonnée du sommet sur la carte
-	 * @param materiaux la ressource se trouvant sur le sommet
-	 * @param estDepart si le sommet est celui sur lequel les jouers commencent
-	 */
-	public void ecrireSommet(int numSmt, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart) throws IOException
-	{
-		FileReader fr = new FileReader("data.txt");
-		Scanner sc = new Scanner(fr);
-
-		String donnesFichier = "";
-
-		while (sc.hasNextLine())
-			donnesFichier += sc.nextLine() + "\n";
-
-		String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[SOMMET]"),
-				donnesFichier.indexOf("\n["));
-		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
-
-		if(!(materiaux == null))
-			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\n\n") + donneesRoutes;
-
-		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
-
-		try
-		{
-			writer.write(donnesFichier);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		writer.close();
-
-		sc.close();
-	}
-
-	/**
-	 * Méthode qui écrit et ajoute une route dans le fichier texte corrspondant à la carte.
-	 * @param smtA le sommet de départ de la route
-	 * @param smtB le sommet d'arrivée de la route
-	 * @param nbTroncons le nombre de troncons de la route
-	 */
-	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException
-	{
-		FileReader fr = new FileReader("data.txt");
-		Scanner sc = new Scanner(fr);
-
-		String donnesFichier = "";
-
-		while (sc.hasNextLine())
-			donnesFichier += sc.nextLine() + "\n";
-
-		donnesFichier += (nbTroncons + "\t" + smtA.getNumSom() + "\t" + smtB.getNumSom() + "\n");
-
-		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
-
-		try
-		{
-			writer.write(donnesFichier);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		writer.close();
-		sc.close();
-	}
 
 	/**
 	 * Méthode qui recherche un sommet dans la liste de sommets a partir de son numéro.
@@ -523,27 +337,13 @@ public class Controleur
 	{
 		for (Sommet s : this.tabSommet)
 		{
-			if (s.getNumSom() == Integer.parseInt(numSmt))
+			if (s.getNumSom() == Integer.parseInt(numSmt.substring(0, 1)) && s.getNomCoul().equals(numSmt.substring(1)))
 				return s;
 		}
 		return null;
 	}
 
-	/**
-	 * Méthode qui sauvagarde les modifications apportées au ficher texte en appelant les méthodes d'écriture.
-	 */
-	public void sauvegarde() throws IOException
-	{
-		for(Route r : this.tabRoute)
-		{
-			this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons());
-		}
 
-		for(Sommet s : this.tabSommet)
-		{
-			this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false);
-		}
-	}
 
 	/**
 	 * Méthode qui appelle la méthode de mise a jour de la carte.
@@ -572,15 +372,8 @@ public class Controleur
 		}
 		if ( !tempEstSup )
 		{
-			//System.out.println("add");
 			this.tabRoute.add( tempRoute );
-			
 		}
-		else
-		{
-			//System.out.println("ok");
-		}
-			 
 	}
 
 	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart ) 
@@ -592,7 +385,6 @@ public class Controleur
 		{
 			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepard() == estDepart)
 			{
-				System.out.println("sup");
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;
@@ -600,15 +392,8 @@ public class Controleur
 		}
 		if ( !tempEstSup )
 		{
-			System.out.println("add");
 			this.tabSommet.add( tempSommet );
-			
 		}
-		else
-		{
-			//System.out.println("ok");
-		}
-			 
 	}
 
 	/**
@@ -636,6 +421,12 @@ public class Controleur
 		}
 			
 		return null;
+	}
+
+	public void supprimerTout()
+	{
+		this.tabSommet = new ArrayList<Sommet>(30);
+		this.tabRoute  = new ArrayList<Route>(40);
 	}
 
 	/**
