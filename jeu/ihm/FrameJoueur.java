@@ -92,7 +92,7 @@ public class FrameJoueur extends JFrame
 				}
 				x += 60;
 			}
-			x = 80;
+			x = 85;
 			y -= 80;
 		}
 
