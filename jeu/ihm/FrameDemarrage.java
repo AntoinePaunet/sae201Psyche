@@ -153,9 +153,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.frameChoix = new FrameChoix( this.ctrl );
 			this.ctrl.setEstJeu(true);
 		}
-			
 
-		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
 		{
@@ -168,7 +166,14 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			System.exit(0);
 	}
 
+	/**
+	 * Constructeur du panel contenant les boutons Jouer et Modifier
+	 */
 	public FrameChoix getFrameChoix(){return this.frameChoix;}
+
+	/**
+	 * Constructeur du panel contenant les boutons Jouer et Modifier
+	 */
 	public FrameModification getFrameModification(){return this.frameModification;}
 
 	public class PanelBoutons extends JPanel 

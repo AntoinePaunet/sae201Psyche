@@ -112,12 +112,10 @@ public class FrameJoueur extends JFrame
 
 	}
 
-	
-
-
-    public char getNom() {
-		return nom;
-	}
+	/**
+	 * Constructeur du panel contenant les boutons Jouer et Modifier
+	 */
+    public char getNom() {return nom;}
 
 	/**
      * Permet d'ajouter des éléments dans l'interface graphique. Dans ce cas, il ajoute les images correspondantes aux Jetons sur le Plateau.
