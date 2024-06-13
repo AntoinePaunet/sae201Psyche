@@ -102,6 +102,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, 0, null)
 				}
 			}
 			else
@@ -476,6 +477,11 @@ public class Controleur
 			 
 	}
 
+	public boolean getTour()
+	{
+		return this.tourJ1;
+	}
+
 
 	public Sommet getSommet(int x, int y)
 	{
@@ -497,8 +503,6 @@ public class Controleur
 	public static void main (String[] arg) throws IOException
 	{
 		Controleur ctrl = new Controleur();
-
-		
 	}
 
 

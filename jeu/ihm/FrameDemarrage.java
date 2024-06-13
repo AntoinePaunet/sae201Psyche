@@ -115,10 +115,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			} 
 			catch (Exception i) 
 			{
+			/*
             // En cas d'erreur, imprimer le message d'erreur
-            //System.out.println(i.getMessage());
+            System.out.println(i.getMessage());
             // Utiliser le répertoire actuel par défaut
-        	
+			*/
 			}
 			fc.setCurrentDirectory(chooserFile);
 
@@ -157,7 +158,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		if( e.getSource() == this.panelBoutons.btnModifier )
 			this.frameModification = new FrameModification( this.ctrl ); 
 		
-
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
