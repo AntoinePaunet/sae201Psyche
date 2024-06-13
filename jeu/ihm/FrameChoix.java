@@ -49,8 +49,8 @@ public class FrameChoix extends JFrame
 	 */
 	public void creerFrameJoueur()
 	{
-		this.f1 = new FrameJoueur(this.panelChoixJoueur.getText1(), this.ctrl.getJoueur1(), this.ctrl);
-		this.f2 = new FrameJoueur(this.panelChoixJoueur.getText2(), this.ctrl.getJoueur2(), this.ctrl);
+		this.f1 = new FrameJoueur(this.ctrl.getJoueur1(), this.ctrl);
+		this.f2 = new FrameJoueur(this.ctrl.getJoueur2(), this.ctrl);
 		this.fJeu = new FrameJeu(this.ctrl);
 		this.dispose();
 		this.ctrl.frameDemarrage.dispose();

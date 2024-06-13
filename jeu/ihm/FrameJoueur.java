@@ -29,11 +29,11 @@ public class FrameJoueur extends JFrame
 	 * @param j le numéro correspondant au joueur
 	 * @param ctrl le Controleur qui lance la frame
 	 */
-	public FrameJoueur(String nomJoueur, Joueur j, Controleur ctrl)
+	public FrameJoueur(Joueur j, Controleur ctrl)
 	{
 		this.joueur = j;
 		this.ctrl = ctrl;
-		this.setTitle( this.majTitre(nomJoueur, j, ctrl) );
+		this.setTitle( this.majTitre(j, ctrl) );
 		this.setSize( 700 , 550 );
 		this.panelFond = new JLayeredPane();
 
@@ -68,17 +68,14 @@ public class FrameJoueur extends JFrame
 	 * @param ctrl le Controleur qui lance la frame
 	 * @return Le titre de la frame
 	 */
-	public String majTitre( String nomJoueur , Joueur j , Controleur ctrl )
+	public String majTitre( Joueur j , Controleur ctrl )
 	{
-		String s = nomJoueur + " : ";
+		String s = "";
 
-		if( this.ctrl.getTour() )
-		{
-			if( j == this.ctrl.getJoueur1() )
-				s += "A vous de jouer !";
-			else
-				s += "en attente de l'autre joueur ...";
-		}	s += "en attente de l'autre joueur ...";
+		if( ctrl.getTourJ(j) )
+			s += "A vous de jouer !";
+		else
+			s += "en attente de l'autre joueur ...";
 
 		s += "\tVotre score : " + String.valueOf(this.joueur.getScore()) ;
 		return s;
