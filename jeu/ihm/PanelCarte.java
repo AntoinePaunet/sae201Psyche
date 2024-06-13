@@ -24,7 +24,7 @@ import java.io.IOException;
  */
 public class PanelCarte extends JPanel
 {
-	private final int RAYON = 30;
+	private final int RAYON = 20;
 	private Graphics2D g2;
 	private Controleur ctrl;
 	private BufferedImage image;
@@ -111,6 +111,7 @@ public class PanelCarte extends JPanel
 
 		public void mousePressed( MouseEvent e)
 		{
+			
 			for(Route r : ctrl.getTabRoute())
 			{
 				this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
@@ -118,7 +119,8 @@ public class PanelCarte extends JPanel
 
 				if(isNearLine(e.getPoint()))
 				{
-					ctrl.jouer(r);
+					if (ctrl.getSommet( e.getX(), e.getY() )==null)
+						ctrl.jouer(r);
 				}
 			}
 
@@ -146,6 +148,11 @@ public class PanelCarte extends JPanel
 				// Rafréchire la frame
 				PanelCarte.this.repaint();
 			}
+		}
+
+		public void mouseRelease(MouseEvent e) 
+		{
+			this.sommetChoisi = null;
 		}
 
 
