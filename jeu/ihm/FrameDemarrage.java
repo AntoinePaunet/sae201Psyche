@@ -176,6 +176,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	 */
 	public FrameModification getFrameModification(){return this.frameModification;}
 
+	/**
+	 * Classe correspondant au panel contenant les Boutons Jouer et Modifier
+	 */
 	public class PanelBoutons extends JPanel 
 	{
 		private JPanel  panelBtnJouer, panelBtnModifier ;

@@ -55,11 +55,19 @@ public class FrameChoix extends JFrame
 		this.ctrl.frameDemarrage.dispose();
 	}
 
+	/**
+	 * Renvoie la frame du joueur n°1.
+	 * @return la frame du joueur 1
+	 */
 	public FrameJoueur getF1 ()
 	{
 		return this.f1;
 	}
 
+	/**
+	 * Renvoie la frame du joueur n°2.
+	 * @return la frame du joueur 2
+	 */
 	public FrameJoueur getF2 ()
 	{
 		return this.f2;
