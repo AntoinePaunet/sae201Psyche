@@ -18,6 +18,7 @@ public class FrameChoix extends JFrame
 {
 	private PanelChoixJoueur panelChoixJoueur;
 	private Controleur ctrl;
+	private FrameJeu   fJeu;
 
 	private FrameJoueur    f1, f2;
 
@@ -50,7 +51,7 @@ public class FrameChoix extends JFrame
 	{
 		this.f1 = new FrameJoueur(this.panelChoixJoueur.getText1(), 1, this.ctrl);
 		this.f2 = new FrameJoueur(this.panelChoixJoueur.getText2(), 2, this.ctrl);
-		new FrameJeu(this.ctrl);
+		this.fJeu = new FrameJeu(this.ctrl);
 		this.dispose();
 		this.ctrl.frameDemarrage.dispose();
 	}
@@ -72,6 +73,10 @@ public class FrameChoix extends JFrame
 	{
 		return this.f2;
 	}
+
+	public FrameJeu getFrameJeu(){return this.fJeu;}
+
+
 /*
 	public static void main( String[] args )
 	{

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Cette classe d'intansié les matériaux
+ * Cette classe représente les matériaux utilisés dans le jeu. Le terme exacte de matériau peut changer en fonction u thème utilisé dans le jeu.
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
@@ -20,18 +20,13 @@ public class Materiaux implements IRessource
 
 	public static int nbPiece;
 
-	//Permet de vérifier qu'on génère un minerais qui existe bel et bien.
+	//Permet de vérifier qu'on génère un matériau qui existe bel et bien.
 	public static final ArrayList<String> verif = new ArrayList<>(Arrays.asList("AU", "AG", "FE", "AL", "NI", "PT", "CO", "TI", "NR"));
 
-
-	/*
-	La classe matériaux permet de générer un nouveau minerai ou de la monnaie et permet ainsi de le positionner sur la
-	frame avec ses coordonnées.
-	@param String nom donne le nom scientifique du minerai / monnaie
-	@param int x donne la coordonnée x;
-	@param int y donne la coordonnée y;
+	/**
+	 * Constructeur de Matériau.
+	 * @param nom le nom du matériau
 	 */
-
 	public Materiaux(String nom)
 	{
 		if(!Materiaux.verif.contains(nom))
@@ -58,16 +53,28 @@ public class Materiaux implements IRessource
 		Materiaux.nbPiece++;
 	}
 
+	/**
+	 * Renvoie la couleur du matériau.
+	 * @return la couleur du matériau
+	 */
 	public Couleur getCouleur()
 	{
 		return this.couleur;
 	}
 
+	/**
+	 * Renvoie le nom du matériau.
+	 * @return le nom du matériau
+	 */
 	public String getNom()
 	{
 		return this.nom;
 	}
 
+	/**
+	 * Renvoie le nom du Matériau sous forme texte.
+	 * @return le nom du Matériau
+	 */
 	public String toString()
 	{
 		return this.nom;

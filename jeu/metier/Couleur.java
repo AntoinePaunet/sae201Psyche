@@ -2,7 +2,7 @@ package jeu.metier;
 import java.awt.*;
 
 /**
- * Cette classe permet d'insantcier les couleurs que nous avons besoin.
+ * Cette classe permet d'insantcier les couleurs dont nous avons besoin.
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
@@ -13,6 +13,7 @@ import java.awt.*;
 
 public enum Couleur
 {
+	DEBUT  ( 100, 100, 255 ),
 	JAUNE  ( 255, 255, 0   ),
 	MARRON  (165, 42 , 42  ),
 	VIOLET ( 255, 255, 255 ),
@@ -27,7 +28,6 @@ public enum Couleur
 
 	/**
 	 * Crée un objet de la classe Couleur avec les paramètres r v b
-	 *
 	 * @param r la part de rouge dans la Couleur.
 	 * @param v la part de vert  dans la Couleur.
 	 * @param b la part de bleu  dans la Couleur.
@@ -41,7 +41,6 @@ public enum Couleur
 
 	/**
 	 * Donne la couleur qui correspond à l'instance qui utilise cette méthode
-	 *
 	 * @return un objet de la class Couleur correspondant à l'instance.
 	 */
 	public Color getColor()
@@ -49,11 +48,8 @@ public enum Couleur
 		return new Color( this.r, this.v, this.b );
 	}
 
-
-
 	/**
 	 * Donne le nombre d'instance de Couleur
-	 *
 	 * @return l'entier correpondant au nombre d'instance de Couleur.
 	 */
 	public static int getNbCouleur()
@@ -63,8 +59,7 @@ public enum Couleur
 
 	/**
 	 * Donne une couleur selon un entier
-	 *
-	 * @return un objet de la classe Couleur, pas utilisé jusqu'a maintenant.
+	 * @return un objet de la classe Couleur.
 	 */
 	public static Couleur valueOf( int ordinal )
 	{
