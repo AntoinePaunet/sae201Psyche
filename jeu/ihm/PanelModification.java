@@ -10,20 +10,27 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.*;
 
+/**
+ * Cette classe créé le Panel contenant la carte de jeu.
+ * @author Antione Paunet,			IUT du Havre
+ * @author Mael Vauthier,			IUT du Havre
+ * @author Martin Ravenel,			IUT du Havre
+ * @author Fanch EVEN,				IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
+ * @version 1.0 , 2024-05-23
+ */
 public class PanelModification extends JPanel
 {
-	
 	private Controleur ctrl;
-	
 	private Graphics2D g2;
 
-	private char nom = 'M';
-
+	/**
+	 * Constructeur du Panel qui permet de modifier la carte.
+	 * @param ctrl le Controleur qui lance la frame
+	 */
 	public PanelModification(Controleur ctrl)
 	{
-	
-		this.ctrl = ctrl;		
-		
+		this.ctrl = ctrl;			
 	}
 
 	// public void actionPerformed(ActionEvent e)
@@ -31,7 +38,10 @@ public class PanelModification extends JPanel
 	// 	this.repaint();
 	// }
 	
-
+	/**
+	 * Méthode gêrant le dessin de la carte sur le panel.
+	 * @param g l'instance de Graphics2D utilisée
+	 */
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
@@ -126,8 +136,6 @@ public class PanelModification extends JPanel
 					this.g2.drawLine(x1+10, y1+10, x2+10, y2+10);
 					
 					g2.setStroke(new BasicStroke());
-
-
 				}
 			}
 			
@@ -138,21 +146,11 @@ public class PanelModification extends JPanel
 			{
 				sommet = this.ctrl.getTabSommet().get(cpt);
 				
-
 				this.g2.drawOval( sommet.getX(), sommet.getY(), 20, 20 );
 				this.g2.fillOval( sommet.getX(), sommet.getY(), 20, 20 );
 
 				this.g2.drawString( "Test", sommet.getX()-10, sommet.getY()-5 );
 			}
-
 		}
-
-	}
-
-	public char getNom() {
-		return nom;
-	}
- 
-	
-	
+	}	
 }

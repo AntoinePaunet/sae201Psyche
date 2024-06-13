@@ -49,13 +49,24 @@ public class Controleur
 		this.lectureFichier(null);
 	}
 
-	
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
+	public boolean getEstJeu() { return estJeu; }
 
-	public boolean getEstJeu()               {return estJeu;}
-	public void    setEstJeu(boolean estJeu) {this.estJeu = estJeu;}
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
+	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
 
 
-
+	/**
+	 * Méthode qui vérifie si la route est valide.
+	 * @param r la route concernée
+	 * @return La liste des sommets
+	 */
 	public boolean estValide(Route r)
 	{
 		if (r.getJoueur()!=null) {return false;}
@@ -561,6 +572,34 @@ public class Controleur
 		{
 			//System.out.println("add");
 			this.tabRoute.add( tempRoute );
+			
+		}
+		else
+		{
+			//System.out.println("ok");
+		}
+			 
+	}
+
+	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart ) 
+	{ 
+		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu) ;
+		boolean tempEstSup = false;
+
+		for ( Sommet rt : this.tabSommet )
+		{
+			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepard() == estDepart)
+			{
+				System.out.println("sup");
+				this.tabSommet.remove(rt);
+				tempEstSup = true;
+				break;
+			}
+		}
+		if ( !tempEstSup )
+		{
+			System.out.println("add");
+			this.tabSommet.add( tempSommet );
 			
 		}
 		else

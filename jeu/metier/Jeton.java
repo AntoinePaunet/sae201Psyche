@@ -13,16 +13,28 @@ public class Jeton
 {
 	private IRessource type;
 
+	/**
+	 * Constructeur de Jeton.
+	 * @param type le type du Jeton
+	 */
 	public Jeton(IRessource type)
 	{
 		this.type = type;
 	}
 
+	/**
+	 * Retourne le type du Jeton
+	 * @return le type du Jeton
+	 */
 	public IRessource getType()
 	{
 		return this.type;
 	}
 
+	/**
+	 * Renvoie sous forme texte les informations sur le jeton
+	 * @return les informations du jeton.
+	 */
 	public String toString()
 	{
 		String sRet = "";

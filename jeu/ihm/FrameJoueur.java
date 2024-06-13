@@ -24,8 +24,7 @@ public class FrameJoueur extends JFrame
 	private char nom = 'J';
 
 	/**
-	 * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
-	 * Contient tout les éléments graphiques
+	 * Constructeur de la Frame contenant le plateau du joueur correspondant
 	 * @param nomJoueur le nom du joueur a qui appartient la frame
 	 * @param j le numéro correspondant au joueur
 	 * @param ctrl le Controleur qui lance la frame
@@ -123,7 +122,8 @@ public class FrameJoueur extends JFrame
 	}
 
 	/**
-	 * Constructeur du panel contenant les boutons Jouer et Modifier
+	 * Renvoie le nom du Joueur
+	 * @return le caractere du joueur
 	 */
 	public char getNom() {return nom;}
 
