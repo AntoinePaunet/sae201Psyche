@@ -28,7 +28,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiScenario     ;
 	private JMenuItem     menuiQuitter      ;
 
-	private FrameChoix	      frameChoix       ;
+	private FrameChoix	      frameChoix;
 	private FrameModification frameModification;
 
 
@@ -48,7 +48,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.panelBoutons = new PanelBoutons();
 
 		// Création et ajout de la barre de menu
-		JMenuBar  menuBar  = new JMenuBar(       );
+		JMenuBar  menuBar  = new JMenuBar(         );
 		JMenu menuOuvrir   = new JMenu("Ouvrir"  );
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
@@ -75,9 +75,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		menuScenario.setMnemonic('S');
 		menuQuitter.setMnemonic('Q');
 
-		this.menuiOuvrir.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiOuvrir.setAccelerator   (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiScenario.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
-		this.menuiQuitter.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
+		this.menuiQuitter.setAccelerator  (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
 		// Activation des composants
 		this.menuiOuvrir        .addActionListener( this );
@@ -151,37 +151,51 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		if( e.getSource() == this.panelBoutons.btnJouer )
 		{
 			this.frameChoix = new FrameChoix( this.ctrl );
+			this.ctrl.setEstJeu(true);
 		}
-			
 
-		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
+		{
 			this.frameModification = new FrameModification( this.ctrl ); 
-		
+			this.ctrl.setEstJeu(false);
+		}
+
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
 	}
 
+	/**
+	 * Constructeur du panel contenant les boutons Jouer et Modifier
+	 */
 	public FrameChoix getFrameChoix(){return this.frameChoix;}
+
+	/**
+	 * Constructeur du panel contenant les boutons Jouer et Modifier
+	 */
 	public FrameModification getFrameModification(){return this.frameModification;}
 
-	public class PanelBoutons extends JPanel
+	/**
+	 * Classe correspondant au panel contenant les Boutons Jouer et Modifier
+	 */
+	public class PanelBoutons extends JPanel 
 	{
 		private JPanel  panelBtnJouer, panelBtnModifier ;
 		private JButton btnJouer, btnModifier           ;
 		private JLabel  lblTheme                        ;
 		private List    lstTheme                        ;
 
+	/**
+	 * Constructeur du panel contenant les boutons Jouer et Modifier
+	 */
 		public PanelBoutons()
 		{
 			this.setLayout(new GridLayout(4,1));
 
-			// création des composants;
+			// Création des composants;
 			this.panelBtnJouer    = new JPanel();
 			this.panelBtnModifier = new JPanel();
-
 
 			this.btnJouer    = new JButton("Jouer"             );
 			this.btnModifier = new JButton("Modifier une carte");
@@ -195,9 +209,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.add(this.panelBtnJouer   );
 			this.add(this.lblTheme        );
 			this.add(this.lstTheme        );
-
-			
-
 		}
 	}
 /*

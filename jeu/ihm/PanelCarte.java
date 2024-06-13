@@ -7,6 +7,8 @@ import jeu.metier.Sommet;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import jeu.ihm.PanelModification;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -40,9 +42,9 @@ public class PanelCarte extends JPanel
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
+		
 		this.ctrl = ctrl;
+
 		GereSouris gereSouris = new GereSouris();
 		
 		this.addMouseListener( gereSouris );
@@ -111,20 +113,27 @@ public class PanelCarte extends JPanel
 
 		public void mousePressed( MouseEvent e)
 		{
-			
-			for(Route r : ctrl.getTabRoute())
+		
+			if (  PanelCarte.this.ctrl.getEstJeu() == true )
 			{
-				this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
-				this.ptSmt2 = new Point(r.getSommetArr().getX(), r.getSommetArr().getY());
-
-				if(isNearLine(e.getPoint()))
+				for(Route r : ctrl.getTabRoute())
 				{
-					if (ctrl.getSommet( e.getX(), e.getY() )==null)
-						ctrl.jouer(r);
+					this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
+					this.ptSmt2 = new Point(r.getSommetArr().getX(), r.getSommetArr().getY());
+
+					if(isNearLine(e.getPoint()))
+					{
+						//if (ctrl.getSommet( e.getX(), e.getY() )==null)
+							ctrl.jouer(r);
+					}
 				}
 			}
+			
 
-			this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
+			System.out.println(PanelCarte.this.ctrl.getEstJeu());
+
+			if (  PanelCarte.this.ctrl.getEstJeu() == false )
+				this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
 			
 			if ( this.sommetChoisi != null )
 			{
@@ -138,8 +147,6 @@ public class PanelCarte extends JPanel
 		
 		public void mouseDragged( MouseEvent e )
 		{
-
-			//System.out.println( this.sommetChoisi  );
 
 			if ( this.sommetChoisi != null )
 			{	
@@ -159,7 +166,7 @@ public class PanelCarte extends JPanel
 		private boolean isNearLine(Point p) {
 			// Calculer la distance entre le point de clic et la ligne
 			double distance = distanceARoute(p, ptSmt1, ptSmt2);
-			return distance <= 25; //5px de tolérance
+			return distance <= 20; //5px de tolérance
 		}
 
 		// Calculer la distance entre un point et un segment de ligne
