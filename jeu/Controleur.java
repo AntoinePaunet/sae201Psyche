@@ -97,12 +97,11 @@ public class Controleur
 	}
 
 	/**
-	 * Renvoie la liste des routes
-	 * @param r String contenu dans txtJoueur2.getText()
+	 * Méthode qui vérifie si les règles du jeu sont respectées, et effectue les actions du joueurs.
+	 * @param r La route concernée
 	 */
 	public void jouer (Route r)
 	{
-		
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
@@ -149,7 +148,9 @@ public class Controleur
 		}
 	}
 
-
+	/**
+	 * Méthode qui initialise le jeu. Elle met donc en place la carte, ses chemins et ses sommets.
+	 */
 	private void init()
 	{
 		String tmpCoul = "";
@@ -255,27 +256,42 @@ public class Controleur
 
 	}
 
-
-
+	/**
+	 * Méthode qui affecte les JetonsPossessions des joueurs.
+	 */
 	private void initJetonPossession()
 	{
-		for (int i=0; i<25; i++)
+		final int NB_JETONS = 25;
+
+		for (int i=0; i<NB_JETONS; i++)
 		{
 			j1.addJetonPossession(new JetonPossession(j1));
 			j2.addJetonPossession(new JetonPossession(j2));
 		}
 	}
 
+	/**
+	 * Renvoie le joueur n°1
+	 * @return le joueur 1
+	 */
 	public Joueur getJoueur1 ()
 	{
 		return this.j1;
 	}
 
+	/**
+	 * Renvoie le joueur n°1
+	 * @return le joueur 1
+	 */
 	public Joueur getJoueur2 ()
 	{
 		return this.j2;
 	}
 
+	/**
+	 * Méthode qui initialise un writer afin d'écrire la carte dans un fichier.
+	 * @param ficher le fichier dans lequel le writer va écrire
+	 */
 	public void initFicher(File fichier)
 	{
 		try( BufferedWriter writer = new BufferedWriter( new FileWriter(fichier) ) )
@@ -286,7 +302,10 @@ public class Controleur
 		catch( IOException e ) {}
 	}
 
-
+	/**
+	 * Méthode qui initialise un lecteur de fichierafin d'y lire la carte du jeu.
+	 * @param nomFichier le fichier dans lequel le writer va lire
+	 */
 	public void lectureFichier(String nomFichier) throws IOException
 	{
 		File fichier;
@@ -302,7 +321,8 @@ public class Controleur
 		fichier = new File(nomFichier);
 		
 
-		try {
+		try
+		{
 			//System.out.println(nomFichier);
 			FileReader fr = new FileReader(fichier);
 			Scanner sc = new Scanner(fr);
@@ -313,29 +333,40 @@ public class Controleur
 
 			int etapeLecture = 0;
 
-			while (sc.hasNextLine()) {
+			while (sc.hasNextLine())
+			{
 				String ligne = sc.nextLine();
 
-				if (!ligne.isEmpty()) {
-					if (ligne.equals("[SOMMET]")) {
+				if (!ligne.isEmpty())
+				{
+					if (ligne.equals("[SOMMET]"))
+					{
 						etapeLecture = 1;
 						if (sc.hasNextLine())
 							ligne = sc.nextLine();
 
-					} else if (ligne.equals("[ROUTES]")) {
+					}
+					else if (ligne.equals("[ROUTES]"))
+					{
 						etapeLecture = 2;
-						if (sc.hasNextLine()) {
+						if (sc.hasNextLine())
+						{
 							ligne = sc.nextLine();
 						}
 					}
-					if (etapeLecture == 1 && !ligne.equals("[SOMMET]")) {
-						if (!ligne.isEmpty()) {
+
+					if (etapeLecture == 1 && !ligne.equals("[SOMMET]"))
+					{
+						if (!ligne.isEmpty())
+						{
 							lireSommet(ligne);
 							//System.out.println(ligne);
 						}
 					}
-					if (etapeLecture == 2) {
-						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]")) {
+					if (etapeLecture == 2)
+					{
+						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]"))
+						{
 							lireRoute(ligne);
 							//System.out.println(ligne);
 						}
@@ -345,17 +376,18 @@ public class Controleur
 			}
 			sc.close();
 			fr.close();
-		} catch (Exception exp) {
-			exp.printStackTrace();
 		}
-
-
+		catch( Exception exp ) { exp.printStackTrace();	}
 
 		//System.out.println("Nb sommet " + tabSommet);
 	}
 
-
-	public void lireSommet(String ligne) {
+	/**
+	 * Méthode qui crée et ajoute un sommet dans la liste des sommets a partir d'une ligne d'un fichier texte.
+	 * @param ligne la ligne où se trouve les données du sommet
+	 */
+	public void lireSommet(String ligne)
+	{
 		String[] smtInfo = ligne.split("\t");
 
 		int num = Integer.parseInt(smtInfo[0]);
@@ -367,7 +399,12 @@ public class Controleur
 		this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false));
 	}
 
-	public void lireRoute(String ligne) {
+	/**
+	 * Méthode qui crée et ajoute une route dans la liste des routes a partir d'une ligne d'un fichier texte.
+	 * @param ligne la ligne où se trouve les données de la route
+	 */
+	public void lireRoute(String ligne)
+	{
 		String[] routeInfo = ligne.split("\t");
 
 		int nbTroncon = Integer.parseInt(routeInfo[2]);
@@ -386,7 +423,15 @@ public class Controleur
 	}
 
 
-
+	/**
+	 * Méthode qui écrit et ajoute un sommet dans le fichier texte corrspondant à la carte.
+	 * @param numSmt le numéro du sommet
+	 * @param nomCoul la couleur du sommet
+	 * @param x l'abcisse du sommet sur la carte
+	 * @param y l'ordonnée du sommet sur la carte
+	 * @param materiaux la ressource se trouvant sur le sommet
+	 * @param estDepart si le sommet est celui sur lequel les jouers commencent
+	 */
 	public void ecrireSommet(int numSmt, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart) throws IOException
 	{
 		FileReader fr = new FileReader("data.txt");
@@ -418,6 +463,12 @@ public class Controleur
 		sc.close();
 	}
 
+	/**
+	 * Méthode qui écrit et ajoute une route dans le fichier texte corrspondant à la carte.
+	 * @param smtA le sommet de départ de la route
+	 * @param smtB le sommet d'arrivée de la route
+	 * @param nbTroncons le nombre de troncons de la route
+	 */
 	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException
 	{
 		FileReader fr = new FileReader("data.txt");
@@ -443,8 +494,11 @@ public class Controleur
 		sc.close();
 	}
 
-
-
+	/**
+	 * Méthode qui recherche un sommet dans la liste de sommets a partir de son numéro.
+	 * @param numSmt le numéro du sommet
+	 * @return le sommet correspondant au numéro
+	 */
 	public Sommet rechercheSommet(String numSmt)
 	{
 		for (Sommet s : this.tabSommet)
@@ -455,7 +509,9 @@ public class Controleur
 		return null;
 	}
 
-
+	/**
+	 * Méthode qui sauvagarde les modifications apportées au ficher texte en appelant les méthodes d'écriture.
+	 */
 	public void sauvegarde() throws IOException
 	{
 		for(Route r : this.tabRoute)
@@ -469,11 +525,20 @@ public class Controleur
 		}
 	}
 
+	/**
+	 * Méthode qui appelle la méthode de mise a jour de la carte.
+	 */
 	public void MajFrameModification() { this.frameDemarrage.getFrameModification().repaint(); }
 
-	public void ajouterOuSupprimerRoute( Sommet sommetDep, Sommet sommetAri, int nbTroncon) 
+	/**
+	 * Méthode qui recherche un sommet dans la liste de sommets a partir de son numéro.
+	 * @param sommetDep le sommet de départ
+	 * @param sommetArr le sommet d'arrivée
+	 * @param nbTroncon le nombre de troncons de la route
+	 */
+	public void ajouterOuSupprimerRoute( Sommet sommetDep, Sommet sommetArr, int nbTroncon) 
 	{
-		Route tempRoute = new Route(sommetDep, sommetAri, nbTroncon);
+		Route tempRoute = new Route(sommetDep, sommetArr, nbTroncon);
 		boolean tempEstSup = false;
 
 		for ( Route rt : this.tabRoute )
@@ -497,6 +562,7 @@ public class Controleur
 		}
 			 
 	}
+
 
 	public boolean getTour()
 	{
