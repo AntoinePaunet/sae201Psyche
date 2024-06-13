@@ -29,8 +29,9 @@ public class FrameJoueur extends JFrame
 	 * @param j le numéro correspondant au joueur
 	 * @param ctrl le Controleur qui lance la frame
 	 */
-	public FrameJoueur(String nomJoueur, int j, Controleur ctrl)
+	public FrameJoueur(String nomJoueur, Joueur j, Controleur ctrl)
 	{
+		this.joueur = j;
 		this.ctrl = ctrl;
 		this.setTitle( this.majTitre(nomJoueur, j, ctrl) );
 		this.setSize( 700 , 550 );
@@ -38,7 +39,7 @@ public class FrameJoueur extends JFrame
 
 		this.ctrl = ctrl;
 
-		if( j == 1 )
+		if( j == this.ctrl.getJoueur1() )
 		{
 			this.setLocation( 1100, 0 );
 			this.ajoutImage(0,0, "bgSolaire.png", 0);
@@ -67,24 +68,19 @@ public class FrameJoueur extends JFrame
 	 * @param ctrl le Controleur qui lance la frame
 	 * @return Le titre de la frame
 	 */
-	public String majTitre( String nomJoueur , int j , Controleur ctrl )
+	public String majTitre( String nomJoueur , Joueur j , Controleur ctrl )
 	{
 		String s = nomJoueur + " : ";
 
 		if( this.ctrl.getTour() )
 		{
-			if( j == 1 )
+			if( j == this.ctrl.getJoueur1() )
 				s += "A vous de jouer !";
 			else
 				s += "en attente de l'autre joueur ...";
-		}
-		else
-		{
-			if( j == 2 )
-				s += "A vous de jouer !";
-			else
-				s += "en attente de l'autre joueur ...";
-		}
+		}	s += "en attente de l'autre joueur ...";
+
+		s += "\tVotre score : " + String.valueOf(this.joueur.getScore()) ;
 		return s;
 	}
 

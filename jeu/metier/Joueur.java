@@ -163,6 +163,16 @@ public class Joueur
 		this.tabJetonPossession.remove(0);
 	}
 
+
+	/**
+	 * Renvoie le score du joueur.
+	 * @return le score du joueur
+	 */
+	public int getScore()
+	{
+		return this.score;
+	}
+
 	/**
 	 * Méthode qui calcule le score du joueur.
 	 */
