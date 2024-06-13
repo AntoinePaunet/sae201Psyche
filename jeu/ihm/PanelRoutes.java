@@ -140,7 +140,7 @@ public class PanelRoutes extends JPanel implements ActionListener
         {
             
             data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getNumSom() + "";
-            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getNumSom() + "";
+            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getsommetArr().getNumSom() + "";
             data[ lig ][ 2 ] = ( lstRoute.get( lig ) ).getNbTroncons() + ""  ;
 
         }

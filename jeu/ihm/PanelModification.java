@@ -67,8 +67,8 @@ public class PanelModification extends JPanel
 					int x1 = this.ctrl.getTabRoute().get(cpt).getSommetDep().getX();
 					int y1 = this.ctrl.getTabRoute().get(cpt).getSommetDep().getY();
 
-					int x2 = this.ctrl.getTabRoute().get(cpt).getSommetArr().getX();
-					int y2 = this.ctrl.getTabRoute().get(cpt).getSommetArr().getY();
+					int x2 = this.ctrl.getTabRoute().get(cpt).getsommetArr().getX();
+					int y2 = this.ctrl.getTabRoute().get(cpt).getsommetArr().getY();
 					
 					
 					if (this.ctrl.getTabRoute().get(cpt).getNbTroncons() > 1)

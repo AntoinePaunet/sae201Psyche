@@ -127,7 +127,7 @@ public class PanelCarte extends JPanel
 			ImageIcon image;
 			int adjCercle = 5 ;
 			int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
-			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
+			int x2 = r.getsommetArr().getX(), y2 = r.getsommetArr().getY();
 
 			if (r.getJoueur()==this.ctrl.getJoueur1())
 				image = new ImageIcon(getClass().getResource("../src/images/equipe1.PNG"));
@@ -188,7 +188,7 @@ public class PanelCarte extends JPanel
 				for(Route r : ctrl.getTabRoute())
 				{
 					this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
-					this.ptSmt2 = new Point(r.getSommetArr().getX(), r.getSommetArr().getY());
+					this.ptSmt2 = new Point(r.getsommetArr().getX(), r.getsommetArr().getY());
 
 					if(isNearLine(e.getPoint()))
 					{
