@@ -52,7 +52,7 @@ public class FrameJeu extends JFrame
 			public void windowClosing(WindowEvent e)
 			{
 				try {
-					ctrl.sauvegarde();
+					ctrl.getEditionFichier().sauvegarde();
 				} catch (IOException ex) {
 					throw new RuntimeException(ex);
 				}

@@ -109,14 +109,23 @@ public class FrameModification extends JFrame implements ActionListener
 
 		if ( e.getSource() == this.enregistrerF )
 		{
-			//this.ctrl.enregistrerData();
+			try {
+				this.ctrl.getEditionFichier().sauvegarde();
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
 			this.dispose();
 		}
 
 		if ( e.getSource() == this.supprimerF )
 		{
-			//this.ctrl.supprimerData();
+			this.ctrl.supprimerTout();
 			this.repaint();
+			try {
+				this.ctrl.getEditionFichier().sauvegarde();
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
 		}
 	}
 
