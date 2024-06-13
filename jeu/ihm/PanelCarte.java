@@ -123,7 +123,7 @@ public class PanelCarte extends JPanel
 
 					if(isNearLine(e.getPoint()))
 					{
-						//if (ctrl.getSommet( e.getX(), e.getY() )==null)
+						if (ctrl.getSommet( e.getX(), e.getY() )==null)
 							ctrl.jouer(r);
 					}
 				}
