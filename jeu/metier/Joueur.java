@@ -49,6 +49,12 @@ public class Joueur
 	 * Méthode permettant de modifier le nom du joueur.
 	 * @param nom le nom du joueur
 	 */
+	public String getNomJoueur(){ return this.nomJoueur; }
+
+	/**
+	 * Méthode permettant de modifier le nom du joueur.
+	 * @param nom le nom du joueur
+	 */
 	public void setNomJoueur(String nom){this.nomJoueur=nom;}
 
 	/**
