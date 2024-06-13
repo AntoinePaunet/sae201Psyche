@@ -10,7 +10,7 @@ import javax.swing.table.TableModel;
 
 import java.awt.event.*;
 import java.io.IOException;
-import java.time.chrono.ThaiBuddhistChronology;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
 
@@ -33,6 +33,9 @@ public class PanelSommet extends JPanel  implements ActionListener
 	private JTextField txtNomCouleur    ;
 	private JTextField txtX             ;
 	private JTextField txtY             ;
+
+	private JLabel     lblErreur        ;
+
 	private JButton    btnAjouterSommet ;
 	private JButton    btnModifierSommet;
 
@@ -81,8 +84,11 @@ public class PanelSommet extends JPanel  implements ActionListener
 		this.panelInput.add( new JLabel("Y : "      ) );
 		this.panelInput.add( this.txtY         );
 
-		this.panelInput.add( new JLabel("") );
+		this.panelInput.add(this.lblErreur = new JLabel(""));
+		this.lblErreur.setFont(new Font("Arial", Font.BOLD, 15));
 		this.panelInput.add( btnAjouterSommet );
+
+
 			
 		btnAjouterSommet.addActionListener( this );
 				
@@ -142,9 +148,9 @@ public class PanelSommet extends JPanel  implements ActionListener
 	 * Réalise une action lorsqu'un bouton ou le tableau est appuyé
 	 * @param e est un événement lié à un composant du panel
 	 */
-	public void actionPerformed( ActionEvent e )
+	public void actionPerformed( ActionEvent e ) 
 	{
-		int idVille =0;
+		int idVille    =0;
 		String nomVile =null;
 		int x       =0;
 		int y       =0;
@@ -158,25 +164,65 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 			// Get data from the selected row
 			idVille = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 0 ) );
-			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
 			x       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 2 ) );
 			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
+			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
 		}
+		else if ( !((
+						this.txtNomCouleur.getText().isBlank() ||
+						this.txtNumero.getText().isBlank()     ||
+						this.txtX.getText().isBlank()          ||
+						this.txtY.getText().isBlank()         )&&
+						selectedRowIndex == -1
+					)
+				)
+		{
+			idVille = Integer.parseInt( (String) this.txtNumero.getText() );
+			x       = Integer.parseInt( (String) this.txtX.getText()      );
+			y       = Integer.parseInt( (String) this.txtY.getText()      );
+			nomVile = (String) this.txtNomCouleur.getText()                ;
 
+			
+		}
 
 
 		if (e.getSource() == this.btnAjouterSommet)
 		{
-			System.out.println(idVille + " " + nomVile + " " + x + " " + y + " " + false);
+			if ((
+				 this.txtNomCouleur.getText().isBlank() ||
+				 this.txtNumero.getText().isBlank()     ||
+				 this.txtX.getText().isBlank()          ||
+				 this.txtY.getText().isBlank()         )&&
+				 selectedRowIndex == -1
 
-			this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
+			   )
+			{
+				this.lblErreur.setText("<html> Tous les champs  <br> ne sont pas complétés. </html>");
+			}
+			else
+			{
+				this.lblErreur.setText("");
+				
+				System.out.println(idVille + " " + nomVile + " " + x + " " + y + " " + false);
+
+				this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
+				
+				System.out.println("sommet ajouté ou suppresion du sommet effectué ");
+
+				
+				// DefaultTableModel model = (DefaultTableModel) table.getModel();
+				// model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
+				this.ctrl.MajFrameModification();
+
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
+
+				this.ctrl.MajFrameModification();
+				
+			}
 			
-			System.out.println("sommet ajouté ou suppresion du sommet effectué ");
-
-			// DefaultTableModel model = (DefaultTableModel) table.getModel();
-			// model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
-			this.ctrl.MajFrameModification();
-		}
+			
+			}
 
 		if (e.getSource() == this.btnModifierSommet)
 		{

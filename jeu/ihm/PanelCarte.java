@@ -85,6 +85,15 @@ public class PanelCarte extends JPanel
 				this.g2.drawOval( x , y , this.RAYON, this.RAYON );
 				this.g2.fillOval( x , y , this.RAYON, this.RAYON );
 
+				if (s.getMateriaux()!=null)
+				{
+					this.g2.setColor( new Color(255, 87, 51) );
+					this.g2.drawOval( x+5 , y+5 , this.RAYON/2, this.RAYON/2 );
+					this.g2.fillOval( x+5 , y+5 , this.RAYON/2, this.RAYON/2 );
+					this.g2.setColor( new Color(000060) );
+				}
+				
+
 				this.g2.drawString( s.getNumSom() + s.getNomCoul(), x-10, y-5 );
 			}
 		}
@@ -94,7 +103,17 @@ public class PanelCarte extends JPanel
 			int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
 			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
 
-			this.g2.drawLine(x1 + adjCercle, y1 + adjCercle, x2 + adjCercle, y2 + adjCercle);
+			int vec1, vec2;
+
+			vec1=0;
+			vec2=0;
+			
+			this.g2.drawLine(x1 + adjCercle+ vec1, y1 + adjCercle + vec2 , x2 + adjCercle + -vec1, y2 + adjCercle + -vec2);
+
+			/*this.g2.drawOval(x1 + adjCercle+ vec1 -5 , y1 + adjCercle -5 + vec2 , 10,10);
+			this.g2.fillOval(x1 + adjCercle+ vec1 -5 , y1 + adjCercle -5 + vec2 , 10,10);
+			this.g2.drawOval(x2 + adjCercle -5 + -vec1, y2 + adjCercle -5+ -vec2,  10,10);
+			this.g2.fillOval(x2 + adjCercle -5 + -vec1, y2 + adjCercle -5+ -vec2,  10,10);*/
 
 			if (r.getNbTroncons()==2)
 			{
@@ -106,12 +125,11 @@ public class PanelCarte extends JPanel
 	}
 
 	
-	public void chargerImages()
+	public void chargerImages(Route r)
 	{
 		int layer = 2;
 
-		for(Route r : ctrl.getTabRoute())
-		{
+		
 			ImageIcon image;
 			int adjCercle = 5 ;
 			int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
@@ -124,14 +142,15 @@ public class PanelCarte extends JPanel
 				image = new ImageIcon(getClass().getResource("../src/images/equipe2.PNG"));
 			else 
 				return;
+				
 
 			JLabel imgLabel1 = new JLabel(image);
 			JLabel imgLabel2 = new JLabel(image);
 
 			if (r.getNbTroncons()==2)
 			{
-				imgLabel1.setBounds(((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2 -5, ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-5, image.getIconWidth(), image.getIconHeight());
-				imgLabel2.setBounds(((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-5, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-5, image.getIconWidth(), image.getIconHeight());
+				imgLabel1.setBounds(((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2, image.getIconWidth(), image.getIconHeight());
+				imgLabel2.setBounds(((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2, image.getIconWidth(), image.getIconHeight());
 
 				this.add(imgLabel1, Integer.valueOf(layer));
 				this.add(imgLabel2, Integer.valueOf(layer));
@@ -139,12 +158,12 @@ public class PanelCarte extends JPanel
 			
 			if (r.getNbTroncons()==1)
 			{
-				imgLabel1.setBounds( ((x1 + adjCercle)+ (x2+ adjCercle))/2 -5 , ((y1+ adjCercle) + (y2+ adjCercle))/2 -5, image.getIconWidth(), image.getIconHeight());
+				imgLabel1.setBounds( ((x1 + adjCercle)+ (x2+ adjCercle))/2 , ((y1+ adjCercle) + (y2+ adjCercle))/2 , image.getIconWidth(), image.getIconHeight());
 				this.add(imgLabel1, Integer.valueOf(layer));
 			}
 
 			
-		}
+		
 		
 		
 	}
@@ -182,8 +201,6 @@ public class PanelCarte extends JPanel
 						if (ctrl.getSommet( e.getX(), e.getY() )==null)
 						{
 							ctrl.jouer(r);
-							PanelCarte.this.chargerImages();
-							ctrl.getFrameDemarrage().getFrameChoix().getFrameJeu().majIHM();
 						}
 							
 					}
@@ -236,7 +253,7 @@ public class PanelCarte extends JPanel
 		private boolean isNearLine(Point p)
 		{
 			double distance = distanceARoute(p, ptSmt1, ptSmt2);
-			return distance <= 20; //5px de tolérance
+			return distance <= 15; //5px de tolérance
 		}
 
 	/**

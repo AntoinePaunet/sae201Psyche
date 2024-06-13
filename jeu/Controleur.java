@@ -89,7 +89,7 @@ public class Controleur
 		if (r.getJoueur()!=null) {return false;}
 
 		//verifie si l'un des deux sommet deja pris ou non
-		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
+		if (r.getSommetDep().getMateriaux()==null || r.getsommetArr().getMateriaux()==null)
 			return true ;
 
 		return false ;
@@ -148,16 +148,16 @@ public class Controleur
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
-					if (r.getSommetArr().getMateriaux()!=null)
-						this.j1.addSommetRecup(r.getSommetArr());
+					if (r.getsommetArr().getMateriaux()!=null)
+						this.j1.addSommetRecup(r.getsommetArr());
 
 					this.j1.utiliserUnJetons();
 					
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, 0, null);
-					this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, this.j1, null);
+					
 				}
 			}
 			else
@@ -169,18 +169,21 @@ public class Controleur
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetDep());
 					
-					if (r.getSommetArr().getMateriaux()!=null)
-						this.j2.addSommetRecup(r.getSommetArr());
+					if (r.getsommetArr().getMateriaux()!=null)
+						this.j2.addSommetRecup(r.getsommetArr());
 
 					this.j2.utiliserUnJetons();
 					
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, this.j2, null);
 					this.tourJ1= !this.tourJ1;
 				}
 			}
 		}
+		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
+		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 	}
 
 	/**
