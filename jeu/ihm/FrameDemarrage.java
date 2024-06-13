@@ -149,11 +149,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
-		{
 			this.frameChoix = new FrameChoix( this.ctrl );
-		}
-			
-
 		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
@@ -167,6 +163,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	public FrameChoix getFrameChoix(){return this.frameChoix;}
 	public FrameModification getFrameModification(){return this.frameModification;}
 
+
+	/**
+	 * Cette classe correspond au panel contenant les deux boutons de la Frame de démarrage.
+	 */
 	public class PanelBoutons extends JPanel
 	{
 		private JPanel  panelBtnJouer, panelBtnModifier ;
@@ -174,14 +174,16 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		private JLabel  lblTheme                        ;
 		private List    lstTheme                        ;
 
+	/**
+	 * Constructeur du panel contenant les boutons Jouer et Modifier
+	 */
 		public PanelBoutons()
 		{
 			this.setLayout(new GridLayout(4,1));
 
-			// création des composants;
+			// Création des composants;
 			this.panelBtnJouer    = new JPanel();
 			this.panelBtnModifier = new JPanel();
-
 
 			this.btnJouer    = new JButton("Jouer"             );
 			this.btnModifier = new JButton("Modifier une carte");
@@ -195,9 +197,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.add(this.panelBtnJouer   );
 			this.add(this.lblTheme        );
 			this.add(this.lstTheme        );
-
-			
-
 		}
 	}
 /*
