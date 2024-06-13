@@ -1,14 +1,14 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.metier.*;
+import jeu.metier.Sommet;
 import javax.swing.JPanel;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.*;
+
 
 /**
  * Cette classe créé le Panel contenant la carte de jeu.

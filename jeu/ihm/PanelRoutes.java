@@ -6,7 +6,7 @@ import jeu.metier.Sommet;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JList;
+
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import java.awt.event.*;
 
-import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;

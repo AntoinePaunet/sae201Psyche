@@ -7,7 +7,6 @@ import jeu.metier.Sommet;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import jeu.ihm.PanelModification;
 
 import java.awt.*;
 import java.awt.event.*;

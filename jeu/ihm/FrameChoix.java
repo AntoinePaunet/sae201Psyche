@@ -1,7 +1,6 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.ihm.*;
 import javax.swing.*;
 
 /**

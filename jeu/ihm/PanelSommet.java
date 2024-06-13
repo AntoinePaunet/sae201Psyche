@@ -1,7 +1,7 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.metier.*;
+import jeu.metier.Sommet;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,7 +9,7 @@ import javax.swing.table.TableModel;
 
 
 import java.awt.event.*;
-import java.io.IOException;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
@@ -69,7 +69,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 		this.panelInput.setLayout( new GridLayout( 5 , 2 ) );
 			
 
-		this.btnAjouterSommet = new JButton( "Ajouter" );
+		this.btnAjouterSommet = new JButton( "Ajouter / Supprimer" );
 			
 		
 		this.panelInput.add( new JLabel("Numero : "),  JPanel.RIGHT_ALIGNMENT );
