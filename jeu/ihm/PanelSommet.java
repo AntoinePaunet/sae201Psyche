@@ -158,9 +158,23 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 			// Get data from the selected row
 			idVille = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 0 ) );
-			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
 			x       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 2 ) );
 			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
+			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
+		}
+		else if ( !(this.txtNomCouleur.getText().isEmpty() ||
+                    this.txtNumero.getText().isEmpty()     ||  
+                    this.txtX.getText().isEmpty()          ||
+                    this.txtY.getText().isEmpty() 
+					)
+				)
+		{
+			idVille = Integer.parseInt( (String) this.txtNumero.getText() );
+			x       = Integer.parseInt( (String) this.txtX.getText()      );
+			y       = Integer.parseInt( (String) this.txtY.getText()      );
+			nomVile = (String) this.txtNomCouleur.getText()                ;
+
+			
 		}
 
 
