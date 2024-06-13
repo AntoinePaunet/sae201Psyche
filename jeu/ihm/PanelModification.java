@@ -17,11 +17,12 @@ public class PanelModification extends JPanel
 	
 	private Graphics2D g2;
 
+	private char nom = 'M';
+
 	public PanelModification(Controleur ctrl)
 	{
 	
 		this.ctrl = ctrl;		
-
 		
 	}
 
@@ -29,7 +30,7 @@ public class PanelModification extends JPanel
 	// {
 	// 	this.repaint();
 	// }
-
+	
 
 	public void paintComponent(Graphics g)
 	{
@@ -146,6 +147,10 @@ public class PanelModification extends JPanel
 
 		}
 
+	}
+
+	public char getNom() {
+		return nom;
 	}
  
 	

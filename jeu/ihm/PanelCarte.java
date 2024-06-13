@@ -7,6 +7,8 @@ import jeu.metier.Sommet;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import jeu.ihm.PanelModification;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -40,9 +42,9 @@ public class PanelCarte extends JPanel
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
+		
 		this.ctrl = ctrl;
+
 		GereSouris gereSouris = new GereSouris();
 		
 		this.addMouseListener( gereSouris );
@@ -111,6 +113,8 @@ public class PanelCarte extends JPanel
 
 		public void mousePressed( MouseEvent e)
 		{
+		
+			
 			for(Route r : ctrl.getTabRoute())
 			{
 				this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
@@ -122,7 +126,10 @@ public class PanelCarte extends JPanel
 				}
 			}
 
-			this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
+			System.out.println(PanelCarte.this.ctrl.getEstJeu());
+
+			if (  PanelCarte.this.ctrl.getEstJeu() == false )
+				this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
 			
 			if ( this.sommetChoisi != null )
 			{
@@ -136,8 +143,6 @@ public class PanelCarte extends JPanel
 		
 		public void mouseDragged( MouseEvent e )
 		{
-
-			//System.out.println( this.sommetChoisi  );
 
 			if ( this.sommetChoisi != null )
 			{	
