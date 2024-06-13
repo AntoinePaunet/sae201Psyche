@@ -1,7 +1,7 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.metier.*;
+import jeu.metier.Sommet;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,7 +9,7 @@ import javax.swing.table.TableModel;
 
 
 import java.awt.event.*;
-import java.io.IOException;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;

@@ -1,6 +1,6 @@
 package jeu.ihm;
 
-import jeu.*;
+import jeu.Controleur;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
