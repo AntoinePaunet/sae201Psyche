@@ -10,7 +10,7 @@ import javax.swing.table.TableModel;
 
 import java.awt.event.*;
 import java.io.IOException;
-import java.time.chrono.ThaiBuddhistChronology;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
 
@@ -33,6 +33,9 @@ public class PanelSommet extends JPanel  implements ActionListener
 	private JTextField txtNomCouleur    ;
 	private JTextField txtX             ;
 	private JTextField txtY             ;
+
+	private JLabel     lblErreur        ;
+
 	private JButton    btnAjouterSommet ;
 	private JButton    btnModifierSommet;
 
@@ -81,8 +84,11 @@ public class PanelSommet extends JPanel  implements ActionListener
 		this.panelInput.add( new JLabel("Y : "      ) );
 		this.panelInput.add( this.txtY         );
 
-		this.panelInput.add( new JLabel("") );
+		this.panelInput.add(this.lblErreur = new JLabel(""));
+		this.lblErreur.setFont(new Font("Arial", Font.BOLD, 15));
 		this.panelInput.add( btnAjouterSommet );
+
+
 			
 		btnAjouterSommet.addActionListener( this );
 				
@@ -144,10 +150,10 @@ public class PanelSommet extends JPanel  implements ActionListener
 	 */
 	public void actionPerformed( ActionEvent e )
 	{
-		int idVille =0;
+		String idVille =null;
 		String nomVile =null;
-		int x       =0;
-		int y       =0;
+		String x       =null;
+		String y       =null;
 		// Get the selected row index
 		int selectedRowIndex = table.getSelectedRow();
 
@@ -157,31 +163,49 @@ public class PanelSommet extends JPanel  implements ActionListener
 			TableModel model = table.getModel();
 
 			// Get data from the selected row
-			idVille = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 0 ) );
-			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
-			x       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 2 ) );
-			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
+			idVille = (String) model.getValueAt(selectedRowIndex, 0);
+			nomVile = (String) model.getValueAt(selectedRowIndex, 1);
+			x       = (String) model.getValueAt(selectedRowIndex, 2);
+			y       = (String) model.getValueAt(selectedRowIndex, 3);
 		}
-
 
 
 		if (e.getSource() == this.btnAjouterSommet)
 		{
+			try
+			{
+				if ( this.txtNomCouleur.getText().isBlank() ||
+					 this.txtNumero.getText().isBlank()     ||
+					 this.txtX.getText().isBlank()          ||
+					 this.txtY.getText().isBlank()            )
+				{
+					this.lblErreur.setText("<html> Tous les champs  <br> ne sont pas complétés. </html>");
+				}
+				else
+				{
+					this.lblErreur.setText("");
+
+					this.ctrl.ecrireSommet(Integer.parseInt(this.txtNumero.getText()), this.txtNomCouleur.getText(),
+					Integer.parseInt(this.txtX.getText()), Integer.parseInt(this.txtY.getText()),
+					new Materiaux("AU"), false);
+					System.out.println("sommet ajouté normalement");
+
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
+
+					this.ctrl.MajFrameModification();
+					
+				}
+					
+			}
+			catch (IOException ex)
+			{
+				System.out.println("Erreur dans le catch");
+				JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
 			
-
-			System.out.println(idVille + " " + nomVile + " " + x + " " + y + " " + false);
-
-
-
-			this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
 			
-			System.out.println("sommet ajouté ou suppresion du sommet effectué ");
-
-			
-			// DefaultTableModel model = (DefaultTableModel) table.getModel();
-			// model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
-			this.ctrl.MajFrameModification();
-		}
+			}
 
 		if (e.getSource() == this.btnModifierSommet)
 		{
