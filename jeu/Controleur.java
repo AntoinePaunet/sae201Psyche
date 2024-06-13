@@ -148,8 +148,8 @@ public class Controleur
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
-					if (r.getsommetArr().getMateriaux()!=null)
-						this.j1.addSommetRecup(r.getsommetArr());
+					if (r.getSommetArr().getMateriaux()!=null)
+						this.j1.addSommetRecup(r.getSommetArr());
 
 					this.j1.utiliserUnJetons();
 					
@@ -169,7 +169,7 @@ public class Controleur
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetDep());
 					
-					if (r.getsommetArr().getMateriaux()!=null)
+					if (r.getSommetArr().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getsommetArr());
 
 					this.j2.utiliserUnJetons();
