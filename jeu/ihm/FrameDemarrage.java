@@ -31,6 +31,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private FrameChoix	      frameChoix;
 	private FrameModification frameModification;
 
+
 	/**
 	 * Constructeur de la frame de démarrage
 	 * @param ctrl permet d'accéder au controleur dans les frames qui en découlent
@@ -43,11 +44,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setLocation(0, 0             );
 		this.setLayout(new FlowLayout());
 
-		this.panelBoutons  = new PanelBoutons();
 
+		this.panelBoutons = new PanelBoutons();
 
 		// Création et ajout de la barre de menu
-		JMenuBar  menuBar  = new JMenuBar(       );
+		JMenuBar  menuBar  = new JMenuBar(         );
 		JMenu menuOuvrir   = new JMenu("Ouvrir"  );
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
@@ -115,10 +116,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			} 
 			catch (Exception i) 
 			{
+			/*
             // En cas d'erreur, imprimer le message d'erreur
-            //System.out.println(i.getMessage());
+            System.out.println(i.getMessage());
             // Utiliser le répertoire actuel par défaut
-        	
+			*/
 			}
 			fc.setCurrentDirectory(chooserFile);
 
@@ -159,7 +161,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.frameModification = new FrameModification( this.ctrl ); 
 			this.ctrl.setEstJeu(false);
 		
-
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
@@ -170,25 +171,32 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 	public class PanelBoutons extends JPanel 
 	{
-		private JPanel panelBtnJouer, panelBtnModifier;
-		private JButton btnJouer, btnModifier;
+		private JPanel  panelBtnJouer, panelBtnModifier ;
+		private JButton btnJouer, btnModifier           ;
+		private JLabel  lblTheme                        ;
+		private List    lstTheme                        ;
 
 		public PanelBoutons()
 		{
-			this.setLayout(new GridLayout(2,1));
+			this.setLayout(new GridLayout(4,1));
 
 			// création des composants;
-			this.panelBtnJouer = new JPanel();
+			this.panelBtnJouer    = new JPanel();
 			this.panelBtnModifier = new JPanel();
 
-			this.btnJouer = new JButton("Jouer");
+
+			this.btnJouer    = new JButton("Jouer"             );
 			this.btnModifier = new JButton("Modifier une carte");
+			this.lblTheme    = new JLabel ("Selection du thème");
+			this.lstTheme    = new List   (                         );
 		
 			this.panelBtnModifier.add( this.btnModifier );
-			this.panelBtnJouer.add(this.btnJouer);
+			this.panelBtnJouer.add   (this.btnJouer     );
 
 			this.add(this.panelBtnModifier);
-			this.add(this.panelBtnJouer);
+			this.add(this.panelBtnJouer   );
+			this.add(this.lblTheme        );
+			this.add(this.lstTheme        );
 
 			
 

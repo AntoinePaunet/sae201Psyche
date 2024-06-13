@@ -29,8 +29,8 @@ public class FrameJoueur extends JFrame
      */
     public FrameJoueur(String nomJoueur, int j, Controleur ctrl)
     {
-		this.setTitle( "Plateau de " + nomJoueur );
-
+		this.ctrl = ctrl;
+		this.setTitle( this.majTitre(nomJoueur, j, ctrl) );
         this.setSize( 700 , 550 );
         this.panelFond = new JLayeredPane();
 
@@ -54,10 +54,30 @@ public class FrameJoueur extends JFrame
         this.add( this.panelFond );
 
 		this.refresh();
-
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
     }
+
+	public String majTitre( String nomJoueur , int j , Controleur ctrl )
+	{
+		String s = nomJoueur + " : ";
+
+		if( this.ctrl.getTour() )
+		{
+			if( j == 1 )
+				s += "A vous de jouer !";
+			else
+				s += "en attente de l'autre joueur ...";
+		}
+		else
+		{
+			if( j == 2 )
+				s += "A vous de jouer !";
+			else
+				s += "en attente de l'autre joueur ...";
+		}
+		return s;
+	}
 
 	/**
 	 * Méthode de mise a jour de l'affichage des plateaux des joueurs
@@ -76,7 +96,7 @@ public class FrameJoueur extends JFrame
 				}
 				x += 60;
 			}
-			x = 80;
+			x = 85;
 			y -= 80;
 		}
 

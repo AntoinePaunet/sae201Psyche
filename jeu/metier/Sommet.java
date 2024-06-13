@@ -88,7 +88,7 @@ public class Sommet
 	public boolean  possede ( int x, int y )
 	{
 
-		if ( x <= this.x + 20  && x >= x-20 && y <= this.y + 20  && y >= y-20 )
+		if ( x <= this.x + 5  && x >= x-5 && y <= this.y + 5  && y >= y-5 )
 			return true;
 
 		return false;
