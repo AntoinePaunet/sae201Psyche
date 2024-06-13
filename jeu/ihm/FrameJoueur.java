@@ -70,7 +70,7 @@ public class FrameJoueur extends JFrame
 	 */
 	public String majTitre( Joueur j , Controleur ctrl )
 	{
-		String s = this.joueur.get ;
+		String s = this.joueur.getNomJoueur();
 
 		if( ctrl.getTourJ(j) )
 			s += "A vous de jouer !";
