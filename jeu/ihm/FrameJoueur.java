@@ -21,6 +21,7 @@ public class FrameJoueur extends JFrame
 
 	private Controleur ctrl;
 	private Joueur joueur;
+	private char nom = 'J';
 
     /**
      * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
@@ -47,6 +48,9 @@ public class FrameJoueur extends JFrame
 			this.ajoutImage(0,0, "bgSyndicat.png", 0);
 			this.joueur = ctrl.getJoueur2();
 		}
+
+		this.setName("PanelJoueur");
+
         this.add( this.panelFond );
 
 		this.refresh();
@@ -108,8 +112,14 @@ public class FrameJoueur extends JFrame
 
 	}
 
+	
 
-    /**
+
+    public char getNom() {
+		return nom;
+	}
+
+	/**
      * Permet d'ajouter des éléments dans l'interface graphique. Dans ce cas, il ajoute les images correspondantes aux Jetons sur le Plateau.
      * @param x Coordonnée de l'abscisse de l'image à placer
      * @param y Coordonnée de l'ordonnée de l'image à placer

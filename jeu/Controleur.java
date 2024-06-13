@@ -22,8 +22,9 @@ public class Controleur
 {
 	private Joueur j1;
 	private Joueur j2;
-	private ArrayList<Sommet> 		tabSommet;
-	private ArrayList<Route>		tabRoute;
+	private ArrayList<Sommet> 	tabSommet;
+	private ArrayList<Route>	tabRoute;
+	private boolean             estJeu;
 
 	private boolean tourJ1;
 	private boolean finPartie;
@@ -40,6 +41,7 @@ public class Controleur
 		this.tabRoute		= new ArrayList<>(60);
 		this.tourJ1 = true;
 		this.finPartie = false;
+		this.estJeu = false;
 
 		this.init();
 		this.initJetonPossession();
@@ -47,10 +49,13 @@ public class Controleur
 		this.lectureFichier(null);
 	}
 
-	/**
-	 * Documentation à complèter
-	 * @param r la route
-	 */
+	
+
+	public boolean getEstJeu()               {return estJeu;}
+	public void    setEstJeu(boolean estJeu) {this.estJeu = estJeu;}
+
+
+
 	public boolean estValide(Route r)
 	{
 		if (r.getJoueur()!=null) {return false;}

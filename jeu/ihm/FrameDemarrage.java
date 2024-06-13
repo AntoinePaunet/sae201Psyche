@@ -28,7 +28,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	private JMenuItem     menuiScenario     ;
 	private JMenuItem     menuiQuitter      ;
 
-	private FrameChoix	      frameChoix       ;
+	private FrameChoix	      frameChoix;
 	private FrameModification frameModification;
 
 
@@ -75,9 +75,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		menuScenario.setMnemonic('S');
 		menuQuitter.setMnemonic('Q');
 
-		this.menuiOuvrir.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiOuvrir.setAccelerator   (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiScenario.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
-		this.menuiQuitter.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
+		this.menuiQuitter.setAccelerator  (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
 		// Activation des composants
 		this.menuiOuvrir        .addActionListener( this );
@@ -150,10 +150,15 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
 			this.frameChoix = new FrameChoix( this.ctrl );
+			this.ctrl.setEstJeu(true);
+		}
+			
+
 		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
 			this.frameModification = new FrameModification( this.ctrl ); 
+			this.ctrl.setEstJeu(false);
 		
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
@@ -163,11 +168,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	public FrameChoix getFrameChoix(){return this.frameChoix;}
 	public FrameModification getFrameModification(){return this.frameModification;}
 
-
-	/**
-	 * Cette classe correspond au panel contenant les deux boutons de la Frame de démarrage.
-	 */
-	public class PanelBoutons extends JPanel
+	public class PanelBoutons extends JPanel 
 	{
 		private JPanel  panelBtnJouer, panelBtnModifier ;
 		private JButton btnJouer, btnModifier           ;
