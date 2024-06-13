@@ -98,8 +98,9 @@ public class PanelCarte extends JPanel
 		}
 	}
 
-
-
+	/**
+	 * Classe privée permettant de gêrer les actions de la souris.
+	 */
 	private class GereSouris extends MouseAdapter
 	{
 		private Sommet villeChoisie ;
@@ -110,7 +111,10 @@ public class PanelCarte extends JPanel
 
 		private Sommet sommetChoisi ;
 
-
+	/**
+	 * Méthode qui gêre l'appui sur la souris.
+	 * @param e l'action de la souris
+	 */
 		public void mousePressed( MouseEvent e)
 		{
 		
@@ -138,13 +142,13 @@ public class PanelCarte extends JPanel
 			if ( this.sommetChoisi != null )
 			{
 				//System.out.println("Sommet choisie " + sommetChoisi.getNumSom());
-
 			}
-
 		}
 		
-	
-		
+	/**
+	 * Méthode qui gêre le déplacement sur la souris lorsque le bouton est appuyé.
+	 * @param e l'action de la souris
+	 */
 		public void mouseDragged( MouseEvent e )
 		{
 
@@ -157,19 +161,31 @@ public class PanelCarte extends JPanel
 			}
 		}
 
+	/**
+	 * Méthode qui gêre le relâchement du bouton de la souris.
+	 * @param e l'action de la souris
+	 */
 		public void mouseRelease(MouseEvent e) 
 		{
 			this.sommetChoisi = null;
 		}
 
-
-		private boolean isNearLine(Point p) {
-			// Calculer la distance entre le point de clic et la ligne
+	/**
+	 * Méthode qui vérifie si la ligne est suffisament proche de la zone cliquée.
+	 * @param p le point cliqué par la souris
+	 */
+		private boolean isNearLine(Point p)
+		{
 			double distance = distanceARoute(p, ptSmt1, ptSmt2);
 			return distance <= 20; //5px de tolérance
 		}
 
-		// Calculer la distance entre un point et un segment de ligne
+	/**
+	 * A complèter.
+	 * @param p le point cliqué par la souris
+	 * @param v le point cliqué par la souris
+	 * @param w le point cliqué par la souris
+	 */
 		private double distanceARoute(Point p, Point v, Point w)
 		{
 			double l2 = v.distanceSq(w);
@@ -179,14 +195,15 @@ public class PanelCarte extends JPanel
 			return p.distance(projection);
 		}
 
+	/**
+	 * A complèter.
+	 * @param p le point cliqué par la souris
+	 * @param v le point cliqué par la souris
+	 * @param w le point cliqué par la souris
+	 */
 		private double resultPoint(Point p, Point v, Point w)
 		{
 			return (p.x - v.x) * (w.x - v.x) + (p.y - v.y) * (w.y - v.y);
 		}
 	}
-
-
-
-
-
 }
