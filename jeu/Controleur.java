@@ -48,7 +48,7 @@ public class Controleur
 
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
-		this.editionFichier.lectureFichier("data.txt");
+		this.editionFichier.lectureFichier("data.txt", false);
 	}
 
 

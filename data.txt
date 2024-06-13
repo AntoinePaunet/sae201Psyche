@@ -1,4 +1,37 @@
 [SOMMET]
+<<<<<<< HEAD
+4	Vert	336	92	NI	false
+8	Vert	265	111	AU	false
+2	Vert	317	187	NR	false
+3	Vert	394	175	NR	false
+6	Vert	251	239	NI	false
+6	Bleu	336	284	AL	false
+8	Bleu	414	270	NR	false
+5	Rouge	80	300	NR	false
+3	Rouge	156	298	AU	false
+1	Rouge	257	322	PT	false
+2	Gris	510	295	PT	false
+3	Bleu	308	382	FE	false
+4	Bleu	346	339	CO	false
+2	Bleu	440	366	AU	false
+4	Gris	575	337	FE	false
+3	Jaune	648	319	FE	false
+4	Rouge	111	456	AG	false
+2	Rouge	185	440	AG	false
+2	Marron	353	428	TI	false
+0	Gris	576	433	AL	false
+1	Jaune	696	442	AG	false
+4	Jaune	774	443	PT	false
+5	Marron	200	517	PT	false
+3	Marron	330	542	FE	false
+4	Marron	427	541	NR	false
+1	Marron	501	519	CO	false
+3	Gris	606	512	AG	false
+1	Gris	556	586	TI	false
+5	Jaune	696	583	NR	false
+2	Jaune	773	582	AL	false
+0	null	442	475	null	false
+=======
 4	Vert	336	92	CO	false
 8	Vert	265	111	CO	false
 2	Vert	317	187	AU	false
@@ -30,6 +63,7 @@
 5	Jaune	696	583	FE	false
 2	Jaune	773	582	AL	false
 0	null	460	468	null	true
+>>>>>>> refs/remotes/origin/main
 
 [ROUTES]
 1	4Vert	8Vert
@@ -81,4 +115,7 @@
 1	2Jaune	5Jaune
 2	5Jaune	1Jaune
 2	2Jaune	4Jaune
+<<<<<<< HEAD
+=======
 2	0null	4Marron
+>>>>>>> refs/remotes/origin/main
