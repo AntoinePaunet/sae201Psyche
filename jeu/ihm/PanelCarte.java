@@ -5,7 +5,7 @@ import jeu.metier.Route;
 import jeu.metier.Sommet;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import jeu.ihm.PanelModification;
 
@@ -95,8 +95,60 @@ public class PanelCarte extends JPanel
 			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
 
 			this.g2.drawLine(x1 + adjCercle, y1 + adjCercle, x2 + adjCercle, y2 + adjCercle);
+
+			if (r.getNbTroncons()==2)
+			{
+				this.g2.drawOval( ((x1 + adjCercle)+ (x2+ adjCercle))/2 -5 , ((y1+ adjCercle) + (y2+ adjCercle))/2 -5,10,10 );
+				this.g2.fillOval(( (x1 + adjCercle)+ (x2+ adjCercle))/2  -5, ((y1+ adjCercle) + (y2+ adjCercle))/2 -5,10,10);
+			}
+				
 		}
 	}
+
+	
+	public void chargerImages()
+	{
+		int layer = 2;
+
+		for(Route r : ctrl.getTabRoute())
+		{
+			ImageIcon image;
+			int adjCercle = 5 ;
+			int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
+			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
+
+			if (r.getJoueur()==this.ctrl.getJoueur1())
+				image = new ImageIcon(getClass().getResource("../src/images/equipe1.PNG"));
+			
+			else if (r.getJoueur()==this.ctrl.getJoueur2())
+				image = new ImageIcon(getClass().getResource("../src/images/equipe2.PNG"));
+			else 
+				return;
+
+			JLabel imgLabel1 = new JLabel(image);
+			JLabel imgLabel2 = new JLabel(image);
+
+			if (r.getNbTroncons()==2)
+			{
+				imgLabel1.setBounds(((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2 -5, ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-5, image.getIconWidth(), image.getIconHeight());
+				imgLabel2.setBounds(((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-5, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-5, image.getIconWidth(), image.getIconHeight());
+
+				this.add(imgLabel1, Integer.valueOf(layer));
+				this.add(imgLabel2, Integer.valueOf(layer));
+			}
+			
+			if (r.getNbTroncons()==1)
+			{
+				imgLabel1.setBounds( ((x1 + adjCercle)+ (x2+ adjCercle))/2 -5 , ((y1+ adjCercle) + (y2+ adjCercle))/2 -5, image.getIconWidth(), image.getIconHeight());
+				this.add(imgLabel1, Integer.valueOf(layer));
+			}
+
+			
+		}
+		
+		
+	}
+
 
 	/**
 	 * Classe privée permettant de gêrer les actions de la souris.
@@ -128,7 +180,12 @@ public class PanelCarte extends JPanel
 					if(isNearLine(e.getPoint()))
 					{
 						if (ctrl.getSommet( e.getX(), e.getY() )==null)
+						{
 							ctrl.jouer(r);
+							PanelCarte.this.chargerImages();
+							ctrl.getFrameDemarrage().getFrameChoix().getFrameJeu().majIHM();
+						}
+							
 					}
 				}
 			}
@@ -144,6 +201,8 @@ public class PanelCarte extends JPanel
 				//System.out.println("Sommet choisie " + sommetChoisi.getNumSom());
 			}
 		}
+
+		
 		
 	/**
 	 * Méthode qui gêre le déplacement sur la souris lorsque le bouton est appuyé.
