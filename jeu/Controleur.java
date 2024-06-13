@@ -102,7 +102,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, 0, null)
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, 0, null);
 				}
 			}
 			else
