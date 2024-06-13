@@ -69,7 +69,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 		this.panelInput.setLayout( new GridLayout( 5 , 2 ) );
 			
 
-		this.btnAjouterSommet = new JButton( "Ajouter" );
+		this.btnAjouterSommet = new JButton( "Ajouter / Supprimer" );
 			
 		
 		this.panelInput.add( new JLabel("Numero : "),  JPanel.RIGHT_ALIGNMENT );
