@@ -80,6 +80,7 @@ public class FrameJoueur extends JFrame
 				s += "en attente de l'autre joueur ...";
 		}	s += "en attente de l'autre joueur ...";
 
+
 		s += "\tVotre score : " + String.valueOf(this.joueur.getScore()) ;
 		return s;
 	}
