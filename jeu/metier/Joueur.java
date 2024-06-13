@@ -27,6 +27,7 @@ public class Joueur
 
 	private String nomJoueur;
 
+
 	public Joueur()
 	{
 		this.nomJoueur = "default";

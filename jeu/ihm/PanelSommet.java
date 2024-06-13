@@ -167,17 +167,12 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 		if (e.getSource() == this.btnAjouterSommet)
 		{
-			
-
 			System.out.println(idVille + " " + nomVile + " " + x + " " + y + " " + false);
-
-
 
 			this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
 			
 			System.out.println("sommet ajouté ou suppresion du sommet effectué ");
 
-			
 			// DefaultTableModel model = (DefaultTableModel) table.getModel();
 			// model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
 			this.ctrl.MajFrameModification();

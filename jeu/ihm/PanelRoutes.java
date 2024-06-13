@@ -22,6 +22,15 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette classe créé le panel pour modifier ou créer les routes.
+ * @author Antione Paunet,			IUT du Havre
+ * @author Mael Vauthier,			IUT du Havre
+ * @author Martin Ravenel,			IUT du Havre
+ * @author Fanch EVEN,				IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
+ * @version 1.0 , 2024-05-23
+ */
 public class PanelRoutes extends JPanel implements ActionListener
 {
     private Controleur        ctrl;
@@ -50,7 +59,7 @@ public class PanelRoutes extends JPanel implements ActionListener
 
 
 	/**
-	 * Initialise tous les composants du panel d'édition des routes.
+	 * Méthode qui initialise tous les composants du panel d'édition des routes.
 	 */
     public void panelInput()
     {
@@ -81,7 +90,9 @@ public class PanelRoutes extends JPanel implements ActionListener
 
     }
 
-
+	/**
+	 * Initialise la liste contenant toutes les routes.
+	 */
     public void initListe()
     {
 
@@ -113,6 +124,9 @@ public class PanelRoutes extends JPanel implements ActionListener
 
     }
 
+	/**
+	 * Méthode qui ajoute une route à la liste de routes de la carte.
+	 */
     public void ajouterTabRoute()
     {
         // Tableau contenant tout les routes
@@ -143,12 +157,13 @@ public class PanelRoutes extends JPanel implements ActionListener
         this.repaint();
     }
 
-
+	/**
+	 * Réalise une action lorsqu'on clique sur un élément activable.
+	 * @param e est un événement lié à un composant du panel
+	 */
     public void actionPerformed( ActionEvent e )
     {
         Sommet vDep = null, vArr = null;
-		
-		
        	Integer tr = Integer.parseInt( inputRoute.getText() );
 
 		if( inputRoute.getText()==null ) return ;
