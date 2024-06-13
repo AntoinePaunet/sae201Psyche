@@ -536,7 +536,7 @@ public class Controleur
 	{
 		for(Route r : this.tabRoute)
 		{
-			this.ecrireRoute(r.getSommetDep(), r.getsommetArr(), r.getNbTroncons());
+			this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons());
 		}
 
 		for(Sommet s : this.tabSommet)
