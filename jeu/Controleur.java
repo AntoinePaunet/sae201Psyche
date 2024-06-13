@@ -49,13 +49,24 @@ public class Controleur
 		this.lectureFichier(null);
 	}
 
-	
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
+	public boolean getEstJeu() { return estJeu; }
 
-	public boolean getEstJeu()               {return estJeu;}
-	public void    setEstJeu(boolean estJeu) {this.estJeu = estJeu;}
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
+	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
 
 
-
+	/**
+	 * Méthode qui vérifie si la route est valide.
+	 * @param r la route concernée
+	 * @return La liste des sommets
+	 */
 	public boolean estValide(Route r)
 	{
 		if (r.getJoueur()!=null) {return false;}

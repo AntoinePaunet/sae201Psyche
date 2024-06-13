@@ -5,7 +5,15 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-
+/**
+ * Cette classe créé la Frame permettant aux joueurs de changer la carte de jeu.
+ * @author Antione Paunet,			IUT du Havre
+ * @author Mael Vauthier,			IUT du Havre
+ * @author Martin Ravenel,			IUT du Havre
+ * @author Fanch EVEN,				IUT du Havre
+ * @author Anas AARAB,				IUT du Havre
+ * @version 1.0 , 2024-05-23
+ */
 public class FrameModification extends JFrame implements ActionListener
 {
 	
@@ -19,6 +27,10 @@ public class FrameModification extends JFrame implements ActionListener
 	private JMenuItem     enregistrerF;
 	private JMenuItem     supprimerF;
 
+	/**
+	 * Constructeur de la frame qui permet de modifier la carte.
+	 * @param ctrl le Controleur qui lance la frame
+	 */
 	public FrameModification(Controleur ctrl)
 	{
 		this.setTitle("Modification");
@@ -76,12 +88,13 @@ public class FrameModification extends JFrame implements ActionListener
 		
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		this.setVisible(true);
-
-
 	}
 
+	/**
+	 * Méthode de définition des evenements de la frame. 
+	 * @param e l'évennement déclenché
+	 */
 	public void actionPerformed ( ActionEvent e )
 	{
 		if ( e.getSource() == this.creerSommet )
@@ -107,6 +120,10 @@ public class FrameModification extends JFrame implements ActionListener
 		}
 	}
 
+	/**
+	 * Renvoie le panel contenant la carte modifiable
+	 * @return le panel contenant la carte
+	 */
 	public PanelCarte getPanelCarte () {return this.panelC;}
 
 	// public static void main (String[]args) throws IOException
