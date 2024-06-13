@@ -27,15 +27,13 @@ public class Sommet
     private Materiaux materiaux;
 
     /**
-	 * Constructeure
-	 *
-	 * @param numSom      numéro de la mine
-	 * @param nomCoul     nom de la couleur de la mine
+	 * Constructeur de Sommet
+	 * @param numSom      numéro du sommet
+	 * @param nomCoul     nom de la couleur du sommet
 	 * @param x           postion x
 	 * @param y           postion y
-	 * @param materiaux   matérieux assignée a la mine
-	 * @param estDepart   boolean qui permt de savoir si c'est la frame de départ du jeux
-	 * 
+	 * @param materiaux   matérieux assignée au sommet
+	 * @param estDepart   si ce sommet correspond au sommet de départ du jeu
 	 * 
 	 */
     

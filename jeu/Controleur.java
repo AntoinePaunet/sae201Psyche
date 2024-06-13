@@ -140,7 +140,7 @@ public class Controleur
 					
 					this.tourJ1= !this.tourJ1;
 					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, 0, null);
-					this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
+					
 				}
 			}
 			else
@@ -164,6 +164,8 @@ public class Controleur
 				}
 			}
 		}
+		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
+		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 	}
 
 	/**
@@ -534,7 +536,7 @@ public class Controleur
 	{
 		for(Route r : this.tabRoute)
 		{
-			this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons());
+			this.ecrireRoute(r.getSommetDep(), r.getsommetArr(), r.getNbTroncons());
 		}
 
 		for(Sommet s : this.tabSommet)
