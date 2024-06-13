@@ -29,22 +29,28 @@ public class Controleur
 	private boolean finPartie;
 	public  FrameDemarrage frameDemarrage;
 
+	/**
+	 * Constructeur du controleur
+	 */
 	public Controleur() throws IOException
 	{
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.tabSommet 		= new ArrayList<>(30);
 		this.tabRoute		= new ArrayList<>(60);
-		this.tourJ1=true;
+		this.tourJ1 = true;
 		this.finPartie = false;
 
 		this.init();
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.lectureFichier(null);
-
 	}
 
+	/**
+	 * Documentation à complèter
+	 * @param r la route
+	 */
 	public boolean estValide(Route r)
 	{
 		if (r.getJoueur()!=null) {return false;}
