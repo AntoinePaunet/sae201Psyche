@@ -92,7 +92,7 @@ public class PanelCarte extends JPanel
 		for(Route r : ctrl.getTabRoute())
 		{
 			int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
-			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
+			int x2 = r.getsommetArr().getX(), y2 = r.getsommetArr().getY();
 
 			int vec1, vec2;
 
