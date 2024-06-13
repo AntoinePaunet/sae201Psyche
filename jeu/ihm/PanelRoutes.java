@@ -60,7 +60,7 @@ public class PanelRoutes extends JPanel implements ActionListener
         
         this.inputRoute = new JTextField();
 
-        this.btnAjouteRoute = new JButton( "Ajouter" );
+        this.btnAjouteRoute = new JButton( "Ajouter/Supprimer" );
         
         this.panelInput.add( new JLabel("VilleDep : ") );
         this.panelInput.add( scrollPaneLstVilleDep    );
@@ -153,16 +153,18 @@ public class PanelRoutes extends JPanel implements ActionListener
 
 		if( inputRoute.getText()==null ) return ;
 
+
         for ( Sommet ville : this.ctrl.getTabSommet() )
         {
-            if ( ( this.lstVilleArrive.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ); { vArr = ville; }
+            if ( ( (String)this.lstVilleArrive.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ){ vArr = ville; }
             
-            if ( ( this.lstVilleDep.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ); { vDep = ville; }
+            if ( ( (String)this.lstVilleDep.getSelectedItem( ) ).equals( ( ville.getNumSom() + " "  + ville.getNomCoul() ) ) ){ vDep = ville; }
 
         }
 
+        this.ctrl.ajouterOuSupprimerRoute(vDep, vArr, tr);
 
-        this.ctrl.ajouterRoute(vDep, vArr, tr);
+        this.ctrl.MajFrameModification();
 
     }
 }

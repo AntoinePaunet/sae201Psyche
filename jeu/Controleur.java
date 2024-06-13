@@ -83,7 +83,7 @@ public class Controleur
 		
 		if (!this.finPartie)
 		{
-			System.out.print(r);
+			//System.out.print(r);
 			if (this.tourJ1)
 			{
 				
@@ -259,7 +259,7 @@ public class Controleur
 		try( BufferedWriter writer = new BufferedWriter( new FileWriter(fichier) ) )
 		{
 			writer.write("[SOMMET]\n\n[ROUTES]\n");
-			System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
+			//System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
 		}
 		catch( IOException e ) {}
 	}
@@ -281,7 +281,7 @@ public class Controleur
 		
 
 		try {
-			System.out.println(nomFichier);
+			//System.out.println(nomFichier);
 			FileReader fr = new FileReader(fichier);
 			Scanner sc = new Scanner(fr);
 
@@ -309,13 +309,13 @@ public class Controleur
 					if (etapeLecture == 1 && !ligne.equals("[SOMMET]")) {
 						if (!ligne.isEmpty()) {
 							lireSommet(ligne);
-							System.out.println(ligne);
+							//System.out.println(ligne);
 						}
 					}
 					if (etapeLecture == 2) {
 						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]")) {
 							lireRoute(ligne);
-							System.out.println(ligne);
+							//System.out.println(ligne);
 						}
 					}
 
@@ -329,7 +329,7 @@ public class Controleur
 
 
 
-		System.out.println("Nb sommet " + tabSommet);
+		//System.out.println("Nb sommet " + tabSommet);
 	}
 
 
@@ -447,7 +447,52 @@ public class Controleur
 		}
 	}
 
-	public void ajouterRoute( Sommet sommetDep, Sommet sommetAri, int nbTroncon) { this.tabRoute.add( new Route(sommetDep, sommetAri, nbTroncon) ); }
+	public void MajFrameModification() { this.frameDemarrage.getFrameModification().repaint(); }
+
+	public void ajouterOuSupprimerRoute( Sommet sommetDep, Sommet sommetAri, int nbTroncon) 
+	{
+		Route tempRoute = new Route(sommetDep, sommetAri, nbTroncon);
+		boolean tempEstSup = false;
+
+		for ( Route rt : this.tabRoute )
+		{
+			if ( tempRoute.equals(rt) )
+			{
+				this.tabRoute.remove(rt);
+				tempEstSup = true;
+				break;
+			}
+		}
+		if ( !tempEstSup )
+		{
+			//System.out.println("add");
+			this.tabRoute.add( tempRoute );
+			
+		}
+		else
+		{
+			//System.out.println("ok");
+		}
+			 
+	}
+
+
+	public Sommet getSommet(int x, int y)
+	{
+
+		for ( int cpt = 0; cpt < this.tabSommet.size(); cpt++ )
+		{
+			if ( this.tabSommet.get( cpt ).possede(x, y) )
+				return this.tabSommet.get( cpt );		
+		}
+			
+		return null;
+	}
+
+	public void setSommet(int x, int y, Sommet som)
+	{
+		som.setX(x); som.setY(y);
+	}
 
 	public static void main (String[] arg) throws IOException
 	{

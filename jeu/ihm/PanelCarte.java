@@ -43,7 +43,11 @@ public class PanelCarte extends JPanel
 
 
 		this.ctrl = ctrl;
-		this.addMouseListener( new GereSouris() );
+		GereSouris gereSouris = new GereSouris();
+		
+		this.addMouseListener( gereSouris );
+		this.addMouseMotionListener( gereSouris );
+
 	}
 
 
@@ -97,10 +101,13 @@ public class PanelCarte extends JPanel
 	private class GereSouris extends MouseAdapter
 	{
 		private Sommet villeChoisie ;
-		private Route routeChoisie;
+		private Route  routeChoisie;
 
 		private Point ptSmt1;
 		private Point ptSmt2;
+
+		private Sommet sommetChoisi ;
+
 
 		public void mousePressed( MouseEvent e)
 		{
@@ -113,6 +120,31 @@ public class PanelCarte extends JPanel
 				{
 					ctrl.jouer(r);
 				}
+			}
+
+			this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
+			
+			if ( this.sommetChoisi != null )
+			{
+				//System.out.println("Sommet choisie " + sommetChoisi.getNumSom());
+
+			}
+
+		}
+		
+	
+		
+		public void mouseDragged( MouseEvent e )
+		{
+
+			//System.out.println( this.sommetChoisi  );
+
+			if ( this.sommetChoisi != null )
+			{	
+				ctrl.setSommet(e.getX(), e.getY(),this.sommetChoisi);
+			
+				// Rafréchire la frame
+				PanelCarte.this.repaint();
 			}
 		}
 

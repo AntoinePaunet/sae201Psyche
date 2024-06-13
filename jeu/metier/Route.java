@@ -41,6 +41,10 @@ public class Route
 	public Sommet getSommetDep  () { return this.sommetDep;  }
 	public int  getNbTroncons () { return this.troncons; }
 	public Sommet getSommetArr() { return this.sommetAr;  }
+	public boolean equals(Route rt ) 
+	{
+		return this.sommetDep == rt.sommetDep && this.sommetAr == rt.sommetAr && this.troncons == rt.troncons ;
+	}
 
 
 	public void setSecSommet  ( Sommet sommetDep  ) { this.sommetDep = sommetDep;   }

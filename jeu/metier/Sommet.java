@@ -50,12 +50,14 @@ public class Sommet
 		this.routes = new ArrayList<>(10);
     }
 
-    public int       getNumSom()    { return this.numSom;    }
-    public String    getNomCoul()   { return this.nomCoul;   }
-    public int       getX()         { return this.x;         }
-    public int       getY()         { return this.y;         }
-    public Materiaux getMateriaux() { return this.materiaux; }
-    public boolean   getDepard()    { return this.depart;    }
+    public int       getNumSom()       { return this.numSom;    }
+    public String    getNomCoul()      { return this.nomCoul;   }
+    public int       getX()            { return this.x;         }
+    public int       getY()            { return this.y;         }
+    public int       setX( int x )  { return this.x = x;     }
+    public int       setY( int y )  { return this.y = y;     }
+    public Materiaux getMateriaux()    { return this.materiaux; }
+    public boolean   getDepard()       { return this.depart;    }
 
 
 	public void addRoute(Route r)
@@ -82,6 +84,20 @@ public class Sommet
 	{
 		return this.routes;
 	}
+
+	public boolean  possede ( int x, int y )
+	{
+
+		if ( x <= this.x + 20  && x >= x-20 && y <= this.y + 20  && y >= y-20 )
+			return true;
+
+		return false;
+
+			
+    }
+
+			
+	
 
      /**
 	 * 
