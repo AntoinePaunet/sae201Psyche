@@ -17,22 +17,22 @@ import javax.swing.*;
 
 public class FrameJoueur extends JFrame
 {
-    private JLayeredPane panelFond;
+	private JLayeredPane panelFond;
 
 	private Controleur ctrl;
 	private Joueur joueur;
 	private char nom = 'J';
 
-    /**
-     * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
-     * Contient tout les éléments graphiques
-     */
-    public FrameJoueur(String nomJoueur, int j, Controleur ctrl)
-    {
+	/**
+	 * Constructeur de la classe interface permettant de générer une IHM de 900px / 535px
+	 * Contient tout les éléments graphiques
+	 */
+	public FrameJoueur(String nomJoueur, int j, Controleur ctrl)
+	{
 		this.ctrl = ctrl;
 		this.setTitle( this.majTitre(nomJoueur, j, ctrl) );
-        this.setSize( 700 , 550 );
-        this.panelFond = new JLayeredPane();
+		this.setSize( 700 , 550 );
+		this.panelFond = new JLayeredPane();
 
 		this.ctrl = ctrl;
 
@@ -51,12 +51,12 @@ public class FrameJoueur extends JFrame
 
 		this.setName("PanelJoueur");
 
-        this.add( this.panelFond );
+		this.add( this.panelFond );
 
 		this.refresh();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-    }
+	}
 
 	public String majTitre( String nomJoueur , int j , Controleur ctrl )
 	{
@@ -115,21 +115,21 @@ public class FrameJoueur extends JFrame
 	/**
 	 * Constructeur du panel contenant les boutons Jouer et Modifier
 	 */
-    public char getNom() {return nom;}
+	public char getNom() {return nom;}
 
 	/**
-     * Permet d'ajouter des éléments dans l'interface graphique. Dans ce cas, il ajoute les images correspondantes aux Jetons sur le Plateau.
-     * @param x Coordonnée de l'abscisse de l'image à placer
-     * @param y Coordonnée de l'ordonnée de l'image à placer
-     * @param url lien de l'image dans le dossier image.
-     */
-    public void ajoutImage(int x, int y, String url, int layer)
-    {
-        ImageIcon image = new ImageIcon(getClass().getResource("../src/images/" + url));
-        JLabel imgLabel = new JLabel(image);
-        imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
-        this.panelFond.add(imgLabel, Integer.valueOf(layer));
-    }
+	 * Permet d'ajouter des éléments dans l'interface graphique. Dans ce cas, il ajoute les images correspondantes aux Jetons sur le Plateau.
+	 * @param x Coordonnée de l'abscisse de l'image à placer
+	 * @param y Coordonnée de l'ordonnée de l'image à placer
+	 * @param url lien de l'image dans le dossier image.
+	 */
+	public void ajoutImage(int x, int y, String url, int layer)
+	{
+		ImageIcon image = new ImageIcon(getClass().getResource("../src/images/" + url));
+		JLabel imgLabel = new JLabel(image);
+		imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
+		this.panelFond.add(imgLabel, Integer.valueOf(layer));
+	}
 /*
 	public static void main( String[] args )
 	{

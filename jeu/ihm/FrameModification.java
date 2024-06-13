@@ -86,7 +86,7 @@ public class FrameModification extends JFrame implements ActionListener
 	{
 		if ( e.getSource() == this.creerSommet )
 		{
-			//this.ctrl.ecrireSommet(numSmt, nomCoul, x, y, materiaux, estDepart);
+			new FrameSommet( this.ctrl);
 		}
 
 		if ( e.getSource() == this.creerRoute )
