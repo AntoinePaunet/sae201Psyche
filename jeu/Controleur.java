@@ -51,6 +51,9 @@ public class Controleur
 		this.editionFichier.lectureFichier("data.txt", false);
 	}
 
+
+
+
 	public void setTabSommet(ArrayList<Sommet> tabSmt)
 	{
 		this.tabSommet = tabSmt;
@@ -156,7 +159,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, this.j1, null);
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j1, null);
 					
 				}
 			}
@@ -177,7 +180,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, this.j2, null);
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j2, null);
 					this.tourJ1= !this.tourJ1;
 				}
 			}
@@ -398,11 +401,20 @@ public class Controleur
 
 	/**
 	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
-	 * @return vrai si c'est au tour du joueur 1, faux si c'et au tour du joueur 2.
+	 * @return vrai si c'est au tour du joueur 1, faux si c'est au tour du joueur 2.
 	 */
 	public boolean getTour()
 	{
 		return this.tourJ1;
+	}
+
+	/**
+	 * Méthode qui renvoie le booléen correspondant à la capacité du joueur de jouer.
+	 * @return vrai si c'est au tour du joueur j, faux si c'est au tour de l'autre joueur.
+	 */	
+	public boolean getTourJ( Joueur j )
+	{
+		return (j == this.getJoueur1() && this.tourJ1); 
 	}
 
 	/**
