@@ -44,7 +44,7 @@ public class Route
 	 * Renvoie le sommet d'arrivée de la Route.
 	 * @return le sommet d'arrivée de la Route
 	 */
-	public Sommet getsommetArr() { return this.sommetArr;  }
+	public Sommet getSommetArr() { return this.sommetArr;  }
 
 	/**
 	 * Renvoie le nombre de troncons de la Route.
