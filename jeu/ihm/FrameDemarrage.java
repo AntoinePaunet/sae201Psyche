@@ -149,6 +149,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
+		{
 			this.frameChoix = new FrameChoix( this.ctrl );
 			this.ctrl.setEstJeu(true);
 		}
@@ -157,9 +158,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
+		{
 			this.frameModification = new FrameModification( this.ctrl ); 
 			this.ctrl.setEstJeu(false);
-		
+		}
+
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
