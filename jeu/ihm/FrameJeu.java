@@ -66,6 +66,8 @@ public class FrameJeu extends JFrame
 
 	public void majIHM(){this.panelCarte = new PanelCarte(ctrl);this.add(this.panelCarte);this.setVisible(true);}
 
+	public PanelCarte getPanelCarte (){return this.panelCarte;}
+
 /*
 	public static void main( String[] args ) throws IOException
 	{
