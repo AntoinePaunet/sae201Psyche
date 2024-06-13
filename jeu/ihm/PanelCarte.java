@@ -94,7 +94,20 @@ public class PanelCarte extends JPanel
 			int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
 			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
 
-			this.g2.drawLine(x1 + adjCercle, y1 + adjCercle, x2 + adjCercle, y2 + adjCercle);
+			int vec1, vec2;
+
+			if (x1<x2){vec1 = 15;}
+			else vec1= -15;
+
+			if (y1<y2){vec2 = 15;}
+			else vec2= -15;
+
+			this.g2.drawLine(x1 + adjCercle+ vec1, y1 + adjCercle + vec2 , x2 + adjCercle + -vec1, y2 + adjCercle + -vec2);
+
+			this.g2.drawOval(x1 + adjCercle+ vec1 -5 , y1 + adjCercle -5 + vec2 , 10,10);
+			this.g2.fillOval(x1 + adjCercle+ vec1 -5 , y1 + adjCercle -5 + vec2 , 10,10);
+			this.g2.drawOval(x2 + adjCercle -5 + -vec1, y2 + adjCercle -5+ -vec2,  10,10);
+			this.g2.fillOval(x2 + adjCercle -5 + -vec1, y2 + adjCercle -5+ -vec2,  10,10);
 
 			if (r.getNbTroncons()==2)
 			{
