@@ -51,6 +51,9 @@ public class Controleur
 		this.editionFichier.lectureFichier("data.txt");
 	}
 
+
+
+
 	public void setTabSommet(ArrayList<Sommet> tabSmt)
 	{
 		this.tabSommet = tabSmt;
