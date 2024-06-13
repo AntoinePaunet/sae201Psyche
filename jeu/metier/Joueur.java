@@ -4,7 +4,7 @@ import jeu.metier.*;
 import java.util.ArrayList;
 
 /**
- * Cette classe permet d'instancié les joueurs 
+ * Cette classe permet d'instancier les joueurs 
  * @author Antione Paunet,			IUT du Havre
  * @author Mael Vauthier,			IUT du Havre
  * @author Martin Ravenel,			IUT du Havre
@@ -27,7 +27,9 @@ public class Joueur
 
 	private String nomJoueur;
 
-
+	/**
+	 * Constructeur de Joueur.
+	 */
 	public Joueur()
 	{
 		this.nomJoueur = "default";
@@ -38,11 +40,22 @@ public class Joueur
 		this.nbJetonsUtiliser=0;
 	}
 
-
+	/**
+	 * Méthode permettant de simuler l'utilisation d'un JetonPossession du joueur.
+	 */
 	public void utiliserUnJetons () {this.nbJetonsUtiliser++;}
+
+	/**
+	 * Méthode permettant de modifier le nom du joueur.
+	 * @param nom le nom du joueur
+	 */
 	public void setNomJoueur(String nom){this.nomJoueur=nom;}
 
-
+	/**
+	 * Méthode permettant d'ajouter des matériaux au joueur sur son plateau.
+	 * @param m le matériau a ajouter
+	 * @return vrai si l'action à été effecctuée, faux si non.
+	 */
 	public boolean ajouterMateriaux(Materiaux m)
 	{
 		if (m.toString().equals("NR"))
@@ -78,6 +91,10 @@ public class Joueur
 		return false;
 	}
 
+	/**
+	 * Renvoie le tableau de matériaux du joueur.
+	 * @return le tableau de matériaux du joueur
+	 */
 	public Materiaux[][] getTableMateriaux()
 	{
 		return this.tabPlateau;

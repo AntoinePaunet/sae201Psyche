@@ -13,6 +13,7 @@ import java.awt.*;
 
 public enum Couleur
 {
+	DEBUT  ( 100, 100, 255 ),
 	JAUNE  ( 255, 255, 0   ),
 	MARRON  (165, 42 , 42  ),
 	VIOLET ( 255, 255, 255 ),
