@@ -1,5 +1,5 @@
 [SOMMET]
-<<<<<<< HEAD
+
 4	Vert	484	88	NI	false
 8	Vert	195	77	CO	false
 2	Vert	317	187	NR	false
@@ -82,7 +82,4 @@
 1	2Jaune	5Jaune
 2	5Jaune	1Jaune
 2	2Jaune	4Jaune
-=======
 
-[ROUTES]
->>>>>>> d603109bf36b14a2d5f913fa6d016f0328f12574
