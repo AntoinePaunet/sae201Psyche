@@ -150,10 +150,10 @@ public class PanelSommet extends JPanel  implements ActionListener
 	 */
 	public void actionPerformed( ActionEvent e )
 	{
-		String idVille =null;
+		int idVille    =0;
 		String nomVile =null;
-		String x       =null;
-		String y       =null;
+		int x       =0;
+		int y       =0;
 		// Get the selected row index
 		int selectedRowIndex = table.getSelectedRow();
 
