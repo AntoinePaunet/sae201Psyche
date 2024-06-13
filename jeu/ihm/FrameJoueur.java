@@ -36,6 +36,7 @@ public class FrameJoueur extends JFrame
 		this.setTitle( this.majTitre(this.joueur, ctrl) );
 		this.setSize( 700 , 550 );
 		this.panelFond = new JLayeredPane();
+		
 
 		this.ctrl = ctrl;
 
@@ -77,7 +78,8 @@ public class FrameJoueur extends JFrame
 		else
 			s += "en attente de l'autre joueur ...";
 
-		s += "\tVotre score : " + String.valueOf(this.joueur.getScore()) ;
+		s += "\tVotre score : " + String.valueOf(this.joueur.getScore());
+		this.setTitle(s);
 		return s;
 	}
 
