@@ -29,7 +29,7 @@ public class Sommet
     /**
 	 * Constructeure
 	 *
-	 * @param numSom     numéro de la mine
+	 * @param numSom      numéro de la mine
 	 * @param nomCoul     nom de la couleur de la mine
 	 * @param x           postion x
 	 * @param y           postion y
@@ -88,12 +88,10 @@ public class Sommet
 	public boolean  possede ( int x, int y )
 	{
 
-		if ( x <= this.x + 5  && x >= x-5 && y <= this.y + 5  && y >= y-5 )
+		if ( x <= this.x + 20  && x >= this.x-20 && y <= this.y + 20  && y >= this.y-20 )
 			return true;
 
 		return false;
-
-			
     }
 
 			

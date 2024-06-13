@@ -10,6 +10,7 @@ import javax.swing.table.TableModel;
 
 import java.awt.event.*;
 import java.io.IOException;
+import java.time.chrono.ThaiBuddhistChronology;
 import java.awt.GridLayout;
 import java.util.List;
 
@@ -143,10 +144,10 @@ public class PanelSommet extends JPanel  implements ActionListener
 	 */
 	public void actionPerformed( ActionEvent e )
 	{
-		String idVille =null;
+		int idVille =0;
 		String nomVile =null;
-		String x       =null;
-		String y       =null;
+		int x       =0;
+		int y       =0;
 		// Get the selected row index
 		int selectedRowIndex = table.getSelectedRow();
 
@@ -156,27 +157,29 @@ public class PanelSommet extends JPanel  implements ActionListener
 			TableModel model = table.getModel();
 
 			// Get data from the selected row
-			idVille = (String) model.getValueAt(selectedRowIndex, 0);
-			nomVile = (String) model.getValueAt(selectedRowIndex, 1);
-			x       = (String) model.getValueAt(selectedRowIndex, 2);
-			y       = (String) model.getValueAt(selectedRowIndex, 3);
+			idVille = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 0 ) );
+			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
+			x       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 2 ) );
+			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
 		}
+
+
 
 		if (e.getSource() == this.btnAjouterSommet)
 		{
-			try{
-				this.ctrl.ecrireSommet(Integer.parseInt(this.txtNumero.getText()), this.txtNomCouleur.getText(), 
-			                       Integer.parseInt(this.txtX.getText()), Integer.parseInt(this.txtY.getText()),
-								   new Materiaux("AU"), false);
-				System.out.println("sommet ajouté normalement");
-			}
-			catch (IOException ex){
-				System.out.println("Erreur dans le catch");
-				JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-			}
 			
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
+
+			System.out.println(idVille + " " + nomVile + " " + x + " " + y + " " + false);
+
+
+
+			this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
+			
+			System.out.println("sommet ajouté ou suppresion du sommet effectué ");
+
+			
+			// DefaultTableModel model = (DefaultTableModel) table.getModel();
+			// model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
 			this.ctrl.MajFrameModification();
 		}
 
