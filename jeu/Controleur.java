@@ -563,13 +563,21 @@ public class Controleur
 			 
 	}
 
-
+	/**
+	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
+	 * @return vrai si c'est au tour du joueur 1, faux si c'et au tour du joueur 2.
+	 */
 	public boolean getTour()
 	{
 		return this.tourJ1;
 	}
 
-
+	/**
+	 * Méthode qui recherche et renvoie le sommet placé aux coordonnées données.
+	 * @param x l'abcisse du sommet
+	 * @param y l'ordonnée du sommet
+	 * @return le sommet placé à ces coordonnées.
+	 */
 	public Sommet getSommet(int x, int y)
 	{
 
@@ -582,16 +590,23 @@ public class Controleur
 		return null;
 	}
 
+	/**
+	 * Méthode qui modifie les coordonnées d'un sommet.
+	 * @param x l'abcisse du sommet
+	 * @param y l'ordonnée du sommet
+	 * @param som le sommet à déplacer
+	 */
 	public void setSommet(int x, int y, Sommet som)
 	{
 		som.setX(x); som.setY(y);
 	}
 
+	/**
+	 * Méthode principale de la classe Controleur. Elle lance l'application.
+	 * @param arg les arguments de la méthode
+	 */
 	public static void main (String[] arg) throws IOException
 	{
 		Controleur ctrl = new Controleur();
 	}
-
-
-
 }
