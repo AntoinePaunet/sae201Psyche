@@ -150,10 +150,10 @@ public class PanelSommet extends JPanel  implements ActionListener
 	 */
 	public void actionPerformed( ActionEvent e )
 	{
-		String idVille =null;
+		int idVille    =0;
 		String nomVile =null;
-		String x       =null;
-		String y       =null;
+		int x       =0;
+		int y       =0;
 		// Get the selected row index
 		int selectedRowIndex = table.getSelectedRow();
 
@@ -163,10 +163,24 @@ public class PanelSommet extends JPanel  implements ActionListener
 			TableModel model = table.getModel();
 
 			// Get data from the selected row
-			idVille = (String) model.getValueAt(selectedRowIndex, 0);
-			nomVile = (String) model.getValueAt(selectedRowIndex, 1);
-			x       = (String) model.getValueAt(selectedRowIndex, 2);
-			y       = (String) model.getValueAt(selectedRowIndex, 3);
+			idVille = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 0 ) );
+			x       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 2 ) );
+			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
+			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
+		}
+		else if ( !(this.txtNomCouleur.getText().isEmpty() ||
+                    this.txtNumero.getText().isEmpty()     ||  
+                    this.txtX.getText().isEmpty()          ||
+                    this.txtY.getText().isEmpty() 
+					)
+				)
+		{
+			idVille = Integer.parseInt( (String) this.txtNumero.getText() );
+			x       = Integer.parseInt( (String) this.txtX.getText()      );
+			y       = Integer.parseInt( (String) this.txtY.getText()      );
+			nomVile = (String) this.txtNomCouleur.getText()                ;
+
+			
 		}
 
 
