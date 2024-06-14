@@ -97,7 +97,7 @@ public class Controleur
 		System.out.println(r.getSommetArr().getMateriaux());
 		System.out.println((r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null));
 		//verifie si l'un des deux sommet deja pris ou non
-		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
+		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
 			 
 		//return false ;
 
