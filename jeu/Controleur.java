@@ -37,6 +37,8 @@ public class Controleur
 	 */
 	public Controleur() throws IOException
 	{
+		//new FrameScore(this);
+		
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.editionFichier = new EditionFichier(this);
@@ -89,7 +91,7 @@ public class Controleur
 		if (r.getJoueur()!=null) {return false;}
 
 		//verifie si l'un des deux sommet deja pris ou non
-		if (r.getSommetDep().getMateriaux()==null || r.getsommetArr().getMateriaux()==null)
+		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
 			return true ;
 
 		return false ;
@@ -170,7 +172,7 @@ public class Controleur
 						this.j2.addSommetRecup(r.getSommetDep());
 					
 					if (r.getSommetArr().getMateriaux()!=null)
-						this.j2.addSommetRecup(r.getsommetArr());
+						this.j2.addSommetRecup(r.getSommetArr());
 
 					this.j2.utiliserUnJetons();
 					
