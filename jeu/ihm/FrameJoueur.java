@@ -36,9 +36,6 @@ public class FrameJoueur extends JFrame
 		this.setTitle( this.majTitre(this.joueur, ctrl) );
 		this.setSize( 700 , 550 );
 		this.panelFond = new JLayeredPane();
-		
-
-		this.ctrl = ctrl;
 
 		if( j == this.ctrl.getJoueur1() )
 		{
@@ -64,7 +61,6 @@ public class FrameJoueur extends JFrame
 
 	/**
 	 * Méthode qui met a jour le nom de la frame des joueurs en fonction de leur tour de jouer.
-	 * @param nomJoueur le nom du joueur a qui appartient la frame
 	 * @param j le numéro correspondant au joueur
 	 * @param ctrl le Controleur qui lance la frame
 	 * @return Le titre de la frame
@@ -74,12 +70,11 @@ public class FrameJoueur extends JFrame
 		String s = this.joueur.getNomJoueur();
 
 		if( ctrl.getTourJ(j) )
-			s += "A vous de jouer !";
+			s += " A vous de jouer !";
 		else
-			s += "en attente de l'autre joueur ...";
+			s += " en attente de l'autre joueur ...";
 
 		s += "\tVotre score : " + String.valueOf(this.joueur.getScore());
-		this.setTitle(s);
 		return s;
 	}
 
@@ -128,6 +123,7 @@ public class FrameJoueur extends JFrame
 	 * @param x Coordonnée de l'abscisse de l'image à placer
 	 * @param y Coordonnée de l'ordonnée de l'image à placer
 	 * @param url lien de l'image dans le dossier image.
+	 * @param layer la couche de l'image
 	 */
 	public void ajoutImage(int x, int y, String url, int layer)
 	{

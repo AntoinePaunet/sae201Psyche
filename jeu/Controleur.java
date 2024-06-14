@@ -166,7 +166,6 @@ public class Controleur
 					
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j1, this);
-					
 				}
 			}
 			else
