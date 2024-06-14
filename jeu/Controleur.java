@@ -379,8 +379,8 @@ public class Controleur
 		}
 	}
 
-	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart ) 
-	{ 
+	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart )
+	{
 		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu) ;
 		boolean tempEstSup = false;
 
@@ -388,6 +388,23 @@ public class Controleur
 		{
 			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepard() == estDepart)
 			{
+				ArrayList<Route> tmpR = new ArrayList<>(this.tabRoute.size()/2);
+
+				for(Route r : this.tabRoute)
+				{
+					if(r.getSommetArr() == rt || r.getSommetDep() == rt)
+					{
+						tmpR.add(r);
+					}
+				}
+
+
+				for(Route r : tmpR)
+				{
+					this.tabRoute.remove(r);
+				}
+
+
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;

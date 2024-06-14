@@ -256,7 +256,7 @@ public class PanelCarte extends JPanel
 		}
 
 	/**
-	 * A complèter.
+	 * A compléter
 	 * @param p le point cliqué par la souris
 	 * @param v le point cliqué par la souris
 	 * @param w le point cliqué par la souris
