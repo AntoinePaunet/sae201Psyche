@@ -165,7 +165,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j1, this);
+					this.majFrameJoueur(this.j1, this);
 					
 				}
 			}
@@ -186,7 +186,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF2().majTitre(this.j2, this);
+					this.majFrameJoueur(this.j2, this);
 				}
 			}
 		}
