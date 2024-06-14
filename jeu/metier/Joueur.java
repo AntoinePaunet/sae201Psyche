@@ -46,6 +46,12 @@ public class Joueur
 	public void utiliserUnJetons () {this.nbJetonsUtiliser++;}
 
 	/**
+	 * Retourne le nom du joueur.
+	 * @return le nom du joueur
+	 */
+	public String getNomJoueur(){ return this.nomJoueur; }
+
+	/**
 	 * Méthode permettant de modifier le nom du joueur.
 	 * @param nom le nom du joueur
 	 */

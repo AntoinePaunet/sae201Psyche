@@ -50,8 +50,11 @@ public class Controleur
 
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
-		this.editionFichier.lectureFichier("data.txt");
+		this.editionFichier.lectureFichier("data.txt", false);
 	}
+
+
+
 
 	public void setTabSommet(ArrayList<Sommet> tabSmt)
 	{
@@ -90,11 +93,13 @@ public class Controleur
 	{
 		if (r.getJoueur()!=null) {return false;}
 
+		System.out.println(r.getSommetDep().getMateriaux());
+		System.out.println(r.getSommetArr().getMateriaux());
+		System.out.println((r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null));
 		//verifie si l'un des deux sommet deja pris ou non
-		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
-			return true ;
-
-		return false ;
+		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
+			 
+		//return false ;
 
 	}
 
@@ -137,6 +142,8 @@ public class Controleur
 	 */
 	public void jouer (Route r)
 	{
+		//System.out.println(this.estValide(r));
+
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
@@ -158,7 +165,8 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, this.j1, null);
+					//this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j1, null);
+					
 					
 				}
 			}
@@ -179,11 +187,12 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(null, this.j2, null);
+					//this.frameDemarrage.getFrameChoix().getF2().majTitre(this.j2, null);
 					this.tourJ1= !this.tourJ1;
 				}
 			}
 		}
+	
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 	}
@@ -400,11 +409,20 @@ public class Controleur
 
 	/**
 	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
-	 * @return vrai si c'est au tour du joueur 1, faux si c'et au tour du joueur 2.
+	 * @return vrai si c'est au tour du joueur 1, faux si c'est au tour du joueur 2.
 	 */
 	public boolean getTour()
 	{
 		return this.tourJ1;
+	}
+
+	/**
+	 * Méthode qui renvoie le booléen correspondant à la capacité du joueur de jouer.
+	 * @return vrai si c'est au tour du joueur j, faux si c'est au tour de l'autre joueur.
+	 */	
+	public boolean getTourJ( Joueur j )
+	{
+		return (j == this.getJoueur1() && this.tourJ1); 
 	}
 
 	/**

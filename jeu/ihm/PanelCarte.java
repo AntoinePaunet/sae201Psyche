@@ -7,7 +7,6 @@ import jeu.metier.Sommet;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import jeu.ihm.PanelModification;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -130,42 +129,39 @@ public class PanelCarte extends JPanel
 		int layer = 2;
 
 		
-			ImageIcon image;
-			int adjCercle = 5 ;
-			int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
-			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
+		ImageIcon image;
+		int adjCercle = 5 ;
+		int x1 = r.getSommetDep().getX(), y1 = r.getSommetDep().getY();
+		int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
 
-			if (r.getJoueur()==this.ctrl.getJoueur1())
-				image = new ImageIcon(getClass().getResource("../src/images/equipe1.PNG"));
-			
-			else if (r.getJoueur()==this.ctrl.getJoueur2())
-				image = new ImageIcon(getClass().getResource("../src/images/equipe2.PNG"));
-			else 
-				return;
+		if (r.getJoueur()==this.ctrl.getJoueur1())
+			image = new ImageIcon(getClass().getResource("../src/images/equipe1.PNG"));
+		
+		else if (r.getJoueur()==this.ctrl.getJoueur2())
+			image = new ImageIcon(getClass().getResource("../src/images/equipe2.PNG"));
+		else 
+			return;
 				
 
-			JLabel imgLabel1 = new JLabel(image);
-			JLabel imgLabel2 = new JLabel(image);
+		JLabel imgLabel1 = new JLabel(image);
+		JLabel imgLabel2 = new JLabel(image);
 
-			if (r.getNbTroncons()==2)
-			{
-				imgLabel1.setBounds(((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2, image.getIconWidth(), image.getIconHeight());
-				imgLabel2.setBounds(((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2, image.getIconWidth(), image.getIconHeight());
+		if (r.getNbTroncons()==2)
+		{
+			imgLabel1.setBounds(((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2, image.getIconWidth(), image.getIconHeight());
+			imgLabel2.setBounds(((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2, image.getIconWidth(), image.getIconHeight());
 
-				this.add(imgLabel1, Integer.valueOf(layer));
-				this.add(imgLabel2, Integer.valueOf(layer));
-			}
+			this.add(imgLabel1, Integer.valueOf(layer));
+			this.add(imgLabel2, Integer.valueOf(layer));
+		}
 			
-			if (r.getNbTroncons()==1)
-			{
-				imgLabel1.setBounds( ((x1 + adjCercle)+ (x2+ adjCercle))/2 , ((y1+ adjCercle) + (y2+ adjCercle))/2 , image.getIconWidth(), image.getIconHeight());
-				this.add(imgLabel1, Integer.valueOf(layer));
-			}
-
-			
-		
-		
-		
+		if (r.getNbTroncons()==1)
+		{
+			imgLabel1.setBounds( ((x1 + adjCercle)+ (x2+ adjCercle))/2 , ((y1+ adjCercle) + (y2+ adjCercle))/2 , image.getIconWidth(), image.getIconHeight());
+			this.add(imgLabel1, Integer.valueOf(layer));
+		}
+		System.out.println(r);
+		this.setVisible(true);
 	}
 
 
@@ -208,7 +204,7 @@ public class PanelCarte extends JPanel
 			}
 			
 
-			System.out.println(PanelCarte.this.ctrl.getEstJeu());
+			//System.out.println(PanelCarte.this.ctrl.getEstJeu());
 
 			if (  PanelCarte.this.ctrl.getEstJeu() == false )
 				this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );

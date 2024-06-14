@@ -29,13 +29,14 @@ public class FrameJoueur extends JFrame
 	 * @param j le numéro correspondant au joueur
 	 * @param ctrl le Controleur qui lance la frame
 	 */
-	public FrameJoueur(String nomJoueur, Joueur j, Controleur ctrl)
+	public FrameJoueur(Joueur j, Controleur ctrl)
 	{
 		this.joueur = j;
 		this.ctrl = ctrl;
-		this.setTitle( this.majTitre(nomJoueur, j, ctrl) );
+		this.setTitle( this.majTitre(this.joueur, ctrl) );
 		this.setSize( 700 , 550 );
 		this.panelFond = new JLayeredPane();
+		
 
 		this.ctrl = ctrl;
 
@@ -68,19 +69,17 @@ public class FrameJoueur extends JFrame
 	 * @param ctrl le Controleur qui lance la frame
 	 * @return Le titre de la frame
 	 */
-	public String majTitre( String nomJoueur , Joueur j , Controleur ctrl )
+	public String majTitre( Joueur j , Controleur ctrl )
 	{
-		String s = nomJoueur + " : ";
+		String s = this.joueur.getNomJoueur();
 
-		if( this.ctrl.getTour() )
-		{
-			if( j == this.ctrl.getJoueur1() )
-				s += "A vous de jouer !";
-			else
-				s += "en attente de l'autre joueur ...";
-		}	s += "en attente de l'autre joueur ...";
+		if( ctrl.getTourJ(j) )
+			s += "A vous de jouer !";
+		else
+			s += "en attente de l'autre joueur ...";
 
-		s += "\tVotre score : " + String.valueOf(this.joueur.getScore()) ;
+		s += "\tVotre score : " + String.valueOf(this.joueur.getScore());
+		this.setTitle(s);
 		return s;
 	}
 
@@ -97,7 +96,8 @@ public class FrameJoueur extends JFrame
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
 				{
-					this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
+					if (!this.joueur.getTableMateriaux()[i][j].getNom().equals("DP"))
+						this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
 				}
 				x += 60;
 			}

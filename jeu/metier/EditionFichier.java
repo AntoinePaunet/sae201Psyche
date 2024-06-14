@@ -70,9 +70,9 @@ public class EditionFichier
 	 * Méthode qui initialise un lecteur de fichierafin d'y lire la carte du jeu.
 	 * @param nomFichier le fichier dans lequel le reader va lire
 	 */
-	public void lectureFichier(String nomFichier) throws IOException
+	public void lectureFichier(String nomFichier, boolean importer) throws IOException
 	{
-
+		File tmpFichier;
 		if(estVide(nomFichier))
 		{
 			nomFichier = "data.txt";
@@ -83,12 +83,20 @@ public class EditionFichier
 			return;
 		}
 
-		fichier = new File(nomFichier);
+		tmpFichier = new File(nomFichier);
+		fichier = new File("data.txt");
 
 		try
 		{
-			//System.out.println(nomFichier);
-			FileReader fr = new FileReader(fichier);
+			FileReader fr;
+
+			if(importer)
+			{
+				fr = new FileReader(tmpFichier);
+				this.supprimer();
+			}else{
+				fr = new FileReader(fichier);
+			}
 			Scanner sc = new Scanner(fr);
 
 			// Vider les tableaux pour ne pas refaire trop de variables
@@ -108,7 +116,6 @@ public class EditionFichier
 						etapeLecture = 1;
 						if (sc.hasNextLine())
 							ligne = sc.nextLine();
-
 					}
 					else if (ligne.equals("[ROUTES]"))
 					{
