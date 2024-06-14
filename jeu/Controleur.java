@@ -180,7 +180,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j2, this);
+					this.frameDemarrage.getFrameChoix().getF2().majTitre(this.j2, this);
 				}
 			}
 		}
@@ -329,6 +329,18 @@ public class Controleur
 		return this.j2;
 	}
 
+	/**
+	 * Renvoie le joueur n°2
+	 * @return le joueur 2
+	 */
+	public void majFrameJoueur( Joueur j , Controleur ctrl )
+	{
+		if( j == this.j1 )
+			this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j1, this);
+		else
+			this.frameDemarrage.getFrameChoix().getF2().majTitre(this.j2, this);
+	}
+
 
 	/**
 	 * Méthode qui recherche un sommet dans la liste de sommets a partir de son numéro.
@@ -353,7 +365,7 @@ public class Controleur
 	public void MajFrameModification() { this.frameDemarrage.getFrameModification().repaint(); }
 
 	/**
-	 * Méthode qui recherche un sommet dans la liste de sommets a partir de son numéro.
+	 * Méthode qui ajoute ou supprime une route dans la liste de route.
 	 * @param sommetDep le sommet de départ
 	 * @param sommetArr le sommet d'arrivée
 	 * @param nbTroncon le nombre de troncons de la route
@@ -378,6 +390,14 @@ public class Controleur
 		}
 	}
 
+	/**
+	 * Méthode qui ajoute ou supprime un sommet dans la liste de sommet.
+	 * @param numSom le nunméro du sommet
+	 * @param nomCoul la couleur du sommet
+	 * @param x l'abscisse du sommet
+	 * @param y l'ordonnée du sommet
+	 * @param estDepart vrai si on ajoute un sommet de départ, faux si non
+	 */
 	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart )
 	{
 		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu) ;
