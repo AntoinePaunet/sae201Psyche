@@ -189,7 +189,7 @@ public class Controleur
 	}
 
 	/**
-	 * Méthode qui initialise le jeu. Elle met donc en place la carte, ses chemins et ses sommets.
+	 * Méthode qui initialise le jeu. Elle met donc en place la carte, ses chemins et ses sommets lorsque le fichier texte n'est pas utilisé.
 	 */
 	public void init() throws IOException
 	{
