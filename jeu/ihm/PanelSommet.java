@@ -206,7 +206,13 @@ public class PanelSommet extends JPanel  implements ActionListener
 				System.out.println(idVille + " " + nomVile + " " + x + " " + y + " " + false);
 
 				this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
-				
+
+				//Raffraichir le tableau
+				this.removeAll();
+				this.ajouterTabSommet();
+				this.panelInput();
+				this.revalidate();
+
 				System.out.println("sommet ajouté ou suppresion du sommet effectué ");
 
 				

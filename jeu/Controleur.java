@@ -165,8 +165,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					//this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j1, null);
-					
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j1, this);
 					
 				}
 			}
@@ -186,9 +185,8 @@ public class Controleur
 					
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
-
-					//this.frameDemarrage.getFrameChoix().getF2().majTitre(this.j2, null);
 					this.tourJ1= !this.tourJ1;
+					this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j2, this);
 				}
 			}
 		}
@@ -198,7 +196,7 @@ public class Controleur
 	}
 
 	/**
-	 * Méthode qui initialise le jeu. Elle met donc en place la carte, ses chemins et ses sommets.
+	 * Méthode qui initialise le jeu. Elle met donc en place la carte, ses chemins et ses sommets lorsque le fichier texte n'est pas utilisé.
 	 */
 	public void init() throws IOException
 	{
@@ -330,8 +328,8 @@ public class Controleur
 	}
 
 	/**
-	 * Renvoie le joueur n°1
-	 * @return le joueur 1
+	 * Renvoie le joueur n°2
+	 * @return le joueur 2
 	 */
 	public Joueur getJoueur2 ()
 	{
@@ -387,8 +385,8 @@ public class Controleur
 		}
 	}
 
-	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart ) 
-	{ 
+	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart )
+	{
 		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu) ;
 		boolean tempEstSup = false;
 
@@ -396,6 +394,23 @@ public class Controleur
 		{
 			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepard() == estDepart)
 			{
+				ArrayList<Route> tmpR = new ArrayList<>(this.tabRoute.size()/2);
+
+				for(Route r : this.tabRoute)
+				{
+					if(r.getSommetArr() == rt || r.getSommetDep() == rt)
+					{
+						tmpR.add(r);
+					}
+				}
+
+
+				for(Route r : tmpR)
+				{
+					this.tabRoute.remove(r);
+				}
+
+
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;
