@@ -321,8 +321,8 @@ public class Controleur
 	}
 
 	/**
-	 * Renvoie le joueur n°1
-	 * @return le joueur 1
+	 * Renvoie le joueur n°2
+	 * @return le joueur 2
 	 */
 	public Joueur getJoueur2 ()
 	{
