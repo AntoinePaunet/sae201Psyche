@@ -37,6 +37,8 @@ public class Controleur
 	 */
 	public Controleur() throws IOException
 	{
+		//new FrameScore(this);
+		
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.editionFichier = new EditionFichier(this);
@@ -91,11 +93,13 @@ public class Controleur
 	{
 		if (r.getJoueur()!=null) {return false;}
 
+		System.out.println(r.getSommetDep().getMateriaux());
+		System.out.println(r.getSommetArr().getMateriaux());
+		System.out.println((r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null));
 		//verifie si l'un des deux sommet deja pris ou non
-		if (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null)
-			return true ;
-
-		return false ;
+		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
+			 
+		//return false ;
 
 	}
 
@@ -138,6 +142,8 @@ public class Controleur
 	 */
 	public void jouer (Route r)
 	{
+		//System.out.println(this.estValide(r));
+
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
@@ -184,6 +190,7 @@ public class Controleur
 				}
 			}
 		}
+	
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 	}

@@ -21,7 +21,7 @@ public class Materiaux implements IRessource
 	public static int nbPiece;
 
 	//Permet de vérifier qu'on génère un matériau qui existe bel et bien.
-	public static final ArrayList<String> verif = new ArrayList<>(Arrays.asList("AU", "AG", "FE", "AL", "NI", "PT", "CO", "TI", "NR"));
+	public static final ArrayList<String> verif = new ArrayList<>(Arrays.asList("AU", "AG", "FE", "AL", "NI", "PT", "CO", "TI", "NR","DP"));
 
 	/**
 	 * Constructeur de Matériau.
