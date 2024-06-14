@@ -25,18 +25,21 @@ public class FrameScore extends JFrame
 	 */
 	public FrameScore(Controleur ctrl)
 	{
-		this.setTitle   ( "Score"  );
+		this.setTitle   ( "Résultat de la partie"  );
 		this.setSize    ( 400, 800 );
 		this.setLocation( 500,500    );
-
-		this.panelDesScore = new PanelScore( ctrl );
 		this.ctrl=ctrl;
+
+		this.panelDesScore = new PanelScore( this.ctrl );
 
 		this.add( this.panelDesScore );
 
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 
-
-
+	public static void main( String args[] )
+	{
+		new FrameScore(null);
+	}
 }

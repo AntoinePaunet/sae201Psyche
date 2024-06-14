@@ -1,6 +1,5 @@
 package jeu.metier;
 
-import jeu.metier.*;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +15,8 @@ import java.util.ArrayList;
  */
 public class Joueur 
 {
+	private static final int MB_MAX_JETON_POSSESION = 25;
+
 	private Materiaux[][] tabPlateau;
 	private Materiaux[] tabPiece;
 	private ArrayList<JetonPossession> tabJetonPossession;
@@ -43,7 +44,11 @@ public class Joueur
 	/**
 	 * Méthode permettant de simuler l'utilisation d'un JetonPossession du joueur.
 	 */
-	public void utiliserUnJetons () {this.nbJetonsUtiliser++;}
+	public void utiliserUnJetons ()
+	{
+		if( this.nbJetonsUtiliser < Joueur.MB_MAX_JETON_POSSESION )
+			this.nbJetonsUtiliser ++;
+	}
 
 	/**
 	 * Retourne le nom du joueur.

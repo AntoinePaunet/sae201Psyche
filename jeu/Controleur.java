@@ -3,7 +3,6 @@ package jeu;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 import jeu.ihm.*;
 import jeu.metier.*;
@@ -500,6 +499,6 @@ public class Controleur
 	 */
 	public static void main (String[] arg) throws IOException
 	{
-		Controleur ctrl = new Controleur();
+		new Controleur();
 	}
 }
