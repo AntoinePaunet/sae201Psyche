@@ -350,6 +350,7 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(30), this.tabSommet.get(29), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(21), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(30), this.tabSommet.get(22), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(22), 1));
 
 		this.editionFichier.sauvegarde();
 	}

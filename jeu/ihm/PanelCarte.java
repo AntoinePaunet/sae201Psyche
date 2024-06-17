@@ -206,20 +206,14 @@ public class PanelCarte extends JPanel
 
 				if (s.getDepart())
 					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"));
-				else
-				{	
-					points=new JLabel(s.getNumSom()+"");
-					this.g2.drawString(points.getText(), x+10, y-5 );
-					//points.setAlignmentY(y+10);
-					//this.add(points,4);
-
-				}
+				
 					
 
 				imgLabel3 = new JLabel(image2);
 				imgLabel3.setBounds(x-20,y-40, image2.getIconWidth(), image2.getIconHeight());
 				this.add(imgLabel3, Integer.valueOf(2));
-				this.setVisible(true);
+				points=new JLabel(s.getNumSom()+"");
+				this.g2.drawString(points.getText(), x+10, y-5 );
 
 				
 				this.repaint();
