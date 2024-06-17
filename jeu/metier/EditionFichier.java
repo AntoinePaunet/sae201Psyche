@@ -209,13 +209,20 @@ public class EditionFichier {
 		String nomMat = smtInfo[4];
 		int id = Integer.parseInt(smtInfo[7]);
 
-		if ( smtInfo[5].equals( "J1" ) )
-			this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false,this.ctrl.getJoueur1(), id ) );
+		if (nom.equals("DEPART"))
+			this.tabSommet.add( new Sommet( num, nom, x, y, null, true,this.ctrl.getJoueur1(), id ) );
 		else
-			if ( smtInfo[5].equals( "J2" ) )
-				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur2(), id ) );
+		{
+			if ( smtInfo[5].equals( "J1" ) )
+				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false,this.ctrl.getJoueur1(), id ) );
 			else
-				this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false, null, id));
+				if ( smtInfo[5].equals( "J2" ) )
+					this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur2(), id ) );
+				else
+					this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false, null, id));
+		}
+
+		
 
 
 		this.ctrl.setTabSommet(this.tabSommet);
