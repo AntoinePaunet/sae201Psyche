@@ -20,6 +20,7 @@ public class FrameJeu extends JFrame implements ActionListener
 	private PanelCarte 	panelCarte;
 
 	private JMenuItem menuiAbandonner;
+	private JMenuItem menuiAnnuler, menuiRetablir;
 
 	private Controleur 	ctrl;
 
@@ -45,15 +46,24 @@ public class FrameJeu extends JFrame implements ActionListener
 		this.menuiAbandonner  = new JMenuItem ("Quitter sans sauvegarder" );
 
 		menuOptions.add(this.menuiAbandonner );
-
 		menuBar.add(menuOptions);
 
+		if( this.ctrl.getEstScenar() )
+		{
+			JMenu menuScenar = new JMenu("Scénario");
+
+			this.menuiAnnuler  = new JMenuItem ("Annuler la dernière action"  );
+			this.menuiRetablir = new JMenuItem ("Rétablir la dernière action" );
+
+			menuScenar.add(this.menuiAnnuler );
+			menuScenar.add(this.menuiRetablir );
+
+			menuBar.add(menuScenar);
+		}
 		this.setJMenuBar( menuBar );
 
 		menuOptions.setMnemonic('O');
-
 		this.menuiAbandonner.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_DOWN_MASK) );
-
 
 		this.menuiAbandonner.addActionListener(this);
 

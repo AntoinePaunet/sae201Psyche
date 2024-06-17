@@ -519,6 +519,22 @@ public class Controleur
 		return null;
 	}
 
+	/**
+	 * Méthode qui recherche et renvoie le sommet qui a l'id passe en parametre.
+	 * @param idsom id du sommet
+	 * @return le sommet qui dispose de cette id.
+	 */
+	public Sommet getSommet(int idsom)
+	{
+
+		for ( Sommet s : this.tabSommet )
+		{
+			if ( s. )
+				return s;
+		}
+		return null;
+	}
+
 
 	public void reInit() throws IOException {
 		this.tabSommet = new ArrayList<Sommet>(30);

@@ -393,4 +393,59 @@ public class EditionFichier {
 			
 		}
 	}
+
+	public void ecrireScenario( int nbScenario, int idSommetDep, int idSommeArr ) throws IOException
+	{
+		String emplacement = "./jeu/src/scenario/"+ nbScenario + ".txt";
+
+		FileReader fr = new FileReader(emplacement);
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter(emplacementData));
+
+		try {
+			writer.write( idSommetDep + " -> " + idSommeArr );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		writer.close();
+
+	}
+
+	public void lireScenario( int nbScenario, int numEtape) throws IOException
+	{
+		try {
+			FileReader fr = new FileReader("./jeu/src/scenario/"+ nbScenario + ".txt");
+			Scanner sc = new Scanner(fr);
+
+			int etapeLecture = 0;
+
+			while (sc.hasNextLine()) 
+			{
+				String ligne = sc.nextLine();
+
+				if ( etapeLecture == numEtape )
+				{
+					this.ctrl.ajouterOuSupprimerRoute( this.ctrl.getSommet(numEtape, etapeLecture), null, etapeLecture );
+
+					break;
+				}
+
+
+			}
+
+			sc.close();
+			fr.close();
+		} catch (Exception exp) {
+			exp.printStackTrace();
+		}
+
+
+
+	}
+	
+
+
+
+
 }
