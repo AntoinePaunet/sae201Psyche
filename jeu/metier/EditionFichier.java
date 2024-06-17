@@ -162,7 +162,7 @@ public class EditionFichier
 
 		try
 		{
-			fr = new FileReader ( "theme.txt" );
+			fr = new FileReader ( "./jeu/src/theme.txt" );
 			Scanner sc = new Scanner ( fr );
 
 			while ( sc.hasNextLine() )
@@ -192,7 +192,7 @@ public class EditionFichier
 		cpt = 0;
 		try
 		{
-			fr = new FileReader ( "theme.txt" );
+			fr = new FileReader ( "./jeu/src/theme.txt" );
 			Scanner sc = new Scanner ( fr );
 
 			while ( sc.hasNextLine() && cpt < index )
