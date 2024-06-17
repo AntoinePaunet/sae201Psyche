@@ -30,6 +30,7 @@ public class Controleur
 	public  FrameDemarrage frameDemarrage;
 
 	private EditionFichier editionFichier;
+	private String[]       elementsTheme ;
 
 	/**
 	 * Constructeur du Controleur
@@ -500,6 +501,41 @@ public class Controleur
 	public void setSommet(int x, int y, Sommet som)
 	{
 		som.setX(x); som.setY(y);
+	}
+
+	public void setElementsTheme(String[] elements)
+	{
+		this.elementsTheme = elements;
+	}
+
+	public String[] getElementsTheme()
+	{
+		return this.elementsTheme;
+	}
+
+	public String getNomThemePrincipal()
+	{
+		return this.elementsTheme[0];
+	}
+
+	public String getNomThemeJ1()
+	{
+		return this.elementsTheme[1];
+	}
+
+	public String getNomThemeJ2()
+	{
+		return this.elementsTheme[2];
+	}
+
+	public String getNomThemeSommet()
+	{
+		return this.elementsTheme[3];
+	}
+
+	public String getNomThemeRoute()
+	{
+		return this.elementsTheme[4];
 	}
 
 	/**

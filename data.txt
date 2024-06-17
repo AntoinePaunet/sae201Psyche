@@ -29,7 +29,6 @@
 1	Gris	603	595	CO	false
 5	Jaune	706	569	TI	false
 2	Jaune	779	569	FE	false
-0	null	457	464	null	false
 
 [ROUTES]
 1	6Vert	6Bleu
