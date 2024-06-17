@@ -203,6 +203,24 @@ public class Controleur
 	}
 
 	/**
+	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
+	 * @return vrai si c'est au tour du joueur 1, faux si c'est au tour du joueur 2.
+	 */
+	public boolean getTour()
+	{
+		return this.tourJ1;
+	}
+
+	/**
+	 * Méthode qui renvoie le booléen correspondant à la capacité du joueur de jouer.
+	 * @return vrai si c'est au tour du joueur j, faux si c'est au tour de l'autre joueur.
+	 */	
+	public boolean getTourJ( Joueur j )
+	{
+		return (j == this.getJoueur1() && this.tourJ1); 
+	}
+
+	/**
 	 * Méthode qui initialise le jeu. Elle met donc en place la carte, ses chemins et ses sommets lorsque le fichier texte n'est pas utilisé.
 	 */
 	public void init() throws IOException
@@ -446,24 +464,6 @@ public class Controleur
 		{
 			this.tabSommet.add( tempSommet );
 		}
-	}
-
-	/**
-	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
-	 * @return vrai si c'est au tour du joueur 1, faux si c'est au tour du joueur 2.
-	 */
-	public boolean getTour()
-	{
-		return this.tourJ1;
-	}
-
-	/**
-	 * Méthode qui renvoie le booléen correspondant à la capacité du joueur de jouer.
-	 * @return vrai si c'est au tour du joueur j, faux si c'est au tour de l'autre joueur.
-	 */	
-	public boolean getTourJ( Joueur j )
-	{
-		return (j == this.getJoueur1() && this.tourJ1); 
 	}
 
 	/**
