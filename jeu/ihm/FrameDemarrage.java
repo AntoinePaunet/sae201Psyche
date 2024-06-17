@@ -53,9 +53,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
 
-		this.menuiOuvrir        = new JMenuItem("Importer une carte");
-		this.menuiScenario      = new JMenuItem("Lancer un scénario"  );
-		this.menuiQuitter       = new JMenuItem("Quitter"             );
+		this.menuiOuvrir        = new JMenuItem("Importer une carte" );
+		this.menuiScenario      = new JMenuItem("Lancer un scénario" );
+		this.menuiQuitter       = new JMenuItem("Quitter"            );
 
 		menuOuvrir  .add(this.menuiOuvrir       );
 		menuScenario.add(this.menuiScenario     );
@@ -98,15 +98,16 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	 */
 	public void actionPerformed ( ActionEvent e )
 	{
-		String cheminFichier;
+		/*
 		// Syso pour confirmer l'action
 		if ( e.getSource() instanceof JMenuItem )
-			//System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
-
+			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
+		*/
 		
 		// Importation des fichiers
 		if( e.getSource() == this.menuiOuvrir )
 		{
+			String cheminFichier;
 			JFileChooser fc = new JFileChooser();
 			File chooserFile = new File(System.getProperty("user.dir") + "/jeu/src");
 
@@ -136,11 +137,48 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				}
 				
 			}
-			else
+		}
+
+		// Lecture des scénarios
+		if( e.getSource() == this.menuiScenario )
+		{
+			String cheminFichier;
+			JFileChooser fc = new JFileChooser();
+			File chooserFile = new File(System.getProperty("user.dir") + "/jeu/src");
+
+			try 
 			{
-				//System.out.println("Annuler");
+				chooserFile = chooserFile.getCanonicalFile();
+			} 
+			catch (Exception i) 
+			{
+			/*
+            // En cas d'erreur, imprimer le message d'erreur
+            System.out.println(i.getMessage());
+            // Utiliser le répertoire actuel par défaut
+			*/
 			}
-		}		
+			fc.setCurrentDirectory(chooserFile);
+
+			int returnVal = fc.showOpenDialog(this);
+
+			if (returnVal == JFileChooser.APPROVE_OPTION)
+			{
+				cheminFichier = fc.getSelectedFile().getAbsolutePath();
+				try {
+					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+		}
+
+
+		// Fermeture de l'application
+		if ( e.getSource() == this.menuiQuitter )
+			System.exit(0);
+
 
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
@@ -168,13 +206,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			else
 			{
 				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
-			}
-			
+			}			
 		}
-
-		// Fermeture de l'application
-		if ( e.getSource() == this.menuiQuitter )
-			System.exit(0);
 	}
 
 	/**
@@ -260,4 +293,3 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	}
 */
 }
-
