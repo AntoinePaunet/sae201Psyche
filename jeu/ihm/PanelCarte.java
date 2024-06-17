@@ -155,10 +155,10 @@ public class PanelCarte extends JPanel
 		int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
 
 		if (r.getJoueur()==this.ctrl.getJoueur1())
-			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/equipe1.PNG"));
+			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"));
 		
 		else if (r.getJoueur()==this.ctrl.getJoueur2())
-			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/equipe2.PNG"));
+			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"pion_joueur_2.png"));
 		else 
 			return;
 				

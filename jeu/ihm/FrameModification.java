@@ -129,6 +129,7 @@ public class FrameModification extends JFrame implements ActionListener
 		{
 			try
 			{
+				Controleur.nbSommets = 1;
 				this.ctrl.reInit();
 				this.repaint();
 			} catch( IOException ex ) { throw new RuntimeException(ex); }
