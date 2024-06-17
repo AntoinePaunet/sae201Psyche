@@ -140,12 +140,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				//System.out.println("Annuler");
 			}
-		}
-
-		// Fermeture de l'application
-		if ( e.getSource() == this.menuiQuitter )
-			System.exit(0);
-		
+		}		
 
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
