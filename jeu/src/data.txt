@@ -19,9 +19,9 @@
 4	Rouge	111	456	NI	false	J0	18
 2	Rouge	185	440	FE	false	J0	19
 2	Marron	353	428	AL	false	J0	20
-0	Gris	576	433	FE	false	J0	21
-1	Jaune	696	442	FE	false	J0	22
-4	Jaune	774	443	PT	false	J0	23
+0	Gris	581	402	FE	false	J0	21
+1	Jaune	743	523	FE	false	J0	22
+4	Jaune	717	406	PT	false	J0	23
 5	Marron	200	517	NI	false	J0	24
 3	Marron	330	542	CO	false	J0	25
 4	Marron	427	541	TI	false	J0	26
@@ -29,7 +29,7 @@
 3	Gris	606	512	AG	false	J0	28
 1	Gris	556	586	AU	false	J0	29
 5	Jaune	696	583	NR	false	J0	30
-2	Jaune	773	582	PT	false	J0	31
+2	Jaune	479	469	PT	false	J0	31
 
 [ROUTES]
 1	2	3	J0
