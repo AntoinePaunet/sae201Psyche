@@ -10,4 +10,4 @@ if [ $? -ne 0 ]; then
 fi
 
 # Copie des fichiers source dans le répertoire de sortie
-cp -r "src" "class/jeu/src"
+cp -r "src" "class/jeu/"

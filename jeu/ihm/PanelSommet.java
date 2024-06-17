@@ -105,18 +105,18 @@ public class PanelSommet extends JPanel  implements ActionListener
 	{
 		// Tableau contenant tout les routes
 		List<Sommet> lstSommet = ctrl.getTabSommet();
-		String[][]  data     = new String[ lstSommet.size() ][ 4 ];
+		String[][]  data     = new String[ lstSommet.size() ][ 5 ];
 			
 		// nom des colonnes
-		String[] columnNames = {"Numero", "Couleur", "X", "Y"};
+		String[] columnNames = {"ID","Numero", "Couleur", "X", "Y"};
 			
 		for ( int lig = 0; lig < ( lstSommet ).size(); lig++ )
 		{
-				
-			data[ lig ][ 0 ] = ( lstSommet.get( lig ) ).getNumSom () + "";
-			data[ lig ][ 1 ] = ( lstSommet.get( lig ) ).getNomCoul() ;
-			data[ lig ][ 2 ] = ( lstSommet.get( lig ) ).getX() + ""  ;
-			data[ lig ][ 3 ] = ( lstSommet.get( lig ) ).getY() + ""  ;
+			data[ lig ][ 0 ] = ( lstSommet.get( lig ) ).getId() + "";
+			data[ lig ][ 1 ] = ( lstSommet.get( lig ) ).getNumSom () + "";
+			data[ lig ][ 2 ] = ( lstSommet.get( lig ) ).getNomCoul() ;
+			data[ lig ][ 3 ] = ( lstSommet.get( lig ) ).getX() + ""  ;
+			data[ lig ][ 4 ] = ( lstSommet.get( lig ) ).getY() + ""  ;
 
 		}
 
@@ -139,7 +139,8 @@ public class PanelSommet extends JPanel  implements ActionListener
 	 */
 	public void actionPerformed( ActionEvent e ) 
 	{
-		int idVille    =0;
+		int numVille = 0;
+		int idVille    = 0;
 		String nomVile =null;
 		int x       =0;
 		int y       =0;
@@ -152,10 +153,11 @@ public class PanelSommet extends JPanel  implements ActionListener
 			TableModel model = table.getModel();
 
 			// Get data from the selected row
-			idVille = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 0 ) );
-			x       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 2 ) );
-			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
-			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
+			idVille = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 0));
+			numVille = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 1 ) );
+			x       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
+			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 4 ) );
+			nomVile = (String) model.getValueAt(selectedRowIndex, 2 );
 
 		}
 		else if ( !((
@@ -167,7 +169,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 				)
 		{
 			try{
-				idVille = Integer.parseInt( (String) this.txtNumero.getText() );
+				numVille = Integer.parseInt( (String) this.txtNumero.getText() );
 				x       = Integer.parseInt( (String) this.txtX.getText()      );
 				y       = Integer.parseInt( (String) this.txtY.getText()      );
 				nomVile = (String) this.lstCouleur.getSelectedItem()           ;
@@ -205,11 +207,6 @@ public class PanelSommet extends JPanel  implements ActionListener
 			}
 			else
 			{
-				if(ctrl.rechercheSommet((idVille+nomVile)) != null && (ctrl.rechercheSommet(idVille+nomVile).getX() != x || ctrl.rechercheSommet(idVille+nomVile).getY() != y))
-				{
-					this.lblErreur.setText("<html> Un sommet avec ce  <br> nom existe déjà. </html>");
-					return;
-				}
 
 				this.lblErreur.setText("");
 
@@ -217,7 +214,14 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 				Materiaux tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(rndm));
 
-				this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,tmpMat,false);
+				if(idVille != 0)
+				{
+					this.ctrl.ajouterOuSupprimerSommet(idVille , numVille, nomVile,x,y,tmpMat,false);
+				}else{
+					this.ctrl.ajouterOuSupprimerSommet(Controleur.nbSommets++ , numVille, nomVile,x,y,tmpMat,false);
+				}
+
+
 
 				//Raffraichir le tableau
 				this.removeAll();

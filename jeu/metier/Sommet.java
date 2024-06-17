@@ -1,5 +1,7 @@
 package jeu.metier;
 
+import jeu.Controleur;
+
 import java.util.ArrayList;
 
 /**
@@ -19,6 +21,7 @@ public class Sommet
     private boolean depart;
 	private Joueur  joueur;
 
+	private int id;
     private int x;
     private int y;
 
@@ -41,6 +44,7 @@ public class Sommet
     
     public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart, Joueur joueur )
     {
+		this.id = Controleur.nbSommets++;
         this.numSom     = numSom;
         this.nomCoul    = nomCoul;
         this.materiaux  = materiaux;
@@ -50,6 +54,22 @@ public class Sommet
 		this.joueur     = joueur;
 		this.routes = new ArrayList<>(10);
     }
+
+
+	public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart, Joueur joueur, int id )
+	{
+		this.id = id;
+		Controleur.nbSommets++;
+		this.numSom     = numSom;
+		this.nomCoul    = nomCoul;
+		this.materiaux  = materiaux;
+		this.x          = x;
+		this.y          = y;
+		this.depart     = estDepart;
+		this.joueur     = joueur;
+		this.routes = new ArrayList<>(10);
+	}
+
 
     public int       getNumSom()         { return this.numSom;    }
     public String    getNomCoul()        { return this.nomCoul;   }
@@ -98,7 +118,10 @@ public class Sommet
     }
 
 			
-	
+	public int getId()
+	{
+		return this.id;
+	}
 
      /**
 	 * 
