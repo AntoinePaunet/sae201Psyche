@@ -67,14 +67,14 @@ public class FrameJoueur extends JFrame
 	 */
 	public String majTitre( Joueur j , Controleur ctrl )
 	{
-		String s = this.joueur.getNomJoueur();
+		String s = this.joueur.getNomJoueur() + " : ";
 
-		if( ctrl.getTourJ(j) )
-			s += " A vous de jouer !";
-		else
-			s += " en attente de l'autre joueur ...";
+		if( ctrl.getTour() ) // si c'est le tour du Joueur 1
+			s += String.format("%-40s","A vous de jouer !" );
+		else				 // si c'est le tour du Joueur 2
+			s += String.format("%-40s","en attente de l'autre joueur ... " ) ;
 
-		s += "\tVotre score : " + String.valueOf(this.joueur.getScore());
+		s += "Votre score : " + String.valueOf(this.joueur.getScore());
 		return s;
 	}
 

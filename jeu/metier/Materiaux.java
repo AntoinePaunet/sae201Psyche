@@ -21,7 +21,7 @@ public class Materiaux implements IRessource
 	public static int nbPiece;
 
 	//Permet de vérifier qu'on génère un matériau qui existe bel et bien.
-	public static final ArrayList<String> verif = new ArrayList<>(Arrays.asList("AU", "AG", "FE", "AL", "NI", "PT", "CO", "TI", "NR","DP"));
+	public static final ArrayList<String> verif = new ArrayList<>(Arrays.asList("AU", "AG", "FE", "AL", "NI", "PT", "CO", "TI", "NR","null"));
 
 	/**
 	 * Constructeur de Matériau.
@@ -31,7 +31,6 @@ public class Materiaux implements IRessource
 	{
 		if(!Materiaux.verif.contains(nom))
 		{
-			//System.out.println("oui");
 			return;
 		}
 
@@ -48,6 +47,7 @@ public class Materiaux implements IRessource
 			case "CO" : this.couleur = Couleur.MARRON; 	break;
 			case "TI" : this.couleur = Couleur.VERT; 	break;
 			case "NR" : this.couleur = Couleur.CIAN; 	break;
+			case "null" : this.couleur = Couleur.DEBUT; 	break;
 		}
 
 		Materiaux.nbPiece++;

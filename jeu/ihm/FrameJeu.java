@@ -58,6 +58,7 @@ public class FrameJeu extends JFrame
 			{
 				try {
 					ctrl.getEditionFichier().sauvegarde();
+					System.exit(0);
 				} catch (IOException ex) {
 					throw new RuntimeException(ex);
 				}
