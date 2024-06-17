@@ -137,8 +137,14 @@ public class Controleur
 	 */
 	public boolean estValide(Route r)
 	{
+		for (Sommet s : tabSommet)
+			if (s.getDepart())
+				System.out.println(s);
 		if (r.getJoueur()!=null) {return false;}
-
+		
+		/*System.out.println(r);
+		System.out.println(r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
+*/
 		//verifie si l'un des deux sommet deja pris ou non
 		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
 	}
@@ -261,6 +267,7 @@ public class Controleur
 	 */
 	public void init() throws IOException
 	{
+		this.initMateriaux();
 		String tmpCoul = "";
 		int    tmpZone = -1;
 		int rndm;
@@ -321,9 +328,9 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(17), this.tabSommet.get(8), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(17), this.tabSommet.get(18), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(10), this.tabSommet.get(18), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(this.tabSommet.size()-1), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(this.tabSommet.size()-1), this.tabSommet.get(14), 1));
-		this.tabRoute.add(new Route(this.tabSommet.get(this.tabSommet.size()-1), this.tabSommet.get(20), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(0), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(14), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(20), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(19), this.tabSommet.get(12), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(20), this.tabSommet.get(15), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(20), this.tabSommet.get(21), 1));
@@ -334,7 +341,7 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(24), this.tabSommet.get(25), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(25), this.tabSommet.get(26), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(24), this.tabSommet.get(19), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(26), this.tabSommet.get(this.tabSommet.size()-1), 1));
+		this.tabRoute.add(new Route(this.tabSommet.get(26), this.tabSommet.get(0), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(27), this.tabSommet.get(20), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(27), this.tabSommet.get(21), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(28), this.tabSommet.get(27), 1));
@@ -343,6 +350,7 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(30), this.tabSommet.get(29), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(21), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(30), this.tabSommet.get(22), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(22), 2));
 
 		this.editionFichier.sauvegarde();
 	}
