@@ -1,6 +1,7 @@
 package jeu.ihm;
 
 import jeu.Controleur;
+import jeu.metier.EditionFichier;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +46,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setLayout(new FlowLayout());
 
 
-		this.panelBoutons = new PanelBoutons();
+		this.panelBoutons = new PanelBoutons(this.ctrl);
 
 		// Création et ajout de la barre de menu
 		JMenuBar  menuBar  = new JMenuBar(         );
@@ -179,19 +180,21 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	/**
 	 * Classe correspondant au panel contenant les Boutons Jouer et Modifier
 	 */
-	public class PanelBoutons extends JPanel 
+	public class PanelBoutons extends JPanel implements ItemListener
 	{
 		private JPanel  panelBtnJouer, panelBtnModifier ;
 		private JButton btnJouer, btnModifier           ;
 		private JLabel  lblTheme                        ;
 		private List    lstTheme                        ;
+		private Controleur ctrl;
 
 	/**
 	 * Constructeur du panel contenant les boutons Jouer et Modifier
 	 */
-		public PanelBoutons()
+		public PanelBoutons(Controleur ctrl)
 		{
 			this.setLayout(new GridLayout(4,1));
+			this.ctrl = ctrl;
 
 			// Création des composants;
 			this.panelBtnJouer    = new JPanel();
@@ -201,6 +204,13 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.btnModifier = new JButton("Modifier une carte");
 			this.lblTheme    = new JLabel ("Selection du thème");
 			this.lstTheme    = new List   (                         );
+
+			for (String s : ctrl.getEditionFichier().lectureNomTheme())
+			{
+				lstTheme.add( s );
+			}
+			this.lstTheme.addItemListener(this);
+				
 		
 			this.panelBtnModifier.add( this.btnModifier );
 			this.panelBtnJouer.add   (this.btnJouer     );
@@ -210,7 +220,18 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.add(this.lblTheme        );
 			this.add(this.lstTheme        );
 		}
+
+		public void itemStateChanged(ItemEvent e)
+		{
+			if (e.getStateChange() == ItemEvent.SELECTED)
+			{
+				// Appeler initTheme avec l'index de l'élément sélectionné
+				this.ctrl.getEditionFichier().initTheme(this.lstTheme.getSelectedIndex()+1);
+			}
+		}
 	}
+
+	
 /*
 	public static void main (String[]args) throws IOException
 	{
