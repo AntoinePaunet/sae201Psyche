@@ -25,7 +25,6 @@ public class Controleur
 	protected ArrayList<Sommet>  tabSommet;
 	protected ArrayList<Route>	 tabRoute ;
 
-	private   boolean            estScenar;
 	private   boolean            estJeu   ;
 	private   boolean            tourJ1        ;
 	private   boolean            finPartie     ;
@@ -39,9 +38,10 @@ public class Controleur
 	/**
 	 * Constructeur du Controleur
 	 */
-	public Controleur(boolean estScenar) throws IOException
+	public Controleur() throws IOException
 	{
-		this.estScenar 		= estScenar;
+		//new FrameScore(this);
+		
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.editionFichier = new EditionFichier(this);
@@ -97,28 +97,10 @@ public class Controleur
 	}
 
 	/**
-	 * A completer.
-	 * @return La liste des sommets
+	 * Renvoie un booléen qui indique si on peut modifier et déplacer les villes en fonction de si on est en jeu.
+	 * @return La valeur de estJeu
 	 */
-	public boolean getEstScenar() { return this.estScenar; }
-
-	/**
-	 * A completer.
-	 * @param estJeu le Jeu
-	 */
-	public void setEstScenar(boolean estScenar) { this.estScenar = estScenar; }
-
-	/**
-	 * A completer.
-	 * @return La liste des sommets
-	 */
-	public boolean getEstJeu() { return this.estJeu; }
-
-	/**
-	 * A completer.
-	 * @param estJeu le Jeu
-	 */
-	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
+	public boolean getEstJeu() { return estJeu; }
 
 	/**
 	 * Renvoie l'instance de la classe EditionFichier qui est lié au controleur.
@@ -128,6 +110,13 @@ public class Controleur
 	{
 		return this.editionFichier;
 	}
+
+	/**
+	 * L'activation du mode jeu empèche de déplacer les villes lorsqu'il est true.
+	 * @param estJeu si on peut modifier la carte.
+	 */
+	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
+
 
 	/**
 	 * Méthode qui vérifie si la route est valide.
@@ -530,6 +519,22 @@ public class Controleur
 		return null;
 	}
 
+	/**
+	 * Méthode qui recherche et renvoie le sommet qui a l'id passe en parametre.
+	 * @param idsom id du sommet
+	 * @return le sommet qui dispose de cette id.
+	 */
+	public Sommet getSommet(int idsom)
+	{
+
+		for ( Sommet s : this.tabSommet )
+		{
+			if ( s. )
+				return s;
+		}
+		return null;
+	}
+
 
 	public void reInit() throws IOException {
 		this.tabSommet = new ArrayList<Sommet>(30);
@@ -597,6 +602,6 @@ public class Controleur
 	 */
 	public static void main (String[] arg) throws IOException
 	{
-		new Controleur(true);
+		new Controleur();
 	}
 }
