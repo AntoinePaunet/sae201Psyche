@@ -169,7 +169,7 @@ public class Controleur
 			}
 			else
 			{
-				if (this.estValide( r))
+				if (this.estValide(r))
 				{
 					r.setJoueur(this.j2);
 
