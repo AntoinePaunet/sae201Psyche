@@ -17,6 +17,7 @@ public class Sommet
     private int     numSom;
     private String  nomCoul;
     private boolean depart;
+	private Joueur  joueur;
 
     private int x;
     private int y;
@@ -34,10 +35,11 @@ public class Sommet
 	 * @param y           postion y
 	 * @param materiaux   matérieux assignée au sommet
 	 * @param estDepart   si ce sommet correspond au sommet de départ du jeu
+	 * @param joueur      correpond au joueur qui déteins le sommet 
 	 * 
 	 */
     
-    public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart )
+    public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart, Joueur joueur )
     {
         this.numSom     = numSom;
         this.nomCoul    = nomCoul;
@@ -45,18 +47,21 @@ public class Sommet
         this.x          = x;
         this.y          = y;
         this.depart     = estDepart;
+		this.joueur     = joueur;
 		this.routes = new ArrayList<>(10);
     }
 
-    public int       getNumSom()       { return this.numSom;    }
-    public String    getNomCoul()      { return this.nomCoul;   }
-    public int       getX()            { return this.x;         }
-    public int       getY()            { return this.y;         }
-    public int       setX( int x )  { return this.x = x;     }
-    public int       setY( int y )  { return this.y = y;     }
-    public Materiaux getMateriaux()    { return this.materiaux; }
-    public boolean   getDepart()       { return this.depart;    }
-
+    public int       getNumSom()         { return this.numSom;    }
+    public String    getNomCoul()        { return this.nomCoul;   }
+    public int       getX()              { return this.x;         }
+    public int       getY()              { return this.y;         }
+    public int       setX( int x )       { return this.x = x;     }
+    public int       setY( int y )       { return this.y = y;     }
+    public Materiaux getMateriaux()      { return this.materiaux; }
+    public boolean   getDepard()         { return this.depart;    }
+	public Joueur    getJoueur()         { return this.joueur;    }
+	public void      setJoueur(Joueur j) { this.joueur = j;       }
+ 
 
 	public void addRoute(Route r)
 	{
