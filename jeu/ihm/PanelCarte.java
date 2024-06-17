@@ -146,7 +146,7 @@ public class PanelCarte extends JPanel
 		for (Sommet s : ctrl.getTabSommet())
 		{
 
-			this.g2.drawString(s.getNumSom()+"", s.getX()+10, s.getY()-5 );
+			
 			
 			if (s.getMateriaux()==null)
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX(), s.getY(), this);
@@ -157,6 +157,11 @@ public class PanelCarte extends JPanel
 			}
 			if (s.getDepart())
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX(), s.getY(),30,30, this);
+
+			
+			Font font = new Font("Arial", Font.BOLD, 14);
+			g2.setFont(font);
+			this.g2.drawString(s.getNumSom()+"", s.getX()+20, s.getY()+25 );
 				
 		}
 	}
