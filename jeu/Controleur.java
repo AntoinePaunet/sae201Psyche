@@ -78,7 +78,7 @@ public class Controleur
 
 	/**
 	 * A completer.
-	 * @param estJeu le Jeu
+	 *  le Jeu
 	 */
 	public EditionFichier getEditionFichier()
 	{
@@ -383,10 +383,24 @@ public class Controleur
 	 */
 	public Sommet rechercheSommet(String numSmt)
 	{
+		int tailleNb = 1;
+
+		try{
+			if(Integer.parseInt(numSmt.charAt(1) + "") > -1); //Si un entier plus grand que 10
+				tailleNb = 2;
+		}catch (Exception e)
+		{
+
+		}
+
 		for (Sommet s : this.tabSommet)
 		{
-			if (s.getNumSom() == Integer.parseInt(numSmt.substring(0, 1)) && s.getNomCoul().equals(numSmt.substring(1)))
+			if (s.getNumSom() == Integer.parseInt(numSmt.substring(0, tailleNb)) && s.getNomCoul().equals(numSmt.substring(tailleNb)))
+			{
+				System.out.println(s + "Le sommet");
 				return s;
+			}
+
 		}
 		return null;
 	}
@@ -434,7 +448,7 @@ public class Controleur
 	 */
 	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart )
 	{
-		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu) ;
+		Sommet tempSommet = new Sommet(numSom, nomCoul, x, y, null , estJeu) ;
 		boolean tempEstSup = false;
 
 		for ( Sommet rt : this.tabSommet )
@@ -464,6 +478,7 @@ public class Controleur
 		}
 		if ( !tempEstSup )
 		{
+			System.out.println(tempSommet + " TMPSMT");
 			this.tabSommet.add( tempSommet );
 		}
 	}

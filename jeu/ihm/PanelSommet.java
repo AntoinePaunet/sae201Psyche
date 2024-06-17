@@ -1,6 +1,7 @@
 package jeu.ihm;
 
 import jeu.Controleur;
+import jeu.metier.Couleur;
 import jeu.metier.Sommet;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ import java.awt.event.*;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 	private JTable     table            ;
 	private JPanel     panelInput       ;
 	private JTextField txtNumero        ;
-	private JTextField txtNomCouleur    ;
+	private JComboBox<String> lstCouleur;
 	private JTextField txtX             ;
 	private JTextField txtY             ;
 
@@ -62,7 +64,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 		this.panelInput    = new JPanel();
 	
 		this.txtNumero     = new JTextField();
-		this.txtNomCouleur = new JTextField();
+		this.lstCouleur    = new JComboBox<String>(new String[]{"Vert","Jaune","Rouge","Bleu","Gris","Marron"});
 		this.txtX          = new JTextField();
 		this.txtY          = new JTextField();
 		
@@ -76,7 +78,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 		this.panelInput.add( this.txtNumero    );
 
 		this.panelInput.add( new JLabel("Couleur : "),  JPanel.RIGHT_ALIGNMENT );
-		this.panelInput.add( this.txtNomCouleur);
+		this.panelInput.add( this.lstCouleur);
 				
 		this.panelInput.add( new JLabel("X : "      ),  JPanel.RIGHT_ALIGNMENT  );
 		this.panelInput.add( this.txtX         );
@@ -166,9 +168,9 @@ public class PanelSommet extends JPanel  implements ActionListener
 			x       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 2 ) );
 			y       = Integer.parseInt( (String) model.getValueAt(selectedRowIndex, 3 ) );
 			nomVile = (String) model.getValueAt(selectedRowIndex, 1 );
+
 		}
 		else if ( !((
-						this.txtNomCouleur.getText().isBlank() ||
 						this.txtNumero.getText().isBlank()     ||
 						this.txtX.getText().isBlank()          ||
 						this.txtY.getText().isBlank()         )&&
@@ -176,19 +178,34 @@ public class PanelSommet extends JPanel  implements ActionListener
 					)
 				)
 		{
-			idVille = Integer.parseInt( (String) this.txtNumero.getText() );
-			x       = Integer.parseInt( (String) this.txtX.getText()      );
-			y       = Integer.parseInt( (String) this.txtY.getText()      );
-			nomVile = (String) this.txtNomCouleur.getText()                ;
+			try{
+				idVille = Integer.parseInt( (String) this.txtNumero.getText() );
+				x       = Integer.parseInt( (String) this.txtX.getText()      );
+				y       = Integer.parseInt( (String) this.txtY.getText()      );
+				nomVile = (String) this.lstCouleur.getSelectedItem()           ;
+			}catch (Exception ex)
+			{
+				this.lblErreur.setText("<html> Numéro, x et y  <br> doivent être entiers. </html>");
+				return;
+			}
+		}
 
-			
+		if(idVille > 99 || idVille < 0)
+		{
+			this.lblErreur.setText("<html> Numéro compris entre  <br> 0 et 99. </html>");
+			return;
+		}
+
+		if(x < 0 || y < 0)
+		{
+			this.lblErreur.setText("<html> x et y doivent <br> être > 0. </html>");
+			return;
 		}
 
 
 		if (e.getSource() == this.btnAjouterSommet)
 		{
 			if ((
-				 this.txtNomCouleur.getText().isBlank() ||
 				 this.txtNumero.getText().isBlank()     ||
 				 this.txtX.getText().isBlank()          ||
 				 this.txtY.getText().isBlank()         )&&
@@ -201,8 +218,6 @@ public class PanelSommet extends JPanel  implements ActionListener
 			else
 			{
 				this.lblErreur.setText("");
-				
-				System.out.println(idVille + " " + nomVile + " " + x + " " + y + " " + false);
 
 				this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
 
@@ -220,7 +235,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 				this.ctrl.MajFrameModification();
 
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
+				model.addRow(new Object[]{ txtNumero.getText(),lstCouleur.getSelectedItem(), txtX.getText(), txtY.getText()});
 
 				this.ctrl.MajFrameModification();
 				
