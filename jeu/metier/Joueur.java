@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Joueur 
 {
-	private static final int MB_MAX_JETON_POSSESION = 25;
+	private static final int NB_MAX_JETON_POSSESSION = 25;
 
 	private Materiaux[][] tabPlateau;
 	private Materiaux[] tabPiece;
@@ -39,7 +39,7 @@ public class Joueur
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
 		this.nbJetonsUtiliser=0;
-		this.score = new int[10];
+		this.score = new int[11];
 	}
 
 	public void addJetons(int i)
@@ -56,7 +56,7 @@ public class Joueur
 	 */
 	public void utiliserUnJetons ()
 	{
-		if( this.nbJetonsUtiliser < Joueur.MB_MAX_JETON_POSSESION )
+		if( this.nbJetonsUtiliser < Joueur.NB_MAX_JETON_POSSESSION )
 			this.nbJetonsUtiliser ++;
 	}
 
@@ -283,7 +283,18 @@ public class Joueur
 			score[4+i]=temp;
 		}
 	}
-		
+
+	public int getScorePiece       () { return this.getScore()[0] ; }
+	public int getScoreColonne     () { return this.getScore()[1] ; }
+	public int getScoreLigne       () { return this.getScore()[2] ; }
+	public int getScoreJetonUtilise() { return this.getScore()[3] ; }
+	public int getScoreVert        () { return this.getScore()[4] ; }
+	public int getScoreBleu        () { return this.getScore()[5] ; }
+	public int getScoreRouge       () { return this.getScore()[6] ; }
+	public int getScoreGris        () { return this.getScore()[7] ; }
+	public int getScoreJaune       () { return this.getScore()[8] ; }
+	public int getScoreMarron      () { return this.getScore()[9] ; }
+	//public int getScorePiece() { return this.getScore()[10]; }
 
 	/**
 	 * Renvoie le nom du Joueur sous forme texte.
