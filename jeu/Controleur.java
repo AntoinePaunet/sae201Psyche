@@ -405,10 +405,8 @@ public class Controleur
 		for (Sommet s : this.tabSommet)
 		{
 			if (s.getNumSom() == Integer.parseInt(numSmt.substring(0, tailleNb)) && s.getNomCoul().equals(numSmt.substring(tailleNb)))
-			{
-				System.out.println(s + "Le sommet");
 				return s;
-			}
+
 
 		}
 		return null;
@@ -524,7 +522,7 @@ public class Controleur
 	public void supprimerTout() throws IOException
 	{
 		this.tabSommet = new ArrayList<Sommet>(30);
-		this.tabSommet.add(new Sommet(0,"DEBUT", 500, 500, null, true));
+		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true));
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.editionFichier.sauvegarde();
 	}

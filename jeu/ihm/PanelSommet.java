@@ -233,9 +233,6 @@ public class PanelSommet extends JPanel  implements ActionListener
 				this.ctrl.MajFrameModification();
 				
 			}
-			
-			
 		}
-		//this.ctrl.MajFrameModification();
 	}
 }
