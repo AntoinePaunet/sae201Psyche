@@ -221,6 +221,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.add(this.lstTheme        );
 		}
 
+		/**
+		 * Methode qui permet de changer thème du jeu, en fonction de l'item selectionné dans lstTheme.
+		 */
 		public void itemStateChanged(ItemEvent e)
 		{
 			if (e.getStateChange() == ItemEvent.SELECTED)

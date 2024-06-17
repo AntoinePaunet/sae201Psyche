@@ -179,6 +179,10 @@ public class EditionFichier
 		return nomThemes;
 	}
 
+	/**
+	 * Méthode qui permet de changer les nom des éléments en fonction du thème choisi.
+	 * @param index permet de récupérer la bonne ligne du fichier.
+	 */
 	public void initTheme(int index)
 	{
 		FileReader fr;
@@ -194,12 +198,11 @@ public class EditionFichier
 			while ( sc.hasNextLine() && cpt < index )
 			{
 				ligneTheme = sc.nextLine();
-				System.out.println("passé dans initTheme");
+
 				cpt++;
 			}
 			String[] elementsTheme = ligneTheme.split("\t");
 			ctrl.setElementsTheme(elementsTheme);
-			System.out.println("a set element");
 
 			fr.close();
 		}
