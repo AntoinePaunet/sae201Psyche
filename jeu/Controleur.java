@@ -17,19 +17,20 @@ import jeu.metier.*;
  * @author Anas AARAB,				IUT du Havre
  * @version 1.0 , 2024-05-23
  */
+
 public class Controleur 
 {
-	private Joueur j1;
-	private Joueur j2;
-	protected ArrayList<Sommet> 	tabSommet;
-	protected ArrayList<Route>	tabRoute;
-	private boolean             estJeu;
+	private   Joueur             j1       ;
+	private   Joueur             j2       ;
+	protected ArrayList<Sommet>  tabSommet;
+	protected ArrayList<Route>	 tabRoute ;
+	private   boolean            estJeu   ;
 
-	private boolean tourJ1;
-	private boolean finPartie;
-	public  FrameDemarrage frameDemarrage;
+	private   boolean            tourJ1        ;
+	private   boolean            finPartie     ;
+	public    FrameDemarrage     frameDemarrage;
 
-	private EditionFichier editionFichier;
+	private   EditionFichier      editionFichier;
 
 	/**
 	 * Constructeur du controleur
@@ -43,9 +44,9 @@ public class Controleur
 		this.editionFichier = new EditionFichier(this);
 		this.tabSommet 		= this.editionFichier.getTabSommet();
 		this.tabRoute		= this.editionFichier.getTabRoute();
-		this.tourJ1 = true;
-		this.finPartie = false;
-		this.estJeu = false;
+		this.tourJ1         = true;
+		this.finPartie      = false;
+		this.estJeu        = false;
 
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
@@ -241,12 +242,12 @@ public class Controleur
 			tmpMat = new Materiaux(tmpLst.remove(rndm));
 
 			tmpZone = Integer.parseInt( tabNomSmt[cpt].substring( 1, 2 ) );
-			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
+			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false, null ) );
 
 		}
 
 		//Ajout de la zone de départ
-		this.tabSommet.add( new Sommet(0, null, 442, 475, null, true));
+		this.tabSommet.add( new Sommet(0, null, 442, 475, null, true, null));
 
 
 		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(1), 1));
@@ -405,7 +406,7 @@ public class Controleur
 	 */
 	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart )
 	{
-		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu) ;
+		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu,null) ;
 		boolean tempEstSup = false;
 
 		for ( Sommet rt : this.tabSommet )
