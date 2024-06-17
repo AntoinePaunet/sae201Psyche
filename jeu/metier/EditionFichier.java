@@ -209,13 +209,20 @@ public class EditionFichier {
 		String nomMat = smtInfo[4];
 		int id = Integer.parseInt(smtInfo[7]);
 
-		if ( smtInfo[5].equals( "J1" ) )
-			this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false,this.ctrl.getJoueur1(), id ) );
+		if (nom.equals("DEPART"))
+			this.tabSommet.add( new Sommet( num, nom, x, y, null, true,this.ctrl.getJoueur1(), id ) );
 		else
-			if ( smtInfo[5].equals( "J2" ) )
-				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur2(), id ) );
+		{
+			if ( smtInfo[5].equals( "J1" ) )
+				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false,this.ctrl.getJoueur1(), id ) );
 			else
-				this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false, null, id));
+				if ( smtInfo[5].equals( "J2" ) )
+					this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur2(), id ) );
+				else
+					this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false, null, id));
+		}
+
+		
 
 
 		this.ctrl.setTabSommet(this.tabSommet);
@@ -383,16 +390,24 @@ public class EditionFichier {
 		}
 	}
 
-	public void ecrireScenario( int nbScenario, int idSommetDep, int idSommeArr ) throws IOException
+	public void ecrireScenario( int numJoueur, int nbScenario, int idSommetDep, int idSommeArr, int nbTroncon ) throws IOException
 	{
+		String tmpDonnes = "";
 		String emplacement = "./jeu/src/scenario/"+ nbScenario + ".txt";
 
 		FileReader fr = new FileReader(emplacement);
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter(emplacementData));
 
+		if ( numJoueur == 1  )
+			tmpDonnes = "J1 " + idSommetDep + " -> " + idSommeArr + " " + nbTroncon;
+		if ( numJoueur == 2 )
+			tmpDonnes = "J2 " + idSommetDep + " -> " + idSommeArr + " " + nbTroncon;
+
+
+
 		try {
-			writer.write( idSommetDep + " -> " + idSommeArr );
+			writer.write( tmpDonnes );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -413,9 +428,12 @@ public class EditionFichier {
 			{
 				String ligne = sc.nextLine();
 
+
 				if ( etapeLecture == numEtape )
 				{
-					this.ctrl.ajouterOuSupprimerRoute( this.ctrl.getSommet(numEtape, etapeLecture), null, etapeLecture );
+					String[] action = ligne.split(" ");
+
+					this.ctrl.ajouterOuSupprimerRoute( this.ctrl.getSommet( Integer.parseInt( action[1] ) ), this.ctrl.getSommet( Integer.parseInt( action[3] ) ), Integer.parseInt( action[4] ));
 
 					break;
 				}

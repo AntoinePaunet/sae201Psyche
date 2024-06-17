@@ -137,8 +137,14 @@ public class Controleur
 	 */
 	public boolean estValide(Route r)
 	{
+		for (Sommet s : tabSommet)
+			if (s.getDepart())
+				System.out.println(s);
 		if (r.getJoueur()!=null) {return false;}
-
+		
+		/*System.out.println(r);
+		System.out.println(r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
+*/
 		//verifie si l'un des deux sommet deja pris ou non
 		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
 	}
@@ -344,6 +350,7 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(30), this.tabSommet.get(29), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(21), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(30), this.tabSommet.get(22), 2));
+		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(22), 2));
 
 		this.editionFichier.sauvegarde();
 	}

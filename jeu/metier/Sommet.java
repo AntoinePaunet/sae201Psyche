@@ -81,6 +81,7 @@ public class Sommet
     public boolean   getDepart()         { return this.depart;    }
 	public Joueur    getJoueur()         { return this.joueur;    }
 	public void      setJoueur(Joueur j) { this.joueur = j;       }
+	public int getId()                   { return this.id;        }
  
 
 	public void addRoute(Route r)
@@ -118,10 +119,6 @@ public class Sommet
     }
 
 			
-	public int getId()
-	{
-		return this.id;
-	}
 
      /**
 	 * 
