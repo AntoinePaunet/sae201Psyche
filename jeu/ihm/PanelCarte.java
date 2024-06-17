@@ -29,6 +29,8 @@ public class PanelCarte extends JPanel
 	private Graphics2D g2;
 	private Controleur ctrl;
 	private BufferedImage image;
+	private BufferedImage pionJoueur1;
+	private BufferedImage pionJoueur2;
 
 
 	/**
@@ -37,7 +39,9 @@ public class PanelCarte extends JPanel
 	public PanelCarte(Controleur ctrl)
 	{
 		try {
-			this.image = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/bgPlateau.png"));
+			this.image       = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/bgPlateau.png"    ));
+			this.pionJoueur1 = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"));
+			this.pionJoueur2 = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -82,6 +86,8 @@ public class PanelCarte extends JPanel
 
 			vec1=0;
 			vec2=0;
+
+			//this.g2.drawOval(442, 475, 10,10); Position Depart
 			
 			this.g2.drawLine(x1 + adjCercle+ vec1, y1 + adjCercle + vec2 , x2 + adjCercle + -vec1, y2 + adjCercle + -vec2);
 
@@ -95,6 +101,7 @@ public class PanelCarte extends JPanel
 				this.g2.drawOval( ((x1 + adjCercle)+ (x2+ adjCercle))/2 -5 , ((y1+ adjCercle) + (y2+ adjCercle))/2 -5,10,10 );
 				this.g2.fillOval(( (x1 + adjCercle)+ (x2+ adjCercle))/2  -5, ((y1+ adjCercle) + (y2+ adjCercle))/2 -5,10,10);
 			}
+
 			this.chargerImages(r);
 				
 		}
@@ -160,6 +167,9 @@ public class PanelCarte extends JPanel
 						
 				else 
 					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_Bleu_clair.png"));
+
+				if (s.getDepart())
+					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"));
 
 				imgLabel3 = new JLabel(image2);
 				imgLabel3.setBounds(x,y, image2.getIconWidth(), image2.getIconHeight());

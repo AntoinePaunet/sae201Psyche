@@ -48,18 +48,27 @@ public class FrameJeu extends JFrame implements ActionListener
 		menuOptions.add(this.menuiAbandonner );
 		menuBar.add(menuOptions);
 
-//		if( this.ctrl.getEstScenar() )
-//		{
-//			JMenu menuScenar = new JMenu("Scénario");
-//
-//			this.menuiAnnuler  = new JMenuItem ("Annuler la dernière action"  );
-//			this.menuiRetablir = new JMenuItem ("Rétablir la dernière action" );
-//
-//			menuScenar.add(this.menuiAnnuler );
-//			menuScenar.add(this.menuiRetablir );
-//
-//			menuBar.add(menuScenar);
-//		}
+		if( this.ctrl.getEstScenar() )
+		{
+			JMenu menuScenar = new JMenu("Scénario");
+
+			this.menuiAnnuler  = new JMenuItem ("Annuler la dernière action"  );
+			this.menuiRetablir = new JMenuItem ("Rétablir la dernière action" );
+
+			menuScenar.add(this.menuiAnnuler );
+			menuScenar.add(this.menuiRetablir);
+
+			menuBar.add(menuScenar);
+
+			menuScenar.setMnemonic('S');
+
+			this.menuiAnnuler .setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK) );
+			this.menuiRetablir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, InputEvent.CTRL_DOWN_MASK) );
+
+			this.menuiAnnuler .addActionListener(this);
+			this.menuiRetablir.addActionListener(this);
+		}
+
 		this.setJMenuBar( menuBar );
 
 		menuOptions.setMnemonic('O');
@@ -97,6 +106,15 @@ public class FrameJeu extends JFrame implements ActionListener
 				System.exit(0);
 		}
 
+		if ( e.getSource() == this.menuiAnnuler )
+		{
+			// CTRL + Z
+		}
+
+		if ( e.getSource() == this.menuiRetablir )
+		{
+			// CTRL + Y
+		}
 	}
 
 	public void majIHM(){this.panelCarte = new PanelCarte(ctrl);this.add(this.panelCarte);this.setVisible(true);}
