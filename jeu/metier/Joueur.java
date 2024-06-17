@@ -255,7 +255,7 @@ public class Joueur
 			cptRessource = 0;
 		}
 
-		this.score[3]=this.nbJetonsUtiliser;
+		this.score[3]=this.nbJetonsUtiliser; // + les points qui viennent en récupérant la valeur sur un sommet
 
 		
 		this.detailScore = detail;
@@ -282,16 +282,16 @@ public class Joueur
 		}
 	}
 
-	public int getScorePiece       () { return this.getScore()[0] ; }
-	public int getScoreColonne     () { return this.getScore()[1] ; }
-	public int getScoreLigne       () { return this.getScore()[2] ; }
-	public int getScoreJetonUtilise() { return this.getScore()[3] ; }
-	public int getScoreVert        () { return this.getScore()[4] ; }
-	public int getScoreBleu        () { return this.getScore()[5] ; }
-	public int getScoreRouge       () { return this.getScore()[6] ; }
-	public int getScoreGris        () { return this.getScore()[7] ; }
-	public int getScoreJaune       () { return this.getScore()[8] ; }
-	public int getScoreMarron      () { return this.getScore()[9] ; }
+	public int getScorePiece     () { return this.getScore()[0] ; }
+	public int getScoreColonne   () { return this.getScore()[1] ; }
+	public int getScoreLigne     () { return this.getScore()[2] ; }
+	public int getScorePointJeton() { return this.getScore()[3] ; }
+	public int getScoreVert      () { return this.getScore()[4] ; }
+	public int getScoreBleu      () { return this.getScore()[5] ; }
+	public int getScoreRouge     () { return this.getScore()[6] ; }
+	public int getScoreGris      () { return this.getScore()[7] ; }
+	public int getScoreJaune     () { return this.getScore()[8] ; }
+	public int getScoreMarron    () { return this.getScore()[9] ; }
 	//public int getScorePiece() { return this.getScore()[10]; }
 
 	/**
