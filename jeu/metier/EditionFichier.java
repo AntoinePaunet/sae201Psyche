@@ -278,8 +278,7 @@ public class EditionFichier {
 				donnesFichier.indexOf("\n["));
 		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-
-		if (materiaux != null)
+		if (materiaux != null && !(nomCoul.equals("DEPART")))
 		{
 			switch ( joueur ) 
 			{
@@ -294,8 +293,8 @@ public class EditionFichier {
 		}
 				
 		else
-			donnesFichier = donneesVilles + (0 + "\t" + null + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "J0" + "\n\n")
-					+ donneesRoutes;
+			donnesFichier = donneesVilles + (0      + "\t" + "DEPART" 		 + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\n\n") + donneesRoutes;
+
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
 		try {
@@ -368,9 +367,8 @@ public class EditionFichier {
 		this.tabSommet = ctrl.getTabSommet();
 		this.tabRoute = ctrl.getTabRoute();
 
-		System.out.println("Suprimmer" + this.tabRoute);
 
-		for (Route r : this.tabRoute) 
+		for (Route r : this.tabRoute)
 		{
 			if ( this.ctrl.getJoueur1().equals(r.getJoueur()) )
 				this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),1);
