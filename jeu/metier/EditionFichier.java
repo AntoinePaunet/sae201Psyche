@@ -12,6 +12,7 @@ public class EditionFichier {
 	private ArrayList<Sommet> tabSommet;
 	private ArrayList<Route> tabRoute;
 	private File fichier;
+	private String emplacementData = "./jeu/src/data.txt";
 
 	public EditionFichier(Controleur ctrl) {
 		this.ctrl = ctrl;
@@ -73,7 +74,7 @@ public class EditionFichier {
 		}
 
 		tmpFichier = new File(nomFichier);
-		fichier = new File("data.txt");
+		fichier = new File(emplacementData);
 
 		try {
 			FileReader fr;
@@ -266,7 +267,7 @@ public class EditionFichier {
 	 */
 	public void ecrireSommet(int numSmt, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart, int joueur)
 			throws IOException {
-		FileReader fr = new FileReader("data.txt");
+		FileReader fr = new FileReader(emplacementData);
 		Scanner sc = new Scanner(fr);
 
 		String donnesFichier = "";
@@ -296,7 +297,7 @@ public class EditionFichier {
 		else
 			donnesFichier = donneesVilles + (0 + "\t" + null + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "J0" + "\n\n")
 					+ donneesRoutes;
-		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(emplacementData));
 
 		try {
 			writer.write(donnesFichier);
@@ -320,7 +321,7 @@ public class EditionFichier {
 	 * 
 	 */
 	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons, int joueur) throws IOException {
-		FileReader fr = new FileReader("data.txt");
+		FileReader fr = new FileReader(emplacementData);
 		Scanner sc = new Scanner(fr);
 
 		String donnesFichier = "";
@@ -340,7 +341,7 @@ public class EditionFichier {
 			donnesFichier += (nbTroncons + "\t" + smtA.getNumSom() + smtA.getNomCoul() + "\t" + smtB.getNumSom()
 			+ smtB.getNomCoul() + "\t" + "J2" + "\n");
 
-		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(emplacementData));
 
 		try {
 			writer.write(donnesFichier);
