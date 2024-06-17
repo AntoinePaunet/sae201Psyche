@@ -146,10 +146,9 @@ public class Controleur
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
-			if (this.tourJ1)
+			if (this.estValide(r))
 			{
-				
-				if (this.estValide(r))
+				if (this.tourJ1)
 				{
 					r.setJoueur(this.j1);
 
@@ -166,10 +165,7 @@ public class Controleur
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j1, this);
 				}
-			}
-			else
-			{
-				if (this.estValide(r))
+				else
 				{
 					r.setJoueur(this.j2);
 
@@ -185,7 +181,7 @@ public class Controleur
 					
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j2, this);
-				}
+				}	
 			}
 		}
 	
