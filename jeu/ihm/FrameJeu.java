@@ -20,8 +20,9 @@ public class FrameJeu extends JFrame
 	private PanelCarte 	panelCarte;
 	private JPanel     	panelScore;
 
-	private JMenuItem 	enregistrerF;
-	private JMenuItem 	supprimerF;
+	private JMenuItem menuiSauvegarder;
+	private JMenuItem menuiAbandonner;
+
 	private Controleur 	ctrl;
 
 	/**
@@ -39,11 +40,15 @@ public class FrameJeu extends JFrame
 		this.panelCarte = new PanelCarte(ctrl);
 		this.add(this.panelCarte);
 
+		// Création et ajout de la barre de menu
+
+		JMenu menuOptions = new JMenu("Options");
+
+		this.menuiSauvegarder = new JMenuItem ("Sauvegarder et quitter");
+		this.menuiAbandonner  = new JMenuItem ("Abandonner" );
 
 		// Gestion de la fermeture de la fenêtre
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Ne ferme pas automatiquement
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Ne ferme pas automatiquement
 
 		// Ajoute un WindowAdapter pour écouter les événements de fenêtre
 		this.addWindowListener(new WindowAdapter()
@@ -59,8 +64,6 @@ public class FrameJeu extends JFrame
 			}
 		});
 
-		// Gestion de la fermeture de la fenêtre
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 
@@ -68,10 +71,10 @@ public class FrameJeu extends JFrame
 
 	public PanelCarte getPanelCarte (){return this.panelCarte;}
 
-/*
+
 	public static void main( String[] args ) throws IOException
 	{
 		new FrameJeu(new Controleur());
 	}
-*/
+
 }

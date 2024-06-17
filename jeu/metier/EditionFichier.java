@@ -53,16 +53,13 @@ public class EditionFichier
 			FileReader fr = new FileReader(nomFichier);
 			Scanner sc = new Scanner(fr);
 
-
 			sc.nextLine();
 			if (sc.nextLine().equals(""))
 			{
 				return true;
 			}
-		} catch (Exception e)
-		{
-			return true;
 		}
+		catch( Exception e ) { return true; }
 		return false;
 	}
 
