@@ -513,7 +513,7 @@ public class Controleur
 
 		for ( Sommet s : this.tabSommet )
 		{
-			if ( s. )
+			if ( s.getId() == idsom)
 				return s;
 		}
 		return null;
