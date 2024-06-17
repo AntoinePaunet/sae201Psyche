@@ -48,18 +48,18 @@ public class FrameJeu extends JFrame implements ActionListener
 		menuOptions.add(this.menuiAbandonner );
 		menuBar.add(menuOptions);
 
-		if( this.ctrl.getEstScenar() )
-		{
-			JMenu menuScenar = new JMenu("Scénario");
-
-			this.menuiAnnuler  = new JMenuItem ("Annuler la dernière action"  );
-			this.menuiRetablir = new JMenuItem ("Rétablir la dernière action" );
-
-			menuScenar.add(this.menuiAnnuler );
-			menuScenar.add(this.menuiRetablir );
-
-			menuBar.add(menuScenar);
-		}
+//		if( this.ctrl.getEstScenar() )
+//		{
+//			JMenu menuScenar = new JMenu("Scénario");
+//
+//			this.menuiAnnuler  = new JMenuItem ("Annuler la dernière action"  );
+//			this.menuiRetablir = new JMenuItem ("Rétablir la dernière action" );
+//
+//			menuScenar.add(this.menuiAnnuler );
+//			menuScenar.add(this.menuiRetablir );
+//
+//			menuBar.add(menuScenar);
+//		}
 		this.setJMenuBar( menuBar );
 
 		menuOptions.setMnemonic('O');
