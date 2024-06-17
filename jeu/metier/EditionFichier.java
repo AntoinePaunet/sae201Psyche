@@ -132,6 +132,66 @@ public class EditionFichier {
 	}
 
 	/**
+	 * Methode qui lit le fichier theme.data, qui permet de récupérer chaque nom de thème.
+	 * @return une List<String> qui contient chaque nom de thème.
+	 */
+	public List<String> lectureNomTheme()
+	{
+		FileReader fr;
+		List<String> nomThemes = new ArrayList<>();
+
+		try
+		{
+			fr = new FileReader ( "./jeu/src/theme.txt" );
+			Scanner sc = new Scanner ( fr );
+
+			while ( sc.hasNextLine() )
+			{
+				String ligneTheme = sc.nextLine();
+				String[] elementsTheme = ligneTheme.split("\t");
+				if (elementsTheme.length > 0)
+					nomThemes.add(elementsTheme[0]);
+			}
+
+			fr.close();
+		}
+		catch (Exception e){ e.printStackTrace(); }
+		return nomThemes;
+	}
+
+	/**
+	 * Méthode qui permet de changer les nom des éléments en fonction du thème choisi.
+	 * @param index permet de récupérer la bonne ligne du fichier.
+	 */
+	public void initTheme(int index)
+	{
+		FileReader fr;
+		int cpt;
+		String ligneTheme = null;
+
+		cpt = 0;
+		try
+		{
+			fr = new FileReader ( "./jeu/src/theme.txt" );
+			Scanner sc = new Scanner ( fr );
+
+			while ( sc.hasNextLine() && cpt < index )
+			{
+				ligneTheme = sc.nextLine();
+
+				cpt++;
+			}
+			String[] elementsTheme = ligneTheme.split("\t");
+			ctrl.setElementsTheme(elementsTheme);
+
+			fr.close();
+		}
+		catch (Exception e){ e.printStackTrace(); }
+
+	}
+
+
+	/**
 	 * Méthode qui crée et ajoute un sommet dans la liste des sommets a partir d'une
 	 * ligne d'un fichier texte.
 	 * 

@@ -47,7 +47,7 @@ public class Materiaux implements IRessource
 			case "CO" : this.couleur = Couleur.MARRON; 	break;
 			case "TI" : this.couleur = Couleur.VERT; 	break;
 			case "NR" : this.couleur = Couleur.CIAN; 	break;
-			case "null" : this.couleur = Couleur.DEBUT; 	break;
+			case "null" : this.couleur = Couleur.DEPART; 	break;
 		}
 
 		Materiaux.nbPiece++;

@@ -50,14 +50,15 @@ public class Controleur
 		this.tourJ1         = true;
 		this.finPartie      = false;
 		this.estJeu        = false;
+		
+		this.lstMateriaux = new ArrayList<>(40);
+		this.initMateriaux();
 
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.editionFichier.lectureFichier("data.txt", false);
 
 
-		this.lstMateriaux = new ArrayList<>(40);
-		this.initMateriaux();
 	}
 
 	private void initMateriaux()
@@ -275,7 +276,7 @@ public class Controleur
 				case "M" -> tmpCoul = "Marron";
 			}
 
-			rndm = (int)(Math.random()*(40-cpt));
+			rndm = (int)(Math.random()*(this.lstMateriaux.size()));
 
 			tmpMat = new Materiaux(this.lstMateriaux.remove(rndm));
 
@@ -525,7 +526,7 @@ public class Controleur
 	public void supprimerTout() throws IOException
 	{
 		this.tabSommet = new ArrayList<Sommet>(30);
-		this.tabSommet.add(new Sommet(0,"DEBUT", 500, 500, null, true));
+		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true,null));
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.editionFichier.sauvegarde();
 	}
