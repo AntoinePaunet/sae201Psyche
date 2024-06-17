@@ -20,7 +20,6 @@ public class FrameJeu extends JFrame implements ActionListener
 	private PanelCarte 	panelCarte;
 	private JPanel     	panelScore;
 
-	private JMenuItem menuiSauvegarder;
 	private JMenuItem menuiAbandonner;
 
 	private Controleur 	ctrl;
@@ -31,7 +30,7 @@ public class FrameJeu extends JFrame implements ActionListener
 	public FrameJeu(Controleur ctrl)
 	{
 		this.setTitle("L'Âge de Psyché");
-		this.setSize    ( 1000,750 );
+		this.setSize    ( 1269,1122 );
 		this.setLocation(  0, 0 );
 		this.ctrl = ctrl;
 
@@ -44,10 +43,8 @@ public class FrameJeu extends JFrame implements ActionListener
 		JMenuBar menuBar  = new JMenuBar();
 		JMenu menuOptions = new JMenu("Options");
 
-		this.menuiSauvegarder = new JMenuItem ("Sauvegarder et quitter");
-		this.menuiAbandonner  = new JMenuItem ("Abandonner" );
+		this.menuiAbandonner  = new JMenuItem ("Quitter sans sauvegarder" );
 
-		menuOptions.add(this.menuiSauvegarder);
 		menuOptions.add(this.menuiAbandonner );
 
 		menuBar.add(menuOptions);
@@ -56,8 +53,10 @@ public class FrameJeu extends JFrame implements ActionListener
 
 		menuOptions.setMnemonic('O');
 
-		this.menuiSauvegarder.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_DOWN_MASK) );
-		this.menuiAbandonner .setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
+		this.menuiAbandonner.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_DOWN_MASK) );
+
+
+		this.menuiAbandonner.addActionListener(this);
 
 		// Gestion de la fermeture de la fenêtre
 		this.addWindowListener(new WindowAdapter()
@@ -88,13 +87,12 @@ public class FrameJeu extends JFrame implements ActionListener
 		if ( e.getSource() instanceof JMenuItem )
 			//System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
 		*/
-		if ( e.getSource() == this.menuiSauvegarder )
-			System.exit(0);	
-
-
-		// Fermeture de l'application
 		if ( e.getSource() == this.menuiAbandonner )
-			System.exit(0);
+		{
+			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVotre partie ne sera pas sauvegardée.") == JOptionPane.YES_OPTION )
+				System.exit(0);
+		}
+
 	}
 
 	public void majIHM(){this.panelCarte = new PanelCarte(ctrl);this.add(this.panelCarte);this.setVisible(true);}

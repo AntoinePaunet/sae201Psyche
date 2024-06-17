@@ -1,7 +1,6 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.metier.EditionFichier;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,13 +22,13 @@ public class FrameDemarrage extends JFrame implements ActionListener
 {
 	private Controleur ctrl;
 
-	private PanelBoutons panelBoutons;
+	private PanelBoutons panelBoutons          ;
 
-	private JMenuItem     menuiOuvrir       ;
-	private JMenuItem     menuiScenario     ;
-	private JMenuItem     menuiQuitter      ;
+	private JMenuItem    menuiOuvrir           ;
+	private JMenuItem    menuiScenario         ;
+	private JMenuItem    menuiQuitter          ;
 
-	private FrameChoix	      frameChoix;
+	private FrameChoix	      frameChoix       ;
 	private FrameModification frameModification;
 
 
@@ -47,7 +46,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 
 		this.panelBoutons = new PanelBoutons(this.ctrl);
-
+		
 		// Création et ajout de la barre de menu
 		JMenuBar  menuBar  = new JMenuBar(         );
 		JMenu menuOuvrir   = new JMenu("Ouvrir"  );
@@ -141,25 +140,36 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				//System.out.println("Annuler");
 			}
-		}
-
-		// Fermeture de l'application
-		if ( e.getSource() == this.menuiQuitter )
-			System.exit(0);
-		
+		}		
 
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
 		{
-			this.frameChoix = new FrameChoix( this.ctrl );
-			this.ctrl.setEstJeu(true);
+			if (this.panelBoutons.lstTheme.getSelectedItem() != null)
+			{
+				this.frameChoix = new FrameChoix( this.ctrl );
+				this.ctrl.setEstJeu(true);
+			}
+			else
+			{
+				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
+			}
+			
 		}
 
 		// Gestion du bouton Modifier
 		if( e.getSource() == this.panelBoutons.btnModifier )
 		{
-			this.frameModification = new FrameModification( this.ctrl ); 
-			this.ctrl.setEstJeu(false);
+			if (this.panelBoutons.lstTheme.getSelectedItem() != null)
+			{
+				this.frameModification = new FrameModification( this.ctrl ); 
+				this.ctrl.setEstJeu(false);
+			}
+			else
+			{
+				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
+			}
+			
 		}
 
 		// Fermeture de l'application
@@ -185,15 +195,17 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		private JPanel  panelBtnJouer, panelBtnModifier ;
 		private JButton btnJouer, btnModifier           ;
 		private JLabel  lblTheme                        ;
+		private JLabel  lblErreur                       ;
 		private List    lstTheme                        ;
-		private Controleur ctrl;
+
+		private Controleur ctrl                         ;
 
 	/**
 	 * Constructeur du panel contenant les boutons Jouer et Modifier
 	 */
 		public PanelBoutons(Controleur ctrl)
 		{
-			this.setLayout(new GridLayout(4,1));
+			this.setLayout(new GridLayout(6,1));
 			this.ctrl = ctrl;
 
 			// Création des composants;
@@ -204,6 +216,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.btnModifier = new JButton("Modifier une carte");
 			this.lblTheme    = new JLabel ("Selection du thème");
 			this.lstTheme    = new List   (                         );
+			this.lblErreur   = new JLabel (""                  );
+
 
 			for (String s : ctrl.getEditionFichier().lectureNomTheme())
 			{
@@ -215,18 +229,24 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.panelBtnModifier.add( this.btnModifier );
 			this.panelBtnJouer.add   (this.btnJouer     );
 
+			this.add(new JLabel("")       );
 			this.add(this.panelBtnModifier);
 			this.add(this.panelBtnJouer   );
 			this.add(this.lblTheme        );
 			this.add(this.lstTheme        );
+			this.add(this.lblErreur       );
 		}
 
+		/**
+		 * Methode qui permet de changer thème du jeu, en fonction de l'item selectionné dans lstTheme.
+		 */
 		public void itemStateChanged(ItemEvent e)
 		{
 			if (e.getStateChange() == ItemEvent.SELECTED)
 			{
 				// Appeler initTheme avec l'index de l'élément sélectionné
 				this.ctrl.getEditionFichier().initTheme(this.lstTheme.getSelectedIndex()+1);
+				this.lblErreur.setText("");
 			}
 		}
 	}

@@ -55,7 +55,7 @@ public class Sommet
     public int       setX( int x )  { return this.x = x;     }
     public int       setY( int y )  { return this.y = y;     }
     public Materiaux getMateriaux()    { return this.materiaux; }
-    public boolean   getDepard()       { return this.depart;    }
+    public boolean   getDepart()       { return this.depart;    }
 
 
 	public void addRoute(Route r)

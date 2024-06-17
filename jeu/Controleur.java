@@ -223,7 +223,8 @@ public class Controleur
 				}	
 			}
 		}
-		
+
+		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 	}
@@ -474,7 +475,7 @@ public class Controleur
 
 		for ( Sommet rt : this.tabSommet )
 		{
-			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepard() == estDepart)
+			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepart() == estDepart)
 			{
 				ArrayList<Route> tmpR = new ArrayList<>(this.tabRoute.size()/2);
 

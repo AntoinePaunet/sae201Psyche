@@ -1,17 +1,37 @@
 [SOMMET]
-4	Vert	336	92	NI	false
-8	Vert	265	111	NR	false
-2	Vert	317	187	PT	false
-3	Vert	394	175	AU	false
-6	Vert	251	239	CO	false
+4	Vert	750	135	NI	false
+8	Vert	423	270	PT	false
+2	Vert	490	275	CO	false
+3	Vert	200	600	NI	false
+6	Vert	400	350	NI	false
+6	Bleu	500	400	AG	false
+8	Bleu	600	400	NR	false
+5	Rouge	175	480	AG	false
+3	Rouge	300	475	NR	false
+1	Rouge	380	500	CO	false
+2	Gris	750	430	TI	false
+3	Bleu	490	550	AU	false
+4	Bleu	550	500	PT	false
+2	Bleu	700	500	AU	false
+4	Gris	850	500	TI	false
+3	Jaune	1000	500	NR	false
+4	Rouge	190	200	FE	false
+2	Rouge	100	200	NR	false
+2	Marron	200	700	CO	false
+0	null	850	650	null	true
+0	null	1050	600	null	true
+4	Jaune	1200	750	AL	false
+5	Marron	375	800	TI	false
+3	Marron	500	750	AG	false
+4	Marron	750	800	AL	false
+1	Marron	800	750	AL	false
+3	Gris	900	750	NR	false
+0	null	900	875	null	true
+0	null	1050	850	null	true
+2	Jaune	1200	850	FE	false
+0	null	600	650	null	true
 
 [ROUTES]
-1	4Vert	8Vert
-1	4Vert	2Vert
-1	8Vert	2Vert
-1	4Vert	3Vert
-1	2Vert	3Vert
-1	6Vert	2Vert
 1	6Vert	6Bleu
 1	6Bleu	2Vert
 1	6Bleu	8Bleu
@@ -33,9 +53,6 @@
 2	4Rouge	5Rouge
 1	4Rouge	2Rouge
 1	1Rouge	2Rouge
-1	2Marron	0null
-1	0null	2Bleu
-2	0null	0Gris
 1	2Marron	3Bleu
 2	0Gris	4Gris
 1	0Gris	1Jaune
@@ -46,7 +63,6 @@
 1	3Marron	4Marron
 1	4Marron	1Marron
 2	3Marron	2Marron
-1	1Marron	0null
 1	3Gris	0Gris
 2	3Gris	1Jaune
 1	1Gris	3Gris
@@ -55,3 +71,8 @@
 1	2Jaune	5Jaune
 2	5Jaune	1Jaune
 2	2Jaune	4Jaune
+2	4Vert	8Vert
+2	2Vert	8Vert
+1	0null	1Gris
+2	0null	2Vert
+2	0null	0Gris

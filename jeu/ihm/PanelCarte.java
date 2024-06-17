@@ -68,34 +68,10 @@ public class PanelCarte extends JPanel
 		this.g2.setStroke (new BasicStroke (2.0f));
 		int adjCercle = this.RAYON / 2 ;
 		this.g2.setColor( new Color(000060) );
+		
 
-
-		for(Sommet s : ctrl.getTabSommet())
-		{
-			if(s.getNomCoul() != null) //Si pas le départ
-			{
-				int x = s.getX();
-				int y = s.getY();
-
-				this.g2.setStroke (new BasicStroke (2.0f));
-
-				this.g2.setColor( new Color(000060) );
-
-				this.g2.drawOval( x , y , this.RAYON, this.RAYON );
-				this.g2.fillOval( x , y , this.RAYON, this.RAYON );
-
-				if (s.getMateriaux()!=null)
-				{
-					this.g2.setColor( new Color(255, 87, 51) );
-					this.g2.drawOval( x+5 , y+5 , this.RAYON/2, this.RAYON/2 );
-					this.g2.fillOval( x+5 , y+5 , this.RAYON/2, this.RAYON/2 );
-					this.g2.setColor( new Color(000060) );
-				}
-				
-
-				this.g2.drawString( s.getNumSom() + s.getNomCoul(), x-10, y-5 );
-			}
-		}
+		
+		
 
 		for(Route r : ctrl.getTabRoute())
 		{
@@ -119,6 +95,7 @@ public class PanelCarte extends JPanel
 				this.g2.drawOval( ((x1 + adjCercle)+ (x2+ adjCercle))/2 -5 , ((y1+ adjCercle) + (y2+ adjCercle))/2 -5,10,10 );
 				this.g2.fillOval(( (x1 + adjCercle)+ (x2+ adjCercle))/2  -5, ((y1+ adjCercle) + (y2+ adjCercle))/2 -5,10,10);
 			}
+			this.chargerImages(r);
 				
 		}
 	}
@@ -161,7 +138,38 @@ public class PanelCarte extends JPanel
 			this.add(imgLabel1, Integer.valueOf(layer));
 		}
 		System.out.println(r);
-		this.setVisible(true);
+
+		ImageIcon image2,image3;
+		JLabel imgLabel3,imgLabel4;
+
+
+		for(Sommet s : ctrl.getTabSommet())
+		{
+			
+				int x = s.getX();
+				int y = s.getY();
+
+				if (s.getMateriaux()!=null)
+				{
+					image2 = new ImageIcon(getClass().getResource("../src/images/Mine_"+s.getNomCoul()+".png"));
+					image3 = new ImageIcon(getClass().getResource("../src/images/"+s.getMateriaux().getNom()+".png"));
+					imgLabel4 = new JLabel(image3);
+					imgLabel4.setBounds(x,y+40, image3.getIconWidth(), image3.getIconHeight());
+					this.add(imgLabel4, Integer.valueOf(3));
+				}
+						
+				else 
+					image2 = new ImageIcon(getClass().getResource("../src/images/Mine_Bleu_clair.png"));
+
+				imgLabel3 = new JLabel(image2);
+				imgLabel3.setBounds(x,y, image2.getIconWidth(), image2.getIconHeight());
+				this.add(imgLabel3, Integer.valueOf(2));
+				this.setVisible(true);
+
+				this.g2.drawString( s.getNumSom() + s.getNomCoul(), x+10, y-5 );
+				this.repaint();
+			
+		}
 	}
 
 

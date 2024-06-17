@@ -162,7 +162,7 @@ public class EditionFichier
 
 		try
 		{
-			fr = new FileReader ( "theme.txt" );
+			fr = new FileReader ( "./jeu/src/theme.txt" );
 			Scanner sc = new Scanner ( fr );
 
 			while ( sc.hasNextLine() )
@@ -179,6 +179,10 @@ public class EditionFichier
 		return nomThemes;
 	}
 
+	/**
+	 * Méthode qui permet de changer les nom des éléments en fonction du thème choisi.
+	 * @param index permet de récupérer la bonne ligne du fichier.
+	 */
 	public void initTheme(int index)
 	{
 		FileReader fr;
@@ -188,18 +192,17 @@ public class EditionFichier
 		cpt = 0;
 		try
 		{
-			fr = new FileReader ( "theme.txt" );
+			fr = new FileReader ( "./jeu/src/theme.txt" );
 			Scanner sc = new Scanner ( fr );
 
 			while ( sc.hasNextLine() && cpt < index )
 			{
 				ligneTheme = sc.nextLine();
-				System.out.println("passé dans initTheme");
+
 				cpt++;
 			}
 			String[] elementsTheme = ligneTheme.split("\t");
 			ctrl.setElementsTheme(elementsTheme);
-			System.out.println("a set element");
 
 			fr.close();
 		}
@@ -237,6 +240,8 @@ public class EditionFichier
 
 		Sommet smtA = this.ctrl.rechercheSommet(routeInfo[1]);
 		Sommet smtB = this.ctrl.rechercheSommet(routeInfo[2]);
+
+		
 
 		if (smtA != null && smtB != null) // Si la ville recherché n'existe plus
 		{
