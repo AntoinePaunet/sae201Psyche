@@ -32,9 +32,6 @@
 0	null	457	464	null	false
 
 [ROUTES]
-1	4Vert	3Vert
-1	2Vert	3Vert
-1	6Vert	2Vert
 1	6Vert	6Bleu
 1	6Bleu	2Vert
 1	6Bleu	8Bleu

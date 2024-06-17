@@ -14,10 +14,6 @@ public class EditionFichier
 	private ArrayList<Route>  tabRoute;
 	private File fichier;
 
-	/**
-	 * Constructeur de la classe EditionFichier
-	 * @param estJeu le Jeu
-	 */
 	public EditionFichier(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
@@ -26,19 +22,11 @@ public class EditionFichier
 		this.fichier = null;
 	}
 
-	/**
-	 * A completer.
-	 * @param estJeu le Jeu
-	 */
 	public ArrayList<Sommet> getTabSommet()
 	{
 		return this.tabSommet;
 	}
 
-	/**
-	 * A completer.
-	 * @param estJeu le Jeu
-	 */
 	public ArrayList<Route> getTabRoute()
 	{
 		return this.tabRoute;
@@ -58,10 +46,7 @@ public class EditionFichier
 		catch( IOException e ) {}
 	}
 
-	/**
-	 * A completer.
-	 * @param estJeu le Jeu
-	 */
+
 	public boolean estVide(String nomFichier) throws FileNotFoundException
 	{
 		try
@@ -102,12 +87,12 @@ public class EditionFichier
 		try
 		{
 			FileReader fr;
+
 			if(importer)
 			{
 				fr = new FileReader(tmpFichier);
 				this.supprimer();
-			}else
-			{
+			}else{
 				fr = new FileReader(fichier);
 			}
 			Scanner sc = new Scanner(fr);
@@ -183,15 +168,46 @@ public class EditionFichier
 			while ( sc.hasNextLine() )
 			{
 				String ligneTheme = sc.nextLine();
-				String[] elements = ligneTheme.split("\t");
-				if (elements.length > 0)
-					nomThemes.add(elements[0]);
+				String[] elementsTheme = ligneTheme.split("\t");
+				if (elementsTheme.length > 0)
+					nomThemes.add(elementsTheme[0]);
 			}
 
 			fr.close();
 		}
 		catch (Exception e){ e.printStackTrace(); }
 		return nomThemes;
+	}
+
+	/**
+	 * Méthode qui permet de changer les nom des éléments en fonction du thème choisi.
+	 * @param index permet de récupérer la bonne ligne du fichier.
+	 */
+	public void initTheme(int index)
+	{
+		FileReader fr;
+		int cpt;
+		String ligneTheme = null;
+
+		cpt = 0;
+		try
+		{
+			fr = new FileReader ( "theme.txt" );
+			Scanner sc = new Scanner ( fr );
+
+			while ( sc.hasNextLine() && cpt < index )
+			{
+				ligneTheme = sc.nextLine();
+
+				cpt++;
+			}
+			String[] elementsTheme = ligneTheme.split("\t");
+			ctrl.setElementsTheme(elementsTheme);
+
+			fr.close();
+		}
+		catch (Exception e){ e.printStackTrace(); }
+
 	}
 
 	/**
@@ -208,11 +224,7 @@ public class EditionFichier
 		int y = Integer.parseInt(smtInfo[3]);
 		String nomMat = smtInfo[4];
 
-		if (nomMat.equals("null"))
-			this.tabSommet.add(new Sommet(num, nom, x, y, null, true));
-		else
-			this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), true));
-		
+		this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false));
 		this.ctrl.setTabSommet(this.tabSommet);
 	}
 
@@ -275,10 +287,12 @@ public class EditionFichier
 		try
 		{
 			writer.write(donnesFichier);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		catch( Exception e ) { e.printStackTrace();	}
 
 		writer.close();
+
 		sc.close();
 	}
 
@@ -305,17 +319,14 @@ public class EditionFichier
 		try
 		{
 			writer.write(donnesFichier);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		catch( Exception e ) { e.printStackTrace();	}
 
 		writer.close();
 		sc.close();
 	}
 
-	/**
-	 * A completer.
-	 * @param estJeu le Jeu
-	 */
 	public void supprimer()
 	{
 		try( BufferedWriter writer = new BufferedWriter( new FileWriter(this.fichier) ) )
@@ -334,10 +345,13 @@ public class EditionFichier
 		this.supprimer();
 
 		for(Route r : this.tabRoute)
+		{
 			this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons());
+		}
 
 		for(Sommet s : this.tabSommet)
+		{
 			this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false);
-		
+		}
 	}
 }

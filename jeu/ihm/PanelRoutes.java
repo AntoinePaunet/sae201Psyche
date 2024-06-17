@@ -90,7 +90,8 @@ public class PanelRoutes extends JPanel implements ActionListener {
 
     }
 
-    public void initListe() {
+    public void initListe()
+    {
 	/**
 	 * Initialise la liste contenant toutes les routes.
 	 */
@@ -168,6 +169,18 @@ public class PanelRoutes extends JPanel implements ActionListener {
         int troncons = 0;
 
 
+
+        try{
+            if(!this.inputRoute.getText().isBlank())
+                Integer.parseInt(this.inputRoute.getText());
+        }catch (Exception ex)
+        {
+            this.lblErreur.setText("<html> Seul les entiers  <br> sont autorisés. </html>");
+            return;
+        }
+
+
+
         // Get the selected row index
         int selectedRowIndex = table.getSelectedRow();
 
@@ -184,24 +197,27 @@ public class PanelRoutes extends JPanel implements ActionListener {
         {
             villeDep = (String) this.lstSommetDep.getSelectedItem();
             villeArr = (String) this.lstSommetArrive.getSelectedItem();
-            troncons = Integer.parseInt((String) this.inputRoute.getText());
+            troncons = Integer.parseInt(this.inputRoute.getText());
         }
 
 
-        if (e.getSource() == this.btnAjouteRoute) {
+        if (e.getSource() == this.btnAjouteRoute)
+        {
             if ((this.inputRoute.getText().isBlank()) &&
                     selectedRowIndex == -1
             ) {
                 this.lblErreur.setText("<html> Tous les champs  <br> ne sont pas complétés. </html>");
-            } else {
+                return;
+            } else if (Integer.parseInt(this.inputRoute.getText()) < 0 || Integer.parseInt(this.inputRoute.getText()) > 2) {
+                this.lblErreur.setText("<html> Valeurs comprises entre  <br> 0 et 2. </html>");
+            } else{
                 this.lblErreur.setText("");
 
-                System.out.println(villeDep + " " + villeArr + " " + troncons);
 
                 Sommet sDep = ctrl.rechercheSommet(villeDep);
-                System.out.println(villeDep);
                 Sommet sArr = ctrl.rechercheSommet(villeArr);
-                System.out.println(villeArr);
+
+
 
                 this.ctrl.ajouterOuSupprimerRoute(sDep, sArr, troncons);
 
