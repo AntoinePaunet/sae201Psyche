@@ -29,7 +29,7 @@
 1	Gris	556	586	PT	false	J0
 5	Jaune	696	583	NR	false	J0
 2	Jaune	773	582	TI	false	J0
-0	null	442	475	null	false	J0
+0	null	442	475	null	true	J0
 90	Vert	200	300	CO	false	J0
 
 [ROUTES]
@@ -78,3 +78,4 @@
 1	2Jaune	5Jaune	J0
 2	5Jaune	1Jaune	J0
 2	2Jaune	4Jaune	J0
+1	0DEPART	4Jaune	J0

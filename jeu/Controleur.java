@@ -96,6 +96,14 @@ public class Controleur
 		this.tabRoute = tabRt;
 	}
 
+
+
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
+	public void setEstScenar(boolean estScenar) { this.estScenar = estScenar; }
+
 	/**
 	 * A completer.
 	 * @return La liste des sommets
@@ -121,8 +129,8 @@ public class Controleur
 	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
 
 	/**
-	 * A completer.
-	 *  le Jeu
+	 * Renvoie l'instance de la classe EditionFichier qui est lié au controleur.
+	 * @return  la valeur de editionFichier
 	 */
 	public EditionFichier getEditionFichier()
 	{
@@ -162,8 +170,8 @@ public class Controleur
 	}
 
 	/**
-	 * A completer.
-	 * @param estJeu le Jeu
+	 * Renvoie la frameDemarrage liée au controleur
+	 * @return la l'instance de frameDemarrage
 	 */
 	public FrameDemarrage getFrameDemarrage()
 	{
