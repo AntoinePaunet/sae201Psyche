@@ -53,6 +53,7 @@ public class PanelCarte extends JPanel
 		this.addMouseListener( gereSouris );
 		this.addMouseMotionListener( gereSouris );
 
+
 	}
 
 
@@ -72,6 +73,8 @@ public class PanelCarte extends JPanel
 		super.paintComponent(g);
 
 		this.g2 = (Graphics2D) g;
+
+		
 
 		g2.drawImage(this.image, 20,0, this);
 		if (ctrl.getEstJeu())
@@ -118,6 +121,7 @@ public class PanelCarte extends JPanel
 			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
 
 			int vec1, vec2;
+			
 
 			vec1=0;
 			vec2=0;
@@ -136,8 +140,23 @@ public class PanelCarte extends JPanel
 				this.g2.drawOval( ((x1 + adjCercle)+ (x2+ adjCercle))/2 -5 , ((y1+ adjCercle) + (y2+ adjCercle))/2 -5,10,10 );
 				this.g2.fillOval(( (x1 + adjCercle)+ (x2+ adjCercle))/2  -5, ((y1+ adjCercle) + (y2+ adjCercle))/2 -5,10,10);
 			}
+				
+		}
 
-			this.chargerImages(r);
+		for (Sommet s : ctrl.getTabSommet())
+		{
+
+			this.g2.drawString(s.getNumSom()+"", s.getX()+10, s.getY()-5 );
+			
+			if (s.getMateriaux()==null)
+				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX(), s.getY(), this);
+			else
+			{
+				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"), s.getX(), s.getY(), this);
+				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+s.getMateriaux().getNom()+".png"), s.getX()+20, s.getY()+40, this);
+			}
+			if (s.getDepart())
+				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX(), s.getY(),30,30, this);
 				
 		}
 	}
@@ -180,45 +199,12 @@ public class PanelCarte extends JPanel
 			this.add(imgLabel1, Integer.valueOf(layer));
 		}
 		
-
-		ImageIcon image2,image3;
-		JLabel imgLabel3,imgLabel4;
-		JLabel points;
-
-
-		for(Sommet s : ctrl.getTabSommet())
-		{
-			
-				int x = s.getX();
-				int y = s.getY();
-
-				if (s.getMateriaux()!=null)
-				{
-					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"));
-					image3 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+ s.getMateriaux().getNom()+".png"));
-					imgLabel4 = new JLabel(image3);
-					imgLabel4.setBounds(x-18,y, image3.getIconWidth(), image3.getIconHeight());
-					this.add(imgLabel4, Integer.valueOf(3));
-				}
-						
-				else 
-					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_Bleu_clair.png"));
-
-				if (s.getDepart())
-					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"));
 				
-					
-
-				imgLabel3 = new JLabel(image2);
-				imgLabel3.setBounds(x-20,y-40, image2.getIconWidth(), image2.getIconHeight());
-				this.add(imgLabel3, Integer.valueOf(2));
-				points=new JLabel(s.getNumSom()+"");
-				this.g2.drawString(points.getText(), x+10, y-5 );
 
 				
-				this.repaint();
+		this.repaint();
 			
-		}
+		
 	}
 
 
@@ -253,7 +239,11 @@ public class PanelCarte extends JPanel
 					{
 						if (ctrl.getSommet( e.getX(), e.getY() )==null)
 						{
-							ctrl.jouer(r);
+							try {
+								ctrl.jouer(r);
+							} catch (IOException ex) {
+								throw new RuntimeException(ex);
+							}
 						}
 							
 					}

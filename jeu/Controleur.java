@@ -186,8 +186,7 @@ public class Controleur
 	 * Méthode qui vérifie si les règles du jeu sont respectées, et effectue les actions du joueurs.
 	 * @param r La route concernée
 	 */
-	public void jouer (Route r)
-	{
+	public void jouer (Route r) throws IOException {
 		//System.out.println(this.estValide(r));
 
 		if (!this.finPartie)
