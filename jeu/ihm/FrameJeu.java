@@ -65,12 +65,12 @@ public class FrameJeu extends JFrame implements ActionListener
 			@Override
 			public void windowClosing(WindowEvent e)
 			{
-				try {
+				try
+				{
 					ctrl.getEditionFichier().sauvegarde();
 					System.exit(0);	
-				} catch (IOException ex) {
-					throw new RuntimeException(ex);
 				}
+				catch( IOException ex ) { throw new RuntimeException(ex); }
 			}
 		});
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Ne ferme pas automatiquement
