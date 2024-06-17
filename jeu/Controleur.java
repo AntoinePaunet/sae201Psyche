@@ -487,6 +487,11 @@ public class Controleur
 					this.tabRoute.remove(r);
 				}
 
+
+				if(this.tabSommet.indexOf(rt) == this.tabSommet.size()-1)
+				{
+					Controleur.nbSommets--;
+				}
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;
@@ -495,6 +500,7 @@ public class Controleur
 		if ( !tempEstSup )
 		{
 			this.tabSommet.add( tempSommet );
+			Controleur.nbSommets = this.tabSommet.get(this.tabSommet.size()-1).getId()+1;
 		}
 	}
 
@@ -541,9 +547,11 @@ public class Controleur
 	public void supprimerTout() throws IOException
 	{
 		this.tabSommet = new ArrayList<Sommet>(30);
+		Controleur.nbSommets = 1;
 		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true,null));
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.editionFichier.sauvegarde();
+
 	}
 
 	/**

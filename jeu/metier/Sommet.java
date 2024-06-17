@@ -59,7 +59,6 @@ public class Sommet
 	public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart, Joueur joueur, int id )
 	{
 		this.id = id;
-		Controleur.nbSommets++;
 		this.numSom     = numSom;
 		this.nomCoul    = nomCoul;
 		this.materiaux  = materiaux;
