@@ -227,11 +227,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 				System.out.println("sommet ajouté ou suppresion du sommet effectué ");
 
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				model.addRow(new Object[]{ txtNumero.getText(),lstCouleur.getSelectedItem(), txtX.getText(), txtY.getText()});
-
 				this.ctrl.MajFrameModification();
-				
 			}
 		}
 	}
