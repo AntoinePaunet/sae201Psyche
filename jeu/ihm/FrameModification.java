@@ -119,7 +119,11 @@ public class FrameModification extends JFrame implements ActionListener
 
 		if ( e.getSource() == this.supprimerF )
 		{
-			this.ctrl.supprimerTout();
+			try {
+				this.ctrl.supprimerTout();
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
 			this.repaint();
 			try {
 				this.ctrl.getEditionFichier().sauvegarde();

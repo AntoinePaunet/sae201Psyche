@@ -2,6 +2,7 @@ package jeu.ihm;
 
 import jeu.Controleur;
 import jeu.metier.Couleur;
+import jeu.metier.Materiaux;
 import jeu.metier.Sommet;
 
 import javax.swing.*;
@@ -133,19 +134,6 @@ public class PanelSommet extends JPanel  implements ActionListener
 	}
 	
 	/**
-	 * Méthode qui ajoute un bouton
-	 */
-	public void ajouterBoutonModifier()
-	{
-		JPanel panelTest = new JPanel();
-		
-		this.btnModifierSommet = new JButton( "Modifier" );
-		this.btnModifierSommet.addActionListener( this );
-		panelTest.add(this.btnModifierSommet);
-		this.add(panelTest);
-	}
-	
-	/**
 	 * Réalise une action lorsqu'un bouton ou le tableau est appuyé
 	 * @param e est un événement lié à un composant du panel
 	 */
@@ -217,9 +205,19 @@ public class PanelSommet extends JPanel  implements ActionListener
 			}
 			else
 			{
+				if(ctrl.rechercheSommet((idVille+nomVile)) != null && (ctrl.rechercheSommet(idVille+nomVile).getX() != x || ctrl.rechercheSommet(idVille+nomVile).getY() != y))
+				{
+					this.lblErreur.setText("<html> Un sommet avec ce  <br> nom existe déjà. </html>");
+					return;
+				}
+
 				this.lblErreur.setText("");
 
-				this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,false);
+				int rndm = (int)(Math.random()*(this.ctrl.getLstMateriaux().size()));
+
+				Materiaux tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(rndm));
+
+				this.ctrl.ajouterOuSupprimerSommet(idVille, nomVile,x,y,tmpMat,false);
 
 				//Raffraichir le tableau
 				this.removeAll();
@@ -229,11 +227,6 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 				System.out.println("sommet ajouté ou suppresion du sommet effectué ");
 
-				
-				// DefaultTableModel model = (DefaultTableModel) table.getModel();
-				// model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
-				this.ctrl.MajFrameModification();
-
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.addRow(new Object[]{ txtNumero.getText(),lstCouleur.getSelectedItem(), txtX.getText(), txtY.getText()});
 
@@ -242,12 +235,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 			}
 			
 			
-			}
-
-		if (e.getSource() == this.btnModifierSommet)
-		{
-			//this.ctrl.modifierVille(  Integer.parseInt( x ), Integer.parseInt( y ), Integer.parseInt( idVille ) );
 		}
-		this.ctrl.MajFrameModification();
+		//this.ctrl.MajFrameModification();
 	}
 }

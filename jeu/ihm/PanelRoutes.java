@@ -211,12 +211,18 @@ public class PanelRoutes extends JPanel implements ActionListener {
             } else if (Integer.parseInt(this.inputRoute.getText()) < 0 || Integer.parseInt(this.inputRoute.getText()) > 2) {
                 this.lblErreur.setText("<html> Valeurs comprises entre  <br> 0 et 2. </html>");
             } else{
-                this.lblErreur.setText("");
 
 
                 Sommet sDep = ctrl.rechercheSommet(villeDep);
                 Sommet sArr = ctrl.rechercheSommet(villeArr);
 
+                if(ctrl.rechercheRoute(sDep, sArr) != null || ctrl.rechercheRoute(sArr, sDep) != null)
+                {
+                    this.lblErreur.setText("<html> Ce sommet existe déjà.</html>");
+                    return;
+                }
+
+                this.lblErreur.setText("");
 
 
                 this.ctrl.ajouterOuSupprimerRoute(sDep, sArr, troncons);

@@ -32,6 +32,8 @@ public class Controleur
 	private EditionFichier editionFichier;
 	private String[]       elementsTheme ;
 
+	private ArrayList<String> lstMateriaux;
+
 	/**
 	 * Constructeur du Controleur
 	 */
@@ -51,7 +53,28 @@ public class Controleur
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.editionFichier.lectureFichier("data.txt", false);
+
+
+		this.lstMateriaux = new ArrayList<>(40);
+		this.initMateriaux();
 	}
+
+	private void initMateriaux()
+	{
+		this.lstMateriaux = new ArrayList<>(Arrays.asList("NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR"));
+		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AG", "CO", "NI", "PT" };
+
+
+		//génération du tableau contenant les noms des matériaux possibles
+		for(int i = 0 ; i < tabNomsMat.length ; i++)
+		{
+			for(int j = 0; j < 4 ; j++)
+			{
+				this.lstMateriaux.add(tabNomsMat[i]);
+			}
+		}
+	}
+
 
 	/**
 	 * A completer.
@@ -237,22 +260,6 @@ public class Controleur
 		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394, 251,  336,  414,  80,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
 		int[] 		tabCooY    = new int[]    {  92,  111,  187,  175, 239,  284,  270,  300,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
-
-		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AG", "CO", "NI", "PT" };
-
-		ArrayList<String> tmpLst = new ArrayList<>(Arrays.asList("NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR"));
-
-
-		//génération du tableau contenant les noms des matériaux possibles
-		for(int i = 0 ; i < tabNomsMat.length ; i++)
-		{
-			for(int j = 0; j < 4 ; j++)
-			{
-				tmpLst.add(tabNomsMat[i]);
-			}
-		}
-
-
 		//Génération des Sommet
 		for(int cpt = 0; cpt < tabNomSmt.length ; cpt++)
 		{
@@ -268,7 +275,7 @@ public class Controleur
 
 			rndm = (int)(Math.random()*(40-cpt));
 
-			tmpMat = new Materiaux(tmpLst.remove(rndm));
+			tmpMat = new Materiaux(this.lstMateriaux.remove(rndm));
 
 			tmpZone = Integer.parseInt( tabNomSmt[cpt].substring( 1, 2 ) );
 			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false ) );
@@ -406,7 +413,20 @@ public class Controleur
 		return null;
 	}
 
+	public Route rechercheRoute(Sommet smtDep, Sommet smtArr)
+	{
+		for(Route r : this.tabRoute)
+		{
+			if(r.getSommetDep() == smtDep && r.getSommetArr() == smtArr)
+				return r;
+		}
+		return null;
+	}
 
+	public ArrayList<String> getLstMateriaux()
+	{
+		return this.lstMateriaux;
+	}
 
 	/**
 	 * Méthode qui appelle la méthode de mise a jour de la carte.
@@ -447,9 +467,9 @@ public class Controleur
 	 * @param y l'ordonnée du sommet
 	 * @param estDepart vrai si on ajoute un sommet de départ, faux si non
 	 */
-	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart )
+	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y,Materiaux materiaux ,boolean estDepart )
 	{
-		Sommet tempSommet = new Sommet(numSom, nomCoul, x, y, null , estJeu) ;
+		Sommet tempSommet = new Sommet(numSom, nomCoul, x, y, materiaux , estJeu) ;
 		boolean tempEstSup = false;
 
 		for ( Sommet rt : this.tabSommet )
@@ -479,7 +499,6 @@ public class Controleur
 		}
 		if ( !tempEstSup )
 		{
-			System.out.println(tempSommet + " TMPSMT");
 			this.tabSommet.add( tempSommet );
 		}
 	}
@@ -501,10 +520,12 @@ public class Controleur
 		return null;
 	}
 
-	public void supprimerTout()
+	public void supprimerTout() throws IOException
 	{
 		this.tabSommet = new ArrayList<Sommet>(30);
+		this.tabSommet.add(new Sommet(0,"DEBUT", 500, 500, null, true));
 		this.tabRoute  = new ArrayList<Route>(40);
+		this.editionFichier.sauvegarde();
 	}
 
 	/**

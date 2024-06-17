@@ -273,10 +273,10 @@ public class EditionFichier
 				donnesFichier.indexOf("\n["));
 		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-		if(!(materiaux == null))
+		if(nomCoul != null && !(nomCoul.equals("DEBUT")))
 			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\n\n") + donneesRoutes;
 		else
-			donnesFichier = donneesVilles + (0      + "\t" + null 		 + "\t" + x + "\t" + y + "\t" + null			   + "\t" + true + "\n\n") + donneesRoutes;
+			donnesFichier = donneesVilles + (0      + "\t" + "DEBUT" 		 + "\t" + x + "\t" + y + "\t" + null			   + "\t" + true + "\n\n") + donneesRoutes;
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
 		try
@@ -324,11 +324,12 @@ public class EditionFichier
 
 	public void supprimer()
 	{
-		try( BufferedWriter writer = new BufferedWriter( new FileWriter(this.fichier) ) )
+		try( BufferedWriter writer = new BufferedWriter( new FileWriter("data.txt") ) )
 		{
 			writer.write("[SOMMET]\n\n[ROUTES]\n");
 		}
-		catch( IOException e ) {}
+		catch( IOException e ) {
+		}
 	}
 
 
@@ -338,6 +339,10 @@ public class EditionFichier
 	public void sauvegarde() throws IOException
 	{
 		this.supprimer();
+		this.tabSommet = ctrl.getTabSommet();
+		this.tabRoute = ctrl.getTabRoute();
+
+		System.out.println("Suprimmer" + this.tabRoute);
 
 		for(Route r : this.tabRoute)
 		{
