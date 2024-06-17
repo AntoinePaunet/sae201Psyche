@@ -218,7 +218,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 				{
 					this.ctrl.ajouterOuSupprimerSommet(idVille , numVille, nomVile,x,y,tmpMat,false);
 				}else{
-					this.ctrl.ajouterOuSupprimerSommet(Controleur.nbSommets++ , numVille, nomVile,x,y,tmpMat,false);
+					this.ctrl.ajouterOuSupprimerSommet(Controleur.nbSommets , numVille, nomVile,x,y,tmpMat,false);
 				}
 
 
