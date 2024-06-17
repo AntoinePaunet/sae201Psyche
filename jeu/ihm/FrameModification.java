@@ -19,16 +19,16 @@ public class FrameModification extends JFrame implements ActionListener
 	
 	private Controleur ctrl;
 
-	private PanelCarte    panelC;
+	private PanelCarte panelC;
 
-	private JMenuItem     menuiCreerSommet;
-	private JMenuItem     menuiCreerRoute;
+	private JMenuItem menuiCreerSommet;
+	private JMenuItem menuiCreerRoute;
 
-	private JMenuItem     menuiSave;
-	private JMenuItem     menuiRein;
-	private JMenuItem     menuiSupp;
+	private JMenuItem menuiRein;
+	private JMenuItem menuiSupp;
 
-	private JMenuItem     menuiQuitter;
+	private JMenuItem menuiSave;
+	private JMenuItem menuiQuitter;
 
 	/**
 	 * Constructeur de la frame qui permet de modifier la carte.
