@@ -33,7 +33,7 @@ public class FrameJoueur extends JFrame
 	{
 		this.joueur = j;
 		this.ctrl = ctrl;
-		this.setTitle( this.majTitre(this.joueur, ctrl) );
+		this.setTitle( this.majTitre(this.ctrl) );
 		this.setSize( 569, 436 );
 		this.panelFond = new JLayeredPane();
 
@@ -41,17 +41,14 @@ public class FrameJoueur extends JFrame
 		{
 			this.setLocation( 1250, 0 );
 			this.ajoutImage(0,0, "plateau_joueur_1.png", 0);
-			this.joueur = ctrl.getJoueur1();
 		}
 		else
 		{
 			this.setLocation( 1250, 550 );
 			this.ajoutImage(0,0, "plateau_joueur_2.png", 0);
-			this.joueur = ctrl.getJoueur2();
 		}
 
 		this.add( this.panelFond );
-
 		this.refresh();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -63,11 +60,11 @@ public class FrameJoueur extends JFrame
 	 * @param ctrl le Controleur qui lance la frame
 	 * @return Le titre de la frame
 	 */
-	public String majTitre( Joueur j , Controleur ctrl )
+	public String majTitre( Controleur ctrl )
 	{
 		String s = this.joueur.getNomJoueur() + " : ";
 
-		if( ctrl.getTour() ) // si c'est le tour du Joueur 1
+		if( ctrl.getTour() && this.joueur == this.ctrl.getJoueur1() ) // si c'est le tour du Joueur 1
 			s += String.format("%-40s","A vous de jouer !" );
 		else				 // si c'est le tour du Joueur 2
 			s += String.format("%-40s","en attente de l'autre joueur ... " ) ;
