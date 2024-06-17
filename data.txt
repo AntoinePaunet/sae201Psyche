@@ -52,9 +52,6 @@
 2	4Rouge	5Rouge
 1	4Rouge	2Rouge
 1	1Rouge	2Rouge
-1	2Marron	0null
-1	0null	2Bleu
-2	0null	0Gris
 1	2Marron	3Bleu
 2	0Gris	4Gris
 1	0Gris	1Jaune
@@ -65,7 +62,6 @@
 1	3Marron	4Marron
 1	4Marron	1Marron
 2	3Marron	2Marron
-1	1Marron	0null
 1	3Gris	0Gris
 2	3Gris	1Jaune
 1	1Gris	3Gris
