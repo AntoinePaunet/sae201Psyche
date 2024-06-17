@@ -138,9 +138,8 @@ public class PanelRoutes extends JPanel implements ActionListener {
         {
 
             data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getNumSom() + ( lstRoute.get( lig ) ).getSommetDep().getNomCoul();
-            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getNumSom() + ( lstRoute.get( lig ) ).getSommetDep().getNomCoul();
+            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getNumSom() + ( lstRoute.get( lig ) ).getSommetArr().getNomCoul();
             data[ lig ][ 2 ] = ( lstRoute.get( lig ) ).getNbTroncons() + "";
-
         }
 
         // Create a table model and set the data and column names
@@ -239,13 +238,7 @@ public class PanelRoutes extends JPanel implements ActionListener {
                 // DefaultTableModel model = (DefaultTableModel) table.getModel();
                 // model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
                 this.ctrl.MajFrameModification();
-
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                if(!this.inputRoute.getText().isBlank())//On ajoute si c'est pas vide
-                    model.addRow(new Object[]{this.lstSommetDep.getSelectedItem(), this.lstSommetArrive.getSelectedItem(), Integer.parseInt(this.inputRoute.getText())});
             }
-            ;
-
             this.ctrl.MajFrameModification();
         }
     }

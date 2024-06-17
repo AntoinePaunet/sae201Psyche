@@ -407,10 +407,8 @@ public class Controleur
 		for (Sommet s : this.tabSommet)
 		{
 			if (s.getNumSom() == Integer.parseInt(numSmt.substring(0, tailleNb)) && s.getNomCoul().equals(numSmt.substring(tailleNb)))
-			{
-				System.out.println(s + "Le sommet");
 				return s;
-			}
+
 
 		}
 		return null;
