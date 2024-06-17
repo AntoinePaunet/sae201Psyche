@@ -50,8 +50,6 @@ public class FrameJoueur extends JFrame
 			this.joueur = ctrl.getJoueur2();
 		}
 
-		this.setName("PanelJoueur");
-
 		this.add( this.panelFond );
 
 		this.refresh();
@@ -85,7 +83,7 @@ public class FrameJoueur extends JFrame
 	{
 		int x = 0;
 		int y = 500;
-		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++)
+		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
@@ -100,8 +98,7 @@ public class FrameJoueur extends JFrame
 			y -= 80;
 		}
 
-
-		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) 
+		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) // Ajout des pièces
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
@@ -109,7 +106,6 @@ public class FrameJoueur extends JFrame
 				x += 60;
 			}
 		}
-
 	}
 
 	/**
