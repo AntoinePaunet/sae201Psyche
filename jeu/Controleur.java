@@ -234,7 +234,6 @@ public class Controleur
 		}
 
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
-		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 		
 		/*if (r.getJoueur()==this.getJoueur1())

@@ -87,9 +87,9 @@ public class FrameJoueur extends JFrame
 				if(this.joueur.getTableMateriaux()[i][j] != null)
 				{
 					if (!this.joueur.getTableMateriaux()[i][j].getNom().equals("DP"))
-						this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
+						this.ajoutImage(x-20, y-40, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
 				}
-				x += 60;
+				x += 55;
 			}
 			x = 85;
 			y -= 80;
@@ -120,9 +120,10 @@ public class FrameJoueur extends JFrame
 	 */
 	public void ajoutImage(int x, int y, String url, int layer)
 	{
+		
 		ImageIcon image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+ url));
 		JLabel imgLabel = new JLabel(image);
-		imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
+		imgLabel.setBounds(x, y, image.getIconWidth()+20, image.getIconHeight()+20);
 		this.panelFond.add(imgLabel, Integer.valueOf(layer));
 	}
 /*
