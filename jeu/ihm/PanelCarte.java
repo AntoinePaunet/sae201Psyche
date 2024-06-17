@@ -99,7 +99,7 @@ public class PanelCarte extends JPanel
 			
 			g2.drawImage(this.pionJoueur1, xPion1, yPion1, this);
 			g2.drawImage(this.pionJoueur2, xPion2, yPion2, this);
-			System.out.println(xPion1 +","+xPion2);
+
 		}
 		
 
