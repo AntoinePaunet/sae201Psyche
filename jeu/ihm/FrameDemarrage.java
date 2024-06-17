@@ -135,7 +135,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
-				
+			
 			}
 		}
 
@@ -150,14 +150,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				chooserFile = chooserFile.getCanonicalFile();
 			} 
-			catch (Exception i) 
-			{
-			/*
-            // En cas d'erreur, imprimer le message d'erreur
-            System.out.println(i.getMessage());
-            // Utiliser le répertoire actuel par défaut
-			*/
-			}
+			catch( Exception exp) {}
+
 			fc.setCurrentDirectory(chooserFile);
 
 			int returnVal = fc.showOpenDialog(this);
@@ -165,12 +159,16 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				try {
+				try
+				{
 					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
-				} catch (IOException ex) {
+				}
+				catch( IOException ex )
+				{
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
-				
+				this.ctrl.setEstScenar(true);
+				this.frameChoix = new FrameChoix( this.ctrl );
 			}
 		}
 
@@ -185,6 +183,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		{
 			if (this.panelBoutons.lstTheme.getSelectedItem() != null)
 			{
+				this.ctrl.setEstScenar(false);
 				this.frameChoix = new FrameChoix( this.ctrl );
 				this.ctrl.setEstJeu(true);
 			}
