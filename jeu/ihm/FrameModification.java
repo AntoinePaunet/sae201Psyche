@@ -89,6 +89,7 @@ public class FrameModification extends JFrame implements ActionListener
 		this.menuiCreerSommet.addActionListener ( this );
 		this.menuiCreerRoute .addActionListener ( this );
 		this.menuiSave.addActionListener 		( this );
+		this.menuiRein.addActionListener		( this );
 		this.menuiSupp.addActionListener 		( this );
 		this.menuiSave.addActionListener 		( this );
 		this.menuiQuitter.addActionListener 	( this );
@@ -137,6 +138,16 @@ public class FrameModification extends JFrame implements ActionListener
 			}
 			catch( IOException ex ) { throw new RuntimeException(ex); }
 			this.dispose();
+		}
+
+		if( e.getSource() == this.menuiRein)
+		{
+			try {
+				this.ctrl.reInit();
+				this.repaint();
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
 		}
 
 		if ( e.getSource() == this.menuiSupp )
