@@ -37,7 +37,7 @@ public class PanelCarte extends JPanel
 	public PanelCarte(Controleur ctrl)
 	{
 		try {
-			this.image = ImageIO.read(new File("jeu/src/images/bgPlateau.png"));
+			this.image = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/bgPlateau.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -112,10 +112,10 @@ public class PanelCarte extends JPanel
 		int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
 
 		if (r.getJoueur()==this.ctrl.getJoueur1())
-			image = new ImageIcon(getClass().getResource("../src/images/equipe1.PNG"));
+			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/equipe1.PNG"));
 		
 		else if (r.getJoueur()==this.ctrl.getJoueur2())
-			image = new ImageIcon(getClass().getResource("../src/images/equipe2.PNG"));
+			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/equipe2.PNG"));
 		else 
 			return;
 				
@@ -151,15 +151,15 @@ public class PanelCarte extends JPanel
 
 				if (s.getMateriaux()!=null)
 				{
-					image2 = new ImageIcon(getClass().getResource("../src/images/Mine_"+s.getNomCoul()+".png"));
-					image3 = new ImageIcon(getClass().getResource("../src/images/"+s.getMateriaux().getNom()+".png"));
+					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"));
+					image3 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+ s.getMateriaux().getNom()+".png"));
 					imgLabel4 = new JLabel(image3);
 					imgLabel4.setBounds(x,y+40, image3.getIconWidth(), image3.getIconHeight());
 					this.add(imgLabel4, Integer.valueOf(3));
 				}
 						
 				else 
-					image2 = new ImageIcon(getClass().getResource("../src/images/Mine_Bleu_clair.png"));
+					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_Bleu_clair.png"));
 
 				imgLabel3 = new JLabel(image2);
 				imgLabel3.setBounds(x,y, image2.getIconWidth(), image2.getIconHeight());
