@@ -149,19 +149,19 @@ public class PanelCarte extends JPanel
 			
 			
 			if (s.getMateriaux()==null)
-				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX(), s.getY(), this);
+				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX()-20, s.getY()-40, this);
 			else
 			{
-				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"), s.getX(), s.getY(), this);
-				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+s.getMateriaux().getNom()+".png"), s.getX()+20, s.getY()+40, this);
+				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"), s.getX()-20, s.getY()-40, this);
+				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+s.getMateriaux().getNom()+".png"), s.getX()-10, s.getY()+15, 25,25, this);
 			}
 			if (s.getDepart())
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX(), s.getY(),30,30, this);
 
 			
-			Font font = new Font("Arial", Font.BOLD, 14);
+			Font font = new Font("Arial", Font.BOLD, 18);
 			g2.setFont(font);
-			this.g2.drawString(s.getNumSom()+"", s.getX()+20, s.getY()+25 );
+			this.g2.drawString(s.getNumSom()+"", s.getX(), s.getY()-10 );
 				
 		}
 	}
