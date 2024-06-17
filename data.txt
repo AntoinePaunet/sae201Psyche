@@ -1,39 +1,36 @@
 [SOMMET]
-4	Vert	484	88	NI	false
-8	Vert	195	77	CO	false
-2	Vert	317	187	NR	false
-3	Vert	633	245	NR	false
-6	Vert	251	239	CO	false
-6	Bleu	336	284	FE	false
-8	Bleu	414	270	NR	false
-5	Rouge	80	300	NR	false
-3	Rouge	156	298	FE	false
-1	Rouge	257	322	NI	false
-2	Gris	510	295	TI	false
-3	Bleu	308	382	NR	false
-4	Bleu	346	339	NR	false
-2	Bleu	440	366	AU	false
-4	Gris	575	337	FE	false
-3	Jaune	648	319	PT	false
-4	Rouge	111	456	CO	false
-2	Rouge	185	440	PT	false
-2	Marron	353	428	AG	false
-0	Gris	576	433	AG	false
-1	Jaune	696	442	AU	false
-4	Jaune	774	443	AL	false
-5	Marron	200	517	AL	false
-3	Marron	330	542	PT	false
-4	Marron	427	541	AL	false
-1	Marron	501	519	NI	false
-3	Gris	606	512	NR	false
-1	Gris	556	586	FE	false
-5	Jaune	696	583	NR	false
-2	Jaune	773	582	TI	false
-0	null	442	475	null	false
+4	Vert	354	93	NI	false
+8	Vert	282	107	PT	false
+2	Vert	333	185	CO	false
+3	Vert	413	173	NI	false
+6	Vert	267	233	NI	false
+6	Bleu	349	274	AG	false
+8	Bleu	421	265	NR	false
+5	Rouge	117	320	AG	false
+3	Rouge	204	315	NR	false
+1	Rouge	257	322	CO	false
+2	Gris	523	288	TI	false
+3	Bleu	327	370	AU	false
+4	Bleu	390	360	PT	false
+2	Bleu	453	357	AU	false
+4	Gris	585	326	TI	false
+3	Jaune	695	337	NR	false
+4	Rouge	131	445	FE	false
+2	Rouge	199	428	NR	false
+2	Marron	399	445	CO	false
+0	Gris	576	433	NR	false
+1	Jaune	711	429	NI	false
+4	Jaune	785	433	AL	false
+5	Marron	247	527	TI	false
+3	Marron	343	525	AG	false
+4	Marron	437	529	AL	false
+1	Marron	520	507	AL	false
+3	Gris	623	505	NR	false
+1	Gris	603	595	CO	false
+5	Jaune	706	569	TI	false
+2	Jaune	779	569	FE	false
 
 [ROUTES]
-1	2Vert	3Vert
-1	6Vert	2Vert
 1	6Vert	6Bleu
 1	6Bleu	2Vert
 1	6Bleu	8Bleu
@@ -55,9 +52,6 @@
 2	4Rouge	5Rouge
 1	4Rouge	2Rouge
 1	1Rouge	2Rouge
-1	2Marron	0null
-1	0null	2Bleu
-2	0null	0Gris
 1	2Marron	3Bleu
 2	0Gris	4Gris
 1	0Gris	1Jaune
@@ -68,7 +62,6 @@
 1	3Marron	4Marron
 1	4Marron	1Marron
 2	3Marron	2Marron
-1	1Marron	0null
 1	3Gris	0Gris
 2	3Gris	1Jaune
 1	1Gris	3Gris
@@ -77,3 +70,5 @@
 1	2Jaune	5Jaune
 2	5Jaune	1Jaune
 2	2Jaune	4Jaune
+2	4Vert	8Vert
+2	2Vert	8Vert

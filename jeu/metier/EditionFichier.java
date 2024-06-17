@@ -4,6 +4,7 @@ import jeu.Controleur;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EditionFichier
@@ -163,6 +164,34 @@ public class EditionFichier
 		catch( Exception exp ) { exp.printStackTrace();	}
 
 		//System.out.println("Nb sommet " + tabSommet);
+	}
+
+	/**
+	 * Methode qui lit le fichier theme.data, qui permet de récupérer chaque nom de thème.
+	 * @return une List<String> qui contient chaque nom de thème.
+	 */
+	public List<String> lectureNomTheme()
+	{
+		FileReader fr;
+		List<String> nomThemes = new ArrayList<>();
+
+		try
+		{
+			fr = new FileReader ( "theme.txt" );
+			Scanner sc = new Scanner ( fr );
+
+			while ( sc.hasNextLine() )
+			{
+				String ligneTheme = sc.nextLine();
+				String[] elements = ligneTheme.split("\t");
+				if (elements.length > 0)
+					nomThemes.add(elements[0]);
+			}
+
+			fr.close();
+		}
+		catch (Exception e){ e.printStackTrace(); }
+		return nomThemes;
 	}
 
 	/**
