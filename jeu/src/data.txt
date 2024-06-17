@@ -29,7 +29,7 @@
 1	Gris	556	586	PT	false	J0
 5	Jaune	696	583	NR	false	J0
 2	Jaune	773	582	TI	false	J0
-0	DEPART	442	475	null	true
+0	null	442	475	null	true	J0
 90	Vert	200	300	CO	false	J0
 
 [ROUTES]
@@ -60,9 +60,6 @@
 2	4Rouge	5Rouge	J0
 1	4Rouge	2Rouge	J0
 1	1Rouge	2Rouge	J0
-1	2Marron	0null	J0
-1	0null	2Bleu	J0
-2	0null	0Gris	J0
 1	2Marron	3Bleu	J0
 2	0Gris	4Gris	J0
 1	0Gris	1Jaune	J0
@@ -73,7 +70,6 @@
 1	3Marron	4Marron	J0
 1	4Marron	1Marron	J0
 2	3Marron	2Marron	J0
-1	1Marron	0null	J0
 1	3Gris	0Gris	J0
 2	3Gris	1Jaune	J0
 1	1Gris	3Gris	J0
@@ -82,3 +78,4 @@
 1	2Jaune	5Jaune	J0
 2	5Jaune	1Jaune	J0
 2	2Jaune	4Jaune	J0
+1	0DEPART	4Jaune	J0

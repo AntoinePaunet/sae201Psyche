@@ -97,14 +97,14 @@ public class Controleur
 	}
 
 	/**
-	 * A completer.
-	 * @return La liste des sommets
+	 * Renvoie un booléen qui indique si on peut modifier et déplacer les villes en fonction de si on est en jeu.
+	 * @return La valeur de estJeu
 	 */
 	public boolean getEstJeu() { return estJeu; }
 
 	/**
-	 * A completer.
-	 *  le Jeu
+	 * Renvoie l'instance de la classe EditionFichier qui est lié au controleur.
+	 * @return  la valeur de editionFichier
 	 */
 	public EditionFichier getEditionFichier()
 	{
@@ -112,8 +112,8 @@ public class Controleur
 	}
 
 	/**
-	 * A completer.
-	 * @param estJeu le Jeu
+	 * L'activation du mode jeu empèche de déplacer les villes lorsqu'il est true.
+	 * @param estJeu si on peut modifier la carte.
 	 */
 	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
 
@@ -151,8 +151,8 @@ public class Controleur
 	}
 
 	/**
-	 * A completer.
-	 * @param estJeu le Jeu
+	 * Renvoie la frameDemarrage liée au controleur
+	 * @return la l'instance de frameDemarrage
 	 */
 	public FrameDemarrage getFrameDemarrage()
 	{
