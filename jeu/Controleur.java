@@ -284,11 +284,9 @@ public class Controleur
 			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false, null ) );
 
 		}
+		this.tabSommet.add( new Sommet(0, "DEPART", 442, 475, null, true, null));
 
 		//Ajout de la zone de départ
-		this.tabSommet.add( new Sommet(0, null, 442, 475, null, true, null));
-
-
 		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(1), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(2), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(1), this.tabSommet.get(2), 1));
@@ -519,6 +517,13 @@ public class Controleur
 				return s;
 		}
 		return null;
+	}
+
+
+	public void reInit() throws IOException {
+		this.tabSommet = new ArrayList<Sommet>(30);
+		this.tabRoute  = new ArrayList<Route>(40);
+		this.init();
 	}
 
 	public void supprimerTout() throws IOException

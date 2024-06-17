@@ -40,7 +40,7 @@ public class FrameModification extends JFrame implements ActionListener
 		this.setSize    ( 1269,1122 );
 		this.setLocation(  150, 50 );
 
-		JMenuBar menuBar = new JMenuBar();
+		JMenuBar menubMaBarre = new JMenuBar();
 
 		JMenu menuCreer = new JMenu("Création"  );
 		JMenu menuSave  = new JMenu("Sauvegarde");
@@ -53,24 +53,23 @@ public class FrameModification extends JFrame implements ActionListener
 		this.menuiRein = new JMenuItem ("Réinitialiser la carte");
 		this.menuiSupp = new JMenuItem ("Supprimer la carte"  );
 
-		this.menuiSave = new JMenuItem ("Enregistrer et quitter");
 		this.menuiQuitter = new JMenuItem ("Quitter sans enregistrer"  );
 		
 		menuCreer.add( this.menuiCreerSommet );
 		menuCreer.add( this.menuiCreerRoute  );
 
+		menuSave.add(this.menuiSave);
 		menuSave.add(this.menuiRein);
 		menuSave.addSeparator();
 		menuSave.add(this.menuiSupp);
 
-		menuQuit.add(this.menuiSave);
 		menuQuit.add(this.menuiQuitter);
 
-		menuBar.add( menuCreer );
-		menuBar.add( menuSave  );
-		menuBar.add( menuQuit );
+		menubMaBarre.add( menuCreer );
+		menubMaBarre.add( menuSave  );
+		menubMaBarre.add( menuQuit );
 
-		this.setJMenuBar( menuBar );
+		this.setJMenuBar( menubMaBarre );
 		
 		// Création des raccourcis clavier
 		menuCreer.setMnemonic('C');
@@ -89,7 +88,8 @@ public class FrameModification extends JFrame implements ActionListener
 
 		this.menuiCreerSommet.addActionListener ( this );
 		this.menuiCreerRoute .addActionListener ( this );
-		this.menuiRein.addActionListener 		( this );
+		this.menuiSave.addActionListener 		( this );
+		this.menuiRein.addActionListener		( this );
 		this.menuiSupp.addActionListener 		( this );
 		this.menuiSave.addActionListener 		( this );
 		this.menuiQuitter.addActionListener 	( this );
@@ -138,6 +138,16 @@ public class FrameModification extends JFrame implements ActionListener
 			}
 			catch( IOException ex ) { throw new RuntimeException(ex); }
 			this.dispose();
+		}
+
+		if( e.getSource() == this.menuiRein)
+		{
+			try {
+				this.ctrl.reInit();
+				this.repaint();
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
 		}
 
 		if ( e.getSource() == this.menuiSupp )
