@@ -242,6 +242,11 @@ public class Controleur
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
+		
+		if (r.getJoueur()==this.getJoueur1())
+			this.editionFichier.ecrireScenario(1, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );
+		else 
+			this.editionFichier.ecrireScenario(2, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );
 	}
 
 	/**
