@@ -1,41 +1,37 @@
 [SOMMET]
-0	null	336	92	null	true
-8	Vert	265	111	AU	false
-0	null	317	187	null	true
-0	null	394	175	null	true
-6	Vert	251	239	NI	false
-0	null	336	284	null	true
-0	null	414	270	null	true
-5	Rouge	80	300	PT	false
-3	Rouge	156	298	NR	false
-1	Rouge	257	322	NR	false
-0	null	510	295	null	true
+4	Vert	484	88	NI	false
+8	Vert	195	77	CO	false
+2	Vert	317	187	NR	false
+3	Vert	633	245	NR	false
+6	Vert	251	239	CO	false
+6	Bleu	336	284	FE	false
+8	Bleu	414	270	NR	false
+5	Rouge	80	300	NR	false
+3	Rouge	156	298	FE	false
+1	Rouge	257	322	NI	false
+2	Gris	510	295	TI	false
 3	Bleu	308	382	NR	false
-0	null	346	339	null	true
-0	null	440	366	null	true
-0	null	575	337	null	true
-0	null	648	319	null	true
-4	Rouge	111	456	AL	false
-2	Rouge	185	440	FE	false
-0	null	353	428	null	true
-0	null	576	433	null	true
-0	null	696	442	null	true
-0	null	774	443	null	true
-5	Marron	200	517	CO	false
-0	null	330	542	null	true
-0	null	427	541	null	true
-0	null	501	519	null	true
-0	null	606	512	null	true
-0	null	556	586	null	true
-0	null	696	583	null	true
-0	null	773	582	null	true
+4	Bleu	346	339	NR	false
+2	Bleu	440	366	AU	false
+4	Gris	575	337	FE	false
+3	Jaune	648	319	PT	false
+4	Rouge	111	456	CO	false
+2	Rouge	185	440	PT	false
+2	Marron	353	428	AG	false
+0	Gris	576	433	AG	false
+1	Jaune	696	442	AU	false
+4	Jaune	774	443	AL	false
+5	Marron	200	517	AL	false
+3	Marron	330	542	PT	false
+4	Marron	427	541	AL	false
+1	Marron	501	519	NI	false
+3	Gris	606	512	NR	false
+1	Gris	556	586	FE	false
+5	Jaune	696	583	NR	false
+2	Jaune	773	582	TI	false
 0	null	442	475	null	true
 
 [ROUTES]
-1	4Vert	8Vert
-1	4Vert	2Vert
-1	8Vert	2Vert
-1	4Vert	3Vert
 1	2Vert	3Vert
 1	6Vert	2Vert
 1	6Vert	6Bleu

@@ -31,10 +31,14 @@ import java.util.List;
  * @author Anas AARAB,				IUT du Havre
  * @version 1.0 , 2024-05-23
  */
-public class PanelScore extends JPanel 
+public class PanelScore extends JPanel, AbstractTableModel
 {
     private Controleur ctrl;
     private JTable table;
+	private int [] tabJ1;
+	private int [] tabJ2;
+
+	private Object[][] tabDonnees;
 
     /**
      * Constructeur du Panel d'édition des routes.
@@ -42,11 +46,24 @@ public class PanelScore extends JPanel
     public PanelScore(Controleur ctrl) 
 	{
         this.ctrl = ctrl;
-		this.table = new JTable(23,3);
+
+		this.ctrl.getJ1().score();
+		this.ctrl.getJ1().scoreSommet();
+
+		this.ctrl.getJ2().score();
+		this.ctrl.getJ2().scoreSommet();
+
+		this.tabJ1=this.ctrl.getJ1().getScore();
+		this.tabJ2=this.ctrl.getJ2().getScore();
+
+		this.table = new JTable(this.initDonnees());
 		this.add(this.table);
 
         this.setVisible(true);
     }
+
+	public 
+
 
    
 }

@@ -154,6 +154,8 @@ public class Controleur
 				{
 					r.setJoueur(this.j1);
 
+					this.j1.addJetons(r.getNbTroncons());
+
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
@@ -174,6 +176,7 @@ public class Controleur
 				if (this.estValide( r))
 				{
 					r.setJoueur(this.j2);
+					this.j2.addJetons(r.getNbTroncons());
 
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetDep());
@@ -190,7 +193,7 @@ public class Controleur
 				}
 			}
 		}
-	
+		
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 	}
