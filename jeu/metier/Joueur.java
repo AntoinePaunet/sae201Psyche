@@ -23,7 +23,7 @@ public class Joueur
 	private int 		nbJetonsUtiliser;
 	private ArrayList<Sommet> tabSommetRecup;
 
-	private int score ;
+	private int[] score ;
 	private String detailScore;
 
 	private String nomJoueur;
@@ -39,8 +39,18 @@ public class Joueur
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
 		this.nbJetonsUtiliser=0;
+		this.score = new int[10];
 	}
 
+	public void addJetons(int i)
+	{
+		this.nbJetonsUtiliser+=i;
+	}
+
+	public int getJetons()
+	{
+		return this.nbJetonsUtiliser;
+	}
 	/**
 	 * Méthode permettant de simuler l'utilisation d'un JetonPossession du joueur.
 	 */
@@ -179,7 +189,7 @@ public class Joueur
 	 * Renvoie le score du joueur.
 	 * @return le score du joueur
 	 */
-	public int getScore()
+	public int[] getScore()
 	{
 		return this.score;
 	}
@@ -192,7 +202,7 @@ public class Joueur
 		int[] scoresCol = {20,10,0,2           };
 		int[] scoresLig = {0,4,9,16,25,36,49,64};
 		//Affichage des détails
-		int score, scoreMonnaie, scoreCol, scoreLig;
+		int  scoreMonnaie, scoreCol, scoreLig;
 		String detail = "Detail :\n ";
 
 
@@ -206,7 +216,7 @@ public class Joueur
 
 		detail += "Monnaies      : " + scoreMonnaie + " pt \n ";
 
-		score = scoreMonnaie;
+		this.score[0] = scoreMonnaie;
 
 
 		//Compteur pour le score des colonnes
@@ -219,7 +229,7 @@ public class Joueur
 				if  (this.tabPlateau[i][cptCol] != null)
 					scoreCol=scoresLig[i];
 				detail += "Colonne " + (cptCol+1) + "   : " + String.format("%2d", scoreCol) + " pt\n ";
-				score += scoreCol;
+				this.score[1] += scoreCol;
 
 				cptCol++;
 			}
@@ -242,15 +252,38 @@ public class Joueur
 
 			scoreLig += scoresLig[cptRessource];
 			detail += "Ligne   " + (i + 1) + "   : " + String.format("%2d", scoreLig) + " pt\n ";
-			score  += scoreLig;
+			this.score[2]  += scoreLig;
 
 			cptRessource = 0;
 		}
 
-		this.score = score;
+		this.score[3]=this.nbJetonsUtiliser;
+
+		
 		this.detailScore = detail;
 
 	}
+
+	public void scoreSommet()
+	{
+		int temp = 0;
+
+		String[] tempS = {"Vert", "Bleu", "Rouge", "Gris", "Jaune","Marron"};
+
+		for (int i=0; i < 6; i++)
+		{
+			temp = 0;
+			for(int j=0; j < this.tabSommetRecup.size(); j++)
+			{
+				if (this.tabSommetRecup.get(j).getNomCoul().equals(tempS[i]))
+					if (this.tabSommetRecup.get(j).getNumSom()>temp)
+						temp=this.tabSommetRecup.get(j).getNumSom();
+				
+			}
+			score[4+i]=temp;
+		}
+	}
+		
 
 	/**
 	 * Renvoie le nom du Joueur sous forme texte.

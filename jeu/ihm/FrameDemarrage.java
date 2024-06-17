@@ -201,6 +201,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			this.btnModifier = new JButton("Modifier une carte");
 			this.lblTheme    = new JLabel ("Selection du thème");
 			this.lstTheme    = new List   (                         );
+
+			for (String s : ctrl.getEditionFichier().lectureNomTheme())
+			{
+				lstTheme.add( s );
+			}
+				
 		
 			this.panelBtnModifier.add( this.btnModifier );
 			this.panelBtnJouer.add   (this.btnJouer     );

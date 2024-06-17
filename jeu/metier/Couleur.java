@@ -39,6 +39,7 @@ public enum Couleur
 		this.b = b;
 	}
 
+
 	/**
 	 * Donne la couleur qui correspond à l'instance qui utilise cette méthode
 	 * @return un objet de la class Couleur correspondant à l'instance.

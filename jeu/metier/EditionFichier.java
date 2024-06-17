@@ -4,6 +4,7 @@ import jeu.Controleur;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EditionFichier
@@ -166,6 +167,34 @@ public class EditionFichier
 	}
 
 	/**
+	 * Methode qui lit le fichier theme.data, qui permet de récupérer chaque nom de thème.
+	 * @return une List<String> qui contient chaque nom de thème.
+	 */
+	public List<String> lectureNomTheme()
+	{
+		FileReader fr;
+		List<String> nomThemes = new ArrayList<>();
+
+		try
+		{
+			fr = new FileReader ( "theme.txt" );
+			Scanner sc = new Scanner ( fr );
+
+			while ( sc.hasNextLine() )
+			{
+				String ligneTheme = sc.nextLine();
+				String[] elements = ligneTheme.split("\t");
+				if (elements.length > 0)
+					nomThemes.add(elements[0]);
+			}
+
+			fr.close();
+		}
+		catch (Exception e){ e.printStackTrace(); }
+		return nomThemes;
+	}
+
+	/**
 	 * Méthode qui crée et ajoute un sommet dans la liste des sommets a partir d'une ligne d'un fichier texte.
 	 * @param ligne la ligne où se trouve les données du sommet
 	 */
@@ -179,7 +208,11 @@ public class EditionFichier
 		int y = Integer.parseInt(smtInfo[3]);
 		String nomMat = smtInfo[4];
 
-		this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false));
+		if (nomMat.equals("null"))
+			this.tabSommet.add(new Sommet(num, nom, x, y, null, true));
+		else
+			this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), true));
+		
 		this.ctrl.setTabSommet(this.tabSommet);
 	}
 
@@ -231,7 +264,7 @@ public class EditionFichier
 				donnesFichier.indexOf("\n["));
 		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-		if(!(materiaux == null))
+		if(!(nomCoul == null))
 			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\n\n") + donneesRoutes;
 		else
 			donnesFichier = donneesVilles + (0      + "\t" + null 		 + "\t" + x + "\t" + y + "\t" + null			   + "\t" + true + "\n\n") + donneesRoutes;

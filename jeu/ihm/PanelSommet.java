@@ -90,10 +90,9 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 
 			
-		btnAjouterSommet.addActionListener( this );
+		this.btnAjouterSommet.addActionListener( this );
 				
 		this.add( panelInput );
-
     }
 
 	/**

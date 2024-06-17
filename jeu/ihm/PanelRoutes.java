@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import javax.swing.JLabel;
+import javax.swing.table.TableModel;
 import java.awt.event.*;
 
 
@@ -84,7 +85,7 @@ public class PanelRoutes extends JPanel implements ActionListener {
 
         this.panelInput.add(btnAjouteRoute);
 
-        btnAjouteRoute.addActionListener(this);
+        this.btnAjouteRoute.addActionListener(this);
         this.add(panelInput);
 
     }
@@ -100,7 +101,7 @@ public class PanelRoutes extends JPanel implements ActionListener {
 
         for (int cpt = 0; cpt < data.length; cpt++) {
 
-            data[cpt] = (tabVille.get(cpt).getNumSom()) + " " + tabVille.get(cpt).getNomCoul();
+            data[cpt] = (tabVille.get(cpt).getNumSom()) + tabVille.get(cpt).getNomCoul();
 
         }
 
@@ -119,23 +120,25 @@ public class PanelRoutes extends JPanel implements ActionListener {
 
     }
 
-	/**
-	 * Méthode qui ajoute une route à la liste de routes de la carte.
-	 */
-    public void ajouterTabRoute() {
+
+    /**
+     * Méthode qui ajoute une route à la liste de routes de la carte.
+     */
+    public void ajouterTabRoute()
+    {
         // Tableau contenant tout les routes
         List<Route> lstRoute = ctrl.getTabRoute();
         String[][] data = new String[lstRoute.size()][3];
 
         // nom des colonnes
         String[] columnNames = {"SommetDep", "SommetArr", "nbTroncons"};
-        
+
         for ( int lig = 0; lig < ( lstRoute ).size(); lig++ )
         {
-            
-            data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getNumSom() + "";
-            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getNumSom() + "";
-            data[ lig ][ 2 ] = ( lstRoute.get( lig ) ).getNbTroncons() + ""  ;
+
+            data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getNumSom() + ( lstRoute.get( lig ) ).getSommetDep().getNomCoul();
+            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getNumSom() + ( lstRoute.get( lig ) ).getSommetDep().getNomCoul();
+            data[ lig ][ 2 ] = ( lstRoute.get( lig ) ).getNbTroncons() + "";
 
         }
 
@@ -151,56 +154,77 @@ public class PanelRoutes extends JPanel implements ActionListener {
         this.repaint();
     }
 
-	/**
-	 * Réalise une action lorsqu'on clique sur un élément activable.
-	 * @param e est un événement lié à un composant du panel
-	 */    public void actionPerformed(ActionEvent e) {
-        Sommet vDep = null, vArr = null;
 
-        if (e.getSource().equals(this.btnAjouteRoute)) 
+
+
+
+    /**
+     * Réalise une action lorsqu'un bouton ou le tableau est appuyé
+     * @param e est un événement lié à un composant du panel
+     */
+    public void actionPerformed( ActionEvent e ) {
+        String villeDep = null;
+        String villeArr = null;
+        int troncons = 0;
+
+
+        // Get the selected row index
+        int selectedRowIndex = table.getSelectedRow();
+
+        // Check if a row is selected
+        if (selectedRowIndex != -1) {
+            // Get the table model
+            TableModel model = table.getModel();
+
+            // Get data from the selected row
+            villeDep = (String) model.getValueAt(selectedRowIndex, 0);
+            villeArr = (String) model.getValueAt(selectedRowIndex, 1);
+            troncons = Integer.parseInt((String) model.getValueAt(selectedRowIndex, 2));
+        } else if (!this.inputRoute.getText().isBlank())
         {
-            try 
-            {
-                if (this.inputRoute.getText().isBlank()            ||
-                    this.lstSommetDep.getSelectedItem()    == null ||
-                    this.lstSommetArrive.getSelectedItem() == null ||
-                    this.lstSommetArrive.getSelectedItem() ==  this.lstSommetDep.getSelectedItem() )
-
-                {
-                    this.lblErreur.setText("<html> Tous les champs  <br> ne sont pas complétés. </html>");
-                } 
-                else 
-                {
-                    this.lblErreur.setText("");
-                    Integer tr = Integer.parseInt(inputRoute.getText());
-
-                    if (inputRoute.getText() == null)
-                        return;
-
-                    for (Sommet ville : this.ctrl.getTabSommet()) 
-                    {
-                        if (((String) this.lstSommetArrive.getSelectedItem())
-                                .equals((ville.getNumSom() + " " + ville.getNomCoul()))) {
-                            vArr = ville;
-                        }
-
-                        if (((String) this.lstSommetDep.getSelectedItem())
-                                .equals((ville.getNumSom() + " " + ville.getNomCoul()))) {
-                            vDep = ville;
-                        }
-                    }
-
-                    this.ctrl.ajouterOuSupprimerRoute(vDep, vArr, tr);
-                }
-            }
-            catch (NumberFormatException nbEx)
-            {
-                System.out.println("Erreur");
-            }
-
+            villeDep = (String) this.lstSommetDep.getSelectedItem();
+            villeArr = (String) this.lstSommetArrive.getSelectedItem();
+            troncons = Integer.parseInt((String) this.inputRoute.getText());
         }
 
-        this.ctrl.MajFrameModification();
 
+        if (e.getSource() == this.btnAjouteRoute) {
+            if ((this.inputRoute.getText().isBlank()) &&
+                    selectedRowIndex == -1
+            ) {
+                this.lblErreur.setText("<html> Tous les champs  <br> ne sont pas complétés. </html>");
+            } else {
+                this.lblErreur.setText("");
+
+                System.out.println(villeDep + " " + villeArr + " " + troncons);
+
+                Sommet sDep = ctrl.rechercheSommet(villeDep);
+                System.out.println(villeDep);
+                Sommet sArr = ctrl.rechercheSommet(villeArr);
+                System.out.println(villeArr);
+
+                this.ctrl.ajouterOuSupprimerRoute(sDep, sArr, troncons);
+
+                //Raffraichir le tableau
+                this.removeAll();
+                this.ajouterTabRoute();
+                this.panelInput();
+                this.revalidate();
+
+                System.out.println("sommet ajouté ou suppresion du sommet effectué ");
+
+
+                // DefaultTableModel model = (DefaultTableModel) table.getModel();
+                // model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});
+                this.ctrl.MajFrameModification();
+
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                if(!this.inputRoute.getText().isBlank())//On ajoute si c'est pas vide
+                    model.addRow(new Object[]{this.lstSommetDep.getSelectedItem(), this.lstSommetArrive.getSelectedItem(), Integer.parseInt(this.inputRoute.getText())});
+            }
+            ;
+
+            this.ctrl.MajFrameModification();
+        }
     }
 }

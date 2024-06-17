@@ -101,9 +101,8 @@ public class Controleur
 	{
 		if (r.getJoueur()!=null) {return false;}
 
-		System.out.println(r.getSommetDep().getMateriaux());
-		System.out.println(r.getSommetArr().getMateriaux());
-		System.out.println((r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null));
+		System.out.println(r);
+		System.out.println(r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null);
 		//verifie si l'un des deux sommet deja pris ou non
 		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
 			 
@@ -165,6 +164,8 @@ public class Controleur
 				{
 					r.setJoueur(this.j1);
 
+					this.j1.addJetons(r.getNbTroncons());
+
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
@@ -181,6 +182,7 @@ public class Controleur
 				else
 				{
 					r.setJoueur(this.j2);
+					this.j2.addJetons(r.getNbTroncons());
 
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetDep());
@@ -197,7 +199,7 @@ public class Controleur
 				}	
 			}
 		}
-	
+		
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 	}
