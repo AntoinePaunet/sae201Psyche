@@ -105,6 +105,16 @@ public class FrameJeu extends JFrame implements ActionListener
 			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVotre partie ne sera pas sauvegardée.") == JOptionPane.YES_OPTION )
 				System.exit(0);
 		}
+
+		if ( e.getSource() == this.menuiAnnuler )
+		{
+			// CTRL + Z
+		}
+
+		if ( e.getSource() == this.menuiRetablir )
+		{
+			// CTRL + Y
+		}
 	}
 
 	public void majIHM(){this.panelCarte = new PanelCarte(ctrl);this.add(this.panelCarte);this.setVisible(true);}
