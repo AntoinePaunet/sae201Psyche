@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EditionFichier {
+public class EditionFichier
+{
 	private Controleur ctrl;
 	private ArrayList<Sommet> tabSommet;
 	private ArrayList<Route> tabRoute;
@@ -42,8 +43,10 @@ public class EditionFichier {
 		}
 	}
 
-	public boolean estVide(String nomFichier) throws FileNotFoundException {
-		try {
+	public boolean estVide(String nomFichier)
+	{
+		try
+		{
 			FileReader fr = new FileReader(nomFichier);
 			Scanner sc = new Scanner(fr);
 
@@ -80,10 +83,12 @@ public class EditionFichier {
 		try {
 			FileReader fr;
 
-			if (importer) {
+			if (importer)
+			{
 				fr = new FileReader(tmpFichier);
 				this.supprimer();
-			} else {
+			} else
+			{
 				fr = new FileReader(fichier);
 			}
 			Scanner sc = new Scanner(fr);
