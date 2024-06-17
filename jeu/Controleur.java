@@ -25,6 +25,7 @@ public class Controleur
 	protected ArrayList<Sommet>  tabSommet;
 	protected ArrayList<Route>	 tabRoute ;
 
+	private   boolean            estScenar;
 	private   boolean            estJeu   ;
 	private   boolean            tourJ1        ;
 	private   boolean            finPartie     ;
@@ -39,10 +40,9 @@ public class Controleur
 	/**
 	 * Constructeur du Controleur
 	 */
-	public Controleur() throws IOException
+	public Controleur(boolean estScenar) throws IOException
 	{
-		//new FrameScore(this);
-		
+		this.estScenar 		= estScenar;
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.editionFichier = new EditionFichier(this);
@@ -98,10 +98,28 @@ public class Controleur
 	}
 
 	/**
-	 * Renvoie un booléen qui indique si on peut modifier et déplacer les villes en fonction de si on est en jeu.
-	 * @return La valeur de estJeu
+	 * A completer.
+	 * @return La liste des sommets
 	 */
-	public boolean getEstJeu() { return estJeu; }
+	public boolean getEstScenar() { return this.estScenar; }
+
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
+	public void setEstScenar(boolean estScenar) { this.estScenar = estScenar; }
+
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
+	public boolean getEstJeu() { return this.estJeu; }
+
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
+	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
 
 	/**
 	 * Renvoie l'instance de la classe EditionFichier qui est lié au controleur.
@@ -111,13 +129,6 @@ public class Controleur
 	{
 		return this.editionFichier;
 	}
-
-	/**
-	 * L'activation du mode jeu empèche de déplacer les villes lorsqu'il est true.
-	 * @param estJeu si on peut modifier la carte.
-	 */
-	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
-
 
 	/**
 	 * Méthode qui vérifie si la route est valide.
@@ -587,6 +598,6 @@ public class Controleur
 	 */
 	public static void main (String[] arg) throws IOException
 	{
-		new Controleur();
+		new Controleur(true);
 	}
 }
