@@ -71,11 +71,15 @@ public class Controleur
 	 */
 	public boolean getEstJeu() { return estJeu; }
 
-
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
 	public EditionFichier getEditionFichier()
 	{
 		return this.editionFichier;
 	}
+
 	/**
 	 * A completer.
 	 * @param estJeu le Jeu
@@ -116,6 +120,10 @@ public class Controleur
 		return tempSommet;
 	}
 
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
 	public FrameDemarrage getFrameDemarrage()
 	{
 		return this.frameDemarrage;
