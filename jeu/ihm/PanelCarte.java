@@ -157,7 +157,7 @@ public class PanelCarte extends JPanel
 			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"));
 		
 		else if (r.getJoueur()==this.ctrl.getJoueur2())
-			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"pion_joueur_2.png"));
+			image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"));
 		else 
 			return;
 				
@@ -167,8 +167,8 @@ public class PanelCarte extends JPanel
 
 		if (r.getNbTroncons()==2)
 		{
-			imgLabel1.setBounds(((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2, image.getIconWidth(), image.getIconHeight());
-			imgLabel2.setBounds(((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2, image.getIconWidth(), image.getIconHeight());
+			imgLabel1.setBounds(((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-10 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-10, image.getIconWidth(), image.getIconHeight());
+			imgLabel2.setBounds(((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-10, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-10, image.getIconWidth(), image.getIconHeight());
 
 			this.add(imgLabel1, Integer.valueOf(layer));
 			this.add(imgLabel2, Integer.valueOf(layer));
@@ -179,10 +179,11 @@ public class PanelCarte extends JPanel
 			imgLabel1.setBounds( ((x1 + adjCercle)+ (x2+ adjCercle))/2 , ((y1+ adjCercle) + (y2+ adjCercle))/2 , image.getIconWidth(), image.getIconHeight());
 			this.add(imgLabel1, Integer.valueOf(layer));
 		}
-		System.out.println(r);
+		
 
 		ImageIcon image2,image3;
 		JLabel imgLabel3,imgLabel4;
+		JLabel points;
 
 
 		for(Sommet s : ctrl.getTabSommet())
@@ -196,7 +197,7 @@ public class PanelCarte extends JPanel
 					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"));
 					image3 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+ s.getMateriaux().getNom()+".png"));
 					imgLabel4 = new JLabel(image3);
-					imgLabel4.setBounds(x,y+40, image3.getIconWidth(), image3.getIconHeight());
+					imgLabel4.setBounds(x-18,y, image3.getIconWidth(), image3.getIconHeight());
 					this.add(imgLabel4, Integer.valueOf(3));
 				}
 						
@@ -205,13 +206,22 @@ public class PanelCarte extends JPanel
 
 				if (s.getDepart())
 					image2 = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"));
+				else
+				{	
+					points=new JLabel(s.getNumSom()+"");
+					this.g2.drawString(points.getText(), x+10, y-5 );
+					//points.setAlignmentY(y+10);
+					//this.add(points,4);
+
+				}
+					
 
 				imgLabel3 = new JLabel(image2);
-				imgLabel3.setBounds(x,y, image2.getIconWidth(), image2.getIconHeight());
+				imgLabel3.setBounds(x-20,y-40, image2.getIconWidth(), image2.getIconHeight());
 				this.add(imgLabel3, Integer.valueOf(2));
 				this.setVisible(true);
 
-				this.g2.drawString( s.getNumSom() + s.getNomCoul(), x+10, y-5 );
+				
 				this.repaint();
 			
 		}
