@@ -35,7 +35,7 @@ public class Controleur
 	private String[]       elementsTheme ;
 
 	private ArrayList<String> lstMateriaux;
-	public static int nbSommets = 1;
+	public static int nbSommets = 2;
 
 	/**
 	 * Constructeur du Controleur
@@ -58,8 +58,6 @@ public class Controleur
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.editionFichier.lectureFichier("data.txt", false);
-
-
 	}
 
 	private void initMateriaux()
@@ -214,7 +212,6 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.majFrameJoueur(this.j1, this);
 				}
 				else
 				{
@@ -232,8 +229,8 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.majFrameJoueur(this.j2, this);
-				}	
+				}
+				this.majFrameJoueur(this.j1, this);
 			}
 		}
 
@@ -281,7 +278,7 @@ public class Controleur
 		int[] 		tabCooY    = new int[]    {  92,  111,  187,  175, 239,  284,  270,  300,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
 		//Génération des Sommet
-		this.tabSommet.add( new Sommet(0, "DEPART", 442, 475, null, true, null));
+		this.tabSommet.add( new Sommet(0, "DEPART", 442, 475, null, true, null, 1));
 		for(int cpt = 0; cpt < tabNomSmt.length ; cpt++)
 		{
 			switch ( tabNomSmt[cpt].substring( 0, 1 ) )
@@ -299,9 +296,9 @@ public class Controleur
 			tmpMat = new Materiaux(this.lstMateriaux.remove(rndm));
 
 			tmpZone = Integer.parseInt( tabNomSmt[cpt].substring( 1, 2 ) );
-			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false, null ) );
-
+			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false, null) );
 		}
+
 
 		//Ajout de la zone de départ
 		this.tabRoute.add(new Route(this.tabSommet.get(1), this.tabSommet.get(2), 1));
@@ -353,7 +350,6 @@ public class Controleur
 		this.tabRoute.add(new Route(this.tabSommet.get(30), this.tabSommet.get(29), 1));
 		this.tabRoute.add(new Route(this.tabSommet.get(29), this.tabSommet.get(21), 2));
 		this.tabRoute.add(new Route(this.tabSommet.get(30), this.tabSommet.get(22), 2));
-		this.tabRoute.add(new Route(this.tabSommet.get(0), this.tabSommet.get(22), 2));
 
 		this.editionFichier.sauvegarde();
 	}
@@ -397,9 +393,9 @@ public class Controleur
 	public void majFrameJoueur( Joueur j , Controleur ctrl )
 	{
 		if( j == this.j1 )
-			this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j1, this);
+			this.frameDemarrage.getFrameChoix().getF1().majTitre(this);
 		else
-			this.frameDemarrage.getFrameChoix().getF2().majTitre(this.j2, this);
+			this.frameDemarrage.getFrameChoix().getF2().majTitre(this);
 	}
 
 
@@ -558,7 +554,7 @@ public class Controleur
 	{
 		this.tabSommet = new ArrayList<Sommet>(30);
 		Controleur.nbSommets = 1;
-		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true,null));
+		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true,null, 1));
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.editionFichier.sauvegarde();
 

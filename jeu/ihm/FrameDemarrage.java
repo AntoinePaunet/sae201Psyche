@@ -183,7 +183,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		{
 			if (this.panelBoutons.lstTheme.getSelectedItem() != null)
 			{
-				//this.ctrl.setEstScenar(false);
+				this.ctrl.setEstScenar(false);
 				this.frameChoix = new FrameChoix( this.ctrl );
 				this.ctrl.setEstJeu(true);
 			}

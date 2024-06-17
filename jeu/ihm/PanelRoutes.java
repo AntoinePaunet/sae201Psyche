@@ -102,7 +102,7 @@ public class PanelRoutes extends JPanel implements ActionListener {
 
         for (int cpt = 0; cpt < data.length; cpt++) {
 
-            data[cpt] = (tabVille.get(cpt).getNumSom()) + tabVille.get(cpt).getNomCoul();
+            data[cpt] = (tabVille.get(cpt).getId() +"");
 
         }
 
@@ -137,9 +137,9 @@ public class PanelRoutes extends JPanel implements ActionListener {
         for ( int lig = 0; lig < ( lstRoute ).size(); lig++ )
         {
 
-            data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getNumSom() + ( lstRoute.get( lig ) ).getSommetDep().getNomCoul();
-            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getNumSom() + ( lstRoute.get( lig ) ).getSommetArr().getNomCoul();
-            data[ lig ][ 2 ] = ( lstRoute.get( lig ) ).getNbTroncons() + "";
+            data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getId() +"";
+            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getId() +"";
+            data[ lig ][ 2 ] = ( lstRoute.get( lig ) ).getNbTroncons() +"";
         }
 
         // Create a table model and set the data and column names
