@@ -59,7 +59,6 @@ public class Sommet
 	public Sommet( int numSom, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart, Joueur joueur, int id )
 	{
 		this.id = id;
-		Controleur.nbSommets++;
 		this.numSom     = numSom;
 		this.nomCoul    = nomCoul;
 		this.materiaux  = materiaux;
@@ -81,6 +80,7 @@ public class Sommet
     public boolean   getDepart()         { return this.depart;    }
 	public Joueur    getJoueur()         { return this.joueur;    }
 	public void      setJoueur(Joueur j) { this.joueur = j;       }
+	public int getId()                   { return this.id;        }
  
 
 	public void addRoute(Route r)
@@ -118,10 +118,6 @@ public class Sommet
     }
 
 			
-	public int getId()
-	{
-		return this.id;
-	}
 
      /**
 	 * 

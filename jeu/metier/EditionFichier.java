@@ -390,16 +390,24 @@ public class EditionFichier {
 		}
 	}
 
-	public void ecrireScenario( int nbScenario, int idSommetDep, int idSommeArr ) throws IOException
+	public void ecrireScenario( int numJoueur, int nbScenario, int idSommetDep, int idSommeArr, int nbTroncon ) throws IOException
 	{
+		String tmpDonnes = "";
 		String emplacement = "./jeu/src/scenario/"+ nbScenario + ".txt";
 
 		FileReader fr = new FileReader(emplacement);
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter(emplacementData));
 
+		if ( numJoueur == 1  )
+			tmpDonnes = "J1 " + idSommetDep + " -> " + idSommeArr + " " + nbTroncon;
+		if ( numJoueur == 2 )
+			tmpDonnes = "J2 " + idSommetDep + " -> " + idSommeArr + " " + nbTroncon;
+
+
+
 		try {
-			writer.write( idSommetDep + " -> " + idSommeArr );
+			writer.write( tmpDonnes );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -420,9 +428,12 @@ public class EditionFichier {
 			{
 				String ligne = sc.nextLine();
 
+
 				if ( etapeLecture == numEtape )
 				{
-					this.ctrl.ajouterOuSupprimerRoute( this.ctrl.getSommet(numEtape, etapeLecture), null, etapeLecture );
+					String[] action = ligne.split(" ");
+
+					this.ctrl.ajouterOuSupprimerRoute( this.ctrl.getSommet( Integer.parseInt( action[1] ) ), this.ctrl.getSommet( Integer.parseInt( action[3] ) ), Integer.parseInt( action[4] ));
 
 					break;
 				}
