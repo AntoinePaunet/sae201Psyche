@@ -1,34 +1,35 @@
 [SOMMET]
-4	Vert	354	93	NI	false
-8	Vert	282	107	PT	false
-2	Vert	333	185	CO	false
-3	Vert	413	173	NI	false
-6	Vert	267	233	NI	false
-6	Bleu	349	274	AG	false
-8	Bleu	421	265	NR	false
-5	Rouge	117	320	AG	false
-3	Rouge	204	315	NR	false
-1	Rouge	257	322	CO	false
-2	Gris	523	288	TI	false
-3	Bleu	327	370	AU	false
-4	Bleu	390	360	PT	false
-2	Bleu	453	357	AU	false
-4	Gris	585	326	TI	false
-3	Jaune	695	337	NR	false
-4	Rouge	131	445	FE	false
-2	Rouge	199	428	NR	false
-2	Marron	399	445	CO	false
-0	Gris	576	433	NR	false
-1	Jaune	711	429	NI	false
-4	Jaune	785	433	AL	false
-5	Marron	247	527	TI	false
-3	Marron	343	525	AG	false
-4	Marron	437	529	AL	false
-1	Marron	520	507	AL	false
-3	Gris	623	505	NR	false
-1	Gris	603	595	CO	false
-5	Jaune	706	569	TI	false
-2	Jaune	779	569	FE	false
+4	Vert	750	135	NI	false
+8	Vert	423	270	PT	false
+2	Vert	490	275	CO	false
+3	Vert	200	600	NI	false
+6	Vert	400	350	NI	false
+6	Bleu	500	400	AG	false
+8	Bleu	600	400	NR	false
+5	Rouge	175	480	AG	false
+3	Rouge	300	475	NR	false
+1	Rouge	380	500	CO	false
+2	Gris	750	430	TI	false
+3	Bleu	490	550	AU	false
+4	Bleu	550	500	PT	false
+2	Bleu	700	500	AU	false
+4	Gris	850	500	TI	false
+3	Jaune	1000	500	NR	false
+4	Rouge	190	200	FE	false
+2	Rouge	100	200	NR	false
+2	Marron	200	700	CO	false
+0	Gris	850	650	NR	false
+1	Jaune	1050	600	NI	false
+4	Jaune	1200	750	AL	false
+5	Marron	375	800	TI	false
+3	Marron	500	750	AG	false
+4	Marron	750	800	AL	false
+1	Marron	800	750	AL	false
+3	Gris	900	750	NR	false
+1	Gris	900	875	CO	false
+5	Jaune	1050	850	TI	false
+2	Jaune	1200	850	FE	false
+0	null	600	650	null	true
 
 [ROUTES]
 1	6Vert	6Bleu
@@ -72,3 +73,6 @@
 2	2Jaune	4Jaune
 2	4Vert	8Vert
 2	2Vert	8Vert
+1	0null	1Gris
+2	0null	2Vert
+2	0null	0Gris

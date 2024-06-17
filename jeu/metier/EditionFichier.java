@@ -229,6 +229,8 @@ public class EditionFichier
 		Sommet smtA = this.ctrl.rechercheSommet(routeInfo[1]);
 		Sommet smtB = this.ctrl.rechercheSommet(routeInfo[2]);
 
+		
+
 		if (smtA != null && smtB != null) // Si la ville recherché n'existe plus
 		{
 			Route r = new Route(smtA, smtB, nbTroncon);
@@ -264,7 +266,7 @@ public class EditionFichier
 				donnesFichier.indexOf("\n["));
 		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-		if(!(nomCoul == null))
+		if(!(materiaux == null))
 			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\n\n") + donneesRoutes;
 		else
 			donnesFichier = donneesVilles + (0      + "\t" + null 		 + "\t" + x + "\t" + y + "\t" + null			   + "\t" + true + "\n\n") + donneesRoutes;
