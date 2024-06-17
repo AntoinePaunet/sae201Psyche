@@ -1,9 +1,7 @@
 [SOMMET]
-0	DEBUT	612	317	null	true
-10	Vert	200	300	NR	false
+0	DEBUT	568	277	null	false
 20	Vert	414	150	AL	false
+10	Rouge	100	200	TI	false
 
 [ROUTES]
-2	0DEBUT	10Vert
 1	0DEBUT	20Vert
-2	10Vert	20Vert

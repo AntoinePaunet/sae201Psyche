@@ -1,74 +1,79 @@
 [SOMMET]
-4	Vert	354	93	NI	false
-8	Vert	282	107	PT	false
-2	Vert	333	185	CO	false
-3	Vert	413	173	NI	false
-6	Vert	267	233	NI	false
-6	Bleu	349	274	AG	false
-8	Bleu	421	265	NR	false
-5	Rouge	117	320	AG	false
-3	Rouge	204	315	NR	false
-1	Rouge	257	322	CO	false
-2	Gris	523	288	TI	false
-3	Bleu	327	370	AU	false
-4	Bleu	390	360	PT	false
-2	Bleu	453	357	AU	false
-4	Gris	585	326	TI	false
-3	Jaune	695	337	NR	false
-4	Rouge	131	445	FE	false
-2	Rouge	199	428	NR	false
-2	Marron	399	445	CO	false
-0	Gris	576	433	NR	false
-1	Jaune	711	429	NI	false
-4	Jaune	785	433	AL	false
-5	Marron	247	527	TI	false
-3	Marron	343	525	AG	false
-4	Marron	437	529	AL	false
-1	Marron	520	507	AL	false
-3	Gris	623	505	NR	false
-1	Gris	603	595	CO	false
-5	Jaune	706	569	TI	false
-2	Jaune	779	569	FE	false
+4	Vert	484	88	NI	false   J0
+8	Vert	195	77	CO	false   J0
+2	Vert	317	187	NR	false   J0
+3	Vert	633	245	NR	false   J0
+6	Vert	251	239	CO	false   J0
+6	Bleu	336	284	FE	false   J0
+8	Bleu	414	270	NR	false   J0
+5	Rouge	80	300	NR	false   J0
+3	Rouge	156	298	FE	false   J0
+1	Rouge	257	322	NI	false   J0
+2	Gris	510	295	TI	false   J0
+3	Bleu	308	382	NR	false   J0
+4	Bleu	346	339	NR	false   J0
+2	Bleu	440	366	AU	false   J0
+4	Gris	575	337	FE	false   J0
+3	Jaune	648	319	PT	false   J0
+4	Rouge	111	456	CO	false   J0
+2	Rouge	185	440	PT	false   J0
+2	Marron	353	428	AG	false   J0
+0	Gris	576	433	AG	false   J0
+1	Jaune	696	442	AU	false   J0
+4	Jaune	774	443	AL	false   J0
+5	Marron	200	517	AL	false   J0
+3	Marron	330	542	PT	false   J0
+4	Marron	427	541	AL	false   J0
+1	Marron	501	519	NI	false   J0
+3	Gris	606	512	NR	false   J0
+1	Gris	556	586	FE	false   J0
+5	Jaune	696	583	NR	false   J0
+2	Jaune	773	582	TI	false   J0
+0	null	442	475	null    false   J0
 
 [ROUTES]
-1	6Vert	6Bleu
-1	6Bleu	2Vert
-1	6Bleu	8Bleu
-1	8Bleu	3Vert
-2	5Rouge	6Vert
-1	5Rouge	3Rouge
-1	3Rouge	6Vert
-1	1Rouge	6Bleu
-1	1Rouge	3Rouge
-1	2Gris	2Bleu
-1	3Bleu	1Rouge
-1	3Bleu	6Bleu
-1	3Bleu	4Bleu
-1	4Bleu	2Bleu
-1	4Bleu	8Bleu
-1	4Gris	2Gris
-1	8Bleu	2Bleu
-2	4Gris	3Jaune
-2	4Rouge	5Rouge
-1	4Rouge	2Rouge
-1	1Rouge	2Rouge
-1	2Marron	3Bleu
-2	0Gris	4Gris
-1	0Gris	1Jaune
-1	1Jaune	4Jaune
-1	4Jaune	3Jaune
-1	5Marron	3Marron
-2	5Marron	2Rouge
-1	3Marron	4Marron
-1	4Marron	1Marron
-2	3Marron	2Marron
-1	3Gris	0Gris
-2	3Gris	1Jaune
-1	1Gris	3Gris
-2	1Gris	1Marron
-2	1Gris	5Jaune
-1	2Jaune	5Jaune
-2	5Jaune	1Jaune
-2	2Jaune	4Jaune
-2	4Vert	8Vert
-2	2Vert	8Vert
+1	2Vert	3Vert	J0
+1	6Vert	2Vert   J0
+1	6Vert	6Bleu   J0
+1	6Bleu	2Vert   J0
+1	6Bleu	8Bleu   J0
+1	8Bleu	3Vert   J0
+2	5Rouge	6Vert	J0
+1	5Rouge	3Rouge   J0
+1	3Rouge	6Vert   J0
+1	1Rouge	6Bleu   J0
+1	1Rouge	3Rouge   J0
+1	2Gris	2Bleu   J0
+1	3Bleu	1Rouge   J0
+1	3Bleu	6Bleu   J0
+1	3Bleu	4Bleu   J0
+1	4Bleu	2Bleu   J0
+1	4Bleu	8Bleu   J0
+1	4Gris	2Gris   J0
+1	8Bleu	2Bleu   J0
+2	4Gris	3Jaune   J0
+2	4Rouge	5Rouge   J0
+1	4Rouge	2Rouge   J0
+1	1Rouge	2Rouge   J0
+1	2Marron	0null   J0
+1	0null	2Bleu   J0
+2	0null	0Gris   J0
+1	2Marron	3Bleu   J0
+2	0Gris	4Gris   J0
+1	0Gris	1Jaune   J0
+1	1Jaune	4Jaune   J0
+1	4Jaune	3Jaune   J0
+1	5Marron	3Marron   J0
+2	5Marron	2Rouge   J0
+1	3Marron	4Marron   J0
+1	4Marron	1Marron   J0
+2	3Marron	2Marron   J0
+1	1Marron	0null   J0
+1	3Gris	0Gris   J0
+2	3Gris	1Jaune   J0
+1	1Gris	3Gris   J0
+2	1Gris	1Marron   J0
+2	1Gris	5Jaune   J0
+1	2Jaune	5Jaune   J0
+2	5Jaune	1Jaune   J0
+2	2Jaune	4Jaune   J0
