@@ -19,13 +19,16 @@ public class FrameModification extends JFrame implements ActionListener
 	
 	private Controleur ctrl;
 
-	private PanelCarte     panelC;
+	private PanelCarte    panelC;
 
-	private JMenuItem     creerSommet;
-	private JMenuItem     creerRoute;
+	private JMenuItem     menuiCreerSommet;
+	private JMenuItem     menuiCreerRoute;
 
-	private JMenuItem     enregistrerF;
-	private JMenuItem     supprimerF;
+	private JMenuItem     menuiSave;
+	private JMenuItem     menuiRein;
+	private JMenuItem     menuiSupp;
+
+	private JMenuItem     menuiQuitter;
 
 	/**
 	 * Constructeur de la frame qui permet de modifier la carte.
@@ -33,50 +36,62 @@ public class FrameModification extends JFrame implements ActionListener
 	 */
 	public FrameModification(Controleur ctrl)
 	{
-		this.setTitle("Modification");
+		this.setTitle("Modification de la carte");
 		this.setSize    ( 1269,1122 );
 		this.setLocation(  150, 50 );
 
 		JMenuBar menubMaBarre = new JMenuBar();
 
-		JMenu menuCreer = new JMenu("Creer"      );
-		JMenu menuEnreg = new JMenu("Enregistrer");
-		JMenu menuSup   = new JMenu("Supprimer"  );
+		JMenu menuCreer = new JMenu("Création"  );
+		JMenu menuSave  = new JMenu("Sauvegarde");
+		JMenu menuQuit  = new JMenu("Quitter"   );
 
-		this.creerSommet = new JMenuItem ("Créer ou supprimer un  sommet : " + ctrl.getNomThemeSommet());
-		this.creerRoute  = new JMenuItem ("Créer ou supprimer une route  : " + ctrl.getNomThemeRoute ());
+		this.menuiCreerSommet = new JMenuItem ("Créer ou supprimer un  sommet : " + ctrl.getNomThemeSommet());
+		this.menuiCreerRoute  = new JMenuItem ("Créer ou supprimer une route  : " + ctrl.getNomThemeRoute ());
 
-		this.enregistrerF = new JMenuItem ("Enregistrer la carte");
-		this.supprimerF   = new JMenuItem ("Supprimer la carte"  );
+		this.menuiSave = new JMenuItem ("Enregistrer la carte");
+		this.menuiRein = new JMenuItem ("Réinitialiser la carte");
+		this.menuiSupp = new JMenuItem ("Supprimer la carte"  );
+
+		this.menuiQuitter = new JMenuItem ("Quitter sans enregistrer"  );
 		
-		menuCreer.add( this.creerSommet );
-		menuCreer.addSeparator();
-		menuCreer.add( this.creerRoute  );
+		menuCreer.add( this.menuiCreerSommet );
+		menuCreer.add( this.menuiCreerRoute  );
 
-		menuEnreg.add(this.enregistrerF);
-		menuSup.add(this.supprimerF    );
+		menuSave.add(this.menuiSave);
+		menuSave.add(this.menuiRein);
+		menuSave.addSeparator();
+		menuSave.add(this.menuiSupp);
+
+		menuQuit.add(this.menuiQuitter);
 
 		menubMaBarre.add( menuCreer );
-		menubMaBarre.add( menuEnreg );
-		menubMaBarre.add( menuSup   );
+		menubMaBarre.add( menuSave  );
+		menubMaBarre.add( menuQuit );
 
 		this.setJMenuBar( menubMaBarre );
 		
 		// Création des raccourcis clavier
 		menuCreer.setMnemonic('C');
-		menuEnreg.setMnemonic('S');
-		menuSup.setMnemonic  ('P');
+		menuSave .setMnemonic('S');
+		menuQuit .setMnemonic('Q');
 
-		this.creerSommet.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK) );
-		this.creerRoute.setAccelerator  (KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK) );
-		this.supprimerF.setAccelerator  (KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK) );
-		this.enregistrerF.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiCreerSommet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiCreerRoute.setAccelerator	(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK) );
+
+		this.menuiSupp.setAccelerator		(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiSave.setAccelerator		(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiRein.setAccelerator		(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK) );
+
+		this.menuiQuitter.setAccelerator	(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
 
-		this.creerSommet .addActionListener ( this );
-		this.creerRoute  .addActionListener ( this );
-		this.enregistrerF.addActionListener ( this );
-		this.supprimerF  .addActionListener ( this );
+		this.menuiCreerSommet.addActionListener ( this );
+		this.menuiCreerRoute .addActionListener ( this );
+		this.menuiSave.addActionListener 		( this );
+		this.menuiSupp.addActionListener 		( this );
+		this.menuiSave.addActionListener 		( this );
+		this.menuiQuitter.addActionListener 	( this );
 
 		this.ctrl = ctrl;
 
@@ -104,40 +119,52 @@ public class FrameModification extends JFrame implements ActionListener
 	 */
 	public void actionPerformed ( ActionEvent e )
 	{
-		if ( e.getSource() == this.creerSommet )
+		if ( e.getSource() == this.menuiCreerSommet )
 		{
 			new FrameSommet( this.ctrl);
 		}
 
-		if ( e.getSource() == this.creerRoute )
+		if ( e.getSource() == this.menuiCreerRoute )
 		{
 			new FrameRoute( this.ctrl );
 		}
 
-		if ( e.getSource() == this.enregistrerF )
+		if ( e.getSource() == this.menuiSave )
 		{
-			try {
+			try
+			{
 				this.ctrl.getEditionFichier().sauvegarde();
-			} catch (IOException ex) {
-				throw new RuntimeException(ex);
 			}
+			catch( IOException ex ) { throw new RuntimeException(ex); }
 			this.dispose();
 		}
 
-		if ( e.getSource() == this.supprimerF )
+		if ( e.getSource() == this.menuiSupp )
 		{
-			try {
-				this.ctrl.supprimerTout();
-			} catch (IOException ex) {
-				throw new RuntimeException(ex);
-			}
-			this.repaint();
-			try {
-				this.ctrl.getEditionFichier().sauvegarde();
-			} catch (IOException ex) {
-				throw new RuntimeException(ex);
+			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur de voulir tout supprimer ?") == JOptionPane.YES_OPTION )
+			{
+				try
+				{
+					this.ctrl.supprimerTout();
+				}
+				catch( IOException ex ) { throw new RuntimeException(ex); }
+				this.repaint();
+
+				try
+				{
+					this.ctrl.getEditionFichier().sauvegarde();
+				}
+				catch( IOException ex ) { throw new RuntimeException(ex); }
 			}
 		}
+
+		if ( e.getSource() == this.menuiQuitter )
+		{
+			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVos modifications ne seront pas sauvegardées.") == JOptionPane.YES_OPTION )
+				System.exit(0);
+		}
+
+
 	}
 
 	/**
