@@ -454,7 +454,7 @@ public class Controleur
 
 		for ( Sommet rt : this.tabSommet )
 		{
-			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepard() == estDepart)
+			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepart() == estDepart)
 			{
 				ArrayList<Route> tmpR = new ArrayList<>(this.tabRoute.size()/2);
 
