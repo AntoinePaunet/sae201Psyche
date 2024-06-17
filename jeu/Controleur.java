@@ -96,7 +96,11 @@ public class Controleur
 		this.tabRoute = tabRt;
 	}
 
-
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
+	public boolean getEstScenar() { return this.estScenar; }
 
 	/**
 	 * A completer.
@@ -109,18 +113,6 @@ public class Controleur
 	 * @return La liste des sommets
 	 */
 	public boolean getEstJeu() { return this.estJeu; }
-
-	/**
-	 * A completer.
-	 * @param estJeu le Jeu
-	 */
-	public void setEstScenar(boolean estScenar) { this.estScenar = estScenar; }
-
-	/**
-	 * A completer.
-	 * @return La liste des sommets
-	 */
-	public boolean getEstScenar() { return this.estScenar; }
 
 	/**
 	 * A completer.
