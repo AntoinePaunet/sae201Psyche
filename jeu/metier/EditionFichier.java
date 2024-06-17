@@ -430,8 +430,6 @@ public class EditionFichier {
 
 					break;
 				}
-
-
 			}
 
 			sc.close();
