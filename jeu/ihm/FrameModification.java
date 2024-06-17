@@ -34,7 +34,7 @@ public class FrameModification extends JFrame implements ActionListener
 	public FrameModification(Controleur ctrl)
 	{
 		this.setTitle("Modification");
-		this.setSize    ( 1000,800 );
+		this.setSize    ( 1269,1122 );
 		this.setLocation(  150, 50 );
 
 		JMenuBar menubMaBarre = new JMenuBar();
@@ -89,6 +89,13 @@ public class FrameModification extends JFrame implements ActionListener
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+	}
+	
+	public void majIhm()
+	{
+		this.panelC = new PanelCarte( this.ctrl );
+		this.add(this.panelC);
+		this.repaint();
 	}
 
 	/**

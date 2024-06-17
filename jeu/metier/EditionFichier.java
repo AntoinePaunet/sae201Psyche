@@ -241,6 +241,8 @@ public class EditionFichier
 		Sommet smtA = this.ctrl.rechercheSommet(routeInfo[1]);
 		Sommet smtB = this.ctrl.rechercheSommet(routeInfo[2]);
 
+		
+
 		if (smtA != null && smtB != null) // Si la ville recherché n'existe plus
 		{
 			Route r = new Route(smtA, smtB, nbTroncon);
