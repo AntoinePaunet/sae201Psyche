@@ -34,19 +34,19 @@ public class FrameJoueur extends JFrame
 		this.joueur = j;
 		this.ctrl = ctrl;
 		this.setTitle( this.majTitre(this.joueur, ctrl) );
-		this.setSize( 690 , 500 );
+		this.setSize( 569, 436 );
 		this.panelFond = new JLayeredPane();
 
 		if( j == this.ctrl.getJoueur1() )
 		{
 			this.setLocation( 1250, 0 );
-			this.ajoutImage(0,0, "bgSolaire.png", 0);
+			this.ajoutImage(0,0, "plateau_joueur_1.png", 0);
 			this.joueur = ctrl.getJoueur1();
 		}
 		else
 		{
 			this.setLocation( 1250, 550 );
-			this.ajoutImage(0,0, "bgSyndicat.png", 0);
+			this.ajoutImage(0,0, "plateau_joueur_2.png", 0);
 			this.joueur = ctrl.getJoueur2();
 		}
 

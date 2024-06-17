@@ -167,7 +167,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				{
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
-				this.ctrl.setEstScenar(true);
+				//this.ctrl.setEstScenar(true);
 				this.frameChoix = new FrameChoix( this.ctrl );
 			}
 		}
@@ -183,7 +183,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		{
 			if (this.panelBoutons.lstTheme.getSelectedItem() != null)
 			{
-				this.ctrl.setEstScenar(false);
+				//this.ctrl.setEstScenar(false);
 				this.frameChoix = new FrameChoix( this.ctrl );
 				this.ctrl.setEstJeu(true);
 			}
