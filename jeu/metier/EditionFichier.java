@@ -7,72 +7,63 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EditionFichier
-{
+public class EditionFichier {
 	private Controleur ctrl;
 	private ArrayList<Sommet> tabSommet;
-	private ArrayList<Route>  tabRoute;
+	private ArrayList<Route> tabRoute;
 	private File fichier;
 
-	public EditionFichier(Controleur ctrl)
-	{
+	public EditionFichier(Controleur ctrl) {
 		this.ctrl = ctrl;
 		this.tabSommet = new ArrayList<>(30);
-		this.tabRoute  = new ArrayList<>(60);
+		this.tabRoute = new ArrayList<>(60);
 		this.fichier = null;
 	}
 
-	public ArrayList<Sommet> getTabSommet()
-	{
+	public ArrayList<Sommet> getTabSommet() {
 		return this.tabSommet;
 	}
 
-	public ArrayList<Route> getTabRoute()
-	{
+	public ArrayList<Route> getTabRoute() {
 		return this.tabRoute;
 	}
 
 	/**
 	 * Méthode qui initialise un writer afin d'écrire la carte dans un fichier.
+	 * 
 	 * @param fichier le fichier dans lequel le writer va écrire
 	 */
-	public void initFicher(File fichier)
-	{
-		try( BufferedWriter writer = new BufferedWriter( new FileWriter(fichier) ) )
-		{
-			writer.write("[SOMMET]\n\n[ROUTES]\n");
-			//System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
+	public void initFicher(File fichier) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
+			writer.write("[SOMMET]\n\n[ROUTES]\n\n[JOUEUR1]\n\n[JOUEUR2] ");
+			// System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
+		} catch (IOException e) {
 		}
-		catch( IOException e ) {}
 	}
 
-
-	public boolean estVide(String nomFichier) throws FileNotFoundException
-	{
-		try
-		{
+	public boolean estVide(String nomFichier) throws FileNotFoundException {
+		try {
 			FileReader fr = new FileReader(nomFichier);
 			Scanner sc = new Scanner(fr);
 
 			sc.nextLine();
-			if (sc.nextLine().equals(""))
-			{
+			if (sc.nextLine().equals("")) {
 				return true;
 			}
+		} catch (Exception e) {
+			return true;
 		}
-		catch( Exception e ) { return true; }
 		return false;
 	}
 
 	/**
 	 * Méthode qui initialise un lecteur de fichierafin d'y lire la carte du jeu.
+	 * 
 	 * @param nomFichier le fichier dans lequel le reader va lire
 	 */
-	public void lectureFichier(String nomFichier, boolean importer) throws IOException
-	{
+	public void lectureFichier(String nomFichier, boolean importer) throws IOException {
 		File tmpFichier;
-		if(estVide(nomFichier))
-		{
+		if (estVide(nomFichier)) {
 			nomFichier = "data.txt";
 			this.fichier = new File(nomFichier);
 			this.fichier.createNewFile();
@@ -84,58 +75,46 @@ public class EditionFichier
 		tmpFichier = new File(nomFichier);
 		fichier = new File("data.txt");
 
-		try
-		{
+		try {
 			FileReader fr;
 
-			if(importer)
-			{
+			if (importer) {
 				fr = new FileReader(tmpFichier);
 				this.supprimer();
-			}else{
+			} else {
 				fr = new FileReader(fichier);
 			}
 			Scanner sc = new Scanner(fr);
 
 			// Vider les tableaux pour ne pas refaire trop de variables
 			this.tabSommet = new ArrayList<Sommet>(ctrl.getTabSommet().size());
-			this.tabRoute  = new ArrayList<Route>(ctrl.getTabRoute().size());
+			this.tabRoute = new ArrayList<Route>(ctrl.getTabRoute().size());
 
 			int etapeLecture = 0;
 
-			while (sc.hasNextLine())
-			{
+			while (sc.hasNextLine()) {
 				String ligne = sc.nextLine();
 
-				if (!ligne.isEmpty())
-				{
-					if (ligne.equals("[SOMMET]"))
-					{
+				if (!ligne.isEmpty()) {
+					if (ligne.equals("[SOMMET]")) {
 						etapeLecture = 1;
 						if (sc.hasNextLine())
 							ligne = sc.nextLine();
-					}
-					else if (ligne.equals("[ROUTES]"))
-					{
+					} else if (ligne.equals("[ROUTES]")) {
 						etapeLecture = 2;
-						if (sc.hasNextLine())
-						{
+						if (sc.hasNextLine()) {
 							ligne = sc.nextLine();
 						}
 					}
 
-					if (etapeLecture == 1 && !ligne.equals("[SOMMET]"))
-					{
-						if (!ligne.isEmpty())
-						{
+					if (etapeLecture == 1 && !ligne.equals("[SOMMET]")) {
+						if (!ligne.isEmpty()) {
 							lireSommet(ligne);
-							//System.out.println(ligne);
+							// System.out.println(ligne);
 						}
 					}
-					if (etapeLecture == 2)
-					{
-						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]"))
-						{
+					if (etapeLecture == 2) {
+						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]")) {
 							lireRoute(ligne);
 							//System.out.println(ligne);
 						}
@@ -145,10 +124,11 @@ public class EditionFichier
 			}
 			sc.close();
 			fr.close();
+		} catch (Exception exp) {
+			exp.printStackTrace();
 		}
-		catch( Exception exp ) { exp.printStackTrace();	}
 
-		//System.out.println("Nb sommet " + tabSommet);
+		// System.out.println("Nb sommet " + tabSommet);
 	}
 
 	/**
@@ -210,12 +190,14 @@ public class EditionFichier
 
 	}
 
+
 	/**
-	 * Méthode qui crée et ajoute un sommet dans la liste des sommets a partir d'une ligne d'un fichier texte.
+	 * Méthode qui crée et ajoute un sommet dans la liste des sommets a partir d'une
+	 * ligne d'un fichier texte.
+	 * 
 	 * @param ligne la ligne où se trouve les données du sommet
 	 */
-	public void lireSommet(String ligne)
-	{
+	public void lireSommet(String ligne) {
 		String[] smtInfo = ligne.split("\t");
 
 		int num = Integer.parseInt(smtInfo[0]);
@@ -224,16 +206,25 @@ public class EditionFichier
 		int y = Integer.parseInt(smtInfo[3]);
 		String nomMat = smtInfo[4];
 
-		this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false));
+		if ( smtInfo[5].equals( "J1" ) )
+			this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false,this.ctrl.getJoueur1() ) );
+		else
+			if ( smtInfo[5].equals( "J2" ) )
+				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur2() ) );
+			else
+				this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false, null));
+
+
 		this.ctrl.setTabSommet(this.tabSommet);
 	}
 
 	/**
-	 * Méthode qui crée et ajoute une route dans la liste des routes a partir d'une ligne d'un fichier texte.
+	 * Méthode qui crée et ajoute une route dans la liste des routes a partir d'une
+	 * ligne d'un fichier texte.
+	 * 
 	 * @param ligne la ligne où se trouve les données de la route
 	 */
-	public void lireRoute(String ligne)
-	{
+	public void lireRoute(String ligne) {
 		String[] routeInfo = ligne.split("\t");
 
 		int nbTroncon = Integer.parseInt(routeInfo[0]);
@@ -247,6 +238,13 @@ public class EditionFichier
 		{
 			Route r = new Route(smtA, smtB, nbTroncon);
 
+
+			if ( routeInfo[3].equals("J1") )
+				r.setJoueur( this.ctrl.getJoueur1() );
+			else
+				if ( routeInfo[3].equals("J2") )
+					r.setJoueur( this.ctrl.getJoueur2() );
+		
 			this.tabRoute.add(r);
 			this.ctrl.setTabRoute(this.tabRoute);
 			smtA.addRoute(r);
@@ -254,18 +252,20 @@ public class EditionFichier
 		}
 	}
 
-
 	/**
-	 * Méthode qui écrit et ajoute un sommet dans le fichier texte corrspondant à la carte.
-	 * @param numSmt le numéro du sommet
-	 * @param nomCoul la couleur du sommet
-	 * @param x l'abcisse du sommet sur la carte
-	 * @param y l'ordonnée du sommet sur la carte
+	 * Méthode qui écrit et ajoute un sommet dans le fichier texte corrspondant à la
+	 * carte.
+	 * 
+	 * @param numSmt    le numéro du sommet
+	 * @param nomCoul   la couleur du sommet
+	 * @param x         l'abcisse du sommet sur la carte
+	 * @param y         l'ordonnée du sommet sur la carte
 	 * @param materiaux la ressource se trouvant sur le sommet
 	 * @param estDepart si le sommet est celui sur lequel les jouers commencent
+	 * @param joueur    0 si pas de joueur. 1 ou 2 pour les joueur 1 ou 2
 	 */
-	public void ecrireSommet(int numSmt, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart) throws IOException
-	{
+	public void ecrireSommet(int numSmt, String nomCoul, int x, int y, Materiaux materiaux, boolean estDepart, int joueur)
+			throws IOException {
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
@@ -278,14 +278,27 @@ public class EditionFichier
 				donnesFichier.indexOf("\n["));
 		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-		if(nomCoul != null && !(nomCoul.equals("DEBUT")))
-			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\n\n") + donneesRoutes;
+
+		if (materiaux != null)
+		{
+			switch ( joueur ) 
+			{
+				case 1 -> donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom()
+				+ "\t" + estDepart + "\t" + "J1" + "\n\n") + donneesRoutes;
+				case 2 -> donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom()
+				+ "\t" + estDepart + "\t" + "J2" + "\n\n") + donneesRoutes;
+				case 0 -> donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom()
+				+ "\t" + estDepart + "\t" + "J0" + "\n\n") + donneesRoutes;
+			}
+
+		}
+				
 		else
-			donnesFichier = donneesVilles + (0      + "\t" + "DEBUT" 		 + "\t" + x + "\t" + y + "\t" + null			   + "\t" + true + "\n\n") + donneesRoutes;
+			donnesFichier = donneesVilles + (0 + "\t" + null + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "J0" + "\n\n")
+					+ donneesRoutes;
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
-		try
-		{
+		try {
 			writer.write(donnesFichier);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -297,13 +310,16 @@ public class EditionFichier
 	}
 
 	/**
-	 * Méthode qui écrit et ajoute une route dans le fichier texte corrspondant à la carte.
-	 * @param smtA le sommet de départ de la route
-	 * @param smtB le sommet d'arrivée de la route
+	 * Méthode qui écrit et ajoute une route dans le fichier texte corrspondant à la
+	 * carte.
+	 * 
+	 * @param smtA       le sommet de départ de la route
+	 * @param smtB       le sommet d'arrivée de la route
 	 * @param nbTroncons le nombre de troncons de la route
+	 * @param joueur     Le numéro du joueur soit 1 ou 2. 0 dans le cas ou le sommet na pas de joueur
+	 * 
 	 */
-	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons) throws IOException
-	{
+	public void ecrireRoute(Sommet smtA, Sommet smtB, int nbTroncons, int joueur) throws IOException {
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
@@ -312,12 +328,21 @@ public class EditionFichier
 		while (sc.hasNextLine())
 			donnesFichier += sc.nextLine() + "\n";
 
-		donnesFichier += (nbTroncons + "\t" + smtA.getNumSom()+smtA.getNomCoul() + "\t" + smtB.getNumSom()+ smtB.getNomCoul() + "\n");
+		if ( joueur == 0 )
+			donnesFichier += (nbTroncons + "\t" + smtA.getNumSom() + smtA.getNomCoul() + "\t" + smtB.getNumSom()
+				+ smtB.getNomCoul() + "\t" + "J0" + "\n");
+
+		if ( joueur == 1 )
+			donnesFichier += (nbTroncons + "\t" + smtA.getNumSom() + smtA.getNomCoul() + "\t" + smtB.getNumSom()
+				+ smtB.getNomCoul() + "\t" + "J1" + "\n");
+
+		if ( joueur == 2 )
+			donnesFichier += (nbTroncons + "\t" + smtA.getNumSom() + smtA.getNomCoul() + "\t" + smtB.getNumSom()
+			+ smtB.getNomCoul() + "\t" + "J2" + "\n");
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
-		try
-		{
+		try {
 			writer.write(donnesFichier);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -327,36 +352,46 @@ public class EditionFichier
 		sc.close();
 	}
 
-	public void supprimer()
-	{
-		try( BufferedWriter writer = new BufferedWriter( new FileWriter("data.txt") ) )
-		{
+	public void supprimer() {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.fichier))) {
 			writer.write("[SOMMET]\n\n[ROUTES]\n");
-		}
-		catch( IOException e ) {
+		} catch (IOException e) {
 		}
 	}
 
-
 	/**
-	 * Méthode qui sauvagarde les modifications apportées au ficher texte en appelant les méthodes d'écriture.
+	 * Méthode qui sauvagarde les modifications apportées au ficher texte en
+	 * appelant les méthodes d'écriture.
 	 */
-	public void sauvegarde() throws IOException
-	{
+	public void sauvegarde() throws IOException {
 		this.supprimer();
 		this.tabSommet = ctrl.getTabSommet();
 		this.tabRoute = ctrl.getTabRoute();
 
 		System.out.println("Suprimmer" + this.tabRoute);
 
-		for(Route r : this.tabRoute)
+		for (Route r : this.tabRoute) 
 		{
-			this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons());
+			if ( this.ctrl.getJoueur1().equals(r.getJoueur()) )
+				this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),1);
+			else
+				if ( this.ctrl.getJoueur2().equals(r.getJoueur()) )
+					this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),2);
+				else
+					this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),0);
+
 		}
 
-		for(Sommet s : this.tabSommet)
+		for (Sommet s : this.tabSommet) 
 		{
-			this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false);
+			if ( this.ctrl.getJoueur1().equals(s.getJoueur()) )
+				this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false,1);
+			else
+				if ( this.ctrl.getJoueur2().equals(s.getJoueur()) )
+					this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false,2);
+				else
+					this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false,0);
+			
 		}
 	}
 }
