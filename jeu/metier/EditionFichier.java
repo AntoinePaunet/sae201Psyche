@@ -279,8 +279,7 @@ public class EditionFichier {
 				donnesFichier.indexOf("\n["));
 		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-
-		if (materiaux != null)
+		if (materiaux != null && !(nomCoul.equals("DEPART")))
 		{
 			switch ( joueur ) 
 			{
@@ -369,9 +368,8 @@ public class EditionFichier {
 		this.tabSommet = ctrl.getTabSommet();
 		this.tabRoute = ctrl.getTabRoute();
 
-		System.out.println("Suprimmer" + this.tabRoute);
 
-		for (Route r : this.tabRoute) 
+		for (Route r : this.tabRoute)
 		{
 			if ( this.ctrl.getJoueur1().equals(r.getJoueur()) )
 				this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),1);

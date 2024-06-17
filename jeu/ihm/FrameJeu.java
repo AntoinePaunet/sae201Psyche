@@ -82,11 +82,6 @@ public class FrameJeu extends JFrame implements ActionListener
 	 */
 	public void actionPerformed ( ActionEvent e )
 	{
-		/*
-		Syso pour confirmer l'action
-		if ( e.getSource() instanceof JMenuItem )
-			//System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
-		*/
 		if ( e.getSource() == this.menuiAbandonner )
 		{
 			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVotre partie ne sera pas sauvegardée.") == JOptionPane.YES_OPTION )
@@ -99,10 +94,10 @@ public class FrameJeu extends JFrame implements ActionListener
 
 	public PanelCarte getPanelCarte (){return this.panelCarte;}
 
-
+/*
 	public static void main( String[] args ) throws IOException
 	{
 		new FrameJeu(new Controleur());
 	}
-
+*/
 }
