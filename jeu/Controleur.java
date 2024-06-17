@@ -58,8 +58,6 @@ public class Controleur
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.editionFichier.lectureFichier("data.txt", false);
-
-
 	}
 
 	private void initMateriaux()
@@ -216,7 +214,6 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.majFrameJoueur(this.j1, this);
 				}
 				else
 				{
@@ -234,8 +231,8 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 					this.tourJ1= !this.tourJ1;
-					this.majFrameJoueur(this.j2, this);
-				}	
+				}
+				this.majFrameJoueur(this.j1, this);
 			}
 		}
 
@@ -394,9 +391,9 @@ public class Controleur
 	public void majFrameJoueur( Joueur j , Controleur ctrl )
 	{
 		if( j == this.j1 )
-			this.frameDemarrage.getFrameChoix().getF1().majTitre(this.j1, this);
+			this.frameDemarrage.getFrameChoix().getF1().majTitre(this);
 		else
-			this.frameDemarrage.getFrameChoix().getF2().majTitre(this.j2, this);
+			this.frameDemarrage.getFrameChoix().getF2().majTitre(this);
 	}
 
 
