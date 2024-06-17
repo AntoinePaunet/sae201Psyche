@@ -32,7 +32,7 @@ public class Controleur
 	private EditionFichier editionFichier;
 
 	/**
-	 * Constructeur du controleur
+	 * Constructeur du Controleur
 	 */
 	public Controleur() throws IOException
 	{
@@ -52,14 +52,19 @@ public class Controleur
 		this.editionFichier.lectureFichier("data.txt", false);
 	}
 
-
-
-
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
 	public void setTabSommet(ArrayList<Sommet> tabSmt)
 	{
 		this.tabSommet = tabSmt;
 	}
 
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
 	public void setTabRoute(ArrayList<Route> tabRt)
 	{
 		this.tabRoute = tabRt;
@@ -307,7 +312,7 @@ public class Controleur
 	}
 
 	/**
-	 * Méthode qui affecte les JetonsPossessions des joueurs.
+	 * Méthode qui affecte les JetonsPossessions aux joueurs.
 	 */
 	private void initJetonPossession()
 	{
@@ -432,7 +437,6 @@ public class Controleur
 					this.tabRoute.remove(r);
 				}
 
-
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;
@@ -476,7 +480,6 @@ public class Controleur
 			if ( s.possede(x, y) )
 				return s;
 		}
-			
 		return null;
 	}
 

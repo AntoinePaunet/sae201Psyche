@@ -70,11 +70,11 @@ public class FrameJoueur extends JFrame
 		String s = this.joueur.getNomJoueur() + " : ";
 
 		if( ctrl.getTourJ(j) )
-			s += " A vous de jouer ! ";
+			s += String.format("%-40s","A vous de jouer !" );
 		else
-			s += " en attente de l'autre joueur ...";
+			s += String.format("%-40s","en attente de l'autre joueur ... " ) ;
 
-		s += "\t\tVotre score : " + String.valueOf(this.joueur.getScore());
+		s += "Votre score : " + String.valueOf(this.joueur.getScore());
 		return s;
 	}
 
