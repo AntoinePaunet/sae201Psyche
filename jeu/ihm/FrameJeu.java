@@ -18,7 +18,6 @@ import java.io.IOException;
 public class FrameJeu extends JFrame implements ActionListener
 {
 	private PanelCarte 	panelCarte;
-	private JPanel     	panelScore;
 
 	private JMenuItem menuiAbandonner;
 

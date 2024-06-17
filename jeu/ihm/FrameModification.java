@@ -19,16 +19,16 @@ public class FrameModification extends JFrame implements ActionListener
 	
 	private Controleur ctrl;
 
-	private PanelCarte    panelC;
+	private PanelCarte panelC;
 
-	private JMenuItem     menuiCreerSommet;
-	private JMenuItem     menuiCreerRoute;
+	private JMenuItem menuiCreerSommet;
+	private JMenuItem menuiCreerRoute;
 
-	private JMenuItem     menuiSave;
-	private JMenuItem     menuiRein;
-	private JMenuItem     menuiSupp;
+	private JMenuItem menuiRein;
+	private JMenuItem menuiSupp;
 
-	private JMenuItem     menuiQuitter;
+	private JMenuItem menuiSave;
+	private JMenuItem menuiQuitter;
 
 	/**
 	 * Constructeur de la frame qui permet de modifier la carte.
@@ -58,11 +58,11 @@ public class FrameModification extends JFrame implements ActionListener
 		menuCreer.add( this.menuiCreerSommet );
 		menuCreer.add( this.menuiCreerRoute  );
 
-		menuSave.add(this.menuiSave);
-		menuSave.add(this.menuiRein);
+		menuQuit.add(this.menuiRein);
 		menuSave.addSeparator();
 		menuSave.add(this.menuiSupp);
 
+		menuSave.add(this.menuiSave);
 		menuQuit.add(this.menuiQuitter);
 
 		menubMaBarre.add( menuCreer );
@@ -80,9 +80,9 @@ public class FrameModification extends JFrame implements ActionListener
 		this.menuiCreerRoute.setAccelerator	(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK) );
 
 		this.menuiSupp.setAccelerator		(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK) );
-		this.menuiSave.setAccelerator		(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiRein.setAccelerator		(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK) );
 
+		this.menuiSave.setAccelerator		(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiQuitter.setAccelerator	(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
 
@@ -101,7 +101,6 @@ public class FrameModification extends JFrame implements ActionListener
 		// Création et ajout du Panel
 		this.add(this.panelC);
 
-		
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -121,33 +120,18 @@ public class FrameModification extends JFrame implements ActionListener
 	public void actionPerformed ( ActionEvent e )
 	{
 		if ( e.getSource() == this.menuiCreerSommet )
-		{
 			new FrameSommet( this.ctrl);
-		}
 
 		if ( e.getSource() == this.menuiCreerRoute )
-		{
 			new FrameRoute( this.ctrl );
-		}
-
-		if ( e.getSource() == this.menuiSave )
-		{
-			try
-			{
-				this.ctrl.getEditionFichier().sauvegarde();
-			}
-			catch( IOException ex ) { throw new RuntimeException(ex); }
-			this.dispose();
-		}
 
 		if( e.getSource() == this.menuiRein)
 		{
-			try {
+			try
+			{
 				this.ctrl.reInit();
 				this.repaint();
-			} catch (IOException ex) {
-				throw new RuntimeException(ex);
-			}
+			} catch( IOException ex ) { throw new RuntimeException(ex); }
 		}
 
 		if ( e.getSource() == this.menuiSupp )
@@ -169,6 +153,16 @@ public class FrameModification extends JFrame implements ActionListener
 			}
 		}
 
+		if ( e.getSource() == this.menuiSave )
+		{
+			try
+			{
+				this.ctrl.getEditionFichier().sauvegarde();
+			}
+			catch( IOException ex ) { throw new RuntimeException(ex); }
+			this.dispose();
+		}
+
 		if ( e.getSource() == this.menuiQuitter )
 		{
 			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVos modifications ne seront pas sauvegardées.") == JOptionPane.YES_OPTION )
@@ -184,10 +178,11 @@ public class FrameModification extends JFrame implements ActionListener
 	 */
 	public PanelCarte getPanelCarte () {return this.panelC;}
 
-	// public static void main (String[]args) throws IOException
-	// {
-	// 	Controleur ctrl = new Controleur(); 
-	// 	new FrameModification(ctrl);
-	// }
-
+ /*
+	public static void main (String[]args) throws IOException
+	{
+		Controleur ctrl = new Controleur(); 
+		new FrameModification(ctrl);
+	}
+*/
 }

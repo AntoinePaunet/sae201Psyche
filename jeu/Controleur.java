@@ -24,8 +24,8 @@ public class Controleur
 	private   Joueur             j2       ;
 	protected ArrayList<Sommet>  tabSommet;
 	protected ArrayList<Route>	 tabRoute ;
-	private   boolean            estJeu   ;
 
+	private   boolean            estJeu   ;
 	private   boolean            tourJ1        ;
 	private   boolean            finPartie     ;
 	public    FrameDemarrage     frameDemarrage;
