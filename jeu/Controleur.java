@@ -32,7 +32,7 @@ public class Controleur
 	private EditionFichier editionFichier;
 
 	/**
-	 * Constructeur du controleur
+	 * Constructeur du Controleur
 	 */
 	public Controleur() throws IOException
 	{
@@ -52,14 +52,19 @@ public class Controleur
 		this.editionFichier.lectureFichier("data.txt", false);
 	}
 
-
-
-
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
 	public void setTabSommet(ArrayList<Sommet> tabSmt)
 	{
 		this.tabSommet = tabSmt;
 	}
 
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
 	public void setTabRoute(ArrayList<Route> tabRt)
 	{
 		this.tabRoute = tabRt;
@@ -71,11 +76,15 @@ public class Controleur
 	 */
 	public boolean getEstJeu() { return estJeu; }
 
-
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
 	public EditionFichier getEditionFichier()
 	{
 		return this.editionFichier;
 	}
+
 	/**
 	 * A completer.
 	 * @param estJeu le Jeu
@@ -115,6 +124,10 @@ public class Controleur
 		return tempSommet;
 	}
 
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
 	public FrameDemarrage getFrameDemarrage()
 	{
 		return this.frameDemarrage;
@@ -145,10 +158,9 @@ public class Controleur
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
-			if (this.tourJ1)
+			if (this.estValide(r))
 			{
-				
-				if (this.estValide(r))
+				if (this.tourJ1)
 				{
 					r.setJoueur(this.j1);
 
@@ -167,10 +179,7 @@ public class Controleur
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j1, this);
 				}
-			}
-			else
-			{
-				if (this.estValide( r))
+				else
 				{
 					r.setJoueur(this.j2);
 					this.j2.addJetons(r.getNbTroncons());
@@ -187,12 +196,30 @@ public class Controleur
 					
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j2, this);
-				}
+				}	
 			}
 		}
 		
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
+	}
+
+	/**
+	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
+	 * @return vrai si c'est au tour du joueur 1, faux si c'est au tour du joueur 2.
+	 */
+	public boolean getTour()
+	{
+		return this.tourJ1;
+	}
+
+	/**
+	 * Méthode qui renvoie le booléen correspondant à la capacité du joueur de jouer.
+	 * @return vrai si c'est au tour du joueur j, faux si c'est au tour de l'autre joueur.
+	 */	
+	public boolean getTourJ( Joueur j )
+	{
+		return (j == this.getJoueur1() && this.tourJ1); 
 	}
 
 	/**
@@ -305,7 +332,7 @@ public class Controleur
 	}
 
 	/**
-	 * Méthode qui affecte les JetonsPossessions des joueurs.
+	 * Méthode qui affecte les JetonsPossessions aux joueurs.
 	 */
 	private void initJetonPossession()
 	{
@@ -430,7 +457,6 @@ public class Controleur
 					this.tabRoute.remove(r);
 				}
 
-
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;
@@ -440,24 +466,6 @@ public class Controleur
 		{
 			this.tabSommet.add( tempSommet );
 		}
-	}
-
-	/**
-	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
-	 * @return vrai si c'est au tour du joueur 1, faux si c'est au tour du joueur 2.
-	 */
-	public boolean getTour()
-	{
-		return this.tourJ1;
-	}
-
-	/**
-	 * Méthode qui renvoie le booléen correspondant à la capacité du joueur de jouer.
-	 * @return vrai si c'est au tour du joueur j, faux si c'est au tour de l'autre joueur.
-	 */	
-	public boolean getTourJ( Joueur j )
-	{
-		return (j == this.getJoueur1() && this.tourJ1); 
 	}
 
 	/**
@@ -474,7 +482,6 @@ public class Controleur
 			if ( s.possede(x, y) )
 				return s;
 		}
-			
 		return null;
 	}
 
