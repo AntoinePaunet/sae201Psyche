@@ -34,7 +34,7 @@ public class FrameModification extends JFrame implements ActionListener
 	public FrameModification(Controleur ctrl)
 	{
 		this.setTitle("Modification");
-		this.setSize    ( 1000,800 );
+		this.setSize    ( 1269,1122 );
 		this.setLocation(  150, 50 );
 
 		JMenuBar menubMaBarre = new JMenuBar();
@@ -43,8 +43,8 @@ public class FrameModification extends JFrame implements ActionListener
 		JMenu menuEnreg = new JMenu("Enregistrer");
 		JMenu menuSup   = new JMenu("Supprimer"  );
 
-		this.creerSommet = new JMenuItem ("Créer ou supprimer un  sommet");
-		this.creerRoute  = new JMenuItem ("Créer ou supprimer une route" );
+		this.creerSommet = new JMenuItem ("Créer ou supprimer un  sommet : " + ctrl.getNomThemeSommet());
+		this.creerRoute  = new JMenuItem ("Créer ou supprimer une route  : " + ctrl.getNomThemeRoute ());
 
 		this.enregistrerF = new JMenuItem ("Enregistrer la carte");
 		this.supprimerF   = new JMenuItem ("Supprimer la carte"  );
@@ -90,6 +90,13 @@ public class FrameModification extends JFrame implements ActionListener
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
+	
+	public void majIhm()
+	{
+		this.panelC = new PanelCarte( this.ctrl );
+		this.add(this.panelC);
+		this.repaint();
+	}
 
 	/**
 	 * Méthode de définition des evenements de la frame. 
@@ -119,7 +126,11 @@ public class FrameModification extends JFrame implements ActionListener
 
 		if ( e.getSource() == this.supprimerF )
 		{
-			this.ctrl.supprimerTout();
+			try {
+				this.ctrl.supprimerTout();
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
 			this.repaint();
 			try {
 				this.ctrl.getEditionFichier().sauvegarde();

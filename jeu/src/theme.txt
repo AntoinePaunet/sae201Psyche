@@ -1,0 +1,2 @@
+Espace	Corporation Solaire	Syndicat Astral	Mine	Route
+Pays	Pays1	Pays2	Ville	Autoroute

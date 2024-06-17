@@ -4,6 +4,7 @@ import jeu.Controleur;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EditionFichier {
@@ -171,6 +172,8 @@ public class EditionFichier {
 		Sommet smtA = this.ctrl.rechercheSommet(routeInfo[1]);
 		Sommet smtB = this.ctrl.rechercheSommet(routeInfo[2]);
 
+		
+
 		if (smtA != null && smtB != null) // Si la ville recherché n'existe plus
 		{
 			Route r = new Route(smtA, smtB, nbTroncon);
@@ -302,6 +305,10 @@ public class EditionFichier {
 	 */
 	public void sauvegarde() throws IOException {
 		this.supprimer();
+		this.tabSommet = ctrl.getTabSommet();
+		this.tabRoute = ctrl.getTabRoute();
+
+		System.out.println("Suprimmer" + this.tabRoute);
 
 		for (Route r : this.tabRoute) 
 		{

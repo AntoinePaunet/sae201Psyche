@@ -15,12 +15,11 @@ import java.io.IOException;
  * @author Anas AARAB,				IUT du Havre
  * @version 1.0 , 2024-05-23
  */
-public class FrameJeu extends JFrame
+public class FrameJeu extends JFrame implements ActionListener
 {
 	private PanelCarte 	panelCarte;
 	private JPanel     	panelScore;
 
-	private JMenuItem menuiSauvegarder;
 	private JMenuItem menuiAbandonner;
 
 	private Controleur 	ctrl;
@@ -31,7 +30,7 @@ public class FrameJeu extends JFrame
 	public FrameJeu(Controleur ctrl)
 	{
 		this.setTitle("L'Âge de Psyché");
-		this.setSize    ( 1000,750 );
+		this.setSize    ( 1269,1122 );
 		this.setLocation(  0, 0 );
 		this.ctrl = ctrl;
 
@@ -41,30 +40,59 @@ public class FrameJeu extends JFrame
 		this.add(this.panelCarte);
 
 		// Création et ajout de la barre de menu
-
+		JMenuBar menuBar  = new JMenuBar();
 		JMenu menuOptions = new JMenu("Options");
 
-		this.menuiSauvegarder = new JMenuItem ("Sauvegarder et quitter");
-		this.menuiAbandonner  = new JMenuItem ("Abandonner" );
+		this.menuiAbandonner  = new JMenuItem ("Quitter sans sauvegarder" );
+
+		menuOptions.add(this.menuiAbandonner );
+
+		menuBar.add(menuOptions);
+
+		this.setJMenuBar( menuBar );
+
+		menuOptions.setMnemonic('O');
+
+		this.menuiAbandonner.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_DOWN_MASK) );
+
+
+		this.menuiAbandonner.addActionListener(this);
 
 		// Gestion de la fermeture de la fenêtre
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Ne ferme pas automatiquement
-
-		// Ajoute un WindowAdapter pour écouter les événements de fenêtre
 		this.addWindowListener(new WindowAdapter()
 		{
 			@Override
 			public void windowClosing(WindowEvent e)
 			{
-				try {
+				try
+				{
 					ctrl.getEditionFichier().sauvegarde();
-				} catch (IOException ex) {
-					throw new RuntimeException(ex);
+					System.exit(0);	
 				}
+				catch( IOException ex ) { throw new RuntimeException(ex); }
 			}
 		});
-
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Ne ferme pas automatiquement
 		this.setVisible(true);
+	}
+
+	/**
+	 * Réalise une action lorsqu'on clique sur la menubar
+	 * @param e est un événement lié à un composant du panel
+	 */
+	public void actionPerformed ( ActionEvent e )
+	{
+		/*
+		Syso pour confirmer l'action
+		if ( e.getSource() instanceof JMenuItem )
+			//System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
+		*/
+		if ( e.getSource() == this.menuiAbandonner )
+		{
+			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVotre partie ne sera pas sauvegardée.") == JOptionPane.YES_OPTION )
+				System.exit(0);
+		}
+
 	}
 
 	public void majIHM(){this.panelCarte = new PanelCarte(ctrl);this.add(this.panelCarte);this.setVisible(true);}

@@ -38,10 +38,10 @@ public class PanelChoixJoueur extends JPanel implements ActionListener
 		this.setLayout( new GridLayout(3, 2));
 		this.frameChoix = frameChoix;
 
-		this.add( new JLabel("  Entrez le nom du joueur Corporation Solaire : "));
+		this.add( new JLabel("  Entrez le nom du joueur " + ctrl.getNomThemeJ1() + " : "));
 		this.add(txtJoueur1    = new JTextField( "Joueur 1"                                   ));
 
-		this.add( new JLabel("  Entrez le nom du joueur Syndiat Astral : "));
+		this.add( new JLabel("  Entrez le nom du joueur " + ctrl.getNomThemeJ2() + " : "));
 		this.add(txtJoueur2    = new JTextField( "Joueur 2"                              ));
 		this.txtJoueur1.setSize(100, 30);
 

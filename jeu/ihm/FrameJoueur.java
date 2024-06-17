@@ -34,23 +34,21 @@ public class FrameJoueur extends JFrame
 		this.joueur = j;
 		this.ctrl = ctrl;
 		this.setTitle( this.majTitre(this.joueur, ctrl) );
-		this.setSize( 700 , 550 );
+		this.setSize( 700 , 500 );
 		this.panelFond = new JLayeredPane();
 
 		if( j == this.ctrl.getJoueur1() )
 		{
-			this.setLocation( 1100, 0 );
+			this.setLocation( 1269, 0 );
 			this.ajoutImage(0,0, "bgSolaire.png", 0);
 			this.joueur = ctrl.getJoueur1();
 		}
 		else
 		{
-			this.setLocation( 1100, 550 );
+			this.setLocation( 1269, 550 );
 			this.ajoutImage(0,0, "bgSyndicat.png", 0);
 			this.joueur = ctrl.getJoueur2();
 		}
-
-		this.setName("PanelJoueur");
 
 		this.add( this.panelFond );
 
@@ -67,14 +65,14 @@ public class FrameJoueur extends JFrame
 	 */
 	public String majTitre( Joueur j , Controleur ctrl )
 	{
-		String s = this.joueur.getNomJoueur();
+		String s = this.joueur.getNomJoueur() + " : ";
 
-		if( ctrl.getTourJ(j) )
-			s += " A vous de jouer !";
-		else
-			s += " en attente de l'autre joueur ...";
+		if( ctrl.getTour() ) // si c'est le tour du Joueur 1
+			s += String.format("%-40s","A vous de jouer !" );
+		else				 // si c'est le tour du Joueur 2
+			s += String.format("%-40s","en attente de l'autre joueur ... " ) ;
 
-		s += "\tVotre score : " + String.valueOf(this.joueur.getScore());
+		s += "Votre score : " + String.valueOf(this.joueur.getScore());
 		return s;
 	}
 
@@ -85,7 +83,7 @@ public class FrameJoueur extends JFrame
 	{
 		int x = 0;
 		int y = 500;
-		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++)
+		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
@@ -100,8 +98,7 @@ public class FrameJoueur extends JFrame
 			y -= 80;
 		}
 
-
-		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) 
+		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) // Ajout des pièces
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
@@ -109,7 +106,6 @@ public class FrameJoueur extends JFrame
 				x += 60;
 			}
 		}
-
 	}
 
 	/**

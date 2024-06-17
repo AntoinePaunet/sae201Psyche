@@ -30,10 +30,13 @@ public class Controleur
 	private   boolean            finPartie     ;
 	public    FrameDemarrage     frameDemarrage;
 
-	private   EditionFichier      editionFichier;
+	private EditionFichier editionFichier;
+	private String[]       elementsTheme ;
+
+	private ArrayList<String> lstMateriaux;
 
 	/**
-	 * Constructeur du controleur
+	 * Constructeur du Controleur
 	 */
 	public Controleur() throws IOException
 	{
@@ -51,16 +54,42 @@ public class Controleur
 		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.editionFichier.lectureFichier("data.txt", false);
+
+
+		this.lstMateriaux = new ArrayList<>(40);
+		this.initMateriaux();
+	}
+
+	private void initMateriaux()
+	{
+		this.lstMateriaux = new ArrayList<>(Arrays.asList("NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR"));
+		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AG", "CO", "NI", "PT" };
+
+
+		//génération du tableau contenant les noms des matériaux possibles
+		for(int i = 0 ; i < tabNomsMat.length ; i++)
+		{
+			for(int j = 0; j < 4 ; j++)
+			{
+				this.lstMateriaux.add(tabNomsMat[i]);
+			}
+		}
 	}
 
 
-
-
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
 	public void setTabSommet(ArrayList<Sommet> tabSmt)
 	{
 		this.tabSommet = tabSmt;
 	}
 
+	/**
+	 * A completer.
+	 * @return La liste des sommets
+	 */
 	public void setTabRoute(ArrayList<Route> tabRt)
 	{
 		this.tabRoute = tabRt;
@@ -72,11 +101,15 @@ public class Controleur
 	 */
 	public boolean getEstJeu() { return estJeu; }
 
-
+	/**
+	 * A completer.
+	 *  le Jeu
+	 */
 	public EditionFichier getEditionFichier()
 	{
 		return this.editionFichier;
 	}
+
 	/**
 	 * A completer.
 	 * @param estJeu le Jeu
@@ -93,9 +126,8 @@ public class Controleur
 	{
 		if (r.getJoueur()!=null) {return false;}
 
-		System.out.println(r.getSommetDep().getMateriaux());
-		System.out.println(r.getSommetArr().getMateriaux());
-		System.out.println((r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null));
+		System.out.println(r);
+		System.out.println(r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null);
 		//verifie si l'un des deux sommet deja pris ou non
 		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
 			 
@@ -117,6 +149,10 @@ public class Controleur
 		return tempSommet;
 	}
 
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
 	public FrameDemarrage getFrameDemarrage()
 	{
 		return this.frameDemarrage;
@@ -147,12 +183,13 @@ public class Controleur
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
-			if (this.tourJ1)
+			if (this.estValide(r))
 			{
-				
-				if (this.estValide(r))
+				if (this.tourJ1)
 				{
 					r.setJoueur(this.j1);
+
+					this.j1.addJetons(r.getNbTroncons());
 
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetDep());
@@ -167,12 +204,10 @@ public class Controleur
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j1, this);
 				}
-			}
-			else
-			{
-				if (this.estValide( r))
+				else
 				{
 					r.setJoueur(this.j2);
+					this.j2.addJetons(r.getNbTroncons());
 
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetDep());
@@ -186,12 +221,31 @@ public class Controleur
 					
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j2, this);
-				}
+				}	
 			}
 		}
-	
+
+		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
+	}
+
+	/**
+	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
+	 * @return vrai si c'est au tour du joueur 1, faux si c'est au tour du joueur 2.
+	 */
+	public boolean getTour()
+	{
+		return this.tourJ1;
+	}
+
+	/**
+	 * Méthode qui renvoie le booléen correspondant à la capacité du joueur de jouer.
+	 * @return vrai si c'est au tour du joueur j, faux si c'est au tour de l'autre joueur.
+	 */	
+	public boolean getTourJ( Joueur j )
+	{
+		return (j == this.getJoueur1() && this.tourJ1); 
 	}
 
 	/**
@@ -208,22 +262,6 @@ public class Controleur
 		int[] 		tabCooX    = new int[]    { 336,  265,  317,  394, 251,  336,  414,  80,  156,  257,  510,  308,  346,  440,  575,  648,  111,  185,  353,  576,  696,  774,  200,  330,  427,  501,  606,  556,  696,  773};
 		int[] 		tabCooY    = new int[]    {  92,  111,  187,  175, 239,  284,  270,  300,  298,  322,  295,  382,  339,  366,  337,  319,  456,  440,  428,  433,  442,  443,  517,  542,  541,  519,  512,  586,  583,  582};
 
-
-		String[] tabNomsMat = new String[]{ "FE", "AL", "AU", "TI", "AG", "CO", "NI", "PT" };
-
-		ArrayList<String> tmpLst = new ArrayList<>(Arrays.asList("NR", "NR", "NR", "NR", "NR", "NR", "NR", "NR"));
-
-
-		//génération du tableau contenant les noms des matériaux possibles
-		for(int i = 0 ; i < tabNomsMat.length ; i++)
-		{
-			for(int j = 0; j < 4 ; j++)
-			{
-				tmpLst.add(tabNomsMat[i]);
-			}
-		}
-
-
 		//Génération des Sommet
 		for(int cpt = 0; cpt < tabNomSmt.length ; cpt++)
 		{
@@ -239,7 +277,7 @@ public class Controleur
 
 			rndm = (int)(Math.random()*(40-cpt));
 
-			tmpMat = new Materiaux(tmpLst.remove(rndm));
+			tmpMat = new Materiaux(this.lstMateriaux.remove(rndm));
 
 			tmpZone = Integer.parseInt( tabNomSmt[cpt].substring( 1, 2 ) );
 			this.tabSommet.add( new Sommet( tmpZone, tmpCoul, tabCooX[cpt], tabCooY[cpt], tmpMat, false, null ) );
@@ -304,7 +342,7 @@ public class Controleur
 	}
 
 	/**
-	 * Méthode qui affecte les JetonsPossessions des joueurs.
+	 * Méthode qui affecte les JetonsPossessions aux joueurs.
 	 */
 	private void initJetonPossession()
 	{
@@ -355,15 +393,42 @@ public class Controleur
 	 */
 	public Sommet rechercheSommet(String numSmt)
 	{
+		int tailleNb = 1;
+
+		try{
+			if(Integer.parseInt(numSmt.charAt(1) + "") > -1); //Si un entier plus grand que 10
+				tailleNb = 2;
+		}catch (Exception e)
+		{
+
+		}
+
 		for (Sommet s : this.tabSommet)
 		{
-			if (s.getNumSom() == Integer.parseInt(numSmt.substring(0, 1)) && s.getNomCoul().equals(numSmt.substring(1)))
+			if (s.getNumSom() == Integer.parseInt(numSmt.substring(0, tailleNb)) && s.getNomCoul().equals(numSmt.substring(tailleNb)))
+			{
+				System.out.println(s + "Le sommet");
 				return s;
+			}
+
 		}
 		return null;
 	}
 
+	public Route rechercheRoute(Sommet smtDep, Sommet smtArr)
+	{
+		for(Route r : this.tabRoute)
+		{
+			if(r.getSommetDep() == smtDep && r.getSommetArr() == smtArr)
+				return r;
+		}
+		return null;
+	}
 
+	public ArrayList<String> getLstMateriaux()
+	{
+		return this.lstMateriaux;
+	}
 
 	/**
 	 * Méthode qui appelle la méthode de mise a jour de la carte.
@@ -404,14 +469,14 @@ public class Controleur
 	 * @param y l'ordonnée du sommet
 	 * @param estDepart vrai si on ajoute un sommet de départ, faux si non
 	 */
-	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y, boolean estDepart )
+	public void ajouterOuSupprimerSommet( int numSom, String nomCoul, int x, int y,Materiaux materiaux ,boolean estDepart )
 	{
-		Sommet tempSommet = new Sommet(y, nomCoul, x, y, null , estJeu,null) ;
+		Sommet tempSommet = new Sommet(numSom, nomCoul, x, y, materiaux , estJeu,null) ;
 		boolean tempEstSup = false;
 
 		for ( Sommet rt : this.tabSommet )
 		{
-			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepard() == estDepart)
+			if ( rt.getNumSom() == numSom &&  rt.possede(x, y) && rt.getDepart() == estDepart)
 			{
 				ArrayList<Route> tmpR = new ArrayList<>(this.tabRoute.size()/2);
 
@@ -429,7 +494,6 @@ public class Controleur
 					this.tabRoute.remove(r);
 				}
 
-
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;
@@ -439,24 +503,6 @@ public class Controleur
 		{
 			this.tabSommet.add( tempSommet );
 		}
-	}
-
-	/**
-	 * Méthode qui renvoie le booléen correspondant au joueur qui doit jouer.
-	 * @return vrai si c'est au tour du joueur 1, faux si c'est au tour du joueur 2.
-	 */
-	public boolean getTour()
-	{
-		return this.tourJ1;
-	}
-
-	/**
-	 * Méthode qui renvoie le booléen correspondant à la capacité du joueur de jouer.
-	 * @return vrai si c'est au tour du joueur j, faux si c'est au tour de l'autre joueur.
-	 */	
-	public boolean getTourJ( Joueur j )
-	{
-		return (j == this.getJoueur1() && this.tourJ1); 
 	}
 
 	/**
@@ -473,14 +519,15 @@ public class Controleur
 			if ( s.possede(x, y) )
 				return s;
 		}
-			
 		return null;
 	}
 
-	public void supprimerTout()
+	public void supprimerTout() throws IOException
 	{
 		this.tabSommet = new ArrayList<Sommet>(30);
+		this.tabSommet.add(new Sommet(0,"DEBUT", 500, 500, null, true));
 		this.tabRoute  = new ArrayList<Route>(40);
+		this.editionFichier.sauvegarde();
 	}
 
 	/**
@@ -492,6 +539,41 @@ public class Controleur
 	public void setSommet(int x, int y, Sommet som)
 	{
 		som.setX(x); som.setY(y);
+	}
+
+	public void setElementsTheme(String[] elements)
+	{
+		this.elementsTheme = elements;
+	}
+
+	public String[] getElementsTheme()
+	{
+		return this.elementsTheme;
+	}
+
+	public String getNomThemePrincipal()
+	{
+		return this.elementsTheme[0];
+	}
+
+	public String getNomThemeJ1()
+	{
+		return this.elementsTheme[1];
+	}
+
+	public String getNomThemeJ2()
+	{
+		return this.elementsTheme[2];
+	}
+
+	public String getNomThemeSommet()
+	{
+		return this.elementsTheme[3];
+	}
+
+	public String getNomThemeRoute()
+	{
+		return this.elementsTheme[4];
 	}
 
 	/**
