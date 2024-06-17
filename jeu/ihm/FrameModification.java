@@ -89,8 +89,8 @@ public class FrameModification extends JFrame implements ActionListener
 		this.menuiCreerSommet.addActionListener ( this );
 		this.menuiCreerRoute .addActionListener ( this );
 		this.menuiSave.addActionListener 		( this );
+		this.menuiRein.addActionListener 		( this );
 		this.menuiSupp.addActionListener 		( this );
-		this.menuiSave.addActionListener 		( this );
 		this.menuiQuitter.addActionListener 	( this );
 
 		this.ctrl = ctrl;
