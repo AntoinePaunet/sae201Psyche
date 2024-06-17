@@ -137,9 +137,7 @@ public class Controleur
 	 */
 	public boolean estValide(Route r)
 	{
-		for (Sommet s : tabSommet)
-			if (s.getDepart())
-				System.out.println(s);
+
 		if (r.getJoueur()!=null) {return false;}
 		
 		/*System.out.println(r);
@@ -243,10 +241,10 @@ public class Controleur
 		this.frameDemarrage.getFrameChoix().getFrameJeu().getPanelCarte().chargerImages(r);
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 		
-		if (r.getJoueur()==this.getJoueur1())
+		/*if (r.getJoueur()==this.getJoueur1())
 			this.editionFichier.ecrireScenario(1, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );
 		else 
-			this.editionFichier.ecrireScenario(2, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );
+			this.editionFichier.ecrireScenario(2, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );*/
 	}
 
 	/**
