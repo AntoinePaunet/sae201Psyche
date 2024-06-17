@@ -76,8 +76,4 @@
 2	1Gris	5Jaune
 1	2Jaune	5Jaune
 2	5Jaune	1Jaune
-<<<<<<< HEAD
 2	2Jaune	4Jaune
-=======
-2	2Jaune	4Jaune
->>>>>>> 2a9b47c532a835cf61db89791b55dab481567396

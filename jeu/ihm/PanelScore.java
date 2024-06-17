@@ -15,7 +15,7 @@ import javax.swing.JTable;
  * @author Anas AARAB,				IUT du Havre
  * @version 1.0 , 2024-05-23
  */
-public class PanelScore extends JPanel, AbstractTableModel
+public class PanelScore extends JPanel
 {
     private Controleur ctrl;
     private JTable table;
@@ -31,22 +31,22 @@ public class PanelScore extends JPanel, AbstractTableModel
 	{
         this.ctrl = ctrl;
 
-		this.ctrl.getJ1().score();
-		this.ctrl.getJ1().scoreSommet();
+		this.ctrl.getJoueur1().score();
+		this.ctrl.getJoueur1().scoreSommet();
 
-		this.ctrl.getJ2().score();
-		this.ctrl.getJ2().scoreSommet();
+		this.ctrl.getJoueur2().score();
+		this.ctrl.getJoueur2().scoreSommet();
 
-		this.tabJ1=this.ctrl.getJ1().getScore();
-		this.tabJ2=this.ctrl.getJ2().getScore();
+		this.tabJ1=this.ctrl.getJoueur2().getScore();
+		this.tabJ2=this.ctrl.getJoueur2().getScore();
 
-		this.table = new JTable(this.initDonnees());
+		this.table = new JTable();
 		this.add(this.table);
 
         this.setVisible(true);
     }
 
-	public 
+	
 
 
    

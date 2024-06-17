@@ -272,8 +272,8 @@ public class Joueur
 
 		for (int i=0; i < 6; i++)
 		{
-			temp = 0
-			for(int j=0; j < this.tabSommetRecup; j++)
+			temp = 0;
+			for(int j=0; j < this.tabSommetRecup.size(); j++)
 			{
 				if (this.tabSommetRecup.get(j).getNomCoul().equals(tempS[i]))
 					if (this.tabSommetRecup.get(j).getNumSom()>temp)

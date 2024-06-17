@@ -164,7 +164,11 @@ public class EditionFichier
 		int y = Integer.parseInt(smtInfo[3]);
 		String nomMat = smtInfo[4];
 
-		this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false));
+		if (nomMat.equals("null"))
+			this.tabSommet.add(new Sommet(num, nom, x, y, null, true));
+		else
+			this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), true));
+		
 		this.ctrl.setTabSommet(this.tabSommet);
 	}
 
@@ -216,7 +220,7 @@ public class EditionFichier
 				donnesFichier.indexOf("\n["));
 		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-		if(!(materiaux == null))
+		if(!(nomCoul == null))
 			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\n\n") + donneesRoutes;
 		else
 			donnesFichier = donneesVilles + (0      + "\t" + null 		 + "\t" + x + "\t" + y + "\t" + null			   + "\t" + true + "\n\n") + donneesRoutes;

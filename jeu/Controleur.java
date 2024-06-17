@@ -92,9 +92,8 @@ public class Controleur
 	{
 		if (r.getJoueur()!=null) {return false;}
 
-		System.out.println(r.getSommetDep().getMateriaux());
-		System.out.println(r.getSommetArr().getMateriaux());
-		System.out.println((r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null));
+		System.out.println(r);
+		System.out.println(r.getSommetDep().getMateriaux() == null || r.getSommetArr().getMateriaux() == null);
 		//verifie si l'un des deux sommet deja pris ou non
 		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
 			 
