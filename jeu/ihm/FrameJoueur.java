@@ -5,8 +5,8 @@ import jeu.metier.Joueur;
 import jeu.metier.Materiaux;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.util.Arrays;
+import java.awt.*;
+
 
 /**
  * Cette classe créé la Frame correspondant aux plateaux individuels des joueurs. Elle affiche leur score et leurs jetons.
@@ -89,15 +89,14 @@ public class FrameJoueur extends JFrame
 	 */
 	public void refresh()
 	{
-
 		this.panelBas.repaint();
 		this.panelDroite.repaint();
 
 		int x = 0;
 		int y = 500;
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
-
 		{
+			this.panelBas.repaint();
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
@@ -122,8 +121,6 @@ public class FrameJoueur extends JFrame
 				x += 60;
 			}
 		}
-
-		
 	}
 
 	/**

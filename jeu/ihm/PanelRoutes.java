@@ -102,7 +102,7 @@ public class PanelRoutes extends JPanel implements ActionListener {
 
         for (int cpt = 0; cpt < data.length; cpt++) {
 
-            data[cpt] = (tabVille.get(cpt).getId() +"");
+            data[cpt] = (tabVille.get(cpt).getId() +  " " + tabVille.get(cpt).getNumSom()+tabVille.get(cpt).getNomCoul());
 
         }
 
@@ -195,7 +195,9 @@ public class PanelRoutes extends JPanel implements ActionListener {
         } else if (!this.inputRoute.getText().isBlank())
         {
             villeDep = (String) this.lstSommetDep.getSelectedItem();
+            villeDep = villeDep.substring(0,villeDep.indexOf(" "));
             villeArr = (String) this.lstSommetArrive.getSelectedItem();
+            villeArr = villeArr.substring(0,villeArr.indexOf(" "));
             troncons = Integer.parseInt(this.inputRoute.getText());
         }
 
@@ -209,6 +211,7 @@ public class PanelRoutes extends JPanel implements ActionListener {
                 return;
             } else if (Integer.parseInt(this.inputRoute.getText()) < 0 || Integer.parseInt(this.inputRoute.getText()) > 2) {
                 this.lblErreur.setText("<html> Valeurs comprises entre  <br> 0 et 2. </html>");
+                return;
             } else{
 
 

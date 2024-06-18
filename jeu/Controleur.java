@@ -144,12 +144,10 @@ public class Controleur
 	 */
 	public boolean estValide(Route r)
 	{
-
 		if (r.getJoueur()!=null) {return false;}
 		
-		/*System.out.println(r);
 		System.out.println(r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
-*/
+
 		//verifie si l'un des deux sommet deja pris ou non
 		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
 	}
@@ -246,6 +244,8 @@ public class Controleur
 				}
 			}
 		}
+
+		System.out.println("FIn de parti : "+this.finPartie);
 
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
@@ -619,12 +619,16 @@ public class Controleur
 		return this.elementsTheme[4];
 	}
 
-	public Route getRoute(Sommet sommetDep, Sommet sommetArr, int nbTroncon)
+	public Route getRoute(Sommet sommetDep, Sommet sommetArr)
 	{
 		
 		for ( Route r : this.tabRoute)
+		{
+			
 			if ( r.getSommetDep().equals(sommetDep) && r.getSommetArr().equals(sommetArr))
 				return r;
+		}
+		
 		return null;
 	}
 

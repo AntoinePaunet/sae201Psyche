@@ -483,19 +483,29 @@ public class EditionFichier
 			{
 				String ligne = sc.nextLine();
 
+				System.out.println(ligne.length());
+				System.out.println( ligne );
 				
-				if ( etapeLecture <= numEtape )
+				if ( ligne.length() > 12 )
+					System.out.println(ligne.substring(ligne.length()-15));
+				
+				if ( etapeLecture == numEtape )
 				{
 					String[] action = ligne.split(" ");
-					
+
 					sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
 					sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
 					nbTroncons = Integer.parseInt( action[4] );
 
-					this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr, nbTroncons) );
+					System.out.println( sommetDep.getId() );
+					System.out.println( sommetArr.getId());
+
+					this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
 
 					break;
 				}
+
+				etapeLecture +=1;
 			}
 
 			sc.close();
