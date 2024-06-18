@@ -32,6 +32,7 @@ public class PanelCarte extends JPanel
 	private BufferedImage pionJoueur1;
 	private BufferedImage pionJoueur2;
 
+	private boolean clicked = false;
 
 	/**
 	 * Constructeur du panel
@@ -78,15 +79,10 @@ public class PanelCarte extends JPanel
 				g2.drawImage(this.pionJoueur2, 40, 20, this);
 
 		}
-		
-
 
 		this.g2.setStroke (new BasicStroke (2.0f));
 		int adjCercle = this.RAYON / 2 ;
 		this.g2.setColor( new Color(000060) );
-		
-
-		
 		
 
 		for(Route r : ctrl.getTabRoute())
@@ -151,7 +147,7 @@ public class PanelCarte extends JPanel
 			if (s.getDepart())
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX()+10, s.getY()-10,50,50, this);
 
-			if (s.getNumSom()!=0)
+			if (!s.getNomCoul().equals("DEPART"))
 			{
 				g2.setFont(new Font("Arial", Font.BOLD, 18));
 				this.g2.drawString(s.getNumSom()+"", s.getX(), s.getY()-10 );
@@ -173,38 +169,47 @@ public class PanelCarte extends JPanel
 
 		private Sommet sommetChoisi ;
 
-	/**
-	 * Méthode qui gêre l'appui sur la souris.
-	 * @param e l'action de la souris
-	 */
+		/**
+		 * Méthode qui gêre l'appui sur la souris.
+		 * @param e l'action de la souris
+		 */
+
+		public void mouseReleased( MouseEvent e)
+		{
+			clicked = false;
+		}
+
 		public void mousePressed( MouseEvent e)
 		{
-		
-			if (  PanelCarte.this.ctrl.getEstJeu() == true )
+			if(!clicked)
 			{
-				for(Route r : ctrl.getTabRoute())
+				clicked = true;
+				if (  PanelCarte.this.ctrl.getEstJeu() == true )
 				{
-					this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
-					this.ptSmt2 = new Point(r.getSommetArr().getX(), r.getSommetArr().getY());
-
-					if(isNearLine(e.getPoint()))
+					for(Route r : ctrl.getTabRoute())
 					{
-						if (ctrl.getSommet( e.getX(), e.getY() )==null)
+						this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
+						this.ptSmt2 = new Point(r.getSommetArr().getX(), r.getSommetArr().getY());
+
+						if(isNearLine(e.getPoint()))
 						{
-							try 
+							if (ctrl.getSommet( e.getX(), e.getY() )==null)
 							{
-								ctrl.jouer(r);
-							} catch (IOException ex) {
-								throw new RuntimeException(ex);
+								try
+								{
+									ctrl.jouer(r);
+								} catch (IOException ex) {
+									throw new RuntimeException(ex);
+								}
 							}
+
 						}
-							
 					}
 				}
-			}
 
-			if (  PanelCarte.this.ctrl.getEstJeu() == false )
-				this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
+				if (  PanelCarte.this.ctrl.getEstJeu() == false )
+					this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
+			}
 		}
 
 		
