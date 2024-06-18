@@ -67,7 +67,6 @@ public class FrameJoueur extends JFrame
 
 	/**
 	 * Méthode qui met a jour le nom de la frame des joueurs en fonction de leur tour de jouer.
-	 * @param j le numéro correspondant au joueur
 	 * @param ctrl le Controleur qui lance la frame
 	 * @return Le titre de la frame
 	 */
@@ -94,7 +93,6 @@ public class FrameJoueur extends JFrame
 		int x = 65;
 		int y = 57;
 
-
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
 			this.panelBas.repaint();
@@ -108,7 +106,6 @@ public class FrameJoueur extends JFrame
 						this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
 					}
 				}
-
 				x += 54;
 			}
 			y += 54;
