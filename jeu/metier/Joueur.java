@@ -257,7 +257,6 @@ public class Joueur
 
 		this.score[3]=this.nbJetonsUtiliser; // + les points qui viennent en récupérant la valeur sur un sommet
 
-		
 		this.detailScore = detail;
 
 	}
@@ -293,6 +292,13 @@ public class Joueur
 	public int getScoreJaune     () { return this.getScore()[8] ; }
 	public int getScoreMarron    () { return this.getScore()[9] ; }
 	//public int getScorePiece() { return this.getScore()[10]; }
+	public int getSommeScore     ()
+	{
+		int totalScore = 0;
+		for (int i = 0; i < this.getScore().length ; i++)
+			totalScore += this.getScore()[i];
+		return totalScore;
+	}
 
 	/**
 	 * Renvoie le nom du Joueur sous forme texte.

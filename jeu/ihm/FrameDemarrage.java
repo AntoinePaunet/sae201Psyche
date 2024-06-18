@@ -2,12 +2,13 @@ package jeu.ihm;
 
 import jeu.Controleur;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
 
 /**
  * Cette classe créé l'interface graphique gérée par le controleur.
@@ -23,11 +24,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
 {
 	private Controleur ctrl;
 
-	private PanelBoutons panelBoutons          ;
-
 	private JMenuItem    menuiOuvrir           ;
 	private JMenuItem    menuiScenario         ;
 	private JMenuItem    menuiQuitter          ;
+	private PanelBoutons panelBoutons          ;
+	private PanelFond	 panelFond			   ;
 
 	private FrameChoix	      frameChoix       ;
 	private FrameModification frameModification;
@@ -41,11 +42,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	{
 		this.ctrl = ctrl;
 		this.setTitle   ("L'age de psyché");
-		this.setSize    (700,650  );
-		this.setLocation(0, 0             );
-		this.setLayout(new FlowLayout());
+		this.setSize    (554,508  );
+		this.setLocation(700, 0             );
 
-
+		this.panelFond    = new PanelFond();
 		this.panelBoutons = new PanelBoutons(this.ctrl);
 		
 		// Création et ajout de la barre de menu
@@ -69,7 +69,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		this.setJMenuBar( menuBar );
 		
 		//Création et ajout du Panel Jouer
-		this.add(this.panelBoutons);
+
+		this.add(panelFond);
+
+		panelFond.add(this.panelBoutons);
+
+
 
 		// Création des raccourcis clavier
 		menuOuvrir.setMnemonic('O');
@@ -90,8 +95,36 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		// Gestion de la fermeture de la fenêtre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible (true);
-		
 	}
+
+	public class PanelFond extends JPanel
+	{
+		private BufferedImage image;
+		private Graphics2D g2;
+
+		public PanelFond()
+		{
+			this.setLayout(new FlowLayout());
+			try
+			{
+				this.image = ImageIO.read(new File("jeu/src/images/fond_accueil.jpg"));
+			}
+			catch( IOException e ) { e.printStackTrace(); }
+		}
+	
+		/**
+		* Méthode de dessins
+		* @param g l'instance de Graphics2D utilisée sur ce panel
+		*/
+		public void paintComponent(Graphics g)
+		{
+			super.paintComponent(g);
+			this.g2 = (Graphics2D) g;
+			g2.drawImage(this.image, 0,0, this);
+		}
+	}
+
+		
 
 	/**
 	 * Réalise une action lorsqu'on clique sur la menubar
@@ -131,9 +164,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				try {
+				try
+				{
 					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
-				} catch (IOException ex) {
+				}
+				catch( IOException ex )
+				{
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 				
@@ -215,6 +251,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			else
 			{
 				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
+				this.panelBoutons.lblErreur.setOpaque(true);
 			}
 			
 		}
@@ -230,6 +267,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			else
 			{
 				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
+				this.panelBoutons.lblErreur.setOpaque(true);
 			}			
 		}
 	}
@@ -251,30 +289,38 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	{
 		private JPanel  panelBtnJouer, panelBtnModifier ;
 		private JButton btnJouer, btnModifier           ;
-		private JLabel  lblTheme                        ;
+		private JLabel  lblTheme, lblTitre              ;
 		private JLabel  lblErreur                       ;
 		private List    lstTheme                        ;
 
 		private Controleur ctrl                         ;
 
-	/**
-	 * Constructeur du panel contenant les boutons Jouer et Modifier
-	 */
+		/**
+		* Constructeur du panel contenant les boutons Jouer et Modifier
+		*/
 		public PanelBoutons(Controleur ctrl)
 		{
 			this.setLayout(new GridLayout(6,1));
 			this.ctrl = ctrl;
+			this.setOpaque(false);
 
 			// Création des composants;
 			this.panelBtnJouer    = new JPanel();
 			this.panelBtnModifier = new JPanel();
 
+
+			this.lblTitre    = new JLabel("L'ÂGE DE PSYCHE");
 			this.btnJouer    = new JButton("Jouer"             );
 			this.btnModifier = new JButton("Modifier une carte");
 			this.lblTheme    = new JLabel ("Selection du thème");
 			this.lstTheme    = new List   (                         );
 			this.lblErreur   = new JLabel (""                  );
 
+			this.lblTitre.setFont(new Font("Arial", Font.BOLD, 30));
+			this.lblTitre.setOpaque(true);
+			this.panelBtnJouer.setOpaque(false);
+			this.panelBtnModifier.setOpaque(false);
+			this.lblTheme.setOpaque(true);
 
 			for (String s : ctrl.getEditionFichier().lectureNomTheme())
 			{
@@ -284,9 +330,10 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				
 		
 			this.panelBtnModifier.add( this.btnModifier );
-			this.panelBtnJouer.add   (this.btnJouer     );
+			this.panelBtnJouer.add   ( this.btnJouer    );
 
-			this.add(new JLabel("")       );
+
+			this.add(this.lblTitre		  );
 			this.add(this.panelBtnModifier);
 			this.add(this.panelBtnJouer   );
 			this.add(this.lblTheme        );
@@ -295,8 +342,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		}
 
 		/**
-		 * Methode qui permet de changer thème du jeu, en fonction de l'item selectionné dans lstTheme.
-		 */
+		* Methode qui permet de changer thème du jeu, en fonction de l'item selectionné dans lstTheme.
+		*/
 		public void itemStateChanged(ItemEvent e)
 		{
 			if (e.getStateChange() == ItemEvent.SELECTED)
@@ -304,16 +351,15 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				// Appeler initTheme avec l'index de l'élément sélectionné
 				this.ctrl.getEditionFichier().initTheme(this.lstTheme.getSelectedIndex()+1);
 				this.lblErreur.setText("");
+				this.lblErreur.setOpaque(false);
 			}
 		}
 	}
-
-	
-/*
+	/*
 	public static void main (String[]args) throws IOException
 	{
 		Controleur ctrl = new Controleur();
 		new FrameDemarrage(ctrl);
 	}
-*/
+	*/
 }

@@ -26,8 +26,8 @@ public class FrameScore extends JFrame
 	public FrameScore(Controleur ctrl)
 	{
 		this.setTitle   ( "Résultat de la partie"  );
-		this.setSize    ( 400, 800 );
-		this.setLocation( 500,500    );
+		this.setSize    ( 500, 650 );
+		this.setLocation( 500,100    );
 		this.ctrl=ctrl;
 
 		this.panelDesScore = new PanelScore( this.ctrl );
@@ -38,8 +38,4 @@ public class FrameScore extends JFrame
 		this.setVisible(true);
 	}
 
-	public static void main( String args[] )
-	{
-		new FrameScore(null);
-	}
 }
