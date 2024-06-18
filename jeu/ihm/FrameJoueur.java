@@ -80,8 +80,8 @@ public class FrameJoueur extends JFrame
 		else // si c'est le tour du Joueur 2
 			s += String.format("%-40s","en attente de l'autre joueur ... " );
 
-
 		s += "Votre score : " + String.valueOf(this.joueur.getScoreRoute());
+		this.setTitle(s);
 		return s;
 	}
 
