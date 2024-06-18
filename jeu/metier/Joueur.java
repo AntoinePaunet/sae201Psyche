@@ -40,7 +40,7 @@ public class Joueur
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
 		this.nbJetonsUtiliser=0;
-		this.score = new int[11];
+		this.tabScore = new int[11];
 		this.ctrl = ctrl;
 	}
 
