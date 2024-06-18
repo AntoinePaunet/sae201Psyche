@@ -112,16 +112,21 @@ public class FrameJeu extends JFrame implements ActionListener
 			if ( this.ctrl.getNbEtapeScenario() > 0 )
 			{
 				this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() - 1 );
-				//System.out.println( this.ctrl.getNbEtapeScenario() );
+				System.out.println( "Annuler : " + this.ctrl.getNbEtapeScenario() );
 
 			}
 			
 			//System.out.println( this.ctrl.getNbEtapeScenario() );
 		
-			this.remove( this.panelCarte );
-			this.panelCarte = new PanelCarte( this.ctrl );
-			this.panelCarte.add( new JLabel("New Pannel") );
+			try
+			{
+				this.ctrl.getEditionFichier().lectureFichier("data.txt", false);
 
+			}
+			catch ( IOException y )
+			{
+				System.out.println(y.getStackTrace());
+			}
 
 			
 			try
@@ -133,14 +138,14 @@ public class FrameJeu extends JFrame implements ActionListener
 			{
 				System.out.println( t.getStackTrace() );
 			}
-
-			this.add(this.panelCarte);
+			this.ctrl.setTourJ1();
 			this.panelCarte.repaint();
 
 		}
 
 		if ( e.getSource() == this.menuiRetablir )
 		{
+			System.out.println( "ADd action : " + this.ctrl.getNbEtapeScenario()  );
 			// CTRL + Y
 			try
 			{
