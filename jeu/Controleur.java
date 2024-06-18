@@ -205,7 +205,6 @@ public class Controleur
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetArr());
 
-					this.j1.utiliserUnJetons();
 					
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
@@ -221,8 +220,6 @@ public class Controleur
 					
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetArr());
-
-					this.j2.utiliserUnJetons();
 					
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
