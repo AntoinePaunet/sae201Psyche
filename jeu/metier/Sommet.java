@@ -131,10 +131,7 @@ public class Sommet
 	 */
 	public Materiaux prendreMateriaux ()
 	{
-		Materiaux temp=this.materiaux;
-
-		this.materiaux=null;
-		return temp;
+		return this.materiaux;
 	}
 
     public String    toString()     { return "Num : " + this.numSom + " Coul : " + this.nomCoul + " Depart " + this.depart + " x : " + this.x + " y : " + this.y + " Matériau : " + this.materiaux + "\n"; }

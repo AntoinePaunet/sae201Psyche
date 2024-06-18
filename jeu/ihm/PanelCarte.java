@@ -141,7 +141,7 @@ public class PanelCarte extends JPanel
 
 		for (Sommet s : ctrl.getTabSommet())
 		{
-			if (s.getMateriaux()==null || !this.ctrl.getEstJeu() )
+			if (s.getJoueur()!=null || !this.ctrl.getEstJeu() )
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX()-20, s.getY()-40, this);
 			else
 			{
