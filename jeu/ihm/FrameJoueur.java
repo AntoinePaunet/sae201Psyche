@@ -5,7 +5,11 @@ import jeu.metier.Joueur;
 import jeu.metier.Materiaux;
 
 import javax.swing.*;
+<<<<<<< HEAD
 import java.util.Arrays;
+=======
+import java.awt.*;
+>>>>>>> refs/remotes/origin/main
 
 /**
  * Cette classe créé la Frame correspondant aux plateaux individuels des joueurs. Elle affiche leur score et leurs jetons.
@@ -20,6 +24,8 @@ import java.util.Arrays;
 public class FrameJoueur extends JFrame
 {
 	private JLayeredPane panelFond;
+	private JPanel 		 panelDroite;
+	private JPanel 		 panelBas;
 
 	private Controleur ctrl;
 	private Joueur joueur;
@@ -36,21 +42,24 @@ public class FrameJoueur extends JFrame
 		this.joueur = j;
 		this.ctrl = ctrl;
 		this.setTitle( this.majTitre(this.ctrl) );
-		this.setSize( 569, 436 );
+		this.setSize( 569, 500 );
 		this.panelFond = new JLayeredPane();
+
+		this.panelBas=new PanelJetons(ctrl, j);
+		this.add(this.panelBas, BorderLayout.SOUTH);
 
 		if( j == this.ctrl.getJoueur1() )
 		{
-			this.setLocation( 1250, 0 );
+			this.setLocation( 1300, 0 );
 			this.ajoutImage(0,0, "plateau_joueur_1.png", 0);
 		}
 		else
 		{
-			this.setLocation( 1250, 550 );
+			this.setLocation( 1300, 550 );
 			this.ajoutImage(0,0, "plateau_joueur_2.png", 0);
 		}
 
-		this.add( this.panelFond );
+		this.add( this.panelFond, BorderLayout.CENTER );
 		this.refresh();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -80,11 +89,19 @@ public class FrameJoueur extends JFrame
 	 */
 	public void refresh()
 	{
+<<<<<<< HEAD
 		int x = 65;
 		int y = 57;
 
 
 		for(int i = 0 ; i < this.joueur.getTableMateriaux().length ; i++)
+=======
+		this.panelBas.repaint();
+
+		int x = 0;
+		int y = 500;
+		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
+>>>>>>> refs/remotes/origin/main
 		{
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
@@ -110,6 +127,8 @@ public class FrameJoueur extends JFrame
 				x += 60;
 			}
 		}
+
+		
 	}
 
 	/**

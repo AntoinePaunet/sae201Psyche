@@ -1,2 +1,3 @@
 Espace	Corporation Solaire	Syndicat Astral	Mine	Route
 Pays	Pays1	Pays2	Ville	Autoroute
+2nde Guerre Mondiale	Alliées	Axe	Camps	Chemin de fer

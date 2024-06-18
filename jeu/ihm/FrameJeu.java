@@ -30,7 +30,7 @@ public class FrameJeu extends JFrame implements ActionListener
 	public FrameJeu(Controleur ctrl)
 	{
 		this.setTitle("L'Âge de Psyché");
-		this.setSize    ( 1269,1122 );
+		this.setSize    ( 1300,1080 );
 		this.setLocation(  0, 0 );
 		this.ctrl = ctrl;
 
@@ -109,11 +109,27 @@ public class FrameJeu extends JFrame implements ActionListener
 		if ( e.getSource() == this.menuiAnnuler )
 		{
 			// CTRL + Z
+
+
 		}
 
 		if ( e.getSource() == this.menuiRetablir )
 		{
 			// CTRL + Y
+
+			this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() + 1 );
+			
+
+			try
+			{
+				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(),ctrl.getNbEtapeScenario());
+
+			}
+			catch ( IOException r)
+			{
+				System.out.println( r.getStackTrace() );
+			}
+
 		}
 	}
 
