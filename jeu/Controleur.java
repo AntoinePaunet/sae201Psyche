@@ -264,9 +264,16 @@ public class Controleur
 	public void majFrameJoueur( Joueur j , Controleur ctrl )
 	{
 		if( j == this.j1 )
+		{
 			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
-		else
 			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
+		}
+		else
+		{	
+			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
+			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
+		}
+			
 	}
 
 	/**
