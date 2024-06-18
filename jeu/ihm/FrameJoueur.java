@@ -48,7 +48,7 @@ public class FrameJoueur extends JFrame
 		this.panelDroite = new PanelMine (ctrl, j);
 		this.add(this.panelDroite, BorderLayout.EAST);
 
-		if( j == this.ctrl.getJoueur1() )
+		if( this.joueur == this.ctrl.getJoueur1() )
 		{
 			this.setLocation( 1300, 0 );
 			this.ajoutImage(0,0, "plateau_joueur_1.png", 0);
