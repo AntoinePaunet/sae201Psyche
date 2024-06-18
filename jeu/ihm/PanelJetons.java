@@ -37,7 +37,7 @@ public class PanelJetons extends JPanel
 		this.joueur=joueur;
 
 		this.setPreferredSize(new Dimension(300, 50));
-		this.setBackground (new Color (000000));
+		this.setBackground (new Color (208,208,208));
 
 		if (this.joueur==this.ctrl.getJoueur1())
 			this.j=1;
@@ -53,7 +53,7 @@ public class PanelJetons extends JPanel
 		this.g2 = (Graphics2D) g;
 		int temp=0;
 
-		this.g2.setBackground(new Color (000000));
+		this.g2.setBackground(new Color (208,208,208));
 		this.g2.drawImage(getToolkit().getImage("../src/images/"+ this.ctrl.getNomThemePrincipal() +"/pion_joueur_"+this.j+".png"), 10,10,20,20, this);
 
 		Font font = new Font("Arial", Font.BOLD, 25);

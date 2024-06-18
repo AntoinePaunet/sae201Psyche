@@ -39,7 +39,7 @@ public class FrameJoueur extends JFrame
 		this.joueur = j;
 		this.ctrl = ctrl;
 		this.setTitle( this.majTitre(this.ctrl) );
-		this.setSize( 569, 500 );
+		this.setSize( 680, 500 );
 		this.panelFond = new JLayeredPane();
 
 		this.panelBas=new PanelJetons(ctrl, j);
