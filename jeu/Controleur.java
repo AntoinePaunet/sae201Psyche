@@ -76,7 +76,6 @@ public class Controleur
 		}
 	}
 
-
 	/**
 	 * A completer.
 	 * @return La liste des sommets

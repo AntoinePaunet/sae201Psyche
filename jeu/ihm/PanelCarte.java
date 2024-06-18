@@ -76,7 +76,7 @@ public class PanelCarte extends JPanel
 
 		
 
-		g2.drawImage(this.image, 20,0, this);
+		g2.drawImage(this.image, 0,0, this);
 		if (ctrl.getEstJeu())
 		{
 			pointsJ1 = pointsJ1 % 100;
@@ -121,7 +121,6 @@ public class PanelCarte extends JPanel
 			int x2 = r.getSommetArr().getX(), y2 = r.getSommetArr().getY();
 
 			int vec1, vec2;
-			
 
 			vec1=0;
 			vec2=0;
@@ -168,7 +167,6 @@ public class PanelCarte extends JPanel
 
 		for (Sommet s : ctrl.getTabSommet())
 		{
-
 			if (s.getMateriaux()==null || !this.ctrl.getEstJeu() )
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX()-20, s.getY()-40, this);
 			else
@@ -179,15 +177,10 @@ public class PanelCarte extends JPanel
 			if (s.getDepart())
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX(), s.getY(),30,30, this);
 
-			
-			Font font = new Font("Arial", Font.BOLD, 18);
-			g2.setFont(font);
+			g2.setFont(new Font("Arial", Font.BOLD, 18));
 			this.g2.drawString(s.getNumSom()+"", s.getX(), s.getY()-10 );
-				
 		}
 	}
-
-
 
 	/**
 	 * Classe privée permettant de gêrer les actions de la souris.
@@ -220,27 +213,23 @@ public class PanelCarte extends JPanel
 					{
 						if (ctrl.getSommet( e.getX(), e.getY() )==null)
 						{
-							try {
-								ctrl.jouer(r);
-							} catch (IOException ex) {
-								throw new RuntimeException(ex);
-							}
+							try { ctrl.jouer(r); }
+							catch( IOException ex ) { throw new RuntimeException(ex); }
 						}
 							
 					}
 				}
 			}
-			
-
 			//System.out.println(PanelCarte.this.ctrl.getEstJeu());
 
 			if (  PanelCarte.this.ctrl.getEstJeu() == false )
 				this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
-			
+			/*
 			if ( this.sommetChoisi != null )
 			{
-				//System.out.println("Sommet choisie " + sommetChoisi.getNumSom());
+				System.out.println("Sommet choisie " + sommetChoisi.getNumSom());
 			}
+			*/
 		}
 
 		
