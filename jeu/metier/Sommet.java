@@ -117,6 +117,11 @@ public class Sommet
 		return false;
     }
 
+	public boolean equals(Sommet som)
+	{
+		return this.id  == som.id ;
+	}
+
 			
 
      /**
