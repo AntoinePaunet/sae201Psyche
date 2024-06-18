@@ -37,7 +37,7 @@ public class EditionFichier
 	 */
 	public void initFicher(File fichier) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
-			writer.write("[SOMMET]\n\n[ROUTES]\n\n[JOUEUR1]\n\n[JOUEUR2]");
+			writer.write("[SOMMET]\n\n[ROUTES]\n");
 			// System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
 		} catch (IOException e) {
 		}
@@ -358,7 +358,7 @@ public class EditionFichier
 
 	public void supprimer() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.fichier))) {
-			writer.write("[SOMMET]\n\n[ROUTES]\n\n[JOUEUR 1]\n\n[JOUEUR 2]");
+			writer.write("[SOMMET]\n\n[ROUTES]");
 		} catch (IOException e) {
 		}
 	}
