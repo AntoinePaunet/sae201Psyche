@@ -9,7 +9,6 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
 
 /**
  * Cette classe créé l'interface graphique gérée par le controleur.
@@ -165,9 +164,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				try {
+				try
+				{
 					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
-				} catch (IOException ex) {
+				}
+				catch( IOException ex )
+				{
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 				
@@ -259,6 +261,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			else
 			{
 				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
+				this.panelBoutons.lblErreur.setOpaque(true);
 			}			
 		}
 	}
