@@ -89,7 +89,10 @@ public class Route
 	 * Méthode qui permet de modifier le Joueur en possesion de cette Route.
 	 * @param j le nouveau Joueur en possesion de cette Route
 	 */
-	public void setJoueur (Joueur j) {this.joueur = j;}
+	public void setJoueur (Joueur j)
+	{
+		this.joueur = j;
+	}
 
 	/**
 	 * Renvoie les informations de la Route sous forme texte.

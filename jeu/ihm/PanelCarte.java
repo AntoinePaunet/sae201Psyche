@@ -141,9 +141,9 @@ public class PanelCarte extends JPanel
 
 		for (Sommet s : ctrl.getTabSommet())
 		{
-			if (s.getMateriaux()==null || !this.ctrl.getEstJeu() )
+			if (s.getJoueur()!=null || !this.ctrl.getEstJeu() )
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX()-20, s.getY()-40, this);
-			else
+			else if (!s.getDepart())
 			{
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"), s.getX()-20, s.getY()-40, this);
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+s.getMateriaux().getNom()+".png"), s.getX()-10, s.getY()+15, 25,25, this);
@@ -202,16 +202,9 @@ public class PanelCarte extends JPanel
 					}
 				}
 			}
-			//System.out.println(PanelCarte.this.ctrl.getEstJeu());
 
 			if (  PanelCarte.this.ctrl.getEstJeu() == false )
 				this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
-			/*
-			if ( this.sommetChoisi != null )
-			{
-				System.out.println("Sommet choisie " + sommetChoisi.getNumSom());
-			}
-			*/
 		}
 
 		

@@ -20,7 +20,6 @@ public class Joueur
 
 	private Materiaux[][] tabPlateau;
 	private Materiaux[] tabPiece;
-	private ArrayList<JetonPossession> tabJetonPossession;
 	private int 		nbJetonsUtiliser;
 	private ArrayList<Sommet> tabSommetRecup;
 
@@ -37,10 +36,9 @@ public class Joueur
 		this.nomJoueur = "default";
 		this.tabPlateau = new Materiaux [4][8];
 		this.tabPiece   = new Materiaux [8];
-		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
 		this.nbJetonsUtiliser=0;
-		this.score = new int[11];
+		this.tabScore = new int[11];
 		this.ctrl = ctrl;
 	}
 
@@ -170,37 +168,13 @@ public class Joueur
 	{
 		this.tabSommetRecup.add(s);
 		this.ajouterMateriaux(s.prendreMateriaux());
+		if(!s.getNomCoul().equals("DEPART"))
+			s.setJoueur(this);
 	}
 
 	public ArrayList<Sommet> getSommetRecup ()
 	{
 		return this.tabSommetRecup;
-	}
-
-	/**
-	 * Méthode qui permet de donner des JetonPossession au joueur.
-	 * @param j le jeton a ajouter
-	 */
-	public void addJetonPossession(JetonPossession j)
-	{
-		this.tabJetonPossession.add(j);
-	}
-
-	/**
-	 * Renvoie les JetonPossession du joueur.
-	 * @return les JetonPossession du joueur
-	 */
-	public ArrayList<JetonPossession> getTabJetonPossession ()
-	{
-		return this.tabJetonPossession;
-	}
-
-	/**
-	 * Méthode qui enleve un JetonPossession du joueur afin de simuler son utilisation.
-	 */
-	public void enleverJetonsPossession ()
-	{
-		this.tabJetonPossession.remove(0);
 	}
 
 
