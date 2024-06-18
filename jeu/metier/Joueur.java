@@ -20,7 +20,6 @@ public class Joueur
 
 	private Materiaux[][] tabPlateau;
 	private Materiaux[] tabPiece;
-	private ArrayList<JetonPossession> tabJetonPossession;
 	private int 		nbJetonsUtiliser;
 	private ArrayList<Sommet> tabSommetRecup;
 
@@ -37,7 +36,6 @@ public class Joueur
 		this.nomJoueur = "default";
 		this.tabPlateau = new Materiaux [4][8];
 		this.tabPiece   = new Materiaux [8];
-		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
 		this.nbJetonsUtiliser=0;
 		this.tabScore = new int[11];
@@ -170,37 +168,13 @@ public class Joueur
 	{
 		this.tabSommetRecup.add(s);
 		this.ajouterMateriaux(s.prendreMateriaux());
+		if(!s.getNomCoul().equals("DEPART"))
+			s.setJoueur(this);
 	}
 
 	public ArrayList<Sommet> getSommetRecup ()
 	{
 		return this.tabSommetRecup;
-	}
-
-	/**
-	 * Méthode qui permet de donner des JetonPossession au joueur.
-	 * @param j le jeton a ajouter
-	 */
-	public void addJetonPossession(JetonPossession j)
-	{
-		this.tabJetonPossession.add(j);
-	}
-
-	/**
-	 * Renvoie les JetonPossession du joueur.
-	 * @return les JetonPossession du joueur
-	 */
-	public ArrayList<JetonPossession> getTabJetonPossession ()
-	{
-		return this.tabJetonPossession;
-	}
-
-	/**
-	 * Méthode qui enleve un JetonPossession du joueur afin de simuler son utilisation.
-	 */
-	public void enleverJetonsPossession ()
-	{
-		this.tabJetonPossession.remove(0);
 	}
 
 
@@ -228,6 +202,7 @@ public class Joueur
 	public void scoreFin()
 	{
 		int[] scoresLig = {0,4,9,16,25,36,49,64};
+		int[] tabScoreCol = {0,2,10,20};
 		//Affichage des détails
 		int  scoreMonnaie, scoreCol, scoreLig;
 
@@ -251,7 +226,7 @@ public class Joueur
 			{
 				scoreCol = 0;
 				if  (this.tabPlateau[i][cptCol] != null)
-					scoreCol=scoresLig[i];
+					scoreCol=tabScoreCol[i];
 
 				this.tabScore[1] += scoreCol;
 
@@ -262,19 +237,21 @@ public class Joueur
 		//Compteur pour le score des lignes
 		int cptRessource= 0;		
 
-		for(int i = 0; i < this.tabPlateau.length ; i++) //0 - 3
+		for(int i = 0; i < this.tabPlateau.length ; i++) //0 - 4
 		{
 			scoreLig = 0;
-			for(int j = 0 ; j < this.tabPlateau[i].length ; j++) //0 - 7
+			cptRessource=0;
+			for(int j = 0 ; j < this.tabPlateau[i].length ; j++) //0 - 8
 			{
 				if(this.tabPlateau[i][j] != null)
 					cptRessource++;
 			}
 
-			scoreLig += scoresLig[cptRessource];
-			this.tabScore[2]  += scoreLig;
-
-			cptRessource = 0;
+			if (cptRessource!=0)
+			{
+				scoreLig += scoresLig[cptRessource-1];
+				this.tabScore[2]  += scoreLig;
+			}
 		}
 
 		tabScore[3]=this.nbJetonsUtiliser; // + les points qui viennent en récupérant la valeur sur un sommet

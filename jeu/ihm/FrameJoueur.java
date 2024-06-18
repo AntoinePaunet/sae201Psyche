@@ -96,13 +96,15 @@ public class FrameJoueur extends JFrame
 	 */
 	public void refresh()
 	{
+		this.panelBas.repaint();
+		this.panelDroite.repaint();
+
 		int x = 65;
 		int y = 57;
 
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
-			this.panelBas.repaint();
-			this.panelDroite.repaint();
+			
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
