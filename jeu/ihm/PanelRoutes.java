@@ -137,8 +137,8 @@ public class PanelRoutes extends JPanel implements ActionListener {
         for ( int lig = 0; lig < ( lstRoute ).size(); lig++ )
         {
 
-            data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getId() +"";
-            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getId() +"";
+            data[ lig ][ 0 ] = ( lstRoute.get( lig ) ).getSommetDep().getId() +  " " + lstRoute.get(lig).getSommetDep().getNumSom() + lstRoute.get(lig).getSommetDep().getNomCoul();
+            data[ lig ][ 1 ] = ( lstRoute.get( lig ) ).getSommetArr().getId() +  " " + lstRoute.get(lig).getSommetArr().getNumSom() + lstRoute.get(lig).getSommetArr().getNomCoul();
             data[ lig ][ 2 ] = ( lstRoute.get( lig ) ).getNbTroncons() +"";
         }
 
@@ -190,8 +190,11 @@ public class PanelRoutes extends JPanel implements ActionListener {
 
             // Get data from the selected row
             villeDep = (String) model.getValueAt(selectedRowIndex, 0);
+            villeDep = villeDep.substring(0,villeDep.indexOf(" "));
             villeArr = (String) model.getValueAt(selectedRowIndex, 1);
+            villeArr = villeArr.substring(0,villeArr.indexOf(" "));
             troncons = Integer.parseInt((String) model.getValueAt(selectedRowIndex, 2));
+
         } else if (!this.inputRoute.getText().isBlank())
         {
             villeDep = (String) this.lstSommetDep.getSelectedItem();
@@ -209,7 +212,7 @@ public class PanelRoutes extends JPanel implements ActionListener {
             ) {
                 this.lblErreur.setText("<html> Tous les champs  <br> ne sont pas complétés. </html>");
                 return;
-            } else if (Integer.parseInt(this.inputRoute.getText()) < 0 || Integer.parseInt(this.inputRoute.getText()) > 2) {
+            } else if (!this.inputRoute.getText().isBlank() && (Integer.parseInt(this.inputRoute.getText()) < 0 || Integer.parseInt(this.inputRoute.getText()) > 2)) {
                 this.lblErreur.setText("<html> Valeurs comprises entre  <br> 0 et 2. </html>");
                 return;
             } else{
@@ -218,7 +221,7 @@ public class PanelRoutes extends JPanel implements ActionListener {
                 Sommet sDep = ctrl.rechercheSommet(villeDep);
                 Sommet sArr = ctrl.rechercheSommet(villeArr);
 
-                if(ctrl.rechercheRoute(sDep, sArr) != null || ctrl.rechercheRoute(sArr, sDep) != null)
+                if((ctrl.rechercheRoute(sDep, sArr) != null || ctrl.rechercheRoute(sArr, sDep) != null) && selectedRowIndex == -1)
                 {
                     this.lblErreur.setText("<html> Ce sommet existe déjà.</html>");
                     return;

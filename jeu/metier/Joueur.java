@@ -21,8 +21,7 @@ public class Joueur
 	private int 		nbJetonsUtiliser;
 	private ArrayList<Sommet> tabSommetRecup;
 
-	private int[] score ;
-	private String detailScore;
+	private int[] tabScore ;
 
 	private String nomJoueur;
 
@@ -37,7 +36,7 @@ public class Joueur
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
 		this.nbJetonsUtiliser=0;
-		this.score = new int[11];
+		this.tabScore = new int[11];
 	}
 
 	public void addJetons(int i)
@@ -192,21 +191,28 @@ public class Joueur
 	 * Renvoie le score du joueur.
 	 * @return le score du joueur
 	 */
-	public int[] getScore()
+	public int[] getTabScore()
 	{
-		return this.score;
+		return this.tabScore;
 	}
 
 	/**
-	 * Méthode qui calcule le score du joueur.
+	 * Méthode qui augmente le score du joueur lorsqu'il prend une Route.
 	 */
-	public void score()
+	public void ajouterScoreRoute(int score)
 	{
-		int[] scoresCol = {20,10,0,2           };
+		this.tabScore[10] += score;
+	}
+
+
+	/**
+	 * Méthode qui calcule le score du joueur à la fin de la partie.
+	 */
+	public void scoreFin()
+	{
 		int[] scoresLig = {0,4,9,16,25,36,49,64};
 		//Affichage des détails
 		int  scoreMonnaie, scoreCol, scoreLig;
-		String detail = "Detail :\n ";
 
 
 		//Compteur pour le score des Monnaies
@@ -217,9 +223,7 @@ public class Joueur
 				scoreMonnaie = (i+1)*(i+1);
 		}
 
-		detail += "Monnaies      : " + scoreMonnaie + " pt \n ";
-
-		this.score[0] = scoreMonnaie;
+		this.tabScore[0] = scoreMonnaie;
 
 
 		//Compteur pour le score des colonnes
@@ -231,18 +235,15 @@ public class Joueur
 				scoreCol = 0;
 				if  (this.tabPlateau[i][cptCol] != null)
 					scoreCol=scoresLig[i];
-				detail += "Colonne " + (cptCol+1) + "   : " + String.format("%2d", scoreCol) + " pt\n ";
-				this.score[1] += scoreCol;
+
+				this.tabScore[1] += scoreCol;
 
 				cptCol++;
 			}
 
 
 		//Compteur pour le score des lignes
-		int cptRessource= 0;
-		int cptLig 		= 1;
-		int cptPieceLig = 0;
-		
+		int cptRessource= 0;		
 
 		for(int i = 0; i < this.tabPlateau.length ; i++) //0 - 3
 		{
@@ -254,15 +255,12 @@ public class Joueur
 			}
 
 			scoreLig += scoresLig[cptRessource];
-			detail += "Ligne   " + (i + 1) + "   : " + String.format("%2d", scoreLig) + " pt\n ";
-			this.score[2]  += scoreLig;
+			this.tabScore[2]  += scoreLig;
 
 			cptRessource = 0;
 		}
 
-		this.score[3]=this.nbJetonsUtiliser; // + les points qui viennent en récupérant la valeur sur un sommet
-
-		this.detailScore = detail;
+		tabScore[3]=this.nbJetonsUtiliser; // + les points qui viennent en récupérant la valeur sur un sommet
 
 	}
 
@@ -282,27 +280,33 @@ public class Joueur
 						temp=this.tabSommetRecup.get(j).getNumSom();
 				
 			}
-			score[4+i]=temp;
+			this.tabScore[4+i]=temp;
 		}
 	}
 
-	public int getScorePiece     () { return this.getScore()[0] ; }
-	public int getScoreColonne   () { return this.getScore()[1] ; }
-	public int getScoreLigne     () { return this.getScore()[2] ; }
-	public int getScorePointJeton() { return this.getScore()[3] ; }
-	public int getScoreVert      () { return this.getScore()[4] ; }
-	public int getScoreBleu      () { return this.getScore()[5] ; }
-	public int getScoreRouge     () { return this.getScore()[6] ; }
-	public int getScoreGris      () { return this.getScore()[7] ; }
-	public int getScoreJaune     () { return this.getScore()[8] ; }
-	public int getScoreMarron    () { return this.getScore()[9] ; }
-	//public int getScorePiece() { return this.getScore()[10]; }
+	public int getScorePiece     () { return this.getTabScore()[0] ; }
+	public int getScoreColonne   () { return this.getTabScore()[1] ; }
+	public int getScoreLigne     () { return this.getTabScore()[2] ; }
+	public int getScorePointJeton() { return this.getTabScore()[3] ; }
+	public int getScoreVert      () { return this.getTabScore()[4] ; }
+	public int getScoreBleu      () { return this.getTabScore()[5] ; }
+	public int getScoreRouge     () { return this.getTabScore()[6] ; }
+	public int getScoreGris      () { return this.getTabScore()[7] ; }
+	public int getScoreJaune     () { return this.getTabScore()[8] ; }
+	public int getScoreMarron    () { return this.getTabScore()[9] ; }
+	public int getScoreRoute	 () { return this.getTabScore()[10]; }
+
 	public int getSommeScore     ()
 	{
 		int totalScore = 0;
-		for (int i = 0; i < this.getScore().length ; i++)
-			totalScore += this.getScore()[i];
+		for (int i = 0; i < this.getTabScore().length ; i++)
+			totalScore += this.getTabScore()[i];
 		return totalScore;
+	}
+
+	public static int getNbMaxJetonsPossession()
+	{
+		return Joueur.NB_MAX_JETON_POSSESSION;
 	}
 
 	/**
