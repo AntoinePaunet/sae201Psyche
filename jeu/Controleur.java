@@ -44,15 +44,15 @@ public class Controleur
 	 */
 	public Controleur() throws IOException
 	{
-		this.j1      		= new Joueur ();
-		this.j2      		= new Joueur ();
+		this.j1      		= new Joueur ( this );
+		this.j2      		= new Joueur ( this );
 		this.editionFichier = new EditionFichier(this);
 		this.tabSommet 		= this.editionFichier.getTabSommet();
 		this.tabRoute		= this.editionFichier.getTabRoute();
 		this.tourJ1         = true;
 		this.finPartie      = false;
 		this.estJeu         = false;
-		this.nbEtapeScenario= 0;
+		this.nbEtapeScenario= 1;
 		this.nbScenario     = 0;	
 		this.estScenar      = false;
 		
@@ -146,7 +146,7 @@ public class Controleur
 	{
 		if (r.getJoueur()!=null) {return false;}
 		
-		System.out.println(r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
+		//System.out.println(r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
 
 		//verifie si l'un des deux sommet deja pris ou non
 		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
@@ -245,7 +245,7 @@ public class Controleur
 			}
 		}
 
-		System.out.println("FIn de parti : "+this.finPartie);
+		//System.out.println("FIn de parti : "+this.finPartie);
 
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
@@ -272,8 +272,7 @@ public class Controleur
 		{	
 			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
 			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
-		}
-			
+		}	
 	}
 
 	/**
@@ -283,6 +282,13 @@ public class Controleur
 	public boolean getTour()
 	{
 		return this.tourJ1;
+	}
+
+	public void setTourJ1()
+	{
+		this.tourJ1 = true;
+		this.j2.reset();
+		this.j1.reset();
 	}
 
 	/**
