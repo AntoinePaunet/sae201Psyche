@@ -117,19 +117,19 @@ public class FrameJeu extends JFrame implements ActionListener
 		{
 			// CTRL + Y
 
-			this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() + 1 );
 			
-
+			
 			try
 			{
 				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(),ctrl.getNbEtapeScenario());
-
+				
 			}
 			catch ( IOException r)
 			{
 				System.out.println( r.getStackTrace() );
 			}
-
+			
+			this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() + 1 );
 		}
 	}
 
