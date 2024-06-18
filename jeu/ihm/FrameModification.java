@@ -105,13 +105,7 @@ public class FrameModification extends JFrame implements ActionListener
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
-	
-	public void majIhm()
-	{
-		this.panelC = new PanelCarte( this.ctrl );
-		this.add(this.panelC);
-		this.repaint();
-	}
+
 
 	/**
 	 * Méthode de définition des evenements de la frame. 
