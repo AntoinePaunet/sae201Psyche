@@ -2,7 +2,6 @@ package jeu.ihm;
 
 import jeu.Controleur;
 import jeu.metier.Joueur;
-import jeu.metier.Materiaux;
 
 import javax.swing.*;
 import java.awt.BorderLayout;
@@ -83,7 +82,7 @@ public class FrameJoueur extends JFrame
 		else
 			s += String.format("%-40s","Les tours ne marchent plus" );
 
-		s += "Votre score : " + String.valueOf(this.joueur.getScore());
+		s += "Votre score : " + String.valueOf(this.joueur.getScoreRoute());
 		return s;
 	}
 

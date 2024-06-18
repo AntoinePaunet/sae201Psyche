@@ -208,13 +208,13 @@ public class Controleur
 					r.setJoueur(this.j1);
 
 					this.j1.addJetons(r.getNbTroncons());
+					this.j1.ajouterScoreRoute(r.getNbTroncons());
 
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
 					if (r.getSommetArr().getMateriaux()!=null)
 						this.j1.addSommetRecup(r.getSommetArr());
-
 					
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
@@ -228,6 +228,7 @@ public class Controleur
 					
 					r.setJoueur(this.j2);
 					this.j2.addJetons(r.getNbTroncons());
+					this.j2.ajouterScoreRoute(r.getNbTroncons());
 
 					if (r.getSommetDep().getMateriaux()!=null)
 						this.j2.addSommetRecup(r.getSommetDep());
