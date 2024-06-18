@@ -78,15 +78,10 @@ public class PanelCarte extends JPanel
 				g2.drawImage(this.pionJoueur2, 40, 20, this);
 
 		}
-		
-
 
 		this.g2.setStroke (new BasicStroke (2.0f));
 		int adjCercle = this.RAYON / 2 ;
 		this.g2.setColor( new Color(000060) );
-		
-
-		
 		
 
 		for(Route r : ctrl.getTabRoute())
