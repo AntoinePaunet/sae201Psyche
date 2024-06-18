@@ -275,6 +275,14 @@ public class Controleur
 		return this.tourJ1;
 	}
 
+	public void setTourJ2()
+	{
+		this.tourJ1 = false;
+		this.j2.reset();
+		this.j1.reset();
+		System.out.println("oui");
+	}
+
 	public void setTourJ1()
 	{
 		this.tourJ1 = true;
@@ -574,12 +582,16 @@ public class Controleur
 
 	public void reInit() throws IOException {
 		this.tabSommet = new ArrayList<Sommet>(30);
+		this.j1 = new Joueur(this);
+		this.j2 = new Joueur(this);
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.init();
 	}
 
 	public void supprimerTout() throws IOException
 	{
+		this.j1 = new Joueur(this);
+		this.j2 = new Joueur(this);
 		this.tabSommet = new ArrayList<Sommet>(30);
 		Controleur.nbSommets = 1;
 		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true,null, 1));

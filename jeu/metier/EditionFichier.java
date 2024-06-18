@@ -66,11 +66,12 @@ public class EditionFichier
 	}
 
 	/**
-	 * Méthode qui initialise un lecteur de fichierafin d'y lire la carte du jeu.
+	 * Méthode qui initialise un lecteur de fichier afin d'y lire la carte du jeu.
 	 * 
 	 * @param nomFichier le fichier dans lequel le reader va lire
 	 */
-	public void lectureFichier(String nomFichier, boolean importer) throws IOException {
+	public void lectureFichier(String nomFichier, boolean importer) throws IOException
+	{
 		File tmpFichier;
 
 		if (estVide(emplacementData))
@@ -220,7 +221,13 @@ public class EditionFichier
 		int id = Integer.parseInt(smtInfo[7]);
 
 		if (nom.equals("DEPART"))
+		{
+			if(smtInfo[6].equals("T1"))
+				this.ctrl.setTourJ1();
+			else
+				this.ctrl.setTourJ2();
 			this.tabSommet.add( new Sommet( num, nom, x, y, null, true, this.ctrl.getJoueur1(), 1 ) );
+		}
 		else
 		{
 			if ( smtInfo[6].equals( "J1" ) )
@@ -312,8 +319,12 @@ public class EditionFichier
 			}
 		}
 		else
-			donnesFichier = donneesVilles + (0 + "\t" + "DEPART" + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "J0" + "\t" + 0 + "\n\n")
-					+ donneesRoutes;
+			if(ctrl.getTourJ(ctrl.getJoueur1()))
+				donnesFichier = donneesVilles + (0 + "\t" + "DEPART" + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "T" + 1 + "\t" + 0 + "\n\n") + donneesRoutes;
+			else
+				donnesFichier = donneesVilles + (0 + "\t" + "DEPART" + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "T" + 2 + "\t" + 0 + "\n\n") + donneesRoutes;
+
+
 		BufferedWriter writer = new BufferedWriter(new FileWriter(emplacementData));
 
 		try {

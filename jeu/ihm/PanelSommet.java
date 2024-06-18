@@ -214,11 +214,12 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 				Materiaux tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(rndm));
 
-				if(idVille != 0)
+				if(idVille != 1)
 				{
 					this.ctrl.ajouterOuSupprimerSommet(idVille , numVille, nomVile,x,y,tmpMat,false);
 				}else{
-					this.ctrl.ajouterOuSupprimerSommet(Controleur.nbSommets , numVille, nomVile,x,y,tmpMat,false);
+					this.lblErreur.setText("<html>Impossible de supprimer <br> le sommet principal. </html>");
+					return;
 				}
 
 
