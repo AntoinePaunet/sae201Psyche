@@ -221,6 +221,7 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
+					this.majFrameJoueur(this.j1, this);
 				}
 				else
 				{
@@ -239,8 +240,8 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 					this.tourJ1= !this.tourJ1;
+					this.majFrameJoueur(this.j2, this);
 				}
-				this.majFrameJoueur(this.j1, this);
 			}
 		}
 
