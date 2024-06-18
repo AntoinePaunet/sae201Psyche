@@ -82,10 +82,7 @@
 2	30	22	J0
 2	31	23	J0
 2	1	4	J0
-<<<<<<< HEAD
-=======
 
 [JOUEUR 1]
 
 [JOUEUR 2]
->>>>>>> refs/remotes/origin/main
