@@ -346,6 +346,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				// Appeler initTheme avec l'index de l'élément sélectionné
 				this.ctrl.getEditionFichier().initTheme(this.lstTheme.getSelectedIndex()+1);
 				this.lblErreur.setText("");
+				this.lblErreur.setOpaque(false);
 			}
 		}
 	}
