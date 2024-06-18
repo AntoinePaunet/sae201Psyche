@@ -76,7 +76,6 @@ public class Controleur
 		}
 	}
 
-
 	/**
 	 * A completer.
 	 * @return La liste des sommets
@@ -600,6 +599,15 @@ public class Controleur
 	public String getNomThemeRoute()
 	{
 		return this.elementsTheme[4];
+	}
+
+	public Route getRoute(Sommet sommetDep, Sommet sommetArr, int nbTroncon)
+	{
+		
+		for ( Route r : this.tabRoute)
+			if ( r.getSommetDep().equals(sommetDep) && r.getSommetArr().equals(sommetArr) && r.getNbTroncons() == nbTroncon)
+				return r;
+		return null;
 	}
 
 	/**
