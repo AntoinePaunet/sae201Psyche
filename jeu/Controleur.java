@@ -272,8 +272,7 @@ public class Controleur
 		{	
 			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
 			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
-		}
-			
+		}	
 	}
 
 	/**
