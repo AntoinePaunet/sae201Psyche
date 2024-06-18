@@ -358,7 +358,7 @@ public class EditionFichier
 
 	public void supprimer() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.fichier))) {
-			writer.write("[SOMMET]\n\n[ROUTES]\n\n[JOUEUR 1]\n\n[JOUEUR 2]");
+			writer.write("[SOMMET]\n\n[ROUTES]");
 		} catch (IOException e) {
 		}
 	}
