@@ -43,6 +43,9 @@ public class FrameJoueur extends JFrame
 		this.panelBas=new PanelJetons(ctrl, j);
 		this.add(this.panelBas, BorderLayout.SOUTH);
 
+		this.panelDroite = new PanelMine (ctrl, j);
+		this.add(this.panelDroite, BorderLayout.EAST);
+
 		if( j == this.ctrl.getJoueur1() )
 		{
 			this.setLocation( 1300, 0 );
@@ -85,6 +88,7 @@ public class FrameJoueur extends JFrame
 	public void refresh()
 	{
 		this.panelBas.repaint();
+		this.panelDroite.repaint();
 
 		int x = 0;
 		int y = 500;
