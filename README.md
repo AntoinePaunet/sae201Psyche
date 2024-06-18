@@ -17,7 +17,8 @@ Editeur de carte
 
 Frame Modification : 
 
-Tous les boutons de la JMenuBar : 
+ - Modification de la position des sommets avec la souris ( et ajustement es routes en fonction
+
  - Créer un sommet
  - Créer une route
 
@@ -28,7 +29,6 @@ Tous les boutons de la JMenuBar :
  - Quitter sans enregistrer
 
 Montrer que le système de sauvegarde des modifications marche correctement.
-
 
 
 Jeu 
@@ -48,8 +48,7 @@ Frame Jeu ( mode classique )
 
 	- Respect des règles
 		- Prise de route possible SEULEMENT SI elle est conectée au départ ET il reste des jetons possessions.
-		- Ajout correct des points en foncction de la mine prise  attention aux mines d'or
-
+		- Ajout correct des points en foncction de la mine prise ( attention aux mines d'or )
 
  - Quitter sans enregistrer n'enregistre pas la partie
  - Quitter avec la croix enregistre la partie
@@ -58,3 +57,9 @@ Frame Jeu ( mode scénario )
 
  - bouton Annuler
  - bouton Rétablir
+
+
+Frame Score Final
+
+ - Calcul de score correct
+	- toutes les catégories de score sont bonnes
