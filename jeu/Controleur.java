@@ -195,10 +195,11 @@ public class Controleur
 	 */
 	public void jouer (Route r) throws IOException
 	{
+		this.finPartie=estFin(r);
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
-			if (this.estValide(r) && ( this.getJoueurJoue().getJetons() + r.getNbTroncons() ) <= Joueur.getNbMaxJetonsPossession() )
+			if (this.estValide(r) )
 			{
 				if (this.tourJ1)
 				{
@@ -250,6 +251,7 @@ public class Controleur
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 		
+		
 		/*if (r.getJoueur()==this.getJoueur1())
 			this.editionFichier.ecrireScenario(1, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );
 		else 
@@ -273,6 +275,26 @@ public class Controleur
 			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
 			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
 		}	
+	}
+
+	public boolean estFin (Route r)
+	{
+		if ( !((this.getJoueurJoue().getJetons() + r.getNbTroncons() ) <= Joueur.getNbMaxJetonsPossession()))
+		{
+			if (!this.finPartie)
+				new FrameScore(this);
+			
+			return true;
+		}
+
+		for (Sommet s : this.tabSommet)
+			if (s.getJoueur()==null && !s.getDepart())
+				return false;
+		
+		if (!this.finPartie)
+			new FrameScore(this);
+		
+		return true;
 	}
 
 	/**
