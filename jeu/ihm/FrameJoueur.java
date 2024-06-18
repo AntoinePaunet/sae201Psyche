@@ -81,6 +81,7 @@ public class FrameJoueur extends JFrame
 			s += String.format("%-40s","en attente de l'autre joueur ... " );
 
 		s += "Votre score : " + String.valueOf(this.joueur.getScoreRoute());
+
 		this.setTitle(s);
 		return s;
 	}
