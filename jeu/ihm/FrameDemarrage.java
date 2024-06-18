@@ -132,12 +132,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 	 */
 	public void actionPerformed ( ActionEvent e )
 	{
-		/*
-		// Syso pour confirmer l'action
-		if ( e.getSource() instanceof JMenuItem )
-			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
-			*/
-		
 			// Importation des fichiers
 			if( e.getSource() == this.menuiOuvrir )
 			{

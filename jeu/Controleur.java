@@ -144,14 +144,6 @@ public class Controleur
 	 */
 	public boolean estValide(Route r)
 	{
-<<<<<<< HEAD
-=======
-		if (r.getJoueur()!=null) {return false;}
-		
-		//System.out.println(r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
-
->>>>>>> refs/remotes/origin/main
-		//verifie si l'un des deux sommet deja pris ou non
 		return r.getJoueur() == null;
 	}
 
@@ -200,7 +192,6 @@ public class Controleur
 	{
 		if (!this.finPartie)
 		{
-			//System.out.print(r);
 			if (this.estValide(r) && ( this.getJoueurJoue().getJetons() + r.getNbTroncons() ) <= Joueur.getNbMaxJetonsPossession() )
 			{
 				if (this.tourJ1)
@@ -247,9 +238,6 @@ public class Controleur
 				}
 			}
 		}
-
-		//System.out.println("FIn de parti : "+this.finPartie);
-
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 		
@@ -403,7 +391,6 @@ public class Controleur
 	 */
 	private void initJetonPossession()
 	{
-		System.out.println(this.tabRoute + " AAAAAA");
 		for(int i = 0 ; i < this.tabRoute.size() ; i++)
 		{
 			if(this.tabRoute.get(i).getJoueur() == j1)
@@ -414,7 +401,6 @@ public class Controleur
 				this.j2.addJetons(this.tabRoute.get(i).getNbTroncons());
 			}
 		}
-		System.out.println(this.tabRoute + " BBBBBBBBBBBBBB");
 	}
 
 	/**
