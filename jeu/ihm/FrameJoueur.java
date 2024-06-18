@@ -5,7 +5,7 @@ import jeu.metier.Joueur;
 
 import javax.swing.*;
 import java.awt.BorderLayout;
-import java.awt.*;
+
 
 
 /**
@@ -74,10 +74,16 @@ public class FrameJoueur extends JFrame
 	{
 		String s = this.joueur.getNomJoueur() + " : ";
 
-		if( this.joueur == this.ctrl.getJoueurJoue() ) // si c'est le tour du Joueur 1
+		if( this.joueur == this.ctrl.getJoueurJoue() ) 
+		{
 			s += String.format("%-40s","A vous de jouer !" );
-		else // si c'est le tour du Joueur 2
+		}
+		else 
+		{
 			s += String.format("%-40s","en attente de l'autre joueur ... " );
+		}
+			
+
 
 		s += "Votre score : " + String.valueOf(this.joueur.getScoreRoute());
 

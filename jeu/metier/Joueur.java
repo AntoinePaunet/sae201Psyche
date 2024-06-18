@@ -1,6 +1,9 @@
 package jeu.metier;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle.Control;
+import java.util.concurrent.ConcurrentHashMap;
+import jeu.Controleur;
 
 /**
  * Cette classe permet d'instancier les joueurs 
@@ -24,11 +27,12 @@ public class Joueur
 	private int[] tabScore ;
 
 	private String nomJoueur;
+	private Controleur ctrl;
 
 	/**
 	 * Constructeur de Joueur.
 	 */
-	public Joueur()
+	public Joueur( Controleur ctrl )
 	{
 		this.nomJoueur = "default";
 		this.tabPlateau = new Materiaux [4][8];
@@ -36,12 +40,25 @@ public class Joueur
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
 		this.nbJetonsUtiliser=0;
-		this.tabScore = new int[11];
+		this.score = new int[11];
+		this.ctrl = ctrl;
 	}
 
 	public void addJetons(int i)
 	{
 		this.nbJetonsUtiliser+=i;
+	}
+
+	public void reset()
+	{
+		this.nbJetonsUtiliser=0;
+		this.tabSommetRecup = new ArrayList<Sommet>();
+
+		ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
+
+		for ( Route r : lstRoute )
+			if ( r.getJoueur().equals(this) )
+				this.nbJetonsUtiliser += r.getNbTroncons();
 	}
 
 	public int getJetons()
