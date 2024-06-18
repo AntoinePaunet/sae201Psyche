@@ -2,9 +2,11 @@ package jeu.ihm;
 
 import jeu.Controleur;
 import jeu.metier.Joueur;
+import jeu.metier.Materiaux;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.util.Arrays;
 
 /**
  * Cette classe créé la Frame correspondant aux plateaux individuels des joueurs. Elle affiche leur score et leurs jetons.
@@ -73,7 +75,7 @@ public class FrameJoueur extends JFrame
 	{
 		String s = this.joueur.getNomJoueur() + " : ";
 
-		if( ctrl.getTour() && this.joueur == this.ctrl.getJoueur1() ) // si c'est le tour du Joueur 1
+		if( ctrl.getTour() ^ this.joueur == this.ctrl.getJoueur1() ) // si c'est le tour du Joueur 1
 			s += String.format("%-40s","A vous de jouer !" );
 		else				 // si c'est le tour du Joueur 2
 			s += String.format("%-40s","en attente de l'autre joueur ... " ) ;
@@ -87,31 +89,36 @@ public class FrameJoueur extends JFrame
 	 */
 	public void refresh()
 	{
+
 		this.panelBas.repaint();
 		this.panelDroite.repaint();
 
 		int x = 0;
 		int y = 500;
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
+
 		{
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
 				{
-					if (!this.joueur.getTableMateriaux()[i][j].getNom().equals("DP"))
-						this.ajoutImage(x-20, y-40, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
+					if(!this.joueur.getTableMateriaux()[i][j].getNom().equals("DP"))
+					{
+						this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
+					}
 				}
-				x += 55;
+
+				x += 54;
 			}
-			x = 85;
-			y -= 80;
+			y += 54;
+			x= 65;
 		}
 
 		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) // Ajout des pièces
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
-				this.ajoutImage(x,400, "NR.png", 1);
+				this.ajoutImage(x,325, "NR.png", 1);
 				x += 60;
 			}
 		}

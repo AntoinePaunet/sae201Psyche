@@ -20,16 +20,18 @@ import jeu.metier.*;
 
 public class Controleur 
 {
-	private   Joueur             j1       ;
-	private   Joueur             j2       ;
-	protected ArrayList<Sommet>  tabSommet;
-	protected ArrayList<Route>	 tabRoute ;
+	private          int                nbEtapeScenario;
+	private          int                nbScenario;
+	private          Joueur             j1       ;
+	private          Joueur             j2       ;
+	protected        ArrayList<Sommet>  tabSommet;
+	protected        ArrayList<Route>	 tabRoute ;
 
-	private   boolean            estScenar;
-	private   boolean            estJeu   ;
-	private   boolean            tourJ1        ;
-	private   boolean            finPartie     ;
-	public    FrameDemarrage     frameDemarrage;
+	private          boolean            estScenar;
+	private          boolean            estJeu   ;
+	private          boolean            tourJ1        ;
+	private          boolean            finPartie     ;
+	public           FrameDemarrage     frameDemarrage;
 
 	private EditionFichier editionFichier;
 	private String[]       elementsTheme ;
@@ -40,9 +42,8 @@ public class Controleur
 	/**
 	 * Constructeur du Controleur
 	 */
-	public Controleur(boolean estScenar) throws IOException
+	public Controleur() throws IOException
 	{
-		this.estScenar 		= estScenar;
 		this.j1      		= new Joueur ();
 		this.j2      		= new Joueur ();
 		this.editionFichier = new EditionFichier(this);
@@ -50,7 +51,11 @@ public class Controleur
 		this.tabRoute		= this.editionFichier.getTabRoute();
 		this.tourJ1         = true;
 		this.finPartie      = false;
-		this.estJeu        = false;
+		this.estJeu         = false;
+		this.nbEtapeScenario= 0;
+		this.nbScenario     = 0;	
+		this.estScenar      = false;
+		
 		
 		this.lstMateriaux = new ArrayList<>(40);
 		this.initMateriaux();
@@ -76,24 +81,29 @@ public class Controleur
 		}
 	}
 
-	/**
-	 * A completer.
-	 * @return La liste des sommets
-	 */
-	public void setTabSommet(ArrayList<Sommet> tabSmt)
-	{
-		this.tabSommet = tabSmt;
-	}
 
-	/**
-	 * A completer.
-	 * @return La liste des sommets
-	 */
-	public void setTabRoute(ArrayList<Route> tabRt)
-	{
-		this.tabRoute = tabRt;
-	}
+	
+    public void setTabSommet(ArrayList<Sommet> tabSmt)
+    {
+        this.tabSommet = tabSmt;
+    }
 
+    /**
+     * A completer.
+     * @return La liste des sommets
+     */
+    public void setTabRoute(ArrayList<Route> tabRt)
+    {
+        this.tabRoute = tabRt;
+    }
+
+	public int getNbEtapeScenario()                     { return this.nbEtapeScenario;          }
+
+	public void setNbEtapeScenario(int nbEtapeScenario) { this.nbEtapeScenario = nbEtapeScenario;}
+
+	public int getNbScenario()                     { return this.nbScenario;          }
+
+	public void setNbScenario(int nbScenario) { this.nbScenario = nbScenario;}
 	/**
 	 * A completer.
 	 * @return La liste des sommets
@@ -195,6 +205,10 @@ public class Controleur
 			{
 				if (this.tourJ1)
 				{
+					if ( this.estScenar == false )
+						this.getEditionFichier().ecrireScenario(1,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
+
+
 					r.setJoueur(this.j1);
 
 					this.j1.addJetons(r.getNbTroncons());
@@ -209,9 +223,13 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
 					
 					this.tourJ1= !this.tourJ1;
+					this.majFrameJoueur(this.j1, this);
 				}
 				else
 				{
+					if ( this.estScenar == false )
+						this.getEditionFichier().ecrireScenario(2,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
+					
 					r.setJoueur(this.j2);
 					this.j2.addJetons(r.getNbTroncons());
 
@@ -224,8 +242,8 @@ public class Controleur
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
 					this.tourJ1= !this.tourJ1;
+					this.majFrameJoueur(this.j2, this);
 				}
-				this.majFrameJoueur(this.j1, this);
 			}
 		}
 
@@ -605,7 +623,7 @@ public class Controleur
 	{
 		
 		for ( Route r : this.tabRoute)
-			if ( r.getSommetDep().equals(sommetDep) && r.getSommetArr().equals(sommetArr) && r.getNbTroncons() == nbTroncon)
+			if ( r.getSommetDep().equals(sommetDep) && r.getSommetArr().equals(sommetArr))
 				return r;
 		return null;
 	}
@@ -616,6 +634,6 @@ public class Controleur
 	 */
 	public static void main (String[] arg) throws IOException
 	{
-		new Controleur(true);
+		new Controleur();
 	}
 }
