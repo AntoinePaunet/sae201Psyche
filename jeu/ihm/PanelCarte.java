@@ -147,7 +147,7 @@ public class PanelCarte extends JPanel
 			if (s.getDepart())
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX()+10, s.getY()-10,50,50, this);
 
-			if (s.getNumSom()!=0)
+			if (!s.getNomCoul().equals("DEPART"))
 			{
 				g2.setFont(new Font("Arial", Font.BOLD, 18));
 				this.g2.drawString(s.getNumSom()+"", s.getX(), s.getY()-10 );
