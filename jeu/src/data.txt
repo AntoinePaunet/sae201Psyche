@@ -1,35 +1,35 @@
 [SOMMET]
-0	DEPART	442	475	null	true	J0	0
-4	Vert	336	92	CO	false	J0	2
-8	Vert	265	111	AG	false	J0	3
-2	Vert	317	187	NI	false	J0	4
-3	Vert	394	175	AU	false	J0	5
-6	Vert	251	239	TI	false	J0	6
-6	Bleu	336	284	TI	false	J0	7
-8	Bleu	414	270	CO	false	J0	8
-5	Rouge	80	300	AL	false	J0	9
-3	Rouge	156	298	AG	false	J0	10
-1	Rouge	257	322	CO	false	J0	11
-2	Gris	510	295	AU	false	J0	12
-3	Bleu	308	382	NR	false	J0	13
-4	Bleu	346	339	NR	false	J0	14
-2	Bleu	440	366	AG	false	J0	15
-4	Gris	575	337	PT	false	J0	16
-3	Jaune	648	319	NR	false	J0	17
+0	DEPART	1002	395	null	true	J0	0
+4	Vert	420	34	CO	false	J0	2
+8	Vert	343	195	AG	false	J0	3
+2	Vert	460	317	NI	false	J0	4
+3	Vert	615	120	AU	false	J0	5
+6	Vert	262	175	TI	false	J0	6
+6	Bleu	443	499	TI	false	J0	7
+8	Bleu	668	159	CO	false	J0	8
+5	Rouge	113	322	AL	false	J0	9
+3	Rouge	247	426	AG	false	J0	10
+1	Rouge	259	504	CO	false	J0	11
+2	Gris	694	311	AU	false	J0	12
+3	Bleu	307	664	NR	false	J0	13
+4	Bleu	487	586	NR	false	J0	14
+2	Bleu	623	404	AG	false	J0	15
+4	Gris	754	154	PT	false	J0	16
+3	Jaune	894	163	NR	false	J0	17
 4	Rouge	111	456	NI	false	J0	18
-2	Rouge	185	440	FE	false	J0	19
-2	Marron	353	428	AL	false	J0	20
-0	Gris	576	433	FE	false	J0	21
-1	Jaune	696	442	FE	false	J0	22
-4	Jaune	774	443	PT	false	J0	23
-5	Marron	200	517	NI	false	J0	24
-3	Marron	330	542	CO	false	J0	25
-4	Marron	427	541	TI	false	J0	26
-1	Marron	501	519	PT	false	J0	27
-3	Gris	606	512	AG	false	J0	28
-1	Gris	556	586	AU	false	J0	29
-5	Jaune	696	583	NR	false	J0	30
-2	Jaune	773	582	PT	false	J0	31
+2	Rouge	162	557	FE	false	J0	19
+2	Marron	499	678	AL	false	J0	20
+0	Gris	829	439	FE	false	J0	21
+1	Jaune	1239	474	FE	false	J0	22
+4	Jaune	1080	318	PT	false	J0	23
+5	Marron	248	736	NI	false	J0	24
+3	Marron	361	801	CO	false	J0	25
+4	Marron	437	876	TI	false	J0	26
+1	Marron	550	840	PT	false	J0	27
+3	Gris	971	660	AG	false	J0	28
+1	Gris	644	819	AU	false	J0	29
+5	Jaune	1069	819	NR	false	J0	30
+2	Jaune	727	567	PT	false	J0	31
 
 [ROUTES]
 1	2	3	J0
@@ -81,4 +81,3 @@
 1	31	30	J0
 2	30	22	J0
 2	31	23	J0
-1	0	22	J0

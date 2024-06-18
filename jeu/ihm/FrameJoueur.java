@@ -33,7 +33,7 @@ public class FrameJoueur extends JFrame
 	{
 		this.joueur = j;
 		this.ctrl = ctrl;
-		this.setTitle( this.majTitre(this.joueur, ctrl) );
+		this.setTitle( this.majTitre(this.ctrl) );
 		this.setSize( 569, 436 );
 		this.panelFond = new JLayeredPane();
 
@@ -41,17 +41,14 @@ public class FrameJoueur extends JFrame
 		{
 			this.setLocation( 1250, 0 );
 			this.ajoutImage(0,0, "plateau_joueur_1.png", 0);
-			this.joueur = ctrl.getJoueur1();
 		}
 		else
 		{
 			this.setLocation( 1250, 550 );
 			this.ajoutImage(0,0, "plateau_joueur_2.png", 0);
-			this.joueur = ctrl.getJoueur2();
 		}
 
 		this.add( this.panelFond );
-
 		this.refresh();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -63,11 +60,11 @@ public class FrameJoueur extends JFrame
 	 * @param ctrl le Controleur qui lance la frame
 	 * @return Le titre de la frame
 	 */
-	public String majTitre( Joueur j , Controleur ctrl )
+	public String majTitre( Controleur ctrl )
 	{
 		String s = this.joueur.getNomJoueur() + " : ";
 
-		if( ctrl.getTour() ) // si c'est le tour du Joueur 1
+		if( ctrl.getTour() && this.joueur == this.ctrl.getJoueur1() ) // si c'est le tour du Joueur 1
 			s += String.format("%-40s","A vous de jouer !" );
 		else				 // si c'est le tour du Joueur 2
 			s += String.format("%-40s","en attente de l'autre joueur ... " ) ;
@@ -90,9 +87,9 @@ public class FrameJoueur extends JFrame
 				if(this.joueur.getTableMateriaux()[i][j] != null)
 				{
 					if (!this.joueur.getTableMateriaux()[i][j].getNom().equals("DP"))
-						this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
+						this.ajoutImage(x-20, y-40, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
 				}
-				x += 60;
+				x += 55;
 			}
 			x = 85;
 			y -= 80;
@@ -123,9 +120,10 @@ public class FrameJoueur extends JFrame
 	 */
 	public void ajoutImage(int x, int y, String url, int layer)
 	{
+		
 		ImageIcon image = new ImageIcon(getClass().getResource("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+ url));
 		JLabel imgLabel = new JLabel(image);
-		imgLabel.setBounds(x, y, image.getIconWidth(), image.getIconHeight());
+		imgLabel.setBounds(x, y, image.getIconWidth()+20, image.getIconHeight()+20);
 		this.panelFond.add(imgLabel, Integer.valueOf(layer));
 	}
 /*

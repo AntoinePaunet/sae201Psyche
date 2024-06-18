@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EditionFichier {
+public class EditionFichier
+{
 	private Controleur ctrl;
 	private ArrayList<Sommet> tabSommet;
 	private ArrayList<Route> tabRoute;
@@ -42,8 +43,10 @@ public class EditionFichier {
 		}
 	}
 
-	public boolean estVide(String nomFichier) throws FileNotFoundException {
-		try {
+	public boolean estVide(String nomFichier)
+	{
+		try
+		{
 			FileReader fr = new FileReader(nomFichier);
 			Scanner sc = new Scanner(fr);
 
@@ -80,10 +83,12 @@ public class EditionFichier {
 		try {
 			FileReader fr;
 
-			if (importer) {
+			if (importer)
+			{
 				fr = new FileReader(tmpFichier);
 				this.supprimer();
-			} else {
+			} else
+			{
 				fr = new FileReader(fichier);
 			}
 			Scanner sc = new Scanner(fr);
@@ -210,7 +215,7 @@ public class EditionFichier {
 		int id = Integer.parseInt(smtInfo[7]);
 
 		if (nom.equals("DEPART"))
-			this.tabSommet.add( new Sommet( num, nom, x, y, null, true,this.ctrl.getJoueur1(), id ) );
+			this.tabSommet.add( new Sommet( num, nom, x, y, null, true,this.ctrl.getJoueur1(), 1 ) );
 		else
 		{
 			if ( smtInfo[5].equals( "J1" ) )
@@ -239,8 +244,8 @@ public class EditionFichier {
 
 		int nbTroncon = Integer.parseInt(routeInfo[0]);
 
-		Sommet smtA = this.ctrl.rechercheSommet(routeInfo[1]);
-		Sommet smtB = this.ctrl.rechercheSommet(routeInfo[2]);
+		Sommet smtA = this.ctrl.getSommet(Integer.parseInt(routeInfo[1]));
+		Sommet smtB = this.ctrl.getSommet(Integer.parseInt(routeInfo[2]));
 
 		
 
@@ -322,6 +327,7 @@ public class EditionFichier {
 		FileReader fr = new FileReader(emplacementData);
 		Scanner sc = new Scanner(fr);
 
+
 		String donnesFichier = "";
 
 		while (sc.hasNextLine())
@@ -365,16 +371,21 @@ public class EditionFichier {
 		this.tabRoute = ctrl.getTabRoute();
 
 
+
 		for (Route r : this.tabRoute)
 		{
-			if ( this.ctrl.getJoueur1().equals(r.getJoueur()) )
-				this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),1);
-			else
+			if(r.getSommetArr().getDepart() || r.getSommetDep().getDepart() || r.getSommetDep() == null)
+			{
+				this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),0);
+			}else{
+				if ( this.ctrl.getJoueur1().equals(r.getJoueur()) )
+					this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),1);
+				else
 				if ( this.ctrl.getJoueur2().equals(r.getJoueur()) )
 					this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),2);
 				else
 					this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),0);
-
+			}
 		}
 
 		for (Sommet s : this.tabSommet) 
