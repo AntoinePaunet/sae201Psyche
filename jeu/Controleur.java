@@ -199,7 +199,7 @@ public class Controleur
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
-			if (this.estValide(r))
+			if (this.estValide(r) && ( this.getJoueurJoue().getJetons() + r.getNbTroncons() ) <= Joueur.getNbMaxJetonsPossession() )
 			{
 				if (this.tourJ1)
 				{
@@ -397,6 +397,11 @@ public class Controleur
 	public Joueur getJoueur2 ()
 	{
 		return this.j2;
+	}
+
+	public Joueur getJoueurJoue()
+	{
+		return (this.getTour()?j1:j2);
 	}
 
 	/**

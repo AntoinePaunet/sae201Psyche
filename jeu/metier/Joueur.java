@@ -305,6 +305,11 @@ public class Joueur
 		return totalScore;
 	}
 
+	public static int getNbMaxJetonsPossession()
+	{
+		return Joueur.NB_MAX_JETON_POSSESSION;
+	}
+
 	/**
 	 * Renvoie le nom du Joueur sous forme texte.
 	 * @return le nom du Joueur
