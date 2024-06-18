@@ -193,19 +193,17 @@ public class Controleur
 	 * Méthode qui vérifie si les règles du jeu sont respectées, et effectue les actions du joueurs.
 	 * @param r La route concernée
 	 */
-	public void jouer (Route r) throws IOException {
-		//System.out.println(this.estValide(r));
-
+	public void jouer (Route r) throws IOException
+	{
 		if (!this.finPartie)
 		{
-			//System.out.print(r);
+			//System.out.print(r + " " + this.estValide(r));
 			if (this.estValide(r))
 			{
 				if (this.tourJ1)
 				{
 					if ( this.estScenar == false )
 						this.getEditionFichier().ecrireScenario(1,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
-
 
 					r.setJoueur(this.j1);
 
@@ -254,6 +252,19 @@ public class Controleur
 			this.editionFichier.ecrireScenario(1, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );
 		else 
 			this.editionFichier.ecrireScenario(2, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );*/
+	}
+
+	/**
+	 * Méthode qui met a jour le titre des FrameJoueurs
+	 * @param j le joueur correspondant la frame
+	 * @param ctrl le Controleur
+	 */
+	public void majFrameJoueur( Joueur j , Controleur ctrl )
+	{
+		if( j == this.j1 )
+			this.frameDemarrage.getFrameChoix().getF1().majTitre(this);
+		else
+			this.frameDemarrage.getFrameChoix().getF2().majTitre(this);
 	}
 
 	/**
@@ -397,18 +408,6 @@ public class Controleur
 	public Joueur getJoueur2 ()
 	{
 		return this.j2;
-	}
-
-	/**
-	 * Renvoie le joueur n°2
-	 * @return le joueur 2
-	 */
-	public void majFrameJoueur( Joueur j , Controleur ctrl )
-	{
-		if( j == this.j1 )
-			this.frameDemarrage.getFrameChoix().getF1().majTitre(this);
-		else
-			this.frameDemarrage.getFrameChoix().getF2().majTitre(this);
 	}
 
 
