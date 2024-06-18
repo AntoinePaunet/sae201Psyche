@@ -32,10 +32,6 @@
 2	Jaune	727	567	PT	false	J0	31
 
 [ROUTES]
-
-[JOUEUR 1]
-
-[JOUEUR 2]
 1	2	3	J0
 1	2	4	J0
 1	3	4	J0
