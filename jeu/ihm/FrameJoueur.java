@@ -4,7 +4,11 @@ import jeu.Controleur;
 import jeu.metier.Joueur;
 
 import javax.swing.*;
+<<<<<<< HEAD
+import java.awt.BorderLayout;
+=======
 import java.awt.*;
+>>>>>>> refs/remotes/origin/main
 
 
 /**
@@ -90,14 +94,21 @@ public class FrameJoueur extends JFrame
 	 */
 	public void refresh()
 	{
+<<<<<<< HEAD
+		int x = 65;
+		int y = 57;
+
+=======
 		this.panelBas.repaint();
 		this.panelDroite.repaint();
 
 		int x = 0;
 		int y = 500;
+>>>>>>> refs/remotes/origin/main
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
 			this.panelBas.repaint();
+			this.panelDroite.repaint();
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
@@ -118,8 +129,8 @@ public class FrameJoueur extends JFrame
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
-				this.ajoutImage(x,325, "NR.png", 1);
-				x += 60;
+				this.ajoutImage(x,328, "NR.png", 1);
+				x += 54;
 			}
 		}
 	}
