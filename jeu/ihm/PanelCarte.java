@@ -194,7 +194,8 @@ public class PanelCarte extends JPanel
 					{
 						if (ctrl.getSommet( e.getX(), e.getY() )==null)
 						{
-							try {
+							try 
+							{
 								ctrl.jouer(r);
 							} catch (IOException ex) {
 								throw new RuntimeException(ex);

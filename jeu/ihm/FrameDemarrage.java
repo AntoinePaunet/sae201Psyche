@@ -164,6 +164,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				this.frameChoix = new FrameChoix( this.ctrl );
 				
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
+				this.ctrl.setNbScenario( 0);
 				try
 				{
 					Timer timerSpawn = new Timer(17, new ActionListener() //Vitesse de déplacement du mob
@@ -171,11 +172,14 @@ public class FrameDemarrage extends JFrame implements ActionListener
 						@Override
 						public void actionPerformed(ActionEvent e)
 						{
+
 							if ( ctrl.getFrameDemarrage().getFrameChoix().getFrameJeu() != null  )
 							{
 								try {
 									
-									ctrl.getEditionFichier().lireScenario(1,0);
+									ctrl.getEditionFichier().lireScenario(ctrl.getNbScenario(),ctrl.getNbEtapeScenario());
+									((Timer)e.getSource()).stop();
+
 								} catch (IOException r) 
 								{
 									System.out.println(r.getStackTrace());
@@ -184,6 +188,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 							
 						}
 					});
+					
 				}
 				catch( Exception ex )
 				{

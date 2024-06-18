@@ -473,6 +473,9 @@ public class EditionFichier
 			Scanner sc = new Scanner(fr);
 
 			int etapeLecture = 0;
+			Sommet sommetDep;
+			Sommet sommetArr; 
+			int    nbTroncons;
 
 			while (sc.hasNextLine()) 
 			{
@@ -481,9 +484,11 @@ public class EditionFichier
 				
 				if ( etapeLecture <= numEtape )
 				{
-					Sommet sommetDep  = this.ctrl.getSommet( Integer.parseInt( ligne.substring( 3,5  ) ) );
-					Sommet sommetArr  = this.ctrl.getSommet( Integer.parseInt( ligne.substring( 9,11 ) ) );
-					int nbTroncons = Integer.parseInt( ligne.substring( 12,13 ));
+					String[] action = ligne.split(" ");
+					
+					sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
+					sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
+					nbTroncons = Integer.parseInt( action[4] );
 
 					this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr, nbTroncons) );
 
