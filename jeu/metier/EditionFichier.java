@@ -51,10 +51,12 @@ public class EditionFichier
 			Scanner sc = new Scanner(fr);
 
 			sc.nextLine();
-			if (sc.nextLine().equals("")) {
+			if (sc.nextLine().equals(""))
+			{
 				return true;
 			}
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			return true;
 		}
 		return false;
@@ -365,11 +367,11 @@ public class EditionFichier
 	 * Méthode qui sauvagarde les modifications apportées au ficher texte en
 	 * appelant les méthodes d'écriture.
 	 */
-	public void sauvegarde() throws IOException {
+	public void sauvegarde() throws IOException
+	{
 		this.supprimer();
 		this.tabSommet = ctrl.getTabSommet();
 		this.tabRoute = ctrl.getTabRoute();
-
 
 
 		for (Route r : this.tabRoute)
