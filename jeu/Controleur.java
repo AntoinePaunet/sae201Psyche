@@ -205,6 +205,7 @@ public class Controleur
 					if ( this.estScenar == false )
 						this.getEditionFichier().ecrireScenario(1,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 
+					this.majFrameJoueur(this.j1, this);
 					r.setJoueur(this.j1);
 
 					this.j1.addJetons(r.getNbTroncons());
