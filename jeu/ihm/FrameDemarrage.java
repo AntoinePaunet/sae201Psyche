@@ -246,6 +246,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			else
 			{
 				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
+				this.panelBoutons.lblErreur.setOpaque(true);
 			}
 			
 		}
