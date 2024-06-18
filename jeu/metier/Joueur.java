@@ -156,6 +156,11 @@ public class Joueur
 		this.ajouterMateriaux(s.prendreMateriaux());
 	}
 
+	public ArrayList<Sommet> getSommetRecup ()
+	{
+		return this.tabSommetRecup;
+	}
+
 	/**
 	 * Méthode qui permet de donner des JetonPossession au joueur.
 	 * @param j le jeton a ajouter
