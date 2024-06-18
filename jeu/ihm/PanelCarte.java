@@ -63,45 +63,19 @@ public class PanelCarte extends JPanel
 	 */
 	public void paintComponent(Graphics g)
 	{
-		int xPion1 = 40;
-		int yPion1 = 20;
-		int xPion2 = 40;
-		int yPion2 = 20;
-		int pointsJ1 = ctrl.getJoueur1().getScorePointJeton();
-		int pointsJ2 = ctrl.getJoueur2().getScorePointJeton();
 
 		super.paintComponent(g);
 
 		this.g2 = (Graphics2D) g;
 
-		
 
 		g2.drawImage(this.image, 0,0, this);
 		if (ctrl.getEstJeu())
 		{
-			pointsJ1 = pointsJ1 % 100;
-			pointsJ2 = pointsJ2 % 100;
-
-			if (pointsJ1 >  0 )
-				xPion1 += 20 * pointsJ1;
-			if (pointsJ1 >= 25)
-				yPion1 += 20 * ( pointsJ1 - 25 );
-			if (pointsJ1 >= 50)
-				xPion1 -= 20 * ( pointsJ1 - 50 );
-			if (pointsJ1 >= 75)
-				yPion1 -= 20 * ( pointsJ1 - 75 );
-
-			if (pointsJ2 >  0)
-				xPion2 += 20 * pointsJ2;
-			if (pointsJ2 >= 25)
-				yPion2 += 20 * ( pointsJ2 - 25 );
-			if (pointsJ2 >= 50)
-				xPion2 -= 20 * ( pointsJ2 - 50 );
-			if (pointsJ2 >= 75)
-				yPion2 -= 20 * ( pointsJ2 - 75 );
-			
-			g2.drawImage(this.pionJoueur1, xPion1, yPion1, this);
-			g2.drawImage(this.pionJoueur2, xPion2, yPion2, this);
+			if ( ctrl.getTourJ( ctrl.getJoueur1() ) )
+				g2.drawImage(this.pionJoueur1, 40, 20, this);
+			else
+				g2.drawImage(this.pionJoueur2, 40, 20, this);
 
 		}
 		

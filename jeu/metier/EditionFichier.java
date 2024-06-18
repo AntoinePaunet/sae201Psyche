@@ -37,7 +37,7 @@ public class EditionFichier
 	 */
 	public void initFicher(File fichier) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
-			writer.write("[SOMMET]\n\n[ROUTES]\n\n[JOUEUR1]\n\n[JOUEUR2] ");
+			writer.write("[SOMMET]\n\n[ROUTES]\n\n[JOUEUR1]\n\n[JOUEUR2]");
 			// System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
 		} catch (IOException e) {
 		}
@@ -356,7 +356,7 @@ public class EditionFichier
 
 	public void supprimer() {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.fichier))) {
-			writer.write("[SOMMET]\n\n[ROUTES]\n");
+			writer.write("[SOMMET]\n\n[ROUTES]\n\n[JOUEUR 1]\n\n[JOUEUR 2]");
 		} catch (IOException e) {
 		}
 	}
@@ -401,32 +401,71 @@ public class EditionFichier
 		}
 	}
 
-	public void ecrireScenario( int numJoueur, int nbScenario, int idSommetDep, int idSommeArr, int nbTroncon ) throws IOException
-	{
-		String tmpDonnes = "";
-		String emplacement = "./jeu/src/scenario/"+ nbScenario + ".txt";
+	public void ecrireScenario( int numJoueur, int nbScenario, int idSommetDep, int idSommeArr, int nbTroncon )
+	{ 
+		String         tmpDonnes ="";
+		String         emplacement = "./jeu/src/scenario/"+ nbScenario + ".txt";
+		BufferedWriter writer=null;
 
-		FileReader fr = new FileReader(emplacement);
 
-		BufferedWriter writer = new BufferedWriter(new FileWriter(emplacementData));
+		BufferedReader reader = null;
+        try {
+            reader = new BufferedReader( new FileReader( emplacement ) );
+			//writer = new BufferedWriter( new FileWriter( emplacement ) );
 
+            String line;
+            
+			while ( ( line = reader.readLine() ) != null ) 
+			{
+                tmpDonnes = tmpDonnes + line + "\n"; 
+            }
+        } 
+		catch (IOException e) 
+		{
+            e.printStackTrace();
+        } 
+		finally 
+		{
+            if ( reader != null ) 
+			{
+                try 
+				{
+                    reader.close();
+                } catch (IOException e) 
+				{
+                    e.printStackTrace();
+                }
+            }
+        }
+	
 		if ( numJoueur == 1  )
-			tmpDonnes = "J1 " + idSommetDep + " -> " + idSommeArr + " " + nbTroncon;
+			tmpDonnes += "J1 " + idSommetDep + " -> " + idSommeArr + " " + nbTroncon + '\n';
 		if ( numJoueur == 2 )
-			tmpDonnes = "J2 " + idSommetDep + " -> " + idSommeArr + " " + nbTroncon;
-
-
-
-		try {
-			writer.write( tmpDonnes );
-		} catch (Exception e) {
-			e.printStackTrace();
+			tmpDonnes += "J2 " + idSommetDep + " -> " + idSommeArr + " " + nbTroncon + '\n';
+		
+		try 
+		{
+            writer = new BufferedWriter(new FileWriter(emplacement));
+            writer.write(tmpDonnes);
+        } 
+		catch (IOException e) {
+            e.printStackTrace();
+        } 
+		finally 
+		{
+            if (writer != null) 
+			{
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 		}
-
-		writer.close();
-
+		
+		
 	}
-
+	
 	public void lireScenario( int nbScenario, int numEtape) throws IOException
 	{
 		try {
@@ -439,12 +478,14 @@ public class EditionFichier
 			{
 				String ligne = sc.nextLine();
 
-
-				if ( etapeLecture == numEtape )
+				
+				if ( etapeLecture <= numEtape )
 				{
-					String[] action = ligne.split(" ");
+					Sommet sommetDep  = this.ctrl.getSommet( Integer.parseInt( ligne.substring( 3,5  ) ) );
+					Sommet sommetArr  = this.ctrl.getSommet( Integer.parseInt( ligne.substring( 9,11 ) ) );
+					int nbTroncons = Integer.parseInt( ligne.substring( 12,13 ));
 
-					this.ctrl.ajouterOuSupprimerRoute( this.ctrl.getSommet( Integer.parseInt( action[1] ) ), this.ctrl.getSommet( Integer.parseInt( action[3] ) ), Integer.parseInt( action[4] ));
+					this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr, nbTroncons) );
 
 					break;
 				}

@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
 
 /**
  * Cette classe créé l'interface graphique gérée par le controleur.
@@ -136,31 +137,31 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		// Syso pour confirmer l'action
 		if ( e.getSource() instanceof JMenuItem )
 			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
-		*/
+			*/
 		
-		// Importation des fichiers
-		if( e.getSource() == this.menuiOuvrir )
-		{
-			String cheminFichier;
-			JFileChooser fc = new JFileChooser();
-			File chooserFile = new File(System.getProperty("user.dir") + "/jeu/src");
-
-			try 
+			// Importation des fichiers
+			if( e.getSource() == this.menuiOuvrir )
+			{
+				String cheminFichier;
+				JFileChooser fc = new JFileChooser();
+				File chooserFile = new File(System.getProperty("user.dir") + "/jeu/src");
+				
+				try 
 			{
 				chooserFile = chooserFile.getCanonicalFile();
 			} 
 			catch (Exception i) 
 			{
-			/*
-            // En cas d'erreur, imprimer le message d'erreur
-            System.out.println(i.getMessage());
-            // Utiliser le répertoire actuel par défaut
-			*/
+				/*
+				// En cas d'erreur, imprimer le message d'erreur
+				System.out.println(i.getMessage());
+				// Utiliser le répertoire actuel par défaut
+				*/
 			}
 			fc.setCurrentDirectory(chooserFile);
-
+			
 			int returnVal = fc.showOpenDialog(this);
-
+			
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
@@ -169,43 +170,62 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
-			
+				
 			}
 		}
-
+		
 		// Lecture des scénarios
 		if( e.getSource() == this.menuiScenario )
 		{
 			String cheminFichier;
 			JFileChooser fc = new JFileChooser();
 			File chooserFile = new File(System.getProperty("user.dir") + "/jeu/src");
-
+			
 			try 
 			{
 				chooserFile = chooserFile.getCanonicalFile();
 			} 
 			catch( Exception exp) {}
-
+			
 			fc.setCurrentDirectory(chooserFile);
-
+			
 			int returnVal = fc.showOpenDialog(this);
-
+			
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
+				this.ctrl.setEstScenar(true);
+				this.ctrl.getEditionFichier().initTheme(1);
+				this.frameChoix = new FrameChoix( this.ctrl );
+				
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
 				try
 				{
-					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
+					Timer timerSpawn = new Timer(17, new ActionListener() //Vitesse de déplacement du mob
+					{
+						@Override
+						public void actionPerformed(ActionEvent e)
+						{
+							if ( ctrl.getFrameDemarrage().getFrameChoix().getFrameJeu() != null  )
+							{
+								try {
+									
+									ctrl.getEditionFichier().lireScenario(1,0);
+								} catch (IOException r) 
+								{
+									System.out.println(r.getStackTrace());
+								}
+							}
+							
+						}
+					});
 				}
-				catch( IOException ex )
+				catch( Exception ex )
 				{
 					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
-				//this.ctrl.setEstScenar(true);
-				this.frameChoix = new FrameChoix( this.ctrl );
 			}
 		}
-
+	
 
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )

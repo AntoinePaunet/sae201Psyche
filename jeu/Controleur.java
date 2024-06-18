@@ -604,6 +604,15 @@ public class Controleur
 		return this.elementsTheme[4];
 	}
 
+	public Route getRoute(Sommet sommetDep, Sommet sommetArr, int nbTroncon)
+	{
+		
+		for ( Route r : this.tabRoute)
+			if ( r.getSommetDep().equals(sommetDep) && r.getSommetArr().equals(sommetArr) && r.getNbTroncons() == nbTroncon)
+				return r;
+		return null;
+	}
+
 	/**
 	 * Méthode principale de la classe Controleur. Elle lance l'application.
 	 * @param arg les arguments de la méthode
