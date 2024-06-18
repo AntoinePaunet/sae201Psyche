@@ -149,10 +149,14 @@ public class PanelCarte extends JPanel
 				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+s.getMateriaux().getNom()+".png"), s.getX()-10, s.getY()+15, 25,25, this);
 			}
 			if (s.getDepart())
-				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX(), s.getY(),30,30, this);
+				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX()+10, s.getY()-10,50,50, this);
 
-			g2.setFont(new Font("Arial", Font.BOLD, 18));
-			this.g2.drawString(s.getNumSom()+"", s.getX(), s.getY()-10 );
+			if (s.getNumSom()!=0)
+			{
+				g2.setFont(new Font("Arial", Font.BOLD, 18));
+				this.g2.drawString(s.getNumSom()+"", s.getX(), s.getY()-10 );
+			}
+			
 		}
 	}
 

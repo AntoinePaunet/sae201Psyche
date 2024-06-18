@@ -44,15 +44,15 @@ public class Controleur
 	 */
 	public Controleur() throws IOException
 	{
-		this.j1      		= new Joueur ();
-		this.j2      		= new Joueur ();
+		this.j1      		= new Joueur ( this );
+		this.j2      		= new Joueur ( this );
 		this.editionFichier = new EditionFichier(this);
 		this.tabSommet 		= this.editionFichier.getTabSommet();
 		this.tabRoute		= this.editionFichier.getTabRoute();
 		this.tourJ1         = true;
 		this.finPartie      = false;
 		this.estJeu         = false;
-		this.nbEtapeScenario= 0;
+		this.nbEtapeScenario= 1;
 		this.nbScenario     = 0;	
 		this.estScenar      = false;
 		
@@ -144,6 +144,13 @@ public class Controleur
 	 */
 	public boolean estValide(Route r)
 	{
+<<<<<<< HEAD
+=======
+		if (r.getJoueur()!=null) {return false;}
+		
+		//System.out.println(r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
+
+>>>>>>> refs/remotes/origin/main
 		//verifie si l'un des deux sommet deja pris ou non
 		return r.getJoueur() == null;
 	}
@@ -201,6 +208,7 @@ public class Controleur
 					if ( this.estScenar == false )
 						this.getEditionFichier().ecrireScenario(1,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 
+					this.majFrameJoueur(this.j1, this);
 					r.setJoueur(this.j1);
 
 					this.j1.addJetons(r.getNbTroncons());
@@ -240,7 +248,7 @@ public class Controleur
 			}
 		}
 
-		System.out.println("FIn de parti : "+this.finPartie);
+		//System.out.println("FIn de parti : "+this.finPartie);
 
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
@@ -259,9 +267,15 @@ public class Controleur
 	public void majFrameJoueur( Joueur j , Controleur ctrl )
 	{
 		if( j == this.j1 )
-			this.frameDemarrage.getFrameChoix().getF1().majTitre(this);
+		{
+			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
+			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
+		}
 		else
-			this.frameDemarrage.getFrameChoix().getF2().majTitre(this);
+		{	
+			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
+			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
+		}	
 	}
 
 	/**
@@ -271,6 +285,13 @@ public class Controleur
 	public boolean getTour()
 	{
 		return this.tourJ1;
+	}
+
+	public void setTourJ1()
+	{
+		this.tourJ1 = true;
+		this.j2.reset();
+		this.j1.reset();
 	}
 
 	/**

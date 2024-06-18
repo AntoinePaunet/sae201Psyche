@@ -475,7 +475,7 @@ public class EditionFichier
 			FileReader fr = new FileReader("./jeu/src/scenario/"+ nbScenario + ".txt");
 			Scanner sc = new Scanner(fr);
 
-			int etapeLecture = 0;
+			int etapeLecture = 1;
 			Sommet sommetDep;
 			Sommet sommetArr; 
 			int    nbTroncons;
@@ -483,13 +483,11 @@ public class EditionFichier
 			while (sc.hasNextLine()) 
 			{
 				String ligne = sc.nextLine();
-
-				System.out.println(ligne.length());
-				System.out.println( ligne );
 				
 				// if ( ligne.length() > 12 )
 				// 	System.out.println(ligne.substring(ligne.length()-15));
 				
+
 
 				if ( autoSkip )
 					System.out.println("pk");
@@ -503,7 +501,7 @@ public class EditionFichier
 
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
 
-						if ( etapeLecture == numEtape-1 )
+						if ( etapeLecture == numEtape )
 							break;
 
 					}
