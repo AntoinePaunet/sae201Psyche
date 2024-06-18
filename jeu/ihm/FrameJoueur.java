@@ -5,11 +5,8 @@ import jeu.metier.Joueur;
 import jeu.metier.Materiaux;
 
 import javax.swing.*;
-<<<<<<< HEAD
 import java.awt.BorderLayout;
-=======
-import java.awt.*;
->>>>>>> refs/remotes/origin/main
+
 
 
 /**
@@ -95,17 +92,9 @@ public class FrameJoueur extends JFrame
 	 */
 	public void refresh()
 	{
-<<<<<<< HEAD
 		int x = 65;
 		int y = 57;
 
-=======
-		this.panelBas.repaint();
-		this.panelDroite.repaint();
-
-		int x = 0;
-		int y = 500;
->>>>>>> refs/remotes/origin/main
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
 			this.panelBas.repaint();
