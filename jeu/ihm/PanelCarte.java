@@ -32,6 +32,7 @@ public class PanelCarte extends JPanel
 	private BufferedImage pionJoueur1;
 	private BufferedImage pionJoueur2;
 
+	private boolean clicked = false;
 
 	/**
 	 * Constructeur du panel
@@ -173,38 +174,47 @@ public class PanelCarte extends JPanel
 
 		private Sommet sommetChoisi ;
 
-	/**
-	 * Méthode qui gêre l'appui sur la souris.
-	 * @param e l'action de la souris
-	 */
+		/**
+		 * Méthode qui gêre l'appui sur la souris.
+		 * @param e l'action de la souris
+		 */
+
+		public void mouseReleased( MouseEvent e)
+		{
+			clicked = false;
+		}
+
 		public void mousePressed( MouseEvent e)
 		{
-		
-			if (  PanelCarte.this.ctrl.getEstJeu() == true )
+			if(!clicked)
 			{
-				for(Route r : ctrl.getTabRoute())
+				clicked = true;
+				if (  PanelCarte.this.ctrl.getEstJeu() == true )
 				{
-					this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
-					this.ptSmt2 = new Point(r.getSommetArr().getX(), r.getSommetArr().getY());
-
-					if(isNearLine(e.getPoint()))
+					for(Route r : ctrl.getTabRoute())
 					{
-						if (ctrl.getSommet( e.getX(), e.getY() )==null)
+						this.ptSmt1 = new Point(r.getSommetDep().getX(), r.getSommetDep().getY());
+						this.ptSmt2 = new Point(r.getSommetArr().getX(), r.getSommetArr().getY());
+
+						if(isNearLine(e.getPoint()))
 						{
-							try 
+							if (ctrl.getSommet( e.getX(), e.getY() )==null)
 							{
-								ctrl.jouer(r);
-							} catch (IOException ex) {
-								throw new RuntimeException(ex);
+								try
+								{
+									ctrl.jouer(r);
+								} catch (IOException ex) {
+									throw new RuntimeException(ex);
+								}
 							}
+
 						}
-							
 					}
 				}
-			}
 
-			if (  PanelCarte.this.ctrl.getEstJeu() == false )
-				this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
+				if (  PanelCarte.this.ctrl.getEstJeu() == false )
+					this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
+			}
 		}
 
 		
