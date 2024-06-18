@@ -22,6 +22,7 @@ public class EditionFichier
 		this.fichier = null;
 	}
 
+
 	public ArrayList<Sommet> getTabSommet() {
 		return this.tabSommet;
 	}
@@ -35,8 +36,10 @@ public class EditionFichier
 	 * 
 	 * @param fichier le fichier dans lequel le writer va écrire
 	 */
-	public void initFicher(File fichier) {
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
+	public void initFicher(File fichier)
+	{
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier)))
+		{
 			writer.write("[SOMMET]\n\n[ROUTES]\n");
 			// System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
 		} catch (IOException e) {
@@ -217,20 +220,26 @@ public class EditionFichier
 		int id = Integer.parseInt(smtInfo[7]);
 
 		if (nom.equals("DEPART"))
-			this.tabSommet.add( new Sommet( num, nom, x, y, null, true,this.ctrl.getJoueur1(), 1 ) );
+			this.tabSommet.add( new Sommet( num, nom, x, y, null, true, this.ctrl.getJoueur1(), 1 ) );
 		else
 		{
-			if ( smtInfo[5].equals( "J1" ) )
-				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false,this.ctrl.getJoueur1(), id ) );
+			if ( smtInfo[6].equals( "J1" ) )
+			{
+				System.out.println("test");
+				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur1(), id ) );
+				this.ctrl.getJoueur1().addSommetRecup(this.tabSommet.get(this.tabSommet.size()-1));
+				this.tabSommet.get(this.tabSommet.size()-1).setJoueur(this.ctrl.getJoueur1());
+			}
 			else
-				if ( smtInfo[5].equals( "J2" ) )
+				if ( smtInfo[6].equals( "J2" ) )
+				{
 					this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur2(), id ) );
+					this.ctrl.getJoueur2().addSommetRecup(this.tabSommet.get(this.tabSommet.size()-1));
+					this.tabSommet.get(this.tabSommet.size()-1).setJoueur(this.ctrl.getJoueur2());
+				}
 				else
 					this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false, null, id));
 		}
-
-		
-
 
 		this.ctrl.setTabSommet(this.tabSommet);
 	}
@@ -241,7 +250,8 @@ public class EditionFichier
 	 * 
 	 * @param ligne la ligne où se trouve les données de la route
 	 */
-	public void lireRoute(String ligne) {
+	public void lireRoute(String ligne)
+	{
 		String[] routeInfo = ligne.split("\t");
 
 		int nbTroncon = Integer.parseInt(routeInfo[0]);
@@ -249,12 +259,9 @@ public class EditionFichier
 		Sommet smtA = this.ctrl.getSommet(Integer.parseInt(routeInfo[1]));
 		Sommet smtB = this.ctrl.getSommet(Integer.parseInt(routeInfo[2]));
 
-		
-
 		if (smtA != null && smtB != null) // Si la ville recherché n'existe plus
 		{
 			Route r = new Route(smtA, smtB, nbTroncon);
-
 
 			if ( routeInfo[3].equals("J1") )
 				r.setJoueur( this.ctrl.getJoueur1() );
@@ -295,9 +302,14 @@ public class EditionFichier
 				donnesFichier.indexOf("\n["));
 		String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-		if (materiaux != null && !(nomCoul.equals("DEPART"))) {
-			donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom()
-								+ "\t" + estDepart + "\t" + "J" + joueur +  "\t" + id + "\n\n") + donneesRoutes;
+		if (!(nomCoul.equals("DEPART")))
+		{
+			if(materiaux == null)
+			{
+				donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + null + "\t" + estDepart + "\t" + "J" + joueur +  "\t" + id + "\n\n") + donneesRoutes;
+			}else{
+				donnesFichier = donneesVilles + (numSmt + "\t" + nomCoul + "\t" + x + "\t" + y + "\t" + materiaux.getNom() + "\t" + estDepart + "\t" + "J" + joueur +  "\t" + id + "\n\n") + donneesRoutes;
+			}
 		}
 		else
 			donnesFichier = donneesVilles + (0 + "\t" + "DEPART" + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "J0" + "\t" + 0 + "\n\n")
@@ -335,14 +347,8 @@ public class EditionFichier
 		while (sc.hasNextLine())
 			donnesFichier += sc.nextLine() + "\n";
 
-		if ( joueur == 0 )
-			donnesFichier += (nbTroncons + "\t" + smtA.getId() + "\t" + smtB.getId() + "\t" + "J0" + "\n");
-
-		if ( joueur == 1 )
-			donnesFichier += (nbTroncons + "\t" + smtA.getId() + "\t" + smtB.getId() + "\t" + "J1" + "\n");
-
-		if ( joueur == 2 )
-			donnesFichier += (nbTroncons + "\t" + smtA.getId() + "\t" + smtB.getId() + "\t" + "J2" + "\n");
+		if ( joueur >= 0 )
+			donnesFichier += (nbTroncons + "\t" + smtA.getId() + "\t" + smtB.getId() + "\t" + "J" + joueur + "\n");
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter(emplacementData));
 
@@ -376,18 +382,13 @@ public class EditionFichier
 
 		for (Route r : this.tabRoute)
 		{
-			if(r.getSommetArr().getDepart() || r.getSommetDep().getDepart() || r.getSommetDep() == null)
-			{
+			if ( this.ctrl.getJoueur1().equals(r.getJoueur()) )
+				this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),1);
+			else
+			if ( this.ctrl.getJoueur2().equals(r.getJoueur()) )
+				this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),2);
+			else
 				this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),0);
-			}else{
-				if ( this.ctrl.getJoueur1().equals(r.getJoueur()) )
-					this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),1);
-				else
-				if ( this.ctrl.getJoueur2().equals(r.getJoueur()) )
-					this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),2);
-				else
-					this.ecrireRoute(r.getSommetDep(), r.getSommetArr(), r.getNbTroncons(),0);
-			}
 		}
 
 		for (Sommet s : this.tabSommet) 
