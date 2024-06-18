@@ -36,7 +36,7 @@ public class PanelMine extends JPanel
 		this.joueur=joueur;
 
 		this.setPreferredSize(new Dimension(100, 500));
-		this.setBackground (new Color (000000));
+		this.setBackground (new Color (208,208,208));
 
 	}
 
@@ -46,7 +46,7 @@ public class PanelMine extends JPanel
 		this.g2 = (Graphics2D) g;
 		int cpt1=0, cpt2=0  ;
 
-		this.g2.setBackground(new Color (000000));
+		this.g2.setBackground(new Color (208,208,208));
 		int[] tabInt= {10,50};
 
 		for (Sommet s : this.joueur.getSommetRecup())

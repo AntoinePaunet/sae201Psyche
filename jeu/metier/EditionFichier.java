@@ -468,7 +468,7 @@ public class EditionFichier
 		
 	}
 	
-	public void lireScenario( int nbScenario, int numEtape) throws IOException
+	public void lireScenario( int nbScenario, int numEtape, boolean autoSkip) throws IOException
 	{
 		try {
 			FileReader fr = new FileReader("./jeu/src/scenario/"+ nbScenario + ".txt");
@@ -486,24 +486,40 @@ public class EditionFichier
 				System.out.println(ligne.length());
 				System.out.println( ligne );
 				
-				if ( ligne.length() > 12 )
-					System.out.println(ligne.substring(ligne.length()-15));
+				// if ( ligne.length() > 12 )
+				// 	System.out.println(ligne.substring(ligne.length()-15));
 				
-				if ( etapeLecture == numEtape )
-				{
-					String[] action = ligne.split(" ");
 
-					sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
-					sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
-					nbTroncons = Integer.parseInt( action[4] );
+				if ( autoSkip )
+					System.out.println("pk");
+					if ( etapeLecture < numEtape )
+					{
+						String[] action = ligne.split(" ");
 
-					System.out.println( sommetDep.getId() );
-					System.out.println( sommetArr.getId());
+						sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
+						sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
+						nbTroncons = Integer.parseInt( action[4] );
 
-					this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
+						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
 
-					break;
-				}
+						if ( etapeLecture == numEtape-1 )
+							break;
+
+					}
+
+				else 
+					if ( etapeLecture == numEtape )
+					{
+						String[] action = ligne.split(" ");
+
+						sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
+						sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
+						nbTroncons = Integer.parseInt( action[4] );
+
+						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
+
+						break;
+					}
 
 				etapeLecture +=1;
 			}

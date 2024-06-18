@@ -2,10 +2,10 @@ package jeu.ihm;
 
 import jeu.Controleur;
 import jeu.metier.Joueur;
-import jeu.metier.Materiaux;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+
 
 
 /**
@@ -39,7 +39,7 @@ public class FrameJoueur extends JFrame
 		this.joueur = j;
 		this.ctrl = ctrl;
 		this.setTitle( this.majTitre(this.ctrl) );
-		this.setSize( 569, 500 );
+		this.setSize( 680, 500 );
 		this.panelFond = new JLayeredPane();
 
 		this.panelBas=new PanelJetons(ctrl, j);
@@ -75,12 +75,14 @@ public class FrameJoueur extends JFrame
 	{
 		String s = this.joueur.getNomJoueur() + " : ";
 
-		if( ctrl.getTour() ^ this.joueur == this.ctrl.getJoueur1() ) // si c'est le tour du Joueur 1
+		if( ctrl.getTour() && this.joueur == this.ctrl.getJoueur1() ) // si c'est le tour du Joueur 1
 			s += String.format("%-40s","A vous de jouer !" );
-		else				 // si c'est le tour du Joueur 2
-			s += String.format("%-40s","en attente de l'autre joueur ... " ) ;
+		else if ( !ctrl.getTour() && this.joueur == this.ctrl.getJoueur2() )// si c'est le tour du Joueur 2
+			s += String.format("%-40s","en attente de l'autre joueur ... " );
+		else
+			s += String.format("%-40s","Les tours ne marchent plus" );
 
-		s += "Votre score : " + String.valueOf(this.joueur.getScore());
+		s += "Votre score : " + String.valueOf(this.joueur.getScoreRoute());
 		return s;
 	}
 
@@ -89,14 +91,13 @@ public class FrameJoueur extends JFrame
 	 */
 	public void refresh()
 	{
-		this.panelBas.repaint();
-		this.panelDroite.repaint();
+		int x = 65;
+		int y = 57;
 
-		int x = 0;
-		int y = 500;
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
 			this.panelBas.repaint();
+			this.panelDroite.repaint();
 			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
@@ -117,8 +118,8 @@ public class FrameJoueur extends JFrame
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
-				this.ajoutImage(x,325, "NR.png", 1);
-				x += 60;
+				this.ajoutImage(x,328, "NR.png", 1);
+				x += 54;
 			}
 		}
 	}
