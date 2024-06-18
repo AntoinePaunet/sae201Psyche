@@ -79,8 +79,7 @@ public class FrameJoueur extends JFrame
 			s += String.format("%-40s","A vous de jouer !" );
 		else if ( !ctrl.getTour() && this.joueur == this.ctrl.getJoueur2() )// si c'est le tour du Joueur 2
 			s += String.format("%-40s","en attente de l'autre joueur ... " );
-		else
-			s += String.format("%-40s","Les tours ne marchent plus" );
+
 
 		s += "Votre score : " + String.valueOf(this.joueur.getScoreRoute());
 		return s;
