@@ -213,7 +213,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 							{
 								try {
 									
-									ctrl.getEditionFichier().lireScenario(ctrl.getNbScenario(),ctrl.getNbEtapeScenario());
+									ctrl.getEditionFichier().lireScenario(ctrl.getNbScenario(),ctrl.getNbEtapeScenario(),false);
 									((Timer)e.getSource()).stop();
 
 								} catch (IOException r) 
