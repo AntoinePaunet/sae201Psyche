@@ -668,7 +668,13 @@ public class Controleur
 		this.j2 = new Joueur(this);
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.setTourJ1();
-		this.init();
+
+		if(this.getNomThemePrincipal().equals("Europe"))
+		{
+			this.getEditionFichier().lectureFichier(System.getProperty("user.dir") + "/jeu/src/theme_europe.txt", true);
+		}else{
+			this.init();
+		}
 	}
 
 	public void supprimerTout() throws IOException

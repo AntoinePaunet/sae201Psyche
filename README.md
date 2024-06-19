@@ -74,7 +74,7 @@ Frame Score Final
 Scénario 1 : Lancement de jeu + Déroulement d'une partie
 
  - Lancement de l’application
- - Lancer sans choisir un scénario
+ - Lancer sans choisir un scénario et sans theme
  - Lancer en choisissant le scénario
  - Entrer le nom des joueurs puis cliquer sur annuler ( echap )
  - Cliquer sur jouer, mettre le nom des joueurs et cliquer sur entrer.
