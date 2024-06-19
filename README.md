@@ -1,12 +1,12 @@
 # sae201Psyche
 sae201Psyche
 
-Fonctionnalités :
+Fonctionnalités à démontrer :
 
 Menu prncipal : 
- - Ouverture de la frame de démarrage 
- - la menuBar contient "Ouvrir", tester avec un fichier. Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.
- - Quitter et Alt F4 fonctionnent
+ - Ouverture de la frame de démarrage	(FAIT)
+ - Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.		(FAIT)
+ - Quitter et Alt F4 fonctionnent		(FAIT)
  - Pour les autres boutons il faut montrer que lorsque aucun thème n'est choisi, ou qu'il n'est pas valide il y a le labelErreur
  - L'ajout d'un thème de test fonctionne bien tant qu'il est bien écrit avec ses images
  - Quand on en choisi un il disparait
@@ -18,10 +18,12 @@ Editeur de carte
 
 Frame Modification : 
 
- - Modification de la position des sommets avec la souris ( et ajustement es routes en fonction
+ - Modification de la position des sommets avec la souris ( et ajustement es routes en fonction )
 
  - Créer un sommet
  - Créer une route
+
+ - Ouvrir tester avec un fichier
 
  - Supprimer
  - Réinitialiser
@@ -69,7 +71,7 @@ Frame Score Final
 	- toutes les catégories de score sont bonnes
 	- Montrer une fin de partie avec une égalité
 
-
+------------------------------------------------------------------------------------------------------------------------------------
 
 Scénario 1 : Lancement de jeu + Déroulement d'une partie
 
@@ -96,13 +98,13 @@ Scénario 3 : Modification + ajout de thèmes
  - Cliquer sur "Modifier"
 
  - Cliquer sur la modification des villes
-	- Créer une ville
-	- Modifier le nom et la position d'une ville
+	- Créer une ville. Ne pas choisir des coordonées correctes
+	- Modifier le nom et la position d'une ville. Ne pas choisir des coordonées correctes
 	- Supprimer une ville
 
  - Cliquer sur la modification d'une route
-	- Créer une route
-	- Modifier une route
+	- Créer une route. Ne pas choisir des coordonées correctes
+	- Modifier une route. Ne pas choisir des coordonées correctes
 	- Supprimer une route
 
  - Cliquer sur Enregistrer et quitter
