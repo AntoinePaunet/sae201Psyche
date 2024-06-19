@@ -517,22 +517,16 @@ public class EditionFichier
 				sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
 				sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
 				nbTroncons = Integer.parseInt( action[4] );
-
+				
 				if ( joueurEnCour.equals("J1"))
-					this.ctrl.setTourJ1();
+				this.ctrl.setTourJ1();
 				else 
-					this.ctrl.setTourJ2();
+				this.ctrl.setTourJ2();
+				
 			}
-
+			
 			while (sc.hasNextLine()) 
 			{	
-				if ( etapeLecture > numEtape && numEtape < -1 )
-				{
-					System.out.println("break");
-
-					return;
-
-				}
 				
 				ligne = sc.nextLine();
 				action = ligne.split(" ");			
@@ -540,36 +534,48 @@ public class EditionFichier
 				sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
 				sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
 				nbTroncons = Integer.parseInt( action[4] );			
-
-
+				
+				if ( etapeLecture > numEtape && numEtape < -1 )
+				{
+					System.out.println("break");
+	
+					return;
+	
+				}
+				
 				if ( autoSkip )
 				{
 					
 					if ( etapeLecture <= numEtape)
 					{
-					
+						
+						
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
-					
-
+						
 						if ( etapeLecture == numEtape )
-							break;
+						break;
+						
+						
+						
+						
 					}
-
+					
 					
 				}
-
+				
 				else 
 				{
 					if ( etapeLecture == numEtape )
 					{
-
+						
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
 						break;
 					}
 				}
+
 				etapeLecture +=1;
 			}
-
+			
 			sc.close();
 			fr.close();
 		} catch (Exception exp) {

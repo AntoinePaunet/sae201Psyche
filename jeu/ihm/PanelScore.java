@@ -82,8 +82,6 @@ public class PanelScore extends JPanel
 		// Creating the table
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 
-		this.table.setEnabled(false);
-
 		this.table = new JTable(model)
 		{
 			public Class getColumnClass(int columnNames) 
@@ -107,11 +105,12 @@ public class PanelScore extends JPanel
 				table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 
-		
+		this.table.setEnabled(false);
 
 		// Adding the table to a scroll pane
 		JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane, BorderLayout.CENTER);
+
 	}
 
 	public int getBonus(Joueur j1, Joueur j2)
