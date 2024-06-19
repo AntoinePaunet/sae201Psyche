@@ -74,8 +74,8 @@ Frame Score Final
 Scénario 1 : Lancement de jeu + Déroulement d'une partie
 
  - Lancement de l’application
- - Lancer sans choisir un scénario
- - Lancer en choisissant le scénario
+ - Lancer sans choisir un thème
+ - Lancer en choisissant le thème
  - Entrer le nom des joueurs puis cliquer sur annuler ( echap )
  - Cliquer sur jouer, mettre le nom des joueurs et cliquer sur entrer.
 -----
@@ -95,23 +95,21 @@ Scénario 1 : Lancement de jeu + Déroulement d'une partie
 		(DETAILLER A L'ORAL LA SAUVEGARDE DES SCORES)
  - Quitter sans sauvegarder
  - Relancer la partie en reprennant la sauvegarde
- - Démontrer que la sauvegarde est effacée.
+ - Démontrer que la sauvegarde est effacée
 
 
 
 Scénario 2 : Fin de partie + tableau des scores
 
-
-
-
-
-
+ - Lancement du scénario 2. Il se lance à trois coups de la fin.
+ - Faire les trois coups.
+ - La frame de score s'affiche. Détailler chaque ligne du score, justifier avec les plateaux des joueurs et leurs sommets possédés.
 
 
 
 Scénario 3 : Modification + ajout de thèmes
 
- - Lancement de l'app
+ - Lancement de l’application
  - Choix du thème
  - Cliquer sur "Modifier"
 
