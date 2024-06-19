@@ -56,7 +56,7 @@ public class Joueur
 		this.tabScore = new int[11];
 
 		ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
-
+		
 		int nbRouteDetenu = 0;
 
 		for ( Route r : lstRoute )
@@ -68,7 +68,7 @@ public class Joueur
 
 				}
 	
-		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur1()) && this.ctrl.getEstScenar())
+		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur2()) && this.ctrl.getEstScenar())
 		{
 			this.nbJetonsUtiliser = -2 ;
 			
@@ -143,6 +143,12 @@ public class Joueur
 		}
 		return false;
 	}
+
+	public void setTableMateriaux(Materiaux[][] plt)
+	{
+		this.tabPlateau = plt;
+	}
+
 
 	/**
 	 * Renvoie le tableau de matériaux du joueur.

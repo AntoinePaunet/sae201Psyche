@@ -278,8 +278,8 @@ public class Controleur
 		}
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
-		// this.frameDemarrage.getFrameChoix().getF2().refresh();
-		// this.frameDemarrage.getFrameChoix().getF1().refresh();
+		this.frameDemarrage.getFrameChoix().getF2().refresh();
+		this.frameDemarrage.getFrameChoix().getF1().refresh();
 		
 		
 		/*if (r.getJoueur()==this.getJoueur1())
@@ -332,6 +332,8 @@ public class Controleur
 	{
 		this.tourJ1 = true;
 
+		
+
 		for (Sommet s : this.tabSommet)
 		{
 			s.setJoueur(null);
@@ -344,6 +346,8 @@ public class Controleur
 
 		this.j1.reset();
 		this.j2.reset();
+
+		
 
 		
 		
@@ -354,6 +358,8 @@ public class Controleur
 	{
 		this.tourJ1 = false;
 
+		
+
 		for (Sommet s : this.tabSommet)
 		{
 			s.setJoueur(null);
@@ -366,6 +372,7 @@ public class Controleur
 
 		this.j1.reset();
 		this.j2.reset();
+		
 
 	}
 
@@ -661,6 +668,13 @@ public class Controleur
 		return null;
 	}
 
+	public void viderFrameJoueur()
+	{
+		this.j1.setTableMateriaux(new Materiaux[this.j1.getTableMateriaux().length][this.j1.getTableMateriaux()[0].length]);
+		this.j2.setTableMateriaux(new Materiaux[this.j1.getTableMateriaux().length][this.j1.getTableMateriaux()[0].length]);
+		this.setTourJ1();
+	}
+
 
 	public void reInit() throws IOException {
 		this.tabSommet = new ArrayList<Sommet>(30);
@@ -668,7 +682,13 @@ public class Controleur
 		this.j2 = new Joueur(this);
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.setTourJ1();
-		this.init();
+
+		if(this.getNomThemePrincipal().equals("Europe"))
+		{
+			this.getEditionFichier().lectureFichier(System.getProperty("user.dir") + "/jeu/src/theme_europe.txt", true);
+		}else{
+			this.init();
+		}
 	}
 
 	public void supprimerTout() throws IOException
