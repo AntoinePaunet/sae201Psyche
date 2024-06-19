@@ -55,7 +55,7 @@ public class PanelScore extends JPanel
 
 		Object[][] data = {
 			{"", "", ""},
-			{"Points Route"    , this.ctrl.getJoueur1().getScorePointJeton(), this.ctrl.getJoueur2().getScorePointJeton()},
+			{"Points Route"    , this.ctrl.getJoueur1().getScoreRoute(), this.ctrl.getJoueur2().getScoreRoute()},
 			{"", "", ""},
 			{"Points des Mines", "", ""},
 			{"", this.ctrl.getJoueur1().getScoreJaune (), this.ctrl.getJoueur2().getScoreJaune () }, // point Jaune
@@ -72,7 +72,7 @@ public class PanelScore extends JPanel
 			{"Scores des Lignes"  , this.ctrl.getJoueur1().getScoreLigne  (), this.ctrl.getJoueur2().getScoreLigne  () }, //scoreLigJ1
 			{"S/Total"            , "", ""},
 			{"", "", ""},
-			{"Jetons Possession restants", this.ctrl.getJoueur1().getJetons(), this.ctrl.getJoueur2().getJetons()}, //jetonPossessJ1
+			{"Jetons Possession restants", 25 - this.ctrl.getJoueur1().getJetons(), 25 - this.ctrl.getJoueur2().getJetons()}, //jetonPossessJ1
 			{"Bonus (10)", "", ""},
 			{"Total"     , this.ctrl.getJoueur1().getSommeScore(), this.ctrl.getJoueur2().getSommeScore()} //Total
 		};

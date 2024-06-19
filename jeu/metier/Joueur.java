@@ -57,20 +57,34 @@ public class Joueur
 
 		ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
 
-		int cpt = 0;
+		int nbRouteDetenu = 0;
 
 		for ( Route r : lstRoute )
 			if ( r.getJoueur() != null )
 				if ( r.getJoueur().equals(this) )
 				{
 					this.nbJetonsUtiliser += r.getNbTroncons();
-					cpt++;
+					nbRouteDetenu++;
 
 				}
 
+		
+		// for ( Materiaux p : lstRoute )
+		// 	if ( r.getJoueur() != null )
+		// 		if ( r.getJoueur().equals(this) )
+		// 			{
+		// 				this.nbJetonsUtiliser += r.getNbTroncons();
+		// 				nbRouteDetenu++;
+	
+		// 			}
 
-		if ( cpt == 0 && this.equals(this.ctrl.getJoueur1()))
+		
+		
+
+
+		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur1()) && this.ctrl.getEstScenar())
 			this.nbJetonsUtiliser = -2 ;
+			System.out.println(this.tabPiece.length);
 				
 		
 
@@ -218,8 +232,8 @@ public class Joueur
 	 */
 	public void scoreFin()
 	{
-		int[] scoresLig = {0,4,9,16,25,36,49,64};
-		int[] tabScoreCol = {0,2,10,20};
+		int[] scoresLig   = {0,4,9,16,25,36,49,64};
+		int[] tabScoreCol = {0, 2, 10, 20};
 		//Affichage des détails
 		int  scoreMonnaie, scoreCol, scoreLig;
 
@@ -235,20 +249,23 @@ public class Joueur
 		this.tabScore[0] = scoreMonnaie;
 
 
-		//Compteur pour le score des colonnes
-		int cptCol = 0;
-		
-		while (cptCol < this.tabPlateau[0].length) // 0 - 7
-			for (int i = 0 ; i < this.tabPlateau.length; i++) // 0 - 3
+		//Compteur pour le score des colonnes tabPlateau est [4][8]
+		//tabScoreCol = {0, 2, 10, 20};
+		for (int p = 0; p < this.getTableMateriaux()[0].length ; p++) // 0 - 7
+		{
+			for (int s = 0 ; s < this.tabPlateau.length; s++) // 0 - 3
 			{
 				scoreCol = 0;
-				if  (this.tabPlateau[i][cptCol] != null)
-					scoreCol=tabScoreCol[i];
+				if  (this.tabPlateau[s][p] != null)
+				{
+					scoreCol=tabScoreCol[ this.getTableMateriaux().length - s - 1];
+					this.getTabScore()[1] += scoreCol;
+					break ;
+				}
 
-				this.tabScore[1] += scoreCol;
-
-				cptCol++;
 			}
+		}
+			
 
 
 		//Compteur pour le score des lignes
@@ -295,17 +312,17 @@ public class Joueur
 		}
 	}
 
-	public int getScorePiece     () { return this.getTabScore()[0] ; }
-	public int getScoreColonne   () { return this.getTabScore()[1] ; }
-	public int getScoreLigne     () { return this.getTabScore()[2] ; }
-	public int getScorePointJeton() { return this.getTabScore()[3] ; }
-	public int getScoreVert      () { return this.getTabScore()[4] ; }
-	public int getScoreBleu      () { return this.getTabScore()[5] ; }
-	public int getScoreRouge     () { return this.getTabScore()[6] ; }
-	public int getScoreGris      () { return this.getTabScore()[7] ; }
-	public int getScoreJaune     () { return this.getTabScore()[8] ; }
-	public int getScoreMarron    () { return this.getTabScore()[9] ; }
-	public int getScoreRoute	 () { return this.getTabScore()[10]; }
+	public int getScorePiece     () { return this.getTabScore()[0]   ; }
+	public int getScoreColonne   () { return this.getTabScore()[1]+1 ; }
+	public int getScoreLigne     () { return this.getTabScore()[2]   ; }
+	public int getScorePointJeton() { return this.getTabScore()[3]   ; }
+	public int getScoreVert      () { return this.getTabScore()[4]   ; }
+	public int getScoreBleu      () { return this.getTabScore()[5]   ; }
+	public int getScoreRouge     () { return this.getTabScore()[6]   ; }
+	public int getScoreGris      () { return this.getTabScore()[7]   ; }
+	public int getScoreJaune     () { return this.getTabScore()[8]   ; }
+	public int getScoreMarron    () { return this.getTabScore()[9]   ; }
+	public int getScoreRoute	 () { return this.getTabScore()[10]  ; }
 
 	public int getSommeScore     ()
 	{

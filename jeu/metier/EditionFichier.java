@@ -540,13 +540,5 @@ public class EditionFichier
 		} catch (Exception exp) {
 			exp.printStackTrace();
 		}
-
-
-
 	}
-	
-
-
-
-
 }
