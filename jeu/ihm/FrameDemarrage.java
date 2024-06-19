@@ -256,7 +256,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 						}
 					}
 				}
-				this.ctrl.setTourJ1HorsScena();
 				this.frameChoix = new FrameChoix( this.ctrl );
 				this.ctrl.setEstJeu(true);
 			}

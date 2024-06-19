@@ -87,7 +87,6 @@ public class EditionFichier
 
 		try {
 
-			System.out.println("lecture");
 			FileReader fr;
 
 			if (importer)
@@ -233,7 +232,6 @@ public class EditionFichier
 			{
 				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur1(), id ) );
 				this.ctrl.getJoueur1().addSommetRecup(this.tabSommet.get(this.tabSommet.size()-1));
-				System.out.println(ctrl.getJoueur1().getNomJoueur());
 				this.tabSommet.get(this.tabSommet.size()-1).setJoueur(this.ctrl.getJoueur1());
 			}
 			else
@@ -328,7 +326,7 @@ public class EditionFichier
 			}
 		}
 		else
-			if(ctrl.getTourJ(ctrl.getJoueur1()))
+			if(ctrl.estTourJ1())
 				donnesFichier = donneesVilles + (0 + "\t" + "DEPART" + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "T" + 1 + "\t" + 0 + "\n\n") + donneesRoutes;
 			else
 				donnesFichier = donneesVilles + (0 + "\t" + "DEPART" + "\t" + x + "\t" + y + "\t" + null + "\t" + true + "\t" + "T" + 2 + "\t" + 0 + "\n\n") + donneesRoutes;

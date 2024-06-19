@@ -35,8 +35,6 @@ public class FrameJeu extends JFrame implements ActionListener
 		this.ctrl = ctrl;
 		this.setResizable(false);
 
-		System.out.println(this.ctrl.getTabRoute());
-
 
 		// Création et ajout du Panel
 		this.panelCarte = new PanelCarte(ctrl);

@@ -309,7 +309,9 @@ public class Controleur
 		{
 			return true;
 		}
+
 		// true ne peut plus jouer
+
 		if ( this.getJoueur1().getJetons() == Joueur.getNbMaxJetonsPossession() || this.getJoueur2().getJetons() == Joueur.getNbMaxJetonsPossession())
 		{
 			new FrameScore(this);
@@ -375,7 +377,6 @@ public class Controleur
 	public void setTourJ1()
 	{
 		this.tourJ1 = true;
-
 		
 
 		for (Sommet s : this.tabSommet)
@@ -498,6 +499,11 @@ public class Controleur
 		tabRoute.add(new Route(tabSommet.get(19), tabSommet.get(26), 1));
 
 		this.editionFichier.sauvegarde();
+	}
+
+	public boolean estTourJ1()
+	{
+		return this.tourJ1;
 	}
 
 	/**
