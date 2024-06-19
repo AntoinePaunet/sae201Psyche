@@ -26,6 +26,7 @@ import java.awt.*;
 public class PanelScore extends JPanel
 {
 	private Controleur ctrl      ;
+	private FrameScore frame     ;
 
 	private JTable     table     ;
 	private Object[][] tabDonnees;
@@ -33,9 +34,10 @@ public class PanelScore extends JPanel
 	/**
 	 * Constructeur du Panel d'édition des routes.
 	*/
-	public PanelScore(Controleur ctrl) 
+	public PanelScore(Controleur ctrl, FrameScore frame) 
 	{
 		this.ctrl = ctrl;
+		this.frame = frame;
 		this.ctrl.getJoueur1().scoreFin();
 		this.ctrl.getJoueur2().scoreFin();
 		this.ctrl.getJoueur1().scoreSommet();
@@ -45,7 +47,7 @@ public class PanelScore extends JPanel
 		int bonusJ2 = this.getBonus(this.ctrl.getJoueur2(), this.ctrl.getJoueur1());
 
 		setLayout(new BorderLayout(10, 10));
-		setBorder(new EmptyBorder(10, 10, 10, 10));
+		setBorder(new EmptyBorder(10, 10, 10, 10));		
 
 		// Title Label
 		/*JLabel titleLabel = new JLabel("Fiche de Score", SwingConstants.CENTER);
@@ -53,7 +55,7 @@ public class PanelScore extends JPanel
 		add(titleLabel, BorderLayout.NORTH);*/
 
 		// Table Data
-		String[] columnNames = { "x","images", this.ctrl.getNomThemeJ1(), this.ctrl.getNomThemeJ2() };
+		String[] columnNames = { "x","images", this.ctrl.getJoueur1().getNomJoueur(), this.ctrl.getJoueur2().getNomJoueur() };
 
 		Object[][] data = {
 			{"",new ImageIcon(""), "", ""},
@@ -74,7 +76,7 @@ public class PanelScore extends JPanel
 			{"Scores des Lignes"  ,"", this.ctrl.getJoueur1().getScoreLigne  (), this.ctrl.getJoueur2().getScoreLigne  () }, //scoreLigJ1
 			{"S/Total"            ,"", this.ctrl.getJoueur1().getSommeScorePlateau(), this.ctrl.getJoueur2().getSommeScorePlateau()},
 			{"", "", "", ""},
-			{"Jetons Possession restants", "", 25 - this.ctrl.getJoueur1().getJetons(), 25 - this.ctrl.getJoueur2().getJetons()                  }, //jetonPossessJ1
+			{"Jetons Possession restants", "", Joueur.getNbMaxJetonsPossession() - this.ctrl.getJoueur1().getJetons(), Joueur.getNbMaxJetonsPossession() - this.ctrl.getJoueur2().getJetons()                  }, //jetonPossessJ1
 			{"Bonus (10)"                , "", bonusJ1 , bonusJ2                                                                                 },
 			{"Total"                     , "", this.ctrl.getJoueur1().getSommeScore() + bonusJ1, this.ctrl.getJoueur2().getSommeScore() + bonusJ2} //Total
 		};
@@ -82,11 +84,21 @@ public class PanelScore extends JPanel
 		// Creating the table
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 
+		if( this.ctrl.getJoueur1().getSommeScore() + bonusJ1 > this.ctrl.getJoueur2().getSommeScore() + bonusJ2 )
+			this.frame.setTitle( this.frame.getTitle() + this.ctrl.getJoueur1().getNomJoueur() + " à gagné !");
+		else if( this.ctrl.getJoueur1().getSommeScore() + bonusJ1 < this.ctrl.getJoueur2().getSommeScore() + bonusJ2 )
+			this.frame.setTitle( this.frame.getTitle() + this.ctrl.getJoueur2().getNomJoueur() + " à gagné !");
+		else
+			this.frame.setTitle(this.frame.getTitle() + "Egalité !");
+
+
+
+
 		this.table = new JTable(model)
 		{
-			public Class getColumnClass(int columnNames) 
+			public Class getColumnClass(int colonnes) 
 			{
-				return (columnNames == 1) ? Icon.class : Object.class;
+				return (colonnes == 1) ? Icon.class : Object.class;
 			}
 		};
 
@@ -105,11 +117,12 @@ public class PanelScore extends JPanel
 				table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 
-		
+		this.table.setEnabled(false);
 
 		// Adding the table to a scroll pane
 		JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane, BorderLayout.CENTER);
+
 	}
 
 	public int getBonus(Joueur j1, Joueur j2)

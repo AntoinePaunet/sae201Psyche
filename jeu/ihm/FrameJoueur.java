@@ -98,37 +98,6 @@ public class FrameJoueur extends JFrame
 		this.panelBas.repaint();
 		this.panelDroite.repaint();
 		this.panelFond.repaint();
-
-
-		
-		/*/
-		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
-		{
-			
-			for(int j = 0 ; j < this.joueur.getTableMateriaux()[i].length ; j++)
-			{
-				if(this.joueur.getTableMateriaux()[i][j] != null)
-				{
-					if(!this.joueur.getTableMateriaux()[i][j].getNom().equals("DP"))
-					{
-						this.
-					}
-				}
-				x += 54;
-			}
-			y += 54;
-			x= 65;
-		}
-
-		for(int i = 0 ; i < this.joueur.getTabPiece().length ; i++) // Ajout des pièces
-		{
-			if(this.joueur.getTabPiece()[i] != null)
-			{
-				this.ajoutImage(x,328, "NR.png", 1);
-				x += 54;
-			}
-		}*/
-
 	}
 
 	/**
