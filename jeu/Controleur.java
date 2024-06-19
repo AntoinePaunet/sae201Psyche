@@ -206,7 +206,11 @@ public class Controleur
 	 */
 	public void jouer (Route r) throws IOException
 	{
+		System.out.println( " Etat Joueur     :  " + r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null  );
+		System.out.println( " Etat Matérieaux :  " + r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null);
+		
 		this.finPartie=estFin(r);
+		
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
@@ -223,6 +227,7 @@ public class Controleur
 					this.j1.addJetons(r.getNbTroncons());
 					this.j1.ajouterScoreRoute(r.getNbTroncons());
 
+					
 					if (r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
@@ -258,8 +263,8 @@ public class Controleur
 		}
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
-		this.frameDemarrage.getFrameChoix().getF2().refresh();
-		this.frameDemarrage.getFrameChoix().getF1().refresh();
+		// this.frameDemarrage.getFrameChoix().getF2().refresh();
+		// this.frameDemarrage.getFrameChoix().getF1().refresh();
 		
 		
 		/*if (r.getJoueur()==this.getJoueur1())
