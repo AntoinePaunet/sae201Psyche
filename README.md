@@ -67,4 +67,25 @@ Frame Score Final
 
 
 
-Scénario 1
+Scénario 1 : Lancement de jeu + Déroulement d'une partie
+
+
+
+
+
+
+Scénario 2 : Fin de partie + tableau des scores
+
+
+
+
+
+
+
+
+
+Scénario 3 : Modification + ajout de thèmes
+
+
+
+
