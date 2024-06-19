@@ -183,8 +183,7 @@ public class PanelCarte extends JPanel
 		{
 			if(!clicked)
 			{
-				clicked = true;
-				if (  PanelCarte.this.ctrl.getEstJeu() == true )
+				if ( PanelCarte.this.ctrl.getEstJeu() )
 				{
 					for(Route r : ctrl.getTabRoute())
 					{
@@ -193,6 +192,7 @@ public class PanelCarte extends JPanel
 
 						if(isNearLine(e.getPoint()))
 						{
+							clicked = true; //Empêcher les doubles clics sur des lignes les unes sur les autres
 							if (ctrl.getSommet( e.getX(), e.getY() )==null)
 							{
 								try
@@ -207,7 +207,7 @@ public class PanelCarte extends JPanel
 					}
 				}
 
-				if (  PanelCarte.this.ctrl.getEstJeu() == false )
+				if (  !PanelCarte.this.ctrl.getEstJeu() )
 					this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
 			}
 		}
@@ -245,8 +245,12 @@ public class PanelCarte extends JPanel
 	 */
 		private boolean isNearLine(Point p)
 		{
-			double distance = distanceARoute(p, ptSmt1, ptSmt2);
-			return distance <= 15; //5px de tolérance
+			if(!clicked)
+			{
+				double distance = distanceARoute(p, ptSmt1, ptSmt2);
+				return distance <= 15; //5px de tolérance
+			}
+			return false;
 		}
 
 	/**
