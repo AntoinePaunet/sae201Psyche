@@ -99,6 +99,7 @@ public class FrameJoueur extends JFrame
 		this.panelBas.repaint();
 		this.panelDroite.repaint();
 
+
 		int x = 65;
 		int y = 57;
 
@@ -155,6 +156,8 @@ public class FrameJoueur extends JFrame
 
 	public int calculeScore()
 	{
+		//System.out.println( "FrameJOueur calcule score  : " + (25 - this.joueur.getJetons() ) );
+
 		return (25 - this.joueur.getJetons() );
 	}
 

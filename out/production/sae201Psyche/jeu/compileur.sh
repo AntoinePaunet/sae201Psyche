@@ -11,3 +11,5 @@ fi
 
 # Copie des fichiers source dans le répertoire de sortie
 cp -r "src" "class/jeu/"
+
+# sed -i -e 's/\r$//'
