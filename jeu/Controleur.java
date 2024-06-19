@@ -262,7 +262,7 @@ public class Controleur
 				}
 				else
 				{
-					if ( this.estScenar == false )
+					if (!this.estScenar )
 						this.getEditionFichier().ecrireScenario(2,404,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 					
 					r.setJoueur(this.j2);
@@ -303,6 +303,11 @@ public class Controleur
 	{
 		this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
 		this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
+	}
+
+	public Route getRouteDepart()
+	{
+		return this.routeDepart;
 	}
 
 	public boolean estFin (Route r)
