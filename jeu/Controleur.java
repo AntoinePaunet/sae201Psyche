@@ -60,9 +60,9 @@ public class Controleur
 		this.lstMateriaux = new ArrayList<>(40);
 		this.initMateriaux();
 
-		this.initJetonPossession();
 		this.frameDemarrage = new FrameDemarrage(this);
 		this.editionFichier.lectureFichier("data.txt", false);
+		this.initJetonPossession();
 	}
 
 	private void initMateriaux()
@@ -144,12 +144,9 @@ public class Controleur
 	 */
 	public boolean estValide(Route r)
 	{
-		if (r.getJoueur()!=null) {return false;}
-		
-		//System.out.println(r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
-
-		//verifie si l'un des deux sommet deja pris ou non
-		return (r.getSommetDep().getMateriaux()==null || r.getSommetArr().getMateriaux()==null);
+		if (!(r.getSommetDep().getJoueur()!=null || r.getSommetArr().getJoueur()!=null || r.getSommetDep().getDepart() || r.getSommetDep().getDepart()))
+			return false ;
+		return r.getJoueur() == null;
 	}
 
 	/**
@@ -195,10 +192,11 @@ public class Controleur
 	 */
 	public void jouer (Route r) throws IOException
 	{
+		this.finPartie=estFin(r);
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
-			if (this.estValide(r) && ( this.getJoueurJoue().getJetons() + r.getNbTroncons() ) <= Joueur.getNbMaxJetonsPossession() )
+			if (this.estValide(r) )
 			{
 				if (this.tourJ1)
 				{
@@ -211,10 +209,10 @@ public class Controleur
 					this.j1.addJetons(r.getNbTroncons());
 					this.j1.ajouterScoreRoute(r.getNbTroncons());
 
-					if (r.getSommetDep().getMateriaux()!=null)
+					if (r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
-					if (r.getSommetArr().getMateriaux()!=null)
+					if (r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null)
 						this.j1.addSommetRecup(r.getSommetArr());
 					
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
@@ -233,10 +231,10 @@ public class Controleur
 					this.j2.addJetons(r.getNbTroncons());
 					this.j2.ajouterScoreRoute(r.getNbTroncons());
 
-					if (r.getSommetDep().getMateriaux()!=null)
+					if (r.getSommetDep().getJoueur() == null && r.getSommetDep().getMateriaux() != null)
 						this.j2.addSommetRecup(r.getSommetDep());
 					
-					if (r.getSommetArr().getMateriaux()!=null)
+					if (r.getSommetArr().getJoueur() == null && r.getSommetArr().getMateriaux() != null)
 						this.j2.addSommetRecup(r.getSommetArr());
 					
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
@@ -249,11 +247,9 @@ public class Controleur
 				}
 			}
 		}
-
-		//System.out.println("FIn de parti : "+this.finPartie);
-
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
+		
 		
 		/*if (r.getJoueur()==this.getJoueur1())
 			this.editionFichier.ecrireScenario(1, 1, r.getSommetDep().getId(),r.getSommetArr().getId(), r.getNbTroncons()  );
@@ -278,8 +274,27 @@ public class Controleur
 		{	
 			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
 			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
-		}
+		}	
+	}
+
+	public boolean estFin (Route r)
+	{
+		if ( !((this.getJoueurJoue().getJetons() + r.getNbTroncons() ) <= Joueur.getNbMaxJetonsPossession()))
+		{
+			if (!this.finPartie)
+				new FrameScore(this);
 			
+			return true;
+		}
+
+		for (Sommet s : this.tabSommet)
+			if (s.getJoueur()==null && !s.getDepart())
+				return false;
+		
+		if (!this.finPartie)
+			new FrameScore(this);
+		
+		return true;
 	}
 
 	/**
@@ -289,6 +304,14 @@ public class Controleur
 	public boolean getTour()
 	{
 		return this.tourJ1;
+	}
+
+	public void setTourJ2()
+	{
+		this.tourJ1 = false;
+		this.j2.reset();
+		this.j1.reset();
+		System.out.println("oui");
 	}
 
 	public void setTourJ1()
@@ -407,12 +430,15 @@ public class Controleur
 	 */
 	private void initJetonPossession()
 	{
-		final int NB_JETONS = 25;
-
-		for (int i=0; i<NB_JETONS; i++)
+		for(int i = 0 ; i < this.tabRoute.size() ; i++)
 		{
-			j1.addJetonPossession(new JetonPossession(j1));
-			j2.addJetonPossession(new JetonPossession(j2));
+			if(this.tabRoute.get(i).getJoueur() == j1)
+			{
+				this.j1.addJetons(this.tabRoute.get(i).getNbTroncons());
+			} else if (this.tabRoute.get(i).getJoueur() == j2)
+			{
+				this.j2.addJetons(this.tabRoute.get(i).getNbTroncons());
+			}
 		}
 	}
 
@@ -587,12 +613,16 @@ public class Controleur
 
 	public void reInit() throws IOException {
 		this.tabSommet = new ArrayList<Sommet>(30);
+		this.j1 = new Joueur(this);
+		this.j2 = new Joueur(this);
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.init();
 	}
 
 	public void supprimerTout() throws IOException
 	{
+		this.j1 = new Joueur(this);
+		this.j2 = new Joueur(this);
 		this.tabSommet = new ArrayList<Sommet>(30);
 		Controleur.nbSommets = 1;
 		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true,null, 1));

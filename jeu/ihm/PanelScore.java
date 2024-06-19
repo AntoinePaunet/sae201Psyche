@@ -37,6 +37,10 @@ public class PanelScore extends JPanel
 	public PanelScore(Controleur ctrl) 
 	{
 		this.ctrl = ctrl;
+		this.ctrl.getJoueur1().scoreFin();
+		this.ctrl.getJoueur2().scoreFin();
+		this.ctrl.getJoueur1().scoreSommet();
+		this.ctrl.getJoueur2().scoreSommet();
 
 		setLayout(new BorderLayout(10, 10));
 		setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -64,7 +68,7 @@ public class PanelScore extends JPanel
 			{"", "", ""},
 			{"Plateau Individuel" , "", ""},
 			{"Score Pièces"       , this.ctrl.getJoueur1().getScorePiece  (), this.ctrl.getJoueur2().getScorePiece  () }, //scorePieceJ1
-			{"Scores des Colonnes", this.ctrl.getJoueur1().getScoreColonne(), this.ctrl.getJoueur2().getScoreColonne() }, //scoreColJ1
+			{"Scores des Colonnes", this.ctrl.getJoueur1().getScoreColonne()-1, this.ctrl.getJoueur2().getScoreColonne() -1}, //scoreColJ1
 			{"Scores des Lignes"  , this.ctrl.getJoueur1().getScoreLigne  (), this.ctrl.getJoueur2().getScoreLigne  () }, //scoreLigJ1
 			{"S/Total"            , "", ""},
 			{"", "", ""},

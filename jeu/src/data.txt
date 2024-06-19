@@ -1,35 +1,35 @@
 [SOMMET]
-0	DEPART	769	543	null	true	J0	0
-4	Vert	543	83	NR	false	J0	2
-8	Vert	370	115	FE	false	J0	3
-2	Vert	506	273	CO	false	J0	4
-3	Vert	691	71	AU	false	J0	5
-6	Vert	262	175	PT	false	J0	6
-6	Bleu	409	428	PT	false	J0	7
-8	Bleu	673	299	AU	false	J0	8
-5	Rouge	113	322	AG	false	J0	9
-3	Rouge	245	354	AL	false	J0	10
-1	Rouge	289	478	NI	false	J0	11
-2	Gris	784	322	CO	false	J0	12
-3	Bleu	367	657	AU	false	J0	13
-4	Bleu	533	543	NI	false	J0	14
-2	Bleu	672	469	NR	false	J0	15
+0	DEPART	769	543	null	true	T1	0
+4	Vert	543	83	CO	false	J0	2
+8	Vert	370	115	AL	false	J0	3
+2	Vert	506	273	NR	false	J0	4
+3	Vert	691	71	FE	false	J0	5
+6	Vert	262	175	NR	false	J0	6
+6	Bleu	409	428	NR	false	J0	7
+8	Bleu	673	299	AG	false	J0	8
+5	Rouge	113	322	NR	false	J0	9
+3	Rouge	245	354	AU	false	J0	10
+1	Rouge	289	478	FE	false	J0	11
+2	Gris	784	322	AL	false	J0	12
+3	Bleu	367	657	TI	false	J0	13
+4	Bleu	533	543	FE	false	J0	14
+2	Bleu	672	469	AG	false	J2	15
 4	Gris	783	103	TI	false	J0	16
 3	Jaune	956	146	AL	false	J0	17
-4	Rouge	126	509	CO	false	J0	18
-2	Rouge	178	621	AG	false	J0	19
-2	Marron	551	685	AL	false	J0	20
-0	Gris	888	314	PT	false	J0	21
-1	Jaune	1194	498	TI	false	J0	22
-4	Jaune	1080	318	NI	false	J0	23
-5	Marron	248	736	PT	false	J0	24
-3	Marron	362	824	AG	false	J0	25
-4	Marron	477	873	NR	false	J0	26
-1	Marron	639	857	FE	false	J0	27
-3	Gris	872	663	NR	false	J0	28
-1	Gris	801	861	AL	false	J0	29
-5	Jaune	1069	819	FE	false	J0	30
-2	Jaune	979	498	CO	false	J0	31
+4	Rouge	126	509	NR	false	J0	18
+2	Rouge	178	621	NR	false	J0	19
+2	Marron	551	685	AU	false	J2	20
+0	Gris	888	314	AU	false	J0	21
+1	Jaune	1194	498	NI	false	J0	22
+4	Jaune	1080	318	NR	false	J0	23
+5	Marron	248	736	AG	false	J0	24
+3	Marron	362	824	CO	false	J0	25
+4	Marron	477	873	NI	false	J0	26
+1	Marron	639	857	CO	false	J0	27
+3	Gris	872	663	AL	false	J1	28
+1	Gris	801	861	PT	false	J0	29
+5	Jaune	1069	819	TI	false	J0	30
+2	Jaune	979	498	PT	false	J0	31
 
 [ROUTES]
 1	2	3	J0
@@ -79,7 +79,7 @@
 2	30	22	J0
 2	31	23	J0
 1	22	31	J0
-1	1	15	J0
-2	1	28	J0
-1	1	20	J0
+1	1	15	J2
+2	1	28	J1
+1	1	20	J2
 1	20	27	J0
