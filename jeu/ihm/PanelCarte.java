@@ -39,7 +39,17 @@ public class PanelCarte extends JPanel
 	 */
 	public PanelCarte(Controleur ctrl)
 	{
-		try {
+		try
+		{
+			if(ctrl.getNomThemePrincipal().equals("Europe") && !ctrl.getEstJeu() && ctrl.getPremierLancer() && ctrl.getEstSauvegarde())
+			{
+				ctrl.getEditionFichier().lectureFichier(System.getProperty("user.dir") + "/jeu/src/theme_europe.txt", true);
+				this.repaint();
+			} else if (ctrl.getNomThemePrincipal().equals("Pays") && !ctrl.getEstJeu() && ctrl.getPremierLancer() && ctrl.getEstSauvegarde())
+			{
+				//initPays
+			}
+
 			this.image       = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/bgPlateau.png"    ));
 			this.pionJoueur1 = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"));
 			this.pionJoueur2 = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"));
@@ -54,7 +64,7 @@ public class PanelCarte extends JPanel
 		this.addMouseListener( gereSouris );
 		this.addMouseMotionListener( gereSouris );
 
-
+		ctrl.setPremierLance(false); //On dit qu'on à déjà lancer la frame une fois
 	}
 
 

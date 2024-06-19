@@ -39,6 +39,7 @@ public class FrameModification extends JFrame implements ActionListener
 		this.setTitle("Modification de la carte");
 		this.setSize    ( 1269,1122 );
 		this.setLocation(  150, 50 );
+		this.setResizable(false);
 
 		JMenuBar menubMaBarre = new JMenuBar();
 
@@ -151,6 +152,7 @@ public class FrameModification extends JFrame implements ActionListener
 				try
 				{
 					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
+					this.repaint();
 				}
 				catch( IOException ex )
 				{
@@ -170,8 +172,13 @@ public class FrameModification extends JFrame implements ActionListener
 		{
 			try
 			{
-				Controleur.nbSommets = 1;
-				this.ctrl.reInit();
+				if(ctrl.getNomThemePrincipal().equals("Europe"))
+				{
+					ctrl.getEditionFichier().lectureFichier(System.getProperty("user.dir") + "/jeu/src/theme_europe.txt", true);
+				}else{
+					Controleur.nbSommets = 1;
+					this.ctrl.reInit();
+				}
 				this.repaint();
 			} catch( IOException ex ) { throw new RuntimeException(ex); }
 		}

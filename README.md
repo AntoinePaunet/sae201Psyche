@@ -49,9 +49,12 @@ Frame Jeu ( mode classique )
 	- Respect des règles
 		- Prise de route possible SEULEMENT SI elle est conectée au départ ET il reste des jetons possessions.
 		- Ajout correct des points en foncction de la mine prise ( attention aux mines d'or )
+		- Il ne peut pas y avoir plus de 4 même ressource dans la même colonne (essayer avec 5 du même)
 
- - Quitter sans enregistrer n'enregistre pas la partie
- - Quitter avec la croix enregistre la partie
+ - Quitter 
+ 	- sans enregistrer n'enregistre pas la partie
+	- avec la croix enregistre la partie
+	- garde le joueur qui était en train de jouer
 
 Frame Jeu ( mode scénario )
 
@@ -63,6 +66,7 @@ Frame Score Final
 
  - Calcul de score correct
 	- toutes les catégories de score sont bonnes
+	- Montrer une fin de partie avec une égalité
 
 
 

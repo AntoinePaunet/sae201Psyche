@@ -39,6 +39,7 @@ public class Controleur
 
 	private ArrayList<String> lstMateriaux;
 	public static int nbSommets = 2;
+	private boolean premierLance;
 
 	/**
 	 * Constructeur du Controleur
@@ -56,6 +57,7 @@ public class Controleur
 		this.nbEtapeScenario= 1;
 		this.nbScenario     = 0;	
 		this.estScenar      = false;
+		this.premierLance 	= true;
 		
 		
 		this.lstMateriaux = new ArrayList<>(40);
@@ -86,6 +88,16 @@ public class Controleur
 				this.lstMateriaux.add(tabNomsMat[i]);
 			}
 		}
+	}
+
+	public boolean getPremierLancer()
+	{
+		return this.premierLance;
+	}
+
+	public void setPremierLance(boolean bool)
+	{
+		this.premierLance = bool;
 	}
 
 
@@ -206,7 +218,11 @@ public class Controleur
 	 */
 	public void jouer (Route r) throws IOException
 	{
+		System.out.println( " Etat Joueur     :  " + r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null  );
+		System.out.println( " Etat Matérieaux :  " + r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null);
+		
 		this.finPartie=estFin(r);
+		
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
@@ -223,6 +239,7 @@ public class Controleur
 					this.j1.addJetons(r.getNbTroncons());
 					this.j1.ajouterScoreRoute(r.getNbTroncons());
 
+					
 					if (r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null)
 						this.j1.addSommetRecup(r.getSommetDep());
 					
@@ -258,8 +275,8 @@ public class Controleur
 		}
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
-		this.frameDemarrage.getFrameChoix().getF2().refresh();
-		this.frameDemarrage.getFrameChoix().getF1().refresh();
+		// this.frameDemarrage.getFrameChoix().getF2().refresh();
+		// this.frameDemarrage.getFrameChoix().getF1().refresh();
 		
 		
 		/*if (r.getJoueur()==this.getJoueur1())

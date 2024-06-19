@@ -31,6 +31,7 @@ public class FrameChoix extends JFrame
 		this.setTitle   ("Choix des joueurs et de leur plateau");
 		this.setSize    ( 700,200 );
 		this.setLocation(  300, 300 );
+		this.setResizable(false);
 
 
 		// Création et ajout du Panel
