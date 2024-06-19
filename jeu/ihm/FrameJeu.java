@@ -113,7 +113,7 @@ public class FrameJeu extends JFrame implements ActionListener
 		
 		if ( e.getSource() == this.menuiAnnuler ) // CTRL + Z
 		{
-			if ( ( this.ctrl.getNbEtapeScenario() - 1 ) > -1 )					
+			if ( ( this.ctrl.getNbEtapeScenario() - 1 ) > -2 )					
 				this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() - 1 );			
 			
 			try
@@ -157,7 +157,8 @@ public class FrameJeu extends JFrame implements ActionListener
 			try
 			{
 				int action = Integer.parseInt( JOptionPane.showInputDialog("Entrez le numéro de l'action : "));
-				System.out.println(action);
+
+				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(), action,true);
 
 
 

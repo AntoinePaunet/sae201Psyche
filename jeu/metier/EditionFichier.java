@@ -491,7 +491,8 @@ public class EditionFichier
 	}
 	
 	public void lireScenario( int nbScenario, int numEtape, boolean autoSkip) throws IOException
-	{
+	{	
+
 		try {
 			FileReader fr = new FileReader("./jeu/src/scenario/"+ nbScenario + ".txt");
 			Scanner sc = new Scanner(fr);
@@ -519,9 +520,9 @@ public class EditionFichier
 				nbTroncons = Integer.parseInt( action[4] );
 				
 				if ( joueurEnCour.equals("J1"))
-				this.ctrl.setTourJ1();
+					this.ctrl.setTourJ1();
 				else 
-				this.ctrl.setTourJ2();
+					this.ctrl.setTourJ2();
 				
 			}
 			
@@ -548,18 +549,11 @@ public class EditionFichier
 					
 					if ( etapeLecture <= numEtape)
 					{
-						
-						
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
 						
 						if ( etapeLecture == numEtape )
-						break;
-						
-						
-						
-						
+						break;	
 					}
-					
 					
 				}
 				
