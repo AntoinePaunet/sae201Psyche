@@ -668,6 +668,13 @@ public class Controleur
 		return null;
 	}
 
+	public void viderFrameJoueur()
+	{
+		this.j1 = new Joueur(this);
+		this.j2 = new Joueur(this);
+		this.setTourJ1();
+	}
+
 
 	public void reInit() throws IOException {
 		this.tabSommet = new ArrayList<Sommet>(30);
