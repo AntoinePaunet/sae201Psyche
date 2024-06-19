@@ -63,3 +63,7 @@ Frame Score Final
 
  - Calcul de score correct
 	- toutes les catégories de score sont bonnes
+
+
+
+Scénario 1

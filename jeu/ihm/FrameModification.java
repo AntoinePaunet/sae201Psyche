@@ -3,6 +3,7 @@ package jeu.ihm;
 import jeu.Controleur;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -21,12 +22,11 @@ public class FrameModification extends JFrame implements ActionListener
 
 	private PanelCarte panelC;
 
+	private JMenuItem menuiOuvrir;
 	private JMenuItem menuiCreerSommet;
 	private JMenuItem menuiCreerRoute;
-
 	private JMenuItem menuiRein;
 	private JMenuItem menuiSupp;
-
 	private JMenuItem menuiSave;
 	private JMenuItem menuiQuitter;
 
@@ -42,9 +42,12 @@ public class FrameModification extends JFrame implements ActionListener
 
 		JMenuBar menubMaBarre = new JMenuBar();
 
+		JMenu menuOuvrir   = new JMenu("Ouvrir"  );
 		JMenu menuCreer = new JMenu("Création"  );
 		JMenu menuSave  = new JMenu("Sauvegarde");
 		JMenu menuQuit  = new JMenu("Quitter"   );
+
+		this.menuiOuvrir        = new JMenuItem("Importer une carte" );
 
 		this.menuiCreerSommet = new JMenuItem ("Créer ou supprimer un  sommet : " + ctrl.getNomThemeSommet());
 		this.menuiCreerRoute  = new JMenuItem ("Créer ou supprimer une route  : " + ctrl.getNomThemeRoute ());
@@ -55,6 +58,8 @@ public class FrameModification extends JFrame implements ActionListener
 
 		this.menuiQuitter = new JMenuItem ("Quitter sans enregistrer"  );
 		
+		menuOuvrir  .add(this.menuiOuvrir       );
+
 		menuCreer.add( this.menuiCreerSommet );
 		menuCreer.add( this.menuiCreerRoute  );
 
@@ -65,16 +70,20 @@ public class FrameModification extends JFrame implements ActionListener
 		menuSave.add(this.menuiSave);
 		menuQuit.add(this.menuiQuitter);
 
-		menubMaBarre.add( menuCreer );
-		menubMaBarre.add( menuSave  );
-		menubMaBarre.add( menuQuit );
+		menubMaBarre.add( menuOuvrir );
+		menubMaBarre.add( menuCreer  );
+		menubMaBarre.add( menuSave   );
+		menubMaBarre.add( menuQuit   );
 
 		this.setJMenuBar( menubMaBarre );
 		
 		// Création des raccourcis clavier
-		menuCreer.setMnemonic('C');
-		menuSave .setMnemonic('S');
-		menuQuit .setMnemonic('Q');
+		menuOuvrir.setMnemonic('O');
+		menuCreer .setMnemonic('C');
+		menuSave  .setMnemonic('S');
+		menuQuit  .setMnemonic('Q');
+
+		this.menuiOuvrir.setAccelerator   (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
 
 		this.menuiCreerSommet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiCreerRoute.setAccelerator	(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK) );
@@ -85,7 +94,7 @@ public class FrameModification extends JFrame implements ActionListener
 		this.menuiSave.setAccelerator		(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiQuitter.setAccelerator	(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
-
+		this.menuiOuvrir	 .addActionListener( this );
 		this.menuiCreerSommet.addActionListener ( this );
 		this.menuiCreerRoute .addActionListener ( this );
 		this.menuiSave.addActionListener 		( this );
@@ -113,6 +122,44 @@ public class FrameModification extends JFrame implements ActionListener
 	 */
 	public void actionPerformed ( ActionEvent e )
 	{
+			// Importation des fichiers
+			if( e.getSource() == this.menuiOuvrir )
+			{
+				String cheminFichier;
+				JFileChooser fc = new JFileChooser();
+				File chooserFile = new File(System.getProperty("user.dir") + "/jeu/src");
+				
+				try 
+			{
+				chooserFile = chooserFile.getCanonicalFile();
+			} 
+			catch (Exception i) 
+			{
+				/*
+				// En cas d'erreur, imprimer le message d'erreur
+				System.out.println(i.getMessage());
+				// Utiliser le répertoire actuel par défaut
+				*/
+			}
+			fc.setCurrentDirectory(chooserFile);
+			
+			int returnVal = fc.showOpenDialog(this);
+			
+			if (returnVal == JFileChooser.APPROVE_OPTION)
+			{
+				cheminFichier = fc.getSelectedFile().getAbsolutePath();
+				try
+				{
+					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
+				}
+				catch( IOException ex )
+				{
+					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+		}
+
 		if ( e.getSource() == this.menuiCreerSommet )
 			new FrameSommet( this.ctrl);
 
