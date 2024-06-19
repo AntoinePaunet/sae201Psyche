@@ -201,7 +201,7 @@ public class Controleur
 				if (this.tourJ1)
 				{
 					if ( this.estScenar == false )
-						this.getEditionFichier().ecrireScenario(1,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
+						this.getEditionFichier().ecrireScenario(1,404,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 
 					this.majFrameJoueur(this.j1, this);
 					r.setJoueur(this.j1);
@@ -223,7 +223,7 @@ public class Controleur
 				else
 				{
 					if ( this.estScenar == false )
-						this.getEditionFichier().ecrireScenario(2,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
+						this.getEditionFichier().ecrireScenario(2,404,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 					
 					r.setJoueur(this.j2);
 					this.j2.addJetons(r.getNbTroncons());

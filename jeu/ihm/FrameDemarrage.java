@@ -194,7 +194,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				this.frameChoix = new FrameChoix( this.ctrl );
 				
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				this.ctrl.setNbScenario( 0);
+				this.ctrl.setNbScenario(  Integer.parseInt( cheminFichier.substring( cheminFichier.indexOf( ".txt" ) - 1, cheminFichier.indexOf( ".txt" ) ) ) );
+				
 				try
 				{
 					Timer timerSpawn = new Timer(17, new ActionListener() //Vitesse de déplacement du mob

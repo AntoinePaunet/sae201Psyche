@@ -57,20 +57,34 @@ public class Joueur
 
 		ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
 
-		int cpt = 0;
+		int nbRouteDetenu = 0;
 
 		for ( Route r : lstRoute )
 			if ( r.getJoueur() != null )
 				if ( r.getJoueur().equals(this) )
 				{
 					this.nbJetonsUtiliser += r.getNbTroncons();
-					cpt++;
+					nbRouteDetenu++;
 
 				}
 
+		
+		// for ( Materiaux p : lstRoute )
+		// 	if ( r.getJoueur() != null )
+		// 		if ( r.getJoueur().equals(this) )
+		// 			{
+		// 				this.nbJetonsUtiliser += r.getNbTroncons();
+		// 				nbRouteDetenu++;
+	
+		// 			}
 
-		if ( cpt == 0 && this.equals(this.ctrl.getJoueur1()))
+		
+		
+
+
+		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur1()) && this.ctrl.getEstScenar())
 			this.nbJetonsUtiliser = -2 ;
+			System.out.println(this.tabPiece.length);
 				
 		
 
