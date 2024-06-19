@@ -31,12 +31,11 @@ public class FrameScore extends JFrame
 		this.setResizable(false);
 		this.ctrl=ctrl;
 
-		this.panelDesScore = new PanelScore( this.ctrl );
+		this.panelDesScore = new PanelScore( this.ctrl, this );
 
 		this.add( this.panelDesScore );
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
-
 }
