@@ -4,7 +4,7 @@ import jeu.Controleur;
 import jeu.metier.Joueur;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
+import java.awt.*;
 
 
 
@@ -20,9 +20,10 @@ import java.awt.BorderLayout;
 
 public class FrameJoueur extends JFrame
 {
-	private JLayeredPane panelFond;
+	private JPanel panelFond;
 	private JPanel 		 panelDroite;
 	private JPanel 		 panelBas;
+	private Graphics2D  g2;
 
 	private Controleur ctrl;
 	private Joueur joueur;
@@ -40,31 +41,23 @@ public class FrameJoueur extends JFrame
 		this.ctrl = ctrl;
 		this.setTitle( this.majTitre(this.ctrl) );
 		this.setSize( 680, 500 );
-		this.panelFond = new JLayeredPane();
-		this.setResizable(false);
+
+		this.panelFond = new PanelMateriaux(this.ctrl,j);
+		this.add( this.panelFond, BorderLayout.CENTER );
 
 		this.panelBas=new PanelJetons(this,ctrl, j);
 		this.add(this.panelBas, BorderLayout.SOUTH);
 
-		this.panelDroite = new PanelMine (ctrl, j);
+		this.panelDroite = new PanelMine (this.ctrl, j);
 		this.add(this.panelDroite, BorderLayout.EAST);
 
-		if( this.joueur == this.ctrl.getJoueur1() )
-		{
-			this.setLocation( 1300, 0 );
-			this.ajoutImage(0,0, "plateau_joueur_1.png", 0);
-		}
-		else
-		{
-			this.setLocation( 1300, 550 );
-			this.ajoutImage(0,0, "plateau_joueur_2.png", 0);
-		}
-
-		this.add( this.panelFond, BorderLayout.CENTER );
+		
 		this.refresh();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 		this.setVisible(true);
 	}
+
 
 	/**
 	 * Méthode qui met a jour le nom de la frame des joueurs en fonction de leur tour de jouer.
@@ -99,11 +92,11 @@ public class FrameJoueur extends JFrame
 	{
 		this.panelBas.repaint();
 		this.panelDroite.repaint();
+		this.panelFond.repaint();
 
 
-		int x = 65;
-		int y = 57;
-
+		
+		/*/
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
 			
@@ -113,7 +106,7 @@ public class FrameJoueur extends JFrame
 				{
 					if(!this.joueur.getTableMateriaux()[i][j].getNom().equals("DP"))
 					{
-						this.ajoutImage(x, y, this.joueur.getTableMateriaux()[i][j].getNom() + ".png", 1);
+						this.
 					}
 				}
 				x += 54;
@@ -129,7 +122,7 @@ public class FrameJoueur extends JFrame
 				this.ajoutImage(x,328, "NR.png", 1);
 				x += 54;
 			}
-		}
+		}*/
 
 	}
 
