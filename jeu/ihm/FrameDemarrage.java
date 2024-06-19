@@ -144,10 +144,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				this.ctrl.setEstScenar(true);
 				this.ctrl.getEditionFichier().initTheme(1);
+				
 				this.frameChoix = new FrameChoix( this.ctrl );
 				
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
 				this.ctrl.setNbScenario(  Integer.parseInt( cheminFichier.substring( cheminFichier.indexOf( ".txt" ) - 1, cheminFichier.indexOf( ".txt" ) ) ) );
+				this.ctrl.setEstJeu(true);
 				
 				try
 				{
