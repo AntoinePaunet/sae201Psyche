@@ -207,19 +207,28 @@ public class PanelSommet extends JPanel  implements ActionListener
 			}
 			else
 			{
-
 				this.lblErreur.setText("");
-
-				int rndm = (int)(Math.random()*(this.ctrl.getLstMateriaux().size()));
-
-				Materiaux tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(rndm));
 
 				if(idVille != 1 && selectedRowIndex != -1)
 				{
-					this.ctrl.ajouterOuSupprimerSommet(idVille , numVille, nomVile,x,y,tmpMat,false);
+					this.ctrl.ajouterOuSupprimerSommet(idVille , numVille, nomVile,x,y, null,false);
+
 				}else if(selectedRowIndex == -1)
 				{
-					this.ctrl.ajouterOuSupprimerSommet(Controleur.nbSommets++ , numVille, nomVile,x,y,tmpMat,false);
+					if(this.ctrl.getTabSommet().size() < 41)
+					{
+						int rndm = (int)(Math.random()*(this.ctrl.getLstMateriaux().size()));
+
+						Materiaux tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(rndm));
+
+						this.ctrl.ajouterOuSupprimerSommet(Controleur.nbSommets++ , numVille, nomVile,x,y,tmpMat,false);
+					}
+					else
+					{
+						System.out.println(this.ctrl.getLstMateriaux() +" FIN");
+						this.lblErreur.setText("<html>Nombre de sommets maximum <br> dépassé. </html>");
+						return;
+					}
 				}else{
 					this.lblErreur.setText("<html>Impossible de supprimer <br> le sommet principal. </html>");
 					return;
@@ -232,9 +241,6 @@ public class PanelSommet extends JPanel  implements ActionListener
 				this.ajouterTabSommet();
 				this.panelInput();
 				this.revalidate();
-
-				System.out.println("sommet ajouté ou suppresion du sommet effectué ");
-
 				this.ctrl.MajFrameModification();
 			}
 		}
