@@ -27,6 +27,7 @@ public class Controleur
 	protected        ArrayList<Sommet>  tabSommet;
 	protected        ArrayList<Route>	 tabRoute ;
 
+	private          boolean            estSauvegarde ;
 	private          boolean            estScenar;
 	private          boolean            estJeu   ;
 	private          boolean            tourJ1        ;
@@ -135,6 +136,13 @@ public class Controleur
 	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
 
 	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
+	public boolean getEstSauvegarde() { return this.estSauvegarde; }
+
+
+	/**
 	 * Renvoie l'instance de la classe EditionFichier qui est lié au controleur.
 	 * @return  la valeur de editionFichier
 	 */
@@ -207,7 +215,7 @@ public class Controleur
 				if (this.tourJ1)
 				{
 					if ( this.estScenar == false )
-						this.getEditionFichier().ecrireScenario(1,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
+						this.getEditionFichier().ecrireScenario(1,404,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 
 					this.majFrameJoueur(this.j1, this);
 					r.setJoueur(this.j1);
@@ -229,7 +237,7 @@ public class Controleur
 				else
 				{
 					if ( this.estScenar == false )
-						this.getEditionFichier().ecrireScenario(2,this.nbScenario,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
+						this.getEditionFichier().ecrireScenario(2,404,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 					
 					r.setJoueur(this.j2);
 					this.j2.addJetons(r.getNbTroncons());
@@ -267,16 +275,8 @@ public class Controleur
 	 */
 	public void majFrameJoueur( Joueur j , Controleur ctrl )
 	{
-		if( j == this.j1 )
-		{
-			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
-			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
-		}
-		else
-		{	
-			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
-			this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
-		}	
+		this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
+		this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
 	}
 
 	public boolean estFin (Route r)
@@ -341,8 +341,6 @@ public class Controleur
 		int    tmpZone = -1;
 		int rndm;
 		Materiaux tmpMat;
-
-		Controleur.nbSommets = 2;
 
 		String[] tabNomSmt = new String[] { "V4", "V8", "V2", "V3", "V6", "B6", "B8", "R5", "R3", "R1", "G2", "B3", "B4", "B2", "G4", "J3", "R4", "R2", "M2", "G0", "J1", "J4", "M5", "M3", "M4", "M1", "G3", "G1", "J5", "J2" };
 		int[] tabCooX = new int[] {  543, 370, 506, 691, 262, 409, 673, 113, 245, 289, 784, 367, 533, 672, 783, 956, 126, 178, 551, 888, 1194, 1080, 248, 362, 477, 639, 872, 801, 1069, 979 };
@@ -614,8 +612,7 @@ public class Controleur
 	}
 
 
-	public void reInit() throws IOException
-	{
+	public void reInit() throws IOException {
 		this.tabSommet = new ArrayList<Sommet>(30);
 		this.j1 = new Joueur(this);
 		this.j2 = new Joueur(this);
@@ -628,10 +625,11 @@ public class Controleur
 		this.j1 = new Joueur(this);
 		this.j2 = new Joueur(this);
 		this.tabSommet = new ArrayList<Sommet>(30);
-		Controleur.nbSommets = 2;
-		this.tabSommet.add(new Sommet(0,"DEPART", 769, 543, null, true,null, 1));
+		Controleur.nbSommets = 1;
+		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true,null, 1));
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.editionFichier.sauvegarde();
+
 	}
 
 	/**
