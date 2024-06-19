@@ -82,7 +82,7 @@ public class PanelScore extends JPanel
 		};
 
 		// Creating the table
-		DefaultTableModel model = new DefaultTableModel(data, colonnes);
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 
 		if( this.ctrl.getJoueur1().getSommeScore() + bonusJ1 > this.ctrl.getJoueur2().getSommeScore() + bonusJ2 )
 			this.frame.setTitle( this.frame.getTitle() + this.ctrl.getJoueur1().getNomJoueur() + " à gagné !");
