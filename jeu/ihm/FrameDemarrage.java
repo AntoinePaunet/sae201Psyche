@@ -240,7 +240,13 @@ public class FrameDemarrage extends JFrame implements ActionListener
 								this.ctrl.reInit();
 							}
 						}
-						catch( IOException ioe ){ ioe.printStackTrace(); }
+						catch( IOException ioe ){
+							try {
+								this.ctrl.reInit(); //Si le fichier n'existe pas
+							} catch (IOException ex) {
+								throw new RuntimeException(ex);
+							}
+						}
 					}
 				}
 				this.frameChoix = new FrameChoix( this.ctrl );

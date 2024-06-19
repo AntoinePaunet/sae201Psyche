@@ -45,7 +45,7 @@ public class FrameJoueur extends JFrame
 		if(j == ctrl.getJoueur1())
 			this.setLocation(1250, 0);
 		else
-			this.setLocation(1250,600);
+			this.setLocation(1250,550);
 
 		this.panelFond = new PanelMateriaux(this.ctrl,j);
 		this.add( this.panelFond, BorderLayout.CENTER );

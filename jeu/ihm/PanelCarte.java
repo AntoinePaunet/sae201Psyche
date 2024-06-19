@@ -54,7 +54,11 @@ public class PanelCarte extends JPanel
 			this.pionJoueur1 = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"));
 			this.pionJoueur2 = ImageIO.read(new File("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				this.ctrl.reInit(); //Si le fichier n'existe pas
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
 		}
 		
 		this.ctrl = ctrl;

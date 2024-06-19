@@ -30,7 +30,7 @@ public class FrameJeu extends JFrame implements ActionListener
 	public FrameJeu(Controleur ctrl)
 	{
 		this.setTitle("L'Âge de Psyché");
-		this.setSize    ( 1300,1080 );
+		this.setSize    ( 1269,1080 );
 		this.setLocation(  0, 0 );
 		this.ctrl = ctrl;
 		this.setResizable(false);
