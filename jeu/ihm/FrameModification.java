@@ -151,6 +151,7 @@ public class FrameModification extends JFrame implements ActionListener
 				try
 				{
 					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
+					this.repaint();
 				}
 				catch( IOException ex )
 				{

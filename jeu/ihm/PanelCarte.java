@@ -53,8 +53,6 @@ public class PanelCarte extends JPanel
 		
 		this.addMouseListener( gereSouris );
 		this.addMouseMotionListener( gereSouris );
-
-
 	}
 
 
