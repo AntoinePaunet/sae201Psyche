@@ -67,24 +67,13 @@ public class Joueur
 					nbRouteDetenu++;
 
 				}
-
-		
-		// for ( Materiaux p : lstRoute )
-		// 	if ( r.getJoueur() != null )
-		// 		if ( r.getJoueur().equals(this) )
-		// 			{
-		// 				this.nbJetonsUtiliser += r.getNbTroncons();
-		// 				nbRouteDetenu++;
 	
-		// 			}
-
-		
-		
-
-
 		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur1()) && this.ctrl.getEstScenar())
+		{
 			this.nbJetonsUtiliser = -2 ;
-			System.out.println(this.tabPiece.length);
+			
+		}
+		
 				
 		
 
