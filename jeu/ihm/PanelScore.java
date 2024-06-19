@@ -58,7 +58,7 @@ public class PanelScore extends JPanel
 			{"Points Route"    , this.ctrl.getJoueur1().getScorePointJeton(), this.ctrl.getJoueur2().getScorePointJeton()},
 			{"", "", ""},
 			{"Points des Mines", "", ""},
-			{"", this.ctrl.getJoueur1().getScoreJaune (), this.ctrl.getJoueur2().getScoreJaune () }, // point Jaune
+			{ new ImageIcon("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), this.ctrl.getJoueur1().getScoreJaune (), this.ctrl.getJoueur2().getScoreJaune () }, // point Jaune
 			{"", this.ctrl.getJoueur1().getScoreBleu  (), this.ctrl.getJoueur2().getScoreBleu  () }, // point Bleu
 			{"", this.ctrl.getJoueur1().getScoreGris  (), this.ctrl.getJoueur2().getScoreGris  () }, // point Gris
 			{"", this.ctrl.getJoueur1().getScoreVert  (), this.ctrl.getJoueur2().getScoreVert  () }, // point Vert
@@ -80,8 +80,15 @@ public class PanelScore extends JPanel
 		// Creating the table
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 
-		table = new JTable(model);
-		table.setRowHeight(25);
+		table = new JTable(model)
+		{
+			public Class getColumnClass(int column) 
+			{
+				return (column == 0) ? Icon.class : Object.class;
+			}
+		};
+
+		table.setRowHeight(30);
 		table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		table.getColumnModel().getColumn(2).setPreferredWidth(100);
