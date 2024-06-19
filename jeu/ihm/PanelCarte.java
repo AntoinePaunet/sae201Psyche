@@ -145,7 +145,7 @@ public class PanelCarte extends JPanel
 				g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/"+s.getMateriaux().getNom()+".png"), s.getX()-10, s.getY()+15, 25,25, this);
 			}
 			if (s.getDepart())
-				g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX()+10, s.getY()-10,50,50, this);
+				g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX()-15, s.getY()-20,50,50, this);
 
 			if (!s.getNomCoul().equals("DEPART"))
 			{
