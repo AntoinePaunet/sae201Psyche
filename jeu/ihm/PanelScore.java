@@ -5,12 +5,10 @@ import jeu.metier.Joueur;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -62,12 +60,12 @@ public class PanelScore extends JPanel
 			{"Points Route"    ,new ImageIcon(""), this.ctrl.getJoueur1().getScorePointJeton(), this.ctrl.getJoueur2().getScorePointJeton()},
 			{"", "", ""},
 			{"Points des Mines",new ImageIcon(""), "", ""},
-			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Jaune.png"), this.ctrl.getJoueur1().getScoreJaune (), this.ctrl.getJoueur2().getScoreJaune () }, // point Jaune
-			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Bleu.png"), this.ctrl.getJoueur1().getScoreBleu  (), this.ctrl.getJoueur2().getScoreBleu  () }, // point Bleu
-			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Gris.png"), this.ctrl.getJoueur1().getScoreGris  (), this.ctrl.getJoueur2().getScoreGris  () }, // point Gris
-			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Vert.png"), this.ctrl.getJoueur1().getScoreVert  (), this.ctrl.getJoueur2().getScoreVert  () }, // point Vert
-			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rouge.png"), this.ctrl.getJoueur1().getScoreRouge (), this.ctrl.getJoueur2().getScoreRouge ()}, // point Rouge
-			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Marron.png"), this.ctrl.getJoueur1().getScoreMarron(), this.ctrl.getJoueur2().getScoreMarron()}, // point Marron
+			{"",new ImageIcon("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Jaune.png"), this.ctrl.getJoueur1().getScoreJaune (), this.ctrl.getJoueur2().getScoreJaune () }, // point Jaune
+			{"",new ImageIcon("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Bleu.png"), this.ctrl.getJoueur1().getScoreBleu  (), this.ctrl.getJoueur2().getScoreBleu  () }, // point Bleu
+			{"",new ImageIcon("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Gris.png"), this.ctrl.getJoueur1().getScoreGris  (), this.ctrl.getJoueur2().getScoreGris  () }, // point Gris
+			{"",new ImageIcon("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Vert.png"), this.ctrl.getJoueur1().getScoreVert  (), this.ctrl.getJoueur2().getScoreVert  () }, // point Vert
+			{"",new ImageIcon("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Rouge.png"), this.ctrl.getJoueur1().getScoreRouge (), this.ctrl.getJoueur2().getScoreRouge ()}, // point Rouge
+			{"",new ImageIcon("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Marron.png"), this.ctrl.getJoueur1().getScoreMarron(), this.ctrl.getJoueur2().getScoreMarron()}, // point Marron
 			{"S/Total","", this.ctrl.getJoueur1().getSommeScoreSommet(), this.ctrl.getJoueur2().getSommeScoreSommet()}, // Total du dessus
 			{"","", "", ""},
 			{"Plateau Individuel","" ,  "", ""},
