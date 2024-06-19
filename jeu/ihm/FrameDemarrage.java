@@ -207,8 +207,11 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				this.panelBoutons.lblErreur.setOpaque( true );
 
 			}
-
-
+		}
+		else
+		{
+			this.panelBoutons.lblErreur.setText( "Il manque le dossier dans images pour ce thème" );
+			this.panelBoutons.lblErreur.setOpaque( true );
 		}
 
 		// Gestion du bouton Jouer
