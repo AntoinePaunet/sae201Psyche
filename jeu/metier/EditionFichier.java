@@ -70,7 +70,7 @@ public class EditionFichier
 	 * 
 	 * @param nomFichier le fichier dans lequel le reader va lire
 	 */
-	public void lectureFichier(String nomFichier, boolean importer) throws IOException
+	public boolean lectureFichier(String nomFichier, boolean importer) throws IOException
 	{
 		File tmpFichier;
 
@@ -80,7 +80,7 @@ public class EditionFichier
 			this.fichier.createNewFile();
 			this.initFicher(this.fichier);
 			this.ctrl.init();
-			return;
+			return false;
 		}
 
 		tmpFichier = new File(nomFichier);
@@ -142,6 +142,7 @@ public class EditionFichier
 		}
 		Controleur.nbSommets = this.tabSommet.get(this.tabSommet.size()-1).getId() + 1;
 		// System.out.println("Nb sommet " + tabSommet);
+		return true;
 	}
 
 	/**
@@ -539,13 +540,5 @@ public class EditionFichier
 		} catch (Exception exp) {
 			exp.printStackTrace();
 		}
-
-
-
 	}
-	
-
-
-
-
 }

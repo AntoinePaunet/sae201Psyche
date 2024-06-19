@@ -109,12 +109,8 @@ public class FrameJeu extends JFrame implements ActionListener
 		if ( e.getSource() == this.menuiAnnuler )
 		{
 			// CTRL + Z
-			
-			//System.out.println( this.ctrl.getNbEtapeScenario() );
-			
-			this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() - 1 );
-			System.out.println( "Annuler : " + this.ctrl.getNbEtapeScenario() );
-			
+					
+			this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() - 1 );			
 			
 			try
 			{
@@ -143,7 +139,6 @@ public class FrameJeu extends JFrame implements ActionListener
 		
 		if ( e.getSource() == this.menuiRetablir )
 		{
-			System.out.println( "ADd action : " + this.ctrl.getNbEtapeScenario()  );
 			// CTRL + Y
 			try
 			{

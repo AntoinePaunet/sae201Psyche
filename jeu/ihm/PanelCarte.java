@@ -111,13 +111,13 @@ public class PanelCarte extends JPanel
 
 				if (r.getJoueur()==this.ctrl.getJoueur1())
 				{
-					g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"),((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-15 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-15, this);
-					g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"),((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-15, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-15, this);
+					g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"),((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-15 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-15, this);
+					g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"),((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-15, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-15, this);
 				}
 				else if (r.getJoueur()==this.ctrl.getJoueur2())
 				{
-					g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"),((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-15 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-15, this);
-					g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"),((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-15, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-15, this);
+					g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"),((x1 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-15 , ((y1 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-15, this);
+					g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"),((x2 + adjCercle)+((x1 + adjCercle)+ (x2+ adjCercle))/2)/2-15, ((y2 + adjCercle)+((y1 + adjCercle)+ (y2+ adjCercle))/2)/2-15, this);
 				}
 					
 			}
@@ -125,9 +125,9 @@ public class PanelCarte extends JPanel
 			if (r.getNbTroncons()==1)
 			{
 				if (r.getJoueur()==this.ctrl.getJoueur1())
-					g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"),((x1 + adjCercle)+ (x2+ adjCercle))/2-15 , ((y1+ adjCercle) + (y2+ adjCercle))/2-15, this);
+					g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_1.png"),((x1 + adjCercle)+ (x2+ adjCercle))/2-15 , ((y1+ adjCercle) + (y2+ adjCercle))/2-15, this);
 				else if (r.getJoueur()==this.ctrl.getJoueur2())
-					g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"),((x1 + adjCercle)+ (x2+ adjCercle))/2-15 , ((y1+ adjCercle) + (y2+ adjCercle))/2-15, this);
+					g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/pion_joueur_2.png"),((x1 + adjCercle)+ (x2+ adjCercle))/2-15 , ((y1+ adjCercle) + (y2+ adjCercle))/2-15, this);
 				
 			}
 
@@ -138,14 +138,14 @@ public class PanelCarte extends JPanel
 		for (Sommet s : ctrl.getTabSommet())
 		{
 			if (s.getJoueur()!=null || !this.ctrl.getEstJeu() )
-				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX()-20, s.getY()-40, this);
+				g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+"_clair.png"), s.getX()-20, s.getY()-40, this);
 			else if (!s.getDepart())
 			{
-				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"), s.getX()-20, s.getY()-40, this);
-				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/"+s.getMateriaux().getNom()+".png"), s.getX()-10, s.getY()+15, 25,25, this);
+				g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Mine_"+s.getNomCoul()+".png"), s.getX()-20, s.getY()-40, this);
+				g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/"+s.getMateriaux().getNom()+".png"), s.getX()-10, s.getY()+15, 25,25, this);
 			}
 			if (s.getDepart())
-				g2.drawImage(getToolkit().getImage("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX()+10, s.getY()-10,50,50, this);
+				g2.drawImage(getToolkit().getImage("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/Rome.png"), s.getX()+10, s.getY()-10,50,50, this);
 
 			if (!s.getNomCoul().equals("DEPART"))
 			{
@@ -183,8 +183,7 @@ public class PanelCarte extends JPanel
 		{
 			if(!clicked)
 			{
-				clicked = true;
-				if (  PanelCarte.this.ctrl.getEstJeu() == true )
+				if ( PanelCarte.this.ctrl.getEstJeu() )
 				{
 					for(Route r : ctrl.getTabRoute())
 					{
@@ -193,6 +192,7 @@ public class PanelCarte extends JPanel
 
 						if(isNearLine(e.getPoint()))
 						{
+							clicked = true; //Empêcher les doubles clics sur des lignes les unes sur les autres
 							if (ctrl.getSommet( e.getX(), e.getY() )==null)
 							{
 								try
@@ -207,7 +207,7 @@ public class PanelCarte extends JPanel
 					}
 				}
 
-				if (  PanelCarte.this.ctrl.getEstJeu() == false )
+				if (  !PanelCarte.this.ctrl.getEstJeu() )
 					this.sommetChoisi = ctrl.getSommet( e.getX(), e.getY() );
 			}
 		}
@@ -245,8 +245,12 @@ public class PanelCarte extends JPanel
 	 */
 		private boolean isNearLine(Point p)
 		{
-			double distance = distanceARoute(p, ptSmt1, ptSmt2);
-			return distance <= 15; //5px de tolérance
+			if(!clicked)
+			{
+				double distance = distanceARoute(p, ptSmt1, ptSmt2);
+				return distance <= 15; //5px de tolérance
+			}
+			return false;
 		}
 
 	/**

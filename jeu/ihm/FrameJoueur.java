@@ -99,8 +99,6 @@ public class FrameJoueur extends JFrame
 		this.panelBas.repaint();
 		this.panelDroite.repaint();
 
-		System.out.println( "FrameJOueur refresh 1  : " + calculeScore() );
-
 
 		int x = 65;
 		int y = 57;
@@ -132,8 +130,6 @@ public class FrameJoueur extends JFrame
 			}
 		}
 
-		System.out.println( "FrameJOueur refresh 2  : " + calculeScore() );
-
 	}
 
 	/**
@@ -160,7 +156,7 @@ public class FrameJoueur extends JFrame
 
 	public int calculeScore()
 	{
-		System.out.println( "FrameJOueur calcule score  : " + (25 - this.joueur.getJetons() ) );
+		//System.out.println( "FrameJOueur calcule score  : " + (25 - this.joueur.getJetons() ) );
 
 		return (25 - this.joueur.getJetons() );
 	}
