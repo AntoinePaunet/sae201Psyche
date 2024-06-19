@@ -194,7 +194,8 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				this.frameChoix = new FrameChoix( this.ctrl );
 				
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				this.ctrl.setNbScenario( 0);
+				this.ctrl.setNbScenario(  Integer.parseInt( cheminFichier.substring( cheminFichier.indexOf( ".txt" ) - 1, cheminFichier.indexOf( ".txt" ) ) ) );
+				
 				try
 				{
 					Timer timerSpawn = new Timer(17, new ActionListener() //Vitesse de déplacement du mob
@@ -236,18 +237,28 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
 		{
-			if (this.panelBoutons.lstTheme.getSelectedItem() != null)
-			{
-				this.ctrl.setEstScenar(false);
-				this.frameChoix = new FrameChoix( this.ctrl );
-				this.ctrl.setEstJeu(true);
-			}
-			else
+			if (this.panelBoutons.lstTheme.getSelectedItem() == null)
 			{
 				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
 				this.panelBoutons.lblErreur.setOpaque(true);
 			}
-			
+			else
+			{
+				this.ctrl.setEstScenar(false);
+
+				if( !this.ctrl.getEstSauvegarde() )
+				{
+					String[] options ={ "Continuer la partie sauvegardée" , "Recommencer une nouvelle partie" };
+
+					if( JOptionPane.showOptionDialog(null, "Une partie en cours est déjà sauvegardée. Voulez vous continuer cette partie, ou écraser cete sauvegarde et recommencer une nouvelle partie ?", "Sauvegarde détectée !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null) == JOptionPane.NO_OPTION )
+					{
+						try{ this.ctrl.reInit(); }
+						catch( IOException ioe ){ ioe.printStackTrace(); }
+					}
+				}
+				this.frameChoix = new FrameChoix( this.ctrl );
+				this.ctrl.setEstJeu(true);
+			}
 		}
 
 		// Gestion du bouton Modifier
