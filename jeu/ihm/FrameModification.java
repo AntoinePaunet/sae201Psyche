@@ -64,11 +64,11 @@ public class FrameModification extends JFrame implements ActionListener
 		menuCreer.add( this.menuiCreerSommet );
 		menuCreer.add( this.menuiCreerRoute  );
 
-		menuQuit.add(this.menuiRein);
+		menuSave.add(this.menuiRein);
 		menuSave.addSeparator();
 		menuSave.add(this.menuiSupp);
 
-		menuSave.add(this.menuiSave);
+		menuQuit.add(this.menuiSave);
 		menuQuit.add(this.menuiQuitter);
 
 		menubMaBarre.add( menuOuvrir );

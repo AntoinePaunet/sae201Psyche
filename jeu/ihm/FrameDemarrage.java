@@ -193,9 +193,9 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
 		{
-			if (this.panelBoutons.lstTheme.getSelectedItem() == null)
+			if (this.panelBoutons.lstTheme.getSelectedItem() == null || this.ctrl.getElementsTheme().length != 5)
 			{
-				this.panelBoutons.lblErreur.setText("Veuillez choisir un thème.");
+				this.panelBoutons.lblErreur.setText("Thème non valide.");
 				this.panelBoutons.lblErreur.setOpaque(true);
 			}
 			else

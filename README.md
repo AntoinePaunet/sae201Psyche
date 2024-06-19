@@ -1,34 +1,33 @@
 # sae201Psyche
 sae201Psyche
 
-Fonctionnalités :
+Fonctionnalités à démontrer :
 
 Menu prncipal : 
- - Ouverture de la frame de démarrage 
- - la menuBar contient "Ouvrir", tester avec un fichier. Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.
+ - Ouverture de la frame de démarrage
+ - Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.
  - Quitter et Alt F4 fonctionnent
- - Pour les autres boutons il faut montrer que lorsque aucun thème n’est choisi il y a le labelErreur
- - Quand on en choisi un il disparait
- - Ouverture de la frame de modification :
- - Montrer que l’on peut déplacer les sommets,
+ - Bouton jouer et modifier
 
 
 Editeur de carte
 
 Frame Modification : 
 
- - Modification de la position des sommets avec la souris ( et ajustement es routes en fonction
+ - Modification de la position des sommets avec la souris ( et ajustement des routes en fonction )		(FAIT)
 
- - Créer un sommet
- - Créer une route
+ - Importer un thème 	(FAIT)
 
- - Supprimer
- - Réinitialiser
+ - Créer un sommet		(FAIT)
+ - Créer une route		(FAIT)
 
- - Enregistrer et quitter
- - Quitter sans enregistrer
+ - Supprimer			(FAIT)
+ - Réinitialiser		(FAIT)
 
-Montrer que le système de sauvegarde des modifications marche correctement.
+ - Enregistrer et quitter	(FAIT)
+ - Quitter sans enregistrer		(FAIT)
+
+Montrer que le système de sauvegarde des modifications marche correctement.		(FAIT)
 
 
 Jeu 
@@ -68,6 +67,50 @@ Frame Score Final
 	- toutes les catégories de score sont bonnes
 	- Montrer une fin de partie avec une égalité
 
+------------------------------------------------------------------------------------------------------------------------------------
+
+Scénario 1 : Lancement de jeu + Déroulement d'une partie
 
 
-Scénario 1
+
+
+
+
+
+Scénario 2 : Fin de partie + tableau des scores
+
+
+
+
+
+
+
+
+
+Scénario 3 : Modification + ajout de thèmes
+
+ - Lancement de l'app
+ - Choix du thème
+ - Cliquer sur "Modifier"
+
+ - Cliquer sur la modification des villes
+	- Créer une ville. Ne pas choisir des coordonées correctes
+	- Modifier le nom et la position d'une ville. Ne pas choisir des coordonées correctes
+	- Supprimer une ville
+
+ - Cliquer sur la modification d'une route
+	- Créer une route. Ne pas choisir des coordonées correctes
+	- Modifier une route. Ne pas choisir des coordonées correctes
+	- Supprimer une route
+
+ - Cliquer sur Enregistrer et quitter
+ - Ouvrir le même thème
+ - Effectuer de nouvaux changements 
+ - Cliquer sur Quitter sans sauvegarder
+ - Ouvrir le même thème
+ - Cliquer sur Réinitialiser
+ - Cliquer sur Supprimer
+ - Sauvegarder + fermer, puis ouvrir
+-----
+ - Ouvrir un autre thème 
+ - Importer un autre thème
