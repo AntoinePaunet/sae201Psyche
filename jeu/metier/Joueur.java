@@ -40,7 +40,7 @@ public class Joueur
 		this.tabJetonPossession = new ArrayList<JetonPossession>();
 		this.tabSommetRecup = new ArrayList<Sommet>();
 		this.nbJetonsUtiliser=0;
-		this.score = new int[11];
+		this.tabScore = new int[11];
 		this.ctrl = ctrl;
 	}
 
@@ -49,16 +49,22 @@ public class Joueur
 		this.nbJetonsUtiliser+=i;
 	}
 
+	public void suppJetons(int i)
+	{
+		this.nbJetonsUtiliser-=i;
+	}
+
 	public void reset()
 	{
 		this.nbJetonsUtiliser=0;
 		this.tabSommetRecup = new ArrayList<Sommet>();
 
-		ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
+		//ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
 
-		for ( Route r : lstRoute )
-			if ( r.getJoueur().equals(this) )
-				this.nbJetonsUtiliser += r.getNbTroncons();
+		// for ( Route r : lstRoute )
+		// 	if ( this != null && r.getJoueur() != null )
+		// 		if ( r.getJoueur().equals(this) )
+		// 			this.nbJetonsUtiliser += r.getNbTroncons();
 	}
 
 	public int getJetons()

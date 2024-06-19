@@ -489,7 +489,6 @@ public class EditionFichier
 
 
 				if ( autoSkip )
-					System.out.println("pk");
 					if ( etapeLecture < numEtape )
 					{
 						String[] action = ligne.split(" ");

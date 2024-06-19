@@ -39,7 +39,7 @@ public class PanelJetons extends JPanel
 		this.setPreferredSize(new Dimension(300, 50));
 		this.setBackground (new Color (208,208,208));
 
-		if (this.joueur==this.ctrl.getJoueur1())
+		if (this.joueur == this.ctrl.getJoueur1())
 			this.j=1;
 		else
 			this.j=2;
@@ -51,6 +51,7 @@ public class PanelJetons extends JPanel
 	{
 		super.paintComponent(g);
 		this.g2 = (Graphics2D) g;
+		// this.joueur = this.ctrl.getFrameDemarrage().getFrameChoix().getF1().getJoueur();
 		int temp=0;
 
 		this.g2.setBackground(new Color (208,208,208));
@@ -59,7 +60,9 @@ public class PanelJetons extends JPanel
 		Font font = new Font("Arial", Font.BOLD, 25);
 		g2.setFont(font);
 
-		temp = 25-this.joueur.getJetons();
+		temp = Joueur.getNbMaxJetonsPossession() - this.joueur.getJetons();
+
+		System.out.println("Panel jeton sccore" + temp );
 
 		if (this.j==1)
 			this.g2.drawString("×  "+temp, 40, 30);

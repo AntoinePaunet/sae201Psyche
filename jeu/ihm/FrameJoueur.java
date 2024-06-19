@@ -100,6 +100,8 @@ public class FrameJoueur extends JFrame
 		int x = 65;
 		int y = 57;
 
+		System.out.println("Frame joueur : " +( 25 -  this.joueur.getJetons()));
+
 		for(int i = 0; i < this.joueur.getTableMateriaux().length ; i++) // Ajout des matériaux
 		{
 			this.panelBas.repaint();
@@ -151,6 +153,8 @@ public class FrameJoueur extends JFrame
 		imgLabel.setBounds(x, y, image.getIconWidth()+20, image.getIconHeight()+20);
 		this.panelFond.add(imgLabel, Integer.valueOf(layer));
 	}
+
+	public Joueur getJoueur() { return this.joueur; }
 /*
 	public static void main( String[] args )
 	{

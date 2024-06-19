@@ -218,6 +218,8 @@ public class Controleur
 						this.j1.addSommetRecup(r.getSommetArr());
 					
 					this.frameDemarrage.getFrameChoix().getF1().refresh();
+
+					System.out.println( 25 - j1.getJetons() );
 					
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j1, this);
@@ -239,6 +241,9 @@ public class Controleur
 					
 					this.frameDemarrage.getFrameChoix().getF2().refresh();
 					
+					System.out.println( 25 - j2.getJetons() );
+
+
 					this.tourJ1= !this.tourJ1;
 					this.majFrameJoueur(this.j2, this);
 				}
@@ -263,6 +268,7 @@ public class Controleur
 	 */
 	public void majFrameJoueur( Joueur j , Controleur ctrl )
 	{
+
 		if( j == this.j1 )
 		{
 			this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));

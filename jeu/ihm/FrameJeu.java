@@ -145,7 +145,6 @@ public class FrameJeu extends JFrame implements ActionListener
 
 		if ( e.getSource() == this.menuiRetablir )
 		{
-			System.out.println( "ADd action : " + this.ctrl.getNbEtapeScenario()  );
 			// CTRL + Y
 			try
 			{
