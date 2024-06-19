@@ -20,7 +20,7 @@ public class FrameJeu extends JFrame implements ActionListener
 	private PanelCarte 	panelCarte;
 
 	private JMenuItem menuiAbandonner;
-	private JMenuItem menuiAnnuler, menuiRetablir;
+	private JMenuItem menuiAnnuler, menuiRetablir, menuiAllerA;
 
 	private Controleur 	ctrl;
 
@@ -54,19 +54,23 @@ public class FrameJeu extends JFrame implements ActionListener
 
 			this.menuiAnnuler  = new JMenuItem ("Annuler la dernière action"  );
 			this.menuiRetablir = new JMenuItem ("Rétablir la dernière action" );
+			this.menuiAllerA   = new JMenuItem ("Aller à l'action n° " );
 
 			menuScenar.add(this.menuiAnnuler );
 			menuScenar.add(this.menuiRetablir);
+			menuScenar.addSeparator();
+			menuScenar.add(this.menuiAllerA  );
 
 			menuBar.add(menuScenar);
-
 			menuScenar.setMnemonic('S');
 
 			this.menuiAnnuler .setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK) );
 			this.menuiRetablir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, InputEvent.CTRL_DOWN_MASK) );
+			this.menuiAllerA.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_DOWN_MASK) );
 
 			this.menuiAnnuler .addActionListener(this);
 			this.menuiRetablir.addActionListener(this);
+			this.menuiAllerA  .addActionListener(this);
 		}
 
 		this.setJMenuBar( menuBar );
@@ -100,16 +104,14 @@ public class FrameJeu extends JFrame implements ActionListener
 	 */
 	public void actionPerformed ( ActionEvent e )
 	{
-		if ( e.getSource() == this.menuiAbandonner )
+		if ( e.getSource() == this.menuiAbandonner ) // CTRL + Q
 		{
 			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVotre partie ne sera pas sauvegardée.") == JOptionPane.YES_OPTION )
 			System.exit(0);
 		}
 		
-		if ( e.getSource() == this.menuiAnnuler )
+		if ( e.getSource() == this.menuiAnnuler ) // CTRL + Z
 		{
-			// CTRL + Z	
-
 			if ( ( this.ctrl.getNbEtapeScenario() - 1 ) > -1 )					
 				this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() - 1 );			
 			
@@ -118,9 +120,9 @@ public class FrameJeu extends JFrame implements ActionListener
 				this.ctrl.getEditionFichier().lectureFichier("data.txt", false);
 				
 			}
-			catch ( IOException y )
+			catch ( IOException e1 )
 			{
-				System.out.println(y.getStackTrace());
+				System.out.println(e1.getStackTrace());
 			}	
 			
 			try
@@ -128,32 +130,44 @@ public class FrameJeu extends JFrame implements ActionListener
 				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(),this.ctrl.getNbEtapeScenario(),true);
 				
 			}
-			catch ( IOException t )
+			catch ( IOException e2 )
 			{
-				System.out.println( t.getStackTrace() );
+				System.out.println( e2.getStackTrace() );
 			}
-			
-
 			this.panelCarte.repaint();
-			
 		}
 		
-		if ( e.getSource() == this.menuiRetablir )
+		if ( e.getSource() == this.menuiRetablir ) // CTRL + Y
 		{
-			// CTRL + Y
 			try
 			{
 				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(),ctrl.getNbEtapeScenario(),false);
-				
 			}
-			catch ( IOException r)
+			catch ( IOException e3 )
 			{
-				System.out.println( r.getStackTrace() );
+				System.out.println( e3.getStackTrace() );
 			}
 			
 			this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() + 1 );
 		}
-	}
+
+		if ( e.getSource() == this.menuiAllerA ) // CTRL + G
+		{
+			try
+			{
+				int action = Integer.parseInt( JOptionPane.showInputDialog("Entrez le numéro de l'action : "));
+				System.out.println(action);
+
+
+
+			}
+			catch( Exception exp )
+			{
+				JOptionPane.showMessageDialog(null, "Veuillez entrer un nombre correct", "N° d'action invalide", JOptionPane.ERROR_MESSAGE);
+			}
+
+		}
+	}	
 
 	public void majIHM(){this.panelCarte = new PanelCarte(ctrl);this.add(this.panelCarte);this.setVisible(true);}
 

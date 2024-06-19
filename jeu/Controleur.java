@@ -39,6 +39,7 @@ public class Controleur
 
 	private ArrayList<String> lstMateriaux;
 	public static int nbSommets = 2;
+	private boolean premierLance;
 
 	/**
 	 * Constructeur du Controleur
@@ -56,6 +57,7 @@ public class Controleur
 		this.nbEtapeScenario= 1;
 		this.nbScenario     = 0;	
 		this.estScenar      = false;
+		this.premierLance 	= true;
 		
 		
 		this.lstMateriaux = new ArrayList<>(40);
@@ -86,6 +88,16 @@ public class Controleur
 				this.lstMateriaux.add(tabNomsMat[i]);
 			}
 		}
+	}
+
+	public boolean getPremierLancer()
+	{
+		return this.premierLance;
+	}
+
+	public void setPremierLance(boolean bool)
+	{
+		this.premierLance = bool;
 	}
 
 
