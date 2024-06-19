@@ -71,4 +71,40 @@ Frame Score Final
 
 
 
-Scénario 1
+Scénario 1 : Lancement de jeu + Déroulement d'une partie
+
+
+
+
+
+
+
+Scénario 2 : Fin de partie + tableau des scores
+
+
+
+
+
+
+
+
+
+Scénario 3 : Modification + ajout de thèmes
+
+ - Lancement de l'app
+ - Choix du thème
+ - Cliquer sur "Modifier"
+
+ - Cliquer sur la modification des villes
+	- Créer une ville
+	- Modifier le nom et la position d'une ville
+	- Supprimer une ville
+
+ - Cliquer sur la modification d'une route
+	- Créer une route
+	- Modifier une route
+	- Supprimer une route
+
+-
+
+
