@@ -52,7 +52,7 @@ public class PanelMine extends JPanel
 		for (Sommet s : this.joueur.getSommetRecup())
 		{
 
-			this.g2.drawImage(getToolkit().getImage("../src/images/"+ this.ctrl.getNomThemePrincipal() +"/Mine_"+ s.getNomCoul() +".png"), tabInt[cpt1],10+45*cpt2,20,40, this);
+			this.g2.drawImage(getToolkit().getImage("jeu/src/images/"+ this.ctrl.getNomThemePrincipal() +"/Mine_"+ s.getNomCoul() +".png"), tabInt[cpt1],10+45*cpt2,20,40, this);
 			if (cpt1==0){cpt1++;}
 			else {cpt1--;}
 

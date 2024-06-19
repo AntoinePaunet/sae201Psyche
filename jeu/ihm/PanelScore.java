@@ -74,7 +74,7 @@ public class PanelScore extends JPanel
 			{"Scores des Lignes"  ,"", this.ctrl.getJoueur1().getScoreLigne  (), this.ctrl.getJoueur2().getScoreLigne  () }, //scoreLigJ1
 			{"S/Total"            ,"", this.ctrl.getJoueur1().getSommeScorePlateau(), this.ctrl.getJoueur2().getSommeScorePlateau()},
 			{"", "", "", ""},
-			{"Jetons Possession restants", "", 25 - this.ctrl.getJoueur1().getJetons(), 25 - this.ctrl.getJoueur2().getJetons()                  }, //jetonPossessJ1
+			{"Jetons Possession restants", "", Joueur.getNbMaxJetonsPossession() - this.ctrl.getJoueur1().getJetons(), Joueur.getNbMaxJetonsPossession() - this.ctrl.getJoueur2().getJetons()                  }, //jetonPossessJ1
 			{"Bonus (10)"                , "", bonusJ1 , bonusJ2                                                                                 },
 			{"Total"                     , "", this.ctrl.getJoueur1().getSommeScore() + bonusJ1, this.ctrl.getJoueur2().getSommeScore() + bonusJ2} //Total
 		};
@@ -105,11 +105,12 @@ public class PanelScore extends JPanel
 				table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 
-		
+		this.table.setEnabled(false);
 
 		// Adding the table to a scroll pane
 		JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane, BorderLayout.CENTER);
+
 	}
 
 	public int getBonus(Joueur j1, Joueur j2)
