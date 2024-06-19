@@ -134,5 +134,14 @@ Scénario 3 : Modification + ajout de thèmes
  - Cliquer sur Supprimer
  - Sauvegarder + fermer, puis ouvrir
 -----
- - Ouvrir un autre thème 
- - Importer un autre thème
+ - Se baser sur thème non valide dans theme.txt
+ - Montrer qu'il y a bien l'affichage des nom, et images uniques au thème
+ - Supprimer une image du dossier images
+ - Montrer qu'il y a le message d'erreur mais qu'on peut lancer
+ - Supprimer le dossier entier
+ - Refaire le test mais cette fois on ne peut pas lancer, le label change
+ - Enfin mettre une erreur dans theme.txt, on peut enlever un tab ou en ajouter un
+ - Montrer le labelErreur qui est différents pour cette erreur
+
+ - Importer un autre thème à la main
+ - lancer l'application pour montrer qu'il est ajouté à lstTheme
