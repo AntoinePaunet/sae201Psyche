@@ -491,13 +491,32 @@ public class EditionFichier
 			Sommet sommetDep;
 			Sommet sommetArr; 
 			int    nbTroncons;
+			String joueurEnCour;
 
 			System.out.println( "numEtape : "     + numEtape     );
 			System.out.println( "etapeLecture : " + etapeLecture );
-
 			
-			while (sc.hasNextLine()) 
+			String ligne = sc.nextLine();
+
+			String[] action;
+		
+			
+			if (autoSkip && etapeLecture == 1)
 			{
+				action = ligne.split(" ");			
+				joueurEnCour = action[0];
+				sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
+				sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
+				nbTroncons = Integer.parseInt( action[4] );
+
+				if ( joueurEnCour.equals("J1"))
+					this.ctrl.setTourJ1();
+				else 
+					this.ctrl.setTourJ2();
+			}
+
+			while (sc.hasNextLine()) 
+			{	
 				if ( etapeLecture > numEtape && numEtape < -1 )
 				{
 					System.out.println("break");
@@ -505,19 +524,13 @@ public class EditionFichier
 					return;
 
 				}
-
-					
-
-				String ligne = sc.nextLine();
-
-				String[] action = ligne.split(" ");
 				
-				String joueurEnCour = action[0];
+				ligne = sc.nextLine();
+				action = ligne.split(" ");			
+				joueurEnCour = action[0];
 				sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
 				sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
-				nbTroncons = Integer.parseInt( action[4] );
-				
-				
+				nbTroncons = Integer.parseInt( action[4] );			
 
 
 				if ( autoSkip )
@@ -527,15 +540,12 @@ public class EditionFichier
 					{
 					
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
+					
 
 						if ( etapeLecture == numEtape )
 							break;
-						
-						if ( joueurEnCour.equals("J1"))
-							this.ctrl.setTourJ1();
-						else 
-							this.ctrl.setTourJ2();
 					}
+
 					
 				}
 
