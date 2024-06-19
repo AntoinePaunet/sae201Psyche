@@ -86,6 +86,8 @@ public class EditionFichier
 		fichier = new File(emplacementData);
 
 		try {
+
+			System.out.println("lecture");
 			FileReader fr;
 
 			if (importer)
@@ -219,10 +221,10 @@ public class EditionFichier
 
 		if (nom.equals("DEPART"))
 		{
-			if(smtInfo[6].equals("T1"))
-				this.ctrl.setTourJ1();
+			if(smtInfo[6].equals("T2"))
+				this.ctrl.setTourJ2HorsScena();
 			else
-				this.ctrl.setTourJ2();
+				this.ctrl.setTourJ1HorsScena();
 			this.tabSommet.add( new Sommet( num, nom, x, y, null, true, this.ctrl.getJoueur1(), 1 ) );
 		}
 		else
@@ -231,6 +233,7 @@ public class EditionFichier
 			{
 				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur1(), id ) );
 				this.ctrl.getJoueur1().addSommetRecup(this.tabSommet.get(this.tabSommet.size()-1));
+				System.out.println(ctrl.getJoueur1().getNomJoueur());
 				this.tabSommet.get(this.tabSommet.size()-1).setJoueur(this.ctrl.getJoueur1());
 			}
 			else
@@ -487,7 +490,7 @@ public class EditionFichier
 	}
 	
 	public void lireScenario( int nbScenario, int numEtape, boolean autoSkip) throws IOException
-	{	
+	{
 
 		try {
 			FileReader fr = new FileReader("./jeu/src/scenario/"+ nbScenario + ".txt");
@@ -505,7 +508,7 @@ public class EditionFichier
 			String[] action;
 		
 			
-			if (autoSkip && etapeLecture == 1)
+			if (autoSkip)
 			{
 				action = ligne.split(" ");			
 				joueurEnCour = action[0];

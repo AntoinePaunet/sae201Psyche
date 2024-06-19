@@ -35,6 +35,8 @@ public class FrameJeu extends JFrame implements ActionListener
 		this.ctrl = ctrl;
 		this.setResizable(false);
 
+		System.out.println(this.ctrl.getTabRoute());
+
 
 		// Création et ajout du Panel
 		this.panelCarte = new PanelCarte(ctrl);
@@ -159,8 +161,6 @@ public class FrameJeu extends JFrame implements ActionListener
 				int action = Integer.parseInt( JOptionPane.showInputDialog("Entrez le numéro de l'action : "));
 
 				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(), action,true);
-
-
 
 			}
 			catch( Exception exp )

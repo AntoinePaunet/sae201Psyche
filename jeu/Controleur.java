@@ -347,8 +347,6 @@ public class Controleur
 	{
 		this.tourJ1 = true;
 
-		
-
 		for (Sommet s : this.tabSommet)
 		{
 			s.setJoueur(null);
@@ -361,17 +359,22 @@ public class Controleur
 
 		this.j1.reset();
 		this.j2.reset();
+	}
 
-		
+	public void setTourJ1HorsScena()
+	{
+		this.tourJ1 = true;
+	}
 
-		
-		
+	public void setTourJ2HorsScena()
+	{
+		this.tourJ1 = false;
 	}
 		
 
 	public void setTourJ1()
 	{
-		this.tourJ1 = false;
+		this.tourJ1 = true;
 
 		
 
@@ -689,7 +692,7 @@ public class Controleur
 		this.j1 = new Joueur(this);
 		this.j2 = new Joueur(this);
 		this.tabRoute  = new ArrayList<Route>(40);
-		this.setTourJ1();
+		this.tourJ1 = true;
 
 		if(this.getNomThemePrincipal().equals("Europe"))
 		{

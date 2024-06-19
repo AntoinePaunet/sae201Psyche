@@ -100,6 +100,9 @@ public class Route
 	 */
 	public String toString()
 	{
-		return "\n"+this.sommetDep+"\n--------\n"+this.sommetArr+"    ("+this.troncons+" )"+ "   p:"+this.joueur+"\n";
+		if(this.joueur != null)
+			return "\n"+this.sommetDep+"\n--------\n"+this.sommetArr+"    ("+this.troncons+" )"+ "   p:"+this.joueur.getNomJoueur()+"\n";
+		else
+			return "\n"+this.sommetDep+"\n--------\n"+this.sommetArr+"    ("+this.troncons+" )"+ "   p: Aucun joueur" + "\n";
 	}
 }

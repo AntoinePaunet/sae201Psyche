@@ -247,8 +247,16 @@ public class FrameDemarrage extends JFrame implements ActionListener
 								throw new RuntimeException(ex);
 							}
 						}
+                    }else{
+						try
+						{
+							this.ctrl.getEditionFichier().lectureFichier("data.txt", false);
+						} catch (IOException ex) {
+							throw new RuntimeException(ex);
+						}
 					}
 				}
+				this.ctrl.setTourJ1HorsScena();
 				this.frameChoix = new FrameChoix( this.ctrl );
 				this.ctrl.setEstJeu(true);
 			}
