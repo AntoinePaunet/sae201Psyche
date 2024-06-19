@@ -63,6 +63,7 @@ public class Controleur
 
 		this.frameDemarrage = new FrameDemarrage(this);
 
+		// Affectation de estSauvegarde
 		if( this.editionFichier.lectureFichier("data.txt", false) )
 			this.estSauvegarde = false;
 		else
