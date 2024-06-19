@@ -172,8 +172,13 @@ public class FrameModification extends JFrame implements ActionListener
 		{
 			try
 			{
-				Controleur.nbSommets = 1;
-				this.ctrl.reInit();
+				if(ctrl.getNomThemePrincipal().equals("Europe"))
+				{
+					ctrl.getEditionFichier().lectureFichier(System.getProperty("user.dir") + "/jeu/src/theme_europe.txt", true);
+				}else{
+					Controleur.nbSommets = 1;
+					this.ctrl.reInit();
+				}
 				this.repaint();
 			} catch( IOException ex ) { throw new RuntimeException(ex); }
 		}
