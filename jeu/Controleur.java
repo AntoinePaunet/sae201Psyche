@@ -330,17 +330,17 @@ public class Controleur
 
 	public void setTourJ2()
 	{
-		//this.tourJ1 = true;
+		this.tourJ1 = true;
 
 		for (Sommet s : this.tabSommet)
 		{
 			s.setJoueur(null);
 		}
 
-		/*for (Route r : this.tabRoute)
+		for (Route r : this.tabRoute)
 		{
 			r.setJoueur(null);
-		}*/
+		}
 
 		this.j1.reset();
 		this.j2.reset();
@@ -352,17 +352,17 @@ public class Controleur
 
 	public void setTourJ1()
 	{
-		//this.tourJ1 = false;
+		this.tourJ1 = false;
 
 		for (Sommet s : this.tabSommet)
 		{
 			s.setJoueur(null);
 		}
 
-		/*for (Route r : this.tabRoute)
+		for (Route r : this.tabRoute)
 		{
 			r.setJoueur(null);
-		}*/
+		}
 
 		this.j1.reset();
 		this.j2.reset();

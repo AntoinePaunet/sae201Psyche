@@ -547,12 +547,14 @@ public class EditionFichier
 					
 					if ( etapeLecture <= numEtape)
 					{
+
+						if ( etapeLecture == numEtape )
+							break;
 					
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
 					
 
-						if ( etapeLecture == numEtape )
-							break;
+						
 					}
 
 					
