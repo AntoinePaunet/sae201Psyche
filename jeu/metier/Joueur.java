@@ -71,8 +71,6 @@ public class Joueur
 		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur2()) && this.ctrl.getEstScenar() && this.ctrl.getRouteDepart() != null)
 		{
 			this.nbJetonsUtiliser = -this.ctrl.getRouteDepart().getNbTroncons() + 1;
-
-			System.out.println(this.getScorePointJeton());
 			
 			for (int lig = 0; lig < tabPlateau.length; lig++) 
 				for (int col = 0; col < tabPlateau[ lig ].length; col++) 
@@ -279,7 +277,6 @@ public class Joueur
 				if(this.tabPlateau[p][s] != null)
 				{
 					cptRessource++;
-					System.out.println(this.tabPlateau[p][s]);
 				}
 					
 			}

@@ -124,21 +124,10 @@ public class FrameJoueur extends JFrame
 
 	public int calculeScore()
 	{
-		//System.out.println( "FrameJOueur calcule score  : " + (25 - this.joueur.getJetons() ) );
-
 		return (25 - this.joueur.getJetons() );
 	}
 
 	public Joueur getJoueur() {
 		return joueur;
 	}
-	
-
-	/*
-
-	public static void main( String[] args )
-	{
-		new FrameJoueur();
-	}
-*/
 }

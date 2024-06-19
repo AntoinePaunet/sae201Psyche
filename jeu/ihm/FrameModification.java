@@ -136,11 +136,6 @@ public class FrameModification extends JFrame implements ActionListener
 			} 
 			catch (Exception i) 
 			{
-				/*
-				// En cas d'erreur, imprimer le message d'erreur
-				System.out.println(i.getMessage());
-				// Utiliser le répertoire actuel par défaut
-				*/
 			}
 			fc.setCurrentDirectory(chooserFile);
 			

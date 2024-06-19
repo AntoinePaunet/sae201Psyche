@@ -41,7 +41,6 @@ public class EditionFichier
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier)))
 		{
 			writer.write("[SOMMET]\n\n[ROUTES]\n");
-			// System.out.println("Fichier de données créé : " + fichier.getAbsolutePath());
 		} catch (IOException e) {
 		}
 	}
@@ -123,13 +122,11 @@ public class EditionFichier
 					if (etapeLecture == 1 && !ligne.equals("[SOMMET]")) {
 						if (!ligne.isEmpty()) {
 							lireSommet(ligne);
-							// System.out.println(ligne);
 						}
 					}
 					if (etapeLecture == 2) {
 						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]")) {
 							lireRoute(ligne);
-							//System.out.println(ligne);
 						}
 					}
 
@@ -141,7 +138,6 @@ public class EditionFichier
 			exp.printStackTrace();
 		}
 		Controleur.nbSommets = this.tabSommet.get(this.tabSommet.size()-1).getId() + 1;
-		// System.out.println("Nb sommet " + tabSommet);
 		return true;
 	}
 
@@ -503,8 +499,6 @@ public class EditionFichier
 			int    nbTroncons;
 			String joueurEnCour;
 
-			System.out.println( "numEtape : "     + numEtape     );
-			System.out.println( "etapeLecture : " + etapeLecture );
 			
 			String ligne = sc.nextLine();
 
@@ -538,10 +532,7 @@ public class EditionFichier
 				
 				if ( etapeLecture > numEtape && numEtape < -1 )
 				{
-					System.out.println("break");
-	
 					return;
-	
 				}
 				
 				if ( autoSkip )

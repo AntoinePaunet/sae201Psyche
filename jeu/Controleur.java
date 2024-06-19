@@ -91,8 +91,6 @@ public class Controleur
 				this.lstMateriaux.add(tabNomsMat[i]);
 			}
 		}
-
-		System.out.println(this.lstMateriaux);
 	}
 
 	public boolean getPremierLancer()
@@ -222,14 +220,9 @@ public class Controleur
 	 */
 	public void jouer (Route r) throws IOException
 	{
-		System.out.println( " Etat Joueur     :  " + (r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null));
-		System.out.println( " Etat Matérieaux :  " + (r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null));
-
-
 		this.finPartie=estFin(r);
 		if (!this.finPartie)
 		{
-			//System.out.print(r);
 			if (this.estValide(r) )
 			{
 				if (this.tourJ1)
