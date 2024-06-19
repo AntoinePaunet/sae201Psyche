@@ -91,8 +91,6 @@ public class Controleur
 				this.lstMateriaux.add(tabNomsMat[i]);
 			}
 		}
-
-		System.out.println(this.lstMateriaux);
 	}
 
 	public boolean getPremierLancer()
@@ -222,16 +220,9 @@ public class Controleur
 	 */
 	public void jouer (Route r) throws IOException
 	{
-		System.out.println( " Etat Joueur     :  " + (r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null));
-		System.out.println( " Etat Matérieaux :  " + (r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null));
-
-
-		
 		this.finPartie=estFin(r);
-		
 		if (!this.finPartie)
 		{
-			//System.out.print(r);
 			if (this.estValide(r) )
 			{
 				if (this.tourJ1)
@@ -281,7 +272,9 @@ public class Controleur
 					this.majFrameJoueur(this.j2, this);
 				}
 			}
+			this.finPartie=estFin(r);
 		}
+		
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 		this.frameDemarrage.getFrameChoix().getF2().refresh();
@@ -312,20 +305,31 @@ public class Controleur
 
 	public boolean estFin (Route r)
 	{
-		if ( !((this.getJoueurJoue().getJetons() + r.getNbTroncons() ) <= Joueur.getNbMaxJetonsPossession()))
+		if ( (this.getJoueurJoue().getJetons() + r.getNbTroncons() ) > Joueur.getNbMaxJetonsPossession() )
 		{
-			if (!this.finPartie)
-				new FrameScore(this);
-			
 			return true;
+		}
+		// true ne peut plus jouer
+		if ( this.getJoueur1().getJetons() == Joueur.getNbMaxJetonsPossession() || this.getJoueur2().getJetons() == Joueur.getNbMaxJetonsPossession())
+		{
+			new FrameScore(this);
+			this.frameDemarrage.getFrameChoix().getFrameJeu().setEnabled(false);
 		}
 
 		for (Sommet s : this.tabSommet)
 			if (s.getJoueur()==null && !s.getDepart())
+			{
 				return false;
+			}
+		
 		
 		if (!this.finPartie)
+		{
 			new FrameScore(this);
+			this.frameDemarrage.getFrameChoix().getFrameJeu().setEnabled(false);
+		}
+			
+
 		
 		return true;
 	}
@@ -343,8 +347,6 @@ public class Controleur
 	{
 		this.tourJ1 = true;
 
-		
-
 		for (Sommet s : this.tabSommet)
 		{
 			s.setJoueur(null);
@@ -357,17 +359,22 @@ public class Controleur
 
 		this.j1.reset();
 		this.j2.reset();
+	}
 
-		
+	public void setTourJ1HorsScena()
+	{
+		this.tourJ1 = true;
+	}
 
-		
-		
+	public void setTourJ2HorsScena()
+	{
+		this.tourJ1 = false;
 	}
 		
 
 	public void setTourJ1()
 	{
-		this.tourJ1 = false;
+		this.tourJ1 = true;
 
 		
 
@@ -685,7 +692,7 @@ public class Controleur
 		this.j1 = new Joueur(this);
 		this.j2 = new Joueur(this);
 		this.tabRoute  = new ArrayList<Route>(40);
-		this.setTourJ1();
+		this.tourJ1 = true;
 
 		if(this.getNomThemePrincipal().equals("Europe"))
 		{

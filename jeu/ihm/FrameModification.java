@@ -136,11 +136,6 @@ public class FrameModification extends JFrame implements ActionListener
 			} 
 			catch (Exception i) 
 			{
-				/*
-				// En cas d'erreur, imprimer le message d'erreur
-				System.out.println(i.getMessage());
-				// Utiliser le répertoire actuel par défaut
-				*/
 			}
 			fc.setCurrentDirectory(chooserFile);
 			
@@ -180,7 +175,13 @@ public class FrameModification extends JFrame implements ActionListener
 					this.ctrl.reInit();
 				}
 				this.repaint();
-			} catch( IOException ex ) { throw new RuntimeException(ex); }
+			} catch( IOException ex ) {
+				try {
+					this.ctrl.reInit(); //Si le fichier n'existe pas
+				} catch (IOException exp) {
+					throw new RuntimeException(exp);
+				}
+			}
 		}
 
 		if ( e.getSource() == this.menuiSupp )

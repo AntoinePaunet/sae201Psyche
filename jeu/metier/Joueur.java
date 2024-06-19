@@ -68,15 +68,17 @@ public class Joueur
 
 				}
 	
-		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur2()) && this.ctrl.getEstScenar())
+		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur2()) && this.ctrl.getEstScenar() && this.ctrl.getRouteDepart() != null)
 		{
-			this.nbJetonsUtiliser = -2 ;
+			this.nbJetonsUtiliser = -this.ctrl.getRouteDepart().getNbTroncons() + 1;
 			
+			for (int lig = 0; lig < tabPlateau.length; lig++) 
+				for (int col = 0; col < tabPlateau[ lig ].length; col++) 
+					this.tabPlateau[lig][col] = null;		
+			
+				this.ctrl.getFrameDemarrage().getFrameChoix().getF2().refresh();
+				this.ctrl.getFrameDemarrage().getFrameChoix().getF2().majTitre(ctrl);
 		}
-		
-				
-		
-
 	}
 
 	public int getJetons()
@@ -275,7 +277,6 @@ public class Joueur
 				if(this.tabPlateau[p][s] != null)
 				{
 					cptRessource++;
-					System.out.println(this.tabPlateau[p][s]);
 				}
 					
 			}

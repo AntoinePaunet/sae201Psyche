@@ -238,8 +238,6 @@ public class PanelRoutes extends JPanel implements ActionListener {
                 this.panelInput();
                 this.revalidate();
 
-                System.out.println("sommet ajouté ou suppresion du sommet effectué ");
-
 
                 // DefaultTableModel model = (DefaultTableModel) table.getModel();
                 // model.addRow(new Object[]{ txtNumero.getText(),txtNomCouleur.getText(), txtX.getText(), txtY.getText()});

@@ -30,10 +30,12 @@ public class FrameJeu extends JFrame implements ActionListener
 	public FrameJeu(Controleur ctrl)
 	{
 		this.setTitle("L'Âge de Psyché");
-		this.setSize    ( 1300,1080 );
+		this.setSize    ( 1269,1080 );
 		this.setLocation(  0, 0 );
 		this.ctrl = ctrl;
 		this.setResizable(false);
+
+		System.out.println(this.ctrl.getTabRoute());
 
 
 		// Création et ajout du Panel
@@ -113,7 +115,7 @@ public class FrameJeu extends JFrame implements ActionListener
 		
 		if ( e.getSource() == this.menuiAnnuler ) // CTRL + Z
 		{
-			if ( ( this.ctrl.getNbEtapeScenario() - 1 ) > -1 )					
+			if ( ( this.ctrl.getNbEtapeScenario() - 1 ) > -2 )					
 				this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() - 1 );			
 			
 			try
@@ -157,9 +159,8 @@ public class FrameJeu extends JFrame implements ActionListener
 			try
 			{
 				int action = Integer.parseInt( JOptionPane.showInputDialog("Entrez le numéro de l'action : "));
-				System.out.println(action);
 
-
+				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(), action,true);
 
 			}
 			catch( Exception exp )
