@@ -221,6 +221,7 @@ public class Controleur
 	{
 		System.out.println( " Etat Joueur     :  " + (r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null));
 		System.out.println( " Etat Matérieaux :  " + (r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null));
+
 		
 		this.finPartie=estFin(r);
 		
@@ -329,9 +330,14 @@ public class Controleur
 	public void setTourJ2()
 	{
 		this.tourJ1 = false;
-		this.j2.reset();
 		this.j1.reset();
+		this.j2.reset();
+
+		System.out.println(Arrays.toString(this.j1.getTableMateriaux()));
+		System.out.println(Arrays.toString(this.j2.getTableMateriaux()));
+		
 	}
+		
 
 	public void setTourJ1()
 	{
