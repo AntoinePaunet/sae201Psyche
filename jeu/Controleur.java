@@ -41,8 +41,6 @@ public class Controleur
 	public static int nbSommets = 2;
 	private boolean premierLance;
 
-	private Route routeDepart;
-
 	/**
 	 * Constructeur du Controleur
 	 */
@@ -60,7 +58,6 @@ public class Controleur
 		this.nbScenario     = 0;	
 		this.estScenar      = false;
 		this.premierLance 	= true;
-		this.routeDepart 	= null;
 		
 		
 		this.lstMateriaux = new ArrayList<>(40);
@@ -226,7 +223,9 @@ public class Controleur
 		System.out.println( " Etat Matérieaux :  " + (r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null));
 
 
+		
 		this.finPartie=estFin(r);
+		
 		if (!this.finPartie)
 		{
 			//System.out.print(r);
@@ -239,9 +238,6 @@ public class Controleur
 
 					this.majFrameJoueur(this.j1, this);
 					r.setJoueur(this.j1);
-
-					if(this.routeDepart == null)
-						this.routeDepart = r;
 
 					this.j1.addJetons(r.getNbTroncons());
 					this.j1.ajouterScoreRoute(r.getNbTroncons());
@@ -260,7 +256,7 @@ public class Controleur
 				}
 				else
 				{
-					if (!this.estScenar )
+					if ( this.estScenar == false )
 						this.getEditionFichier().ecrireScenario(2,404,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 					
 					r.setJoueur(this.j2);
@@ -279,9 +275,7 @@ public class Controleur
 					this.majFrameJoueur(this.j2, this);
 				}
 			}
-			this.finPartie=estFin(r);
 		}
-		
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
 		this.frameDemarrage.getFrameChoix().getF2().refresh();
@@ -305,38 +299,22 @@ public class Controleur
 		this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
 	}
 
-	public Route getRouteDepart()
-	{
-		return this.routeDepart;
-	}
-
 	public boolean estFin (Route r)
 	{
-		if ( (this.getJoueurJoue().getJetons() + r.getNbTroncons() ) > Joueur.getNbMaxJetonsPossession() )
+		if ( ((this.getJoueurJoue().getJetons() + r.getNbTroncons() ) <= Joueur.getNbMaxJetonsPossession()))
 		{
+			if (!this.finPartie)
+				new FrameScore(this);
+			
 			return true;
-		}
-		// true ne peut plus jouer
-		if ( this.getJoueur1().getJetons() == Joueur.getNbMaxJetonsPossession() || this.getJoueur2().getJetons() == Joueur.getNbMaxJetonsPossession())
-		{
-			new FrameScore(this);
-			this.frameDemarrage.getFrameChoix().getFrameJeu().setEnabled(false);
 		}
 
 		for (Sommet s : this.tabSommet)
 			if (s.getJoueur()==null && !s.getDepart())
-			{
 				return false;
-			}
-		
 		
 		if (!this.finPartie)
-		{
 			new FrameScore(this);
-			this.frameDemarrage.getFrameChoix().getFrameJeu().setEnabled(false);
-		}
-			
-
 		
 		return true;
 	}
@@ -688,6 +666,13 @@ public class Controleur
 				return s;
 		}
 		return null;
+	}
+
+	public void viderFrameJoueur()
+	{
+		this.j1.setTableMateriaux(new Materiaux[this.j1.getTableMateriaux().length][this.j1.getTableMateriaux()[0].length]);
+		this.j2.setTableMateriaux(new Materiaux[this.j1.getTableMateriaux().length][this.j1.getTableMateriaux()[0].length]);
+		this.setTourJ1();
 	}
 
 
