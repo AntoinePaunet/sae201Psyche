@@ -232,7 +232,14 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 					if( JOptionPane.showOptionDialog(this, "Une partie en cours est déjà sauvegardée. Voulez vous continuer cette partie, ou écraser cete sauvegarde et recommencer une nouvelle partie ?", "Sauvegarde détectée !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null) == JOptionPane.NO_OPTION )
 					{
-						try{ this.ctrl.reInit(); }
+						try{
+							if(this.ctrl.getNomThemePrincipal().equals("Europe"))
+							{
+								ctrl.getEditionFichier().lectureFichier(System.getProperty("user.dir") + "/jeu/src/theme_europe.txt", true);
+							}else{
+								this.ctrl.reInit();
+							}
+						}
 						catch( IOException ioe ){ ioe.printStackTrace(); }
 					}
 				}
