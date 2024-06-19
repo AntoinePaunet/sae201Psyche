@@ -66,11 +66,6 @@ public class PanelJetons extends JPanel
 
 		temp = this.fmJoueur.calculeScore();
 
-
-		
-		
-		System.out.println( "PannelCarte : " + temp );
-
 		if (this.j==1)
 			this.g2.drawString("×  "+temp, 40, 30);
 		if (this.j==2)
