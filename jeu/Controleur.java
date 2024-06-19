@@ -244,6 +244,8 @@ public class Controleur
 		}
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
+		this.frameDemarrage.getFrameChoix().getF2().refresh();
+		this.frameDemarrage.getFrameChoix().getF1().refresh();
 		
 		
 		/*if (r.getJoueur()==this.getJoueur1())
@@ -303,16 +305,15 @@ public class Controleur
 	public void setTourJ2()
 	{
 		this.tourJ1 = false;
-		this.j2.reset();
 		this.j1.reset();
-		System.out.println("oui");
+		this.j2.reset();
 	}
 
 	public void setTourJ1()
 	{
 		this.tourJ1 = true;
-		this.j2.reset();
 		this.j1.reset();
+		this.j2.reset();
 	}
 
 	/**
@@ -683,7 +684,6 @@ public class Controleur
 		
 		return null;
 	}
-
 	/**
 	 * Méthode principale de la classe Controleur. Elle lance l'application.
 	 * @param arg les arguments de la méthode

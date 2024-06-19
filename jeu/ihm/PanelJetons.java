@@ -3,6 +3,7 @@ package jeu.ihm;
 import jeu.Controleur;
 import jeu.metier.Route;
 import jeu.metier.Joueur;
+import jeu.ihm.FrameJoueur;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -29,12 +30,14 @@ public class PanelJetons extends JPanel
 	private Graphics2D  g2;
 	private int 		j;
 	private Joueur		joueur;
+	private FrameJoueur fmJoueur;
 
 
-	public PanelJetons (Controleur ctrl, Joueur	joueur)
+	public PanelJetons (FrameJoueur frame,Controleur ctrl, Joueur	joueur)
 	{
 		this.ctrl=ctrl;
 		this.joueur=joueur;
+		this.fmJoueur =frame;
 
 		this.setPreferredSize(new Dimension(300, 50));
 		this.setBackground (new Color (208,208,208));
@@ -59,7 +62,14 @@ public class PanelJetons extends JPanel
 		Font font = new Font("Arial", Font.BOLD, 25);
 		g2.setFont(font);
 
-		temp = 25-this.joueur.getJetons();
+		
+
+		temp = this.fmJoueur.calculeScore();
+
+
+		
+		
+		System.out.println( "PannelCarte : " + temp );
 
 		if (this.j==1)
 			this.g2.drawString("×  "+temp, 40, 30);

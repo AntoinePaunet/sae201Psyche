@@ -42,7 +42,7 @@ public class FrameJoueur extends JFrame
 		this.setSize( 680, 500 );
 		this.panelFond = new JLayeredPane();
 
-		this.panelBas=new PanelJetons(ctrl, j);
+		this.panelBas=new PanelJetons(this,ctrl, j);
 		this.add(this.panelBas, BorderLayout.SOUTH);
 
 		this.panelDroite = new PanelMine (ctrl, j);
@@ -99,6 +99,9 @@ public class FrameJoueur extends JFrame
 		this.panelBas.repaint();
 		this.panelDroite.repaint();
 
+		System.out.println( "FrameJOueur refresh 1  : " + calculeScore() );
+
+
 		int x = 65;
 		int y = 57;
 
@@ -128,6 +131,9 @@ public class FrameJoueur extends JFrame
 				x += 54;
 			}
 		}
+
+		System.out.println( "FrameJOueur refresh 2  : " + calculeScore() );
+
 	}
 
 	/**
@@ -151,7 +157,21 @@ public class FrameJoueur extends JFrame
 		imgLabel.setBounds(x, y, image.getIconWidth()+20, image.getIconHeight()+20);
 		this.panelFond.add(imgLabel, Integer.valueOf(layer));
 	}
-/*
+
+	public int calculeScore()
+	{
+		System.out.println( "FrameJOueur calcule score  : " + (25 - this.joueur.getJetons() ) );
+
+		return (25 - this.joueur.getJetons() );
+	}
+
+	public Joueur getJoueur() {
+		return joueur;
+	}
+	
+
+	/*
+
 	public static void main( String[] args )
 	{
 		new FrameJoueur();

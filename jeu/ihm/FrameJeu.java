@@ -103,46 +103,44 @@ public class FrameJeu extends JFrame implements ActionListener
 		if ( e.getSource() == this.menuiAbandonner )
 		{
 			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVotre partie ne sera pas sauvegardée.") == JOptionPane.YES_OPTION )
-				System.exit(0);
+			System.exit(0);
 		}
-
+		
 		if ( e.getSource() == this.menuiAnnuler )
 		{
 			// CTRL + Z
-			if ( this.ctrl.getNbEtapeScenario() > 0 )
-			{
-				this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() - 1 );
-				System.out.println( "Annuler : " + this.ctrl.getNbEtapeScenario() );
-
-			}
 			
 			//System.out.println( this.ctrl.getNbEtapeScenario() );
-		
+			
+			this.ctrl.setNbEtapeScenario( this.ctrl.getNbEtapeScenario() - 1 );
+			System.out.println( "Annuler : " + this.ctrl.getNbEtapeScenario() );
+			
+			
 			try
 			{
 				this.ctrl.getEditionFichier().lectureFichier("data.txt", false);
-
+				
 			}
 			catch ( IOException y )
 			{
 				System.out.println(y.getStackTrace());
-			}
-
+			}	
 			
 			try
 			{
 				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(),this.ctrl.getNbEtapeScenario(),true);
-
+				
 			}
 			catch ( IOException t )
 			{
 				System.out.println( t.getStackTrace() );
 			}
-			this.ctrl.setTourJ1();
+			
+
 			this.panelCarte.repaint();
-
+			
 		}
-
+		
 		if ( e.getSource() == this.menuiRetablir )
 		{
 			System.out.println( "ADd action : " + this.ctrl.getNbEtapeScenario()  );

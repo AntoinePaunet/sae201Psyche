@@ -83,6 +83,8 @@ public class EditionFichier
 			return;
 		}
 
+
+
 		tmpFichier = new File(nomFichier);
 		fichier = new File(emplacementData);
 
@@ -123,13 +125,11 @@ public class EditionFichier
 					if (etapeLecture == 1 && !ligne.equals("[SOMMET]")) {
 						if (!ligne.isEmpty()) {
 							lireSommet(ligne);
-							// System.out.println(ligne);
 						}
 					}
 					if (etapeLecture == 2) {
 						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]")) {
 							lireRoute(ligne);
-							//System.out.println(ligne);
 						}
 					}
 
@@ -494,43 +494,43 @@ public class EditionFichier
 			while (sc.hasNextLine()) 
 			{
 				String ligne = sc.nextLine();
+
+				String[] action = ligne.split(" ");
 				
-				// if ( ligne.length() > 12 )
-				// 	System.out.println(ligne.substring(ligne.length()-15));
+				String joueurEnCour = action[0];
+				sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
+				sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
+				nbTroncons = Integer.parseInt( action[4] );
 				
+				if ( joueurEnCour.equals("J1"))
+					this.ctrl.setTourJ1();
+				else 
+					this.ctrl.setTourJ2();
 
 
 				if ( autoSkip )
-					System.out.println("pk");
-					if ( etapeLecture < numEtape )
+				{
+					
+					if ( etapeLecture <= numEtape)
 					{
-						String[] action = ligne.split(" ");
-
-						sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
-						sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
-						nbTroncons = Integer.parseInt( action[4] );
-
+					
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
 
 						if ( etapeLecture == numEtape )
 							break;
-
 					}
+					
+				}
 
 				else 
+				{
 					if ( etapeLecture == numEtape )
 					{
-						String[] action = ligne.split(" ");
-
-						sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
-						sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
-						nbTroncons = Integer.parseInt( action[4] );
 
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
-
 						break;
 					}
-
+				}
 				etapeLecture +=1;
 			}
 

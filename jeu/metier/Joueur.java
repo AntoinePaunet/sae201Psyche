@@ -49,14 +49,31 @@ public class Joueur
 
 	public void reset()
 	{
-		this.nbJetonsUtiliser=0;
+		this.tabPlateau = new Materiaux [4][8];
+		this.tabPiece   = new Materiaux [8];
 		this.tabSommetRecup = new ArrayList<Sommet>();
+		this.nbJetonsUtiliser=0;
+		this.tabScore = new int[11];
 
 		ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
 
+		int cpt = 0;
+
 		for ( Route r : lstRoute )
-			if ( r.getJoueur().equals(this) )
-				this.nbJetonsUtiliser += r.getNbTroncons();
+			if ( r.getJoueur() != null )
+				if ( r.getJoueur().equals(this) )
+				{
+					this.nbJetonsUtiliser += r.getNbTroncons();
+					cpt++;
+
+				}
+
+
+		if ( cpt == 0 && this.equals(this.ctrl.getJoueur1()))
+			this.nbJetonsUtiliser = -2 ;
+				
+		
+
 	}
 
 	public int getJetons()
