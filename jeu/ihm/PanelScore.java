@@ -53,7 +53,7 @@ public class PanelScore extends JPanel
 		add(titleLabel, BorderLayout.NORTH);*/
 
 		// Table Data
-		String[] columnNames = { "x","images", this.ctrl.getNomThemeJ1(), this.ctrl.getNomThemeJ2() };
+		String[] columnNames = { "x","images", this.ctrl.getJoueur1().getNomJoueur(), this.ctrl.getJoueur2().getNomJoueur() };
 
 		Object[][] data = {
 			{"",new ImageIcon(""), "", ""},
