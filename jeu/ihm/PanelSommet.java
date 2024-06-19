@@ -180,7 +180,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 			}
 		}
 
-		if(idVille > 99 || idVille < 0)
+		if(numVille > 99 || numVille < 0)
 		{
 			this.lblErreur.setText("<html> Numéro compris entre  <br> 0 et 99. </html>");
 			return;
@@ -214,9 +214,12 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 				Materiaux tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(rndm));
 
-				if(idVille != 1)
+				if(idVille != 1 && selectedRowIndex != -1)
 				{
 					this.ctrl.ajouterOuSupprimerSommet(idVille , numVille, nomVile,x,y,tmpMat,false);
+				}else if(selectedRowIndex == -1)
+				{
+					this.ctrl.ajouterOuSupprimerSommet(Controleur.nbSommets++ , numVille, nomVile,x,y,tmpMat,false);
 				}else{
 					this.lblErreur.setText("<html>Impossible de supprimer <br> le sommet principal. </html>");
 					return;

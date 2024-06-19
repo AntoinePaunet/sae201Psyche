@@ -390,6 +390,8 @@ public class EditionFichier
 		this.tabSommet = ctrl.getTabSommet();
 		this.tabRoute = ctrl.getTabRoute();
 
+		System.out.println(Controleur.nbSommets);
+
 
 		for (Route r : this.tabRoute)
 		{
@@ -406,6 +408,7 @@ public class EditionFichier
 		{
 			if ( this.ctrl.getJoueur1().equals(s.getJoueur()) )
 				this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false,1, s.getId());
+
 			else
 				if ( this.ctrl.getJoueur2().equals(s.getJoueur()) )
 					this.ecrireSommet(s.getNumSom(), s.getNomCoul(), s.getX(), s.getY(), s.getMateriaux(), false,2, s.getId());
