@@ -492,8 +492,22 @@ public class EditionFichier
 			Sommet sommetArr; 
 			int    nbTroncons;
 
+			System.out.println( "numEtape : "     + numEtape     );
+			System.out.println( "etapeLecture : " + etapeLecture );
+
+			
 			while (sc.hasNextLine()) 
 			{
+				if ( etapeLecture > numEtape && numEtape < -1 )
+				{
+					System.out.println("break");
+
+					return;
+
+				}
+
+					
+
 				String ligne = sc.nextLine();
 
 				String[] action = ligne.split(" ");
