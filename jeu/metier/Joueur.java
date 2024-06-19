@@ -144,6 +144,12 @@ public class Joueur
 		return false;
 	}
 
+	public void setTableMateriaux(Materiaux[][] plt)
+	{
+		this.tabPlateau = plt;
+	}
+
+
 	/**
 	 * Renvoie le tableau de matériaux du joueur.
 	 * @return le tableau de matériaux du joueur
