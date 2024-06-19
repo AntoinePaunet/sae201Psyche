@@ -47,7 +47,7 @@ public class PanelMateriaux extends JPanel
 		if (this.joueur==this.ctrl.getJoueur1()) {k = 1 ;}
 		if (this.joueur==this.ctrl.getJoueur2()) {k = 2 ;}
 
-		g2.drawImage(getToolkit().getImage("../src/images/"+ this.ctrl.getNomThemePrincipal() +"/plateau_joueur_"+k+".png"), 0,0,this);
+		g2.drawImage(getToolkit().getImage("jeu/src/images/"+ this.ctrl.getNomThemePrincipal() +"/plateau_joueur_"+k+".png"), 0,0,this);
 
 		int x = 65;
 		int y = 57;
@@ -63,7 +63,7 @@ public class PanelMateriaux extends JPanel
 			{
 				if(this.joueur.getTableMateriaux()[i][j] != null)
 				{
-					g2.drawImage(getToolkit().getImage("../src/images/"+ this.ctrl.getNomThemePrincipal() +"/"+this.joueur.getTableMateriaux()[i][j].getNom()+".png"), x,y,this);
+					g2.drawImage(getToolkit().getImage("jeu/src/images/"+ this.ctrl.getNomThemePrincipal() +"/"+this.joueur.getTableMateriaux()[i][j].getNom()+".png"), x,y,this);
 				}
 				x += 53;
 			}
@@ -75,7 +75,7 @@ public class PanelMateriaux extends JPanel
 		{
 			if(this.joueur.getTabPiece()[i] != null)
 			{
-				g2.drawImage(getToolkit().getImage("../src/images/"+ this.ctrl.getNomThemePrincipal() +"/NR.png"), xNR,328,this);
+				g2.drawImage(getToolkit().getImage("jeu/src/images/"+ this.ctrl.getNomThemePrincipal() +"/NR.png"), xNR,328,this);
 				xNR+=54;
 			}
 		}
