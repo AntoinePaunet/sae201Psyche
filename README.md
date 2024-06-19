@@ -4,10 +4,12 @@ sae201Psyche
 Fonctionnalités à démontrer :
 
 Menu prncipal : 
- - Ouverture de la frame de démarrage
- - Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.
- - Quitter et Alt F4 fonctionnent
- - Bouton jouer et modifier
+ - Ouverture de la frame de démarrage	(FAIT)
+ - Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.		(FAIT)
+ - Quitter et Alt F4 fonctionnent	(FAIT)
+ - Bouton jouer et modifier		(FAIT)
+ - Choix du thème	(FAIT)
+ - Texte d'erreur qui s'affiche quand il y a une erreur		(FAIT)
 
 
 Editeur de carte
@@ -71,9 +73,29 @@ Frame Score Final
 
 Scénario 1 : Lancement de jeu + Déroulement d'une partie
 
-
-
-
+ - Lancement de l’application
+ - Lancer sans choisir un scénario
+ - Lancer en choisissant le scénario
+ - Entrer le nom des joueurs puis cliquer sur annuler ( echap )
+ - Cliquer sur jouer, mettre le nom des joueurs et cliquer sur entrer.
+-----
+ - Faire des déplacements
+		(DETAILLER A L'ORAL LE CHANGEMENT DES POINTS EN TEMPS REEL)
+ - Essayer de faire des déplacements impossibles
+		(DETAILLER A L'ORAL QUELS VERIFICATIONS SONT EFFECTUEES)
+	- Cliquer sur un chemin non connecté au départ
+	- Cliquer sur un chemin déjà pris
+ - Faire un déplacement
+ - Quitter la partie en cliquant sur la croix
+ - Relancer la partie en reprennant la sauvegarde
+		(DETAILLER A L'ORAL LA SAUVEGARDE DES SCORES)
+ - Effectuer d'autres mouvements
+ - Quitter sans sauvegarder
+ - Relancer la partie en reprennant la sauvegarde
+		(DETAILLER A L'ORAL LA SAUVEGARDE DES SCORES)
+ - Quitter sans sauvegarder
+ - Relancer la partie en reprennant la sauvegarde
+ - Démontrer que la sauvegarde est effacée.
 
 
 
@@ -112,5 +134,14 @@ Scénario 3 : Modification + ajout de thèmes
  - Cliquer sur Supprimer
  - Sauvegarder + fermer, puis ouvrir
 -----
- - Ouvrir un autre thème 
- - Importer un autre thème
+ - Se baser sur thème non valide dans theme.txt
+ - Montrer qu'il y a bien l'affichage des nom, et images uniques au thème
+ - Supprimer une image du dossier images
+ - Montrer qu'il y a le message d'erreur mais qu'on peut lancer
+ - Supprimer le dossier entier
+ - Refaire le test mais cette fois on ne peut pas lancer, le label change
+ - Enfin mettre une erreur dans theme.txt, on peut enlever un tab ou en ajouter un
+ - Montrer le labelErreur qui est différents pour cette erreur
+
+ - Importer un autre thème à la main
+ - lancer l'application pour montrer qu'il est ajouté à lstTheme

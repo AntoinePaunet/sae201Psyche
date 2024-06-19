@@ -151,7 +151,13 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				cheminFichier = fc.getSelectedFile().getAbsolutePath();
 				this.ctrl.setNbScenario(  Integer.parseInt( cheminFichier.substring( cheminFichier.indexOf( ".txt" ) - 1, cheminFichier.indexOf( ".txt" ) ) ) );
 				this.ctrl.setEstJeu(true);
-				
+
+				try {
+					this.ctrl.reInit();
+				} catch (IOException ex) {
+					throw new RuntimeException(ex);
+				}
+
 				try
 				{
 					Timer timerSpawn = new Timer(17, new ActionListener() //Vitesse de déplacement du mob
@@ -163,7 +169,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 							if ( ctrl.getFrameDemarrage().getFrameChoix().getFrameJeu() != null  )
 							{
 								try {
-									
 									ctrl.getEditionFichier().lireScenario(ctrl.getNbScenario(),ctrl.getNbEtapeScenario(),false);
 									((Timer)e.getSource()).stop();
 
@@ -189,6 +194,25 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
 
+		File[] filesInfolderTheme = null;
+		File folderTheme = new File("jeu/src/images/" + this.ctrl.getNomThemePrincipal() );
+
+		if ( folderTheme.isDirectory()   )
+		{
+			filesInfolderTheme = folderTheme.listFiles();
+			
+			if ( filesInfolderTheme.length != 33  )
+			{
+				this.panelBoutons.lblErreur.setText( "Dosssier images à completer pour ce thème" );
+				this.panelBoutons.lblErreur.setOpaque( true );
+
+			}
+		}
+		else
+		{
+			this.panelBoutons.lblErreur.setText( "Il manque le dossier dans images pour ce thème" );
+			this.panelBoutons.lblErreur.setOpaque( true );
+		}
 
 		// Gestion du bouton Jouer
 		if( e.getSource() == this.panelBoutons.btnJouer )
@@ -197,7 +221,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			{
 				this.panelBoutons.lblErreur.setText("Thème non valide.");
 				this.panelBoutons.lblErreur.setOpaque(true);
-			}
+			}			
 			else
 			{
 				this.ctrl.setEstScenar(false);
@@ -206,7 +230,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 				{
 					String[] options ={ "Continuer la partie sauvegardée" , "Recommencer une nouvelle partie" };
 
-					if( JOptionPane.showOptionDialog(null, "Une partie en cours est déjà sauvegardée. Voulez vous continuer cette partie, ou écraser cete sauvegarde et recommencer une nouvelle partie ?", "Sauvegarde détectée !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null) == JOptionPane.NO_OPTION )
+					if( JOptionPane.showOptionDialog(this, "Une partie en cours est déjà sauvegardée. Voulez vous continuer cette partie, ou écraser cete sauvegarde et recommencer une nouvelle partie ?", "Sauvegarde détectée !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null) == JOptionPane.NO_OPTION )
 					{
 						try{ this.ctrl.reInit(); }
 						catch( IOException ioe ){ ioe.printStackTrace(); }

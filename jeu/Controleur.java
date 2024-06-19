@@ -83,11 +83,13 @@ public class Controleur
 		//génération du tableau contenant les noms des matériaux possibles
 		for(int i = 0 ; i < tabNomsMat.length ; i++)
 		{
-			for(int j = 0; j < 4 ; j++)
+			for(int j = 0; j < 4; j++)
 			{
 				this.lstMateriaux.add(tabNomsMat[i]);
 			}
 		}
+
+		System.out.println(this.lstMateriaux);
 	}
 
 	public boolean getPremierLancer()
@@ -108,8 +110,7 @@ public class Controleur
     }
 
     /**
-     * A completer.
-     * @return La liste des sommets
+     * Modifie la liste des routes
      */
     public void setTabRoute(ArrayList<Route> tabRt)
     {
@@ -218,8 +219,10 @@ public class Controleur
 	 */
 	public void jouer (Route r) throws IOException
 	{
-		System.out.println( " Etat Joueur     :  " + r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null  );
-		System.out.println( " Etat Matérieaux :  " + r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null);
+		System.out.println( " Etat Joueur     :  " + (r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null));
+		System.out.println( " Etat Matérieaux :  " + (r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null));
+
+
 		
 		this.finPartie=estFin(r);
 		
@@ -230,7 +233,7 @@ public class Controleur
 			{
 				if (this.tourJ1)
 				{
-					if ( this.estScenar == false )
+					if (!this.estScenar)
 						this.getEditionFichier().ecrireScenario(1,404,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 
 					this.majFrameJoueur(this.j1, this);
@@ -612,6 +615,7 @@ public class Controleur
 				{
 					Controleur.nbSommets--;
 				}
+				this.lstMateriaux.add(rt.getMateriaux().getNom());
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;
@@ -663,6 +667,7 @@ public class Controleur
 		this.j1 = new Joueur(this);
 		this.j2 = new Joueur(this);
 		this.tabRoute  = new ArrayList<Route>(40);
+		this.setTourJ1();
 		this.init();
 	}
 
@@ -674,8 +679,8 @@ public class Controleur
 		Controleur.nbSommets = 2;
 		this.tabSommet.add(new Sommet(0,"DEPART", 769, 543, null, true,null, 1));
 		this.tabRoute  = new ArrayList<Route>(40);
+		this.initMateriaux();
 		this.editionFichier.sauvegarde();
-
 	}
 
 	/**
