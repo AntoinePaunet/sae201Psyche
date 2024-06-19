@@ -526,10 +526,7 @@ public class EditionFichier
 				sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
 				nbTroncons = Integer.parseInt( action[4] );
 				
-				if ( joueurEnCour.equals("J1"))
-					this.ctrl.setTourJ1();
-				else 
-					this.ctrl.setTourJ2();
+				
 
 
 				if ( autoSkip )
@@ -542,6 +539,11 @@ public class EditionFichier
 
 						if ( etapeLecture == numEtape )
 							break;
+						
+						if ( joueurEnCour.equals("J1"))
+							this.ctrl.setTourJ1();
+						else 
+							this.ctrl.setTourJ2();
 					}
 					
 				}

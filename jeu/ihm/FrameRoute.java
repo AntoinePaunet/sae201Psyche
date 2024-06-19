@@ -25,7 +25,8 @@ public class FrameRoute extends JFrame
 	{
 		this.setTitle   ( "Frame Routes" );
 		this.setSize    ( 800, 200 );
-		this.setLocation( 50,50 );   
+		this.setLocation( 50,50 );  
+		this.setResizable(false); 
         
         this.panelDesRoutes = new PanelRoutes( ctrl );
 		

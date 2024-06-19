@@ -39,6 +39,7 @@ public class FrameModification extends JFrame implements ActionListener
 		this.setTitle("Modification de la carte");
 		this.setSize    ( 1269,1122 );
 		this.setLocation(  150, 50 );
+		this.setResizable(false);
 
 		JMenuBar menubMaBarre = new JMenuBar();
 
@@ -63,11 +64,11 @@ public class FrameModification extends JFrame implements ActionListener
 		menuCreer.add( this.menuiCreerSommet );
 		menuCreer.add( this.menuiCreerRoute  );
 
-		menuQuit.add(this.menuiRein);
+		menuSave.add(this.menuiRein);
 		menuSave.addSeparator();
 		menuSave.add(this.menuiSupp);
 
-		menuSave.add(this.menuiSave);
+		menuQuit.add(this.menuiSave);
 		menuQuit.add(this.menuiQuitter);
 
 		menubMaBarre.add( menuOuvrir );

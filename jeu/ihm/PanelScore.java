@@ -67,7 +67,7 @@ public class PanelScore extends JPanel
 			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Gris.png"), this.ctrl.getJoueur1().getScoreGris  (), this.ctrl.getJoueur2().getScoreGris  () }, // point Gris
 			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Vert.png"), this.ctrl.getJoueur1().getScoreVert  (), this.ctrl.getJoueur2().getScoreVert  () }, // point Vert
 			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rouge.png"), this.ctrl.getJoueur1().getScoreRouge (), this.ctrl.getJoueur2().getScoreRouge ()}, // point Rouge
-			{"","", this.ctrl.getJoueur1().getScoreMarron(), this.ctrl.getJoueur2().getScoreMarron()}, // point Marron
+			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Marron.png"), this.ctrl.getJoueur1().getScoreMarron(), this.ctrl.getJoueur2().getScoreMarron()}, // point Marron
 			{"S/Total","", this.ctrl.getJoueur1().getSommeScoreSommet(), this.ctrl.getJoueur2().getSommeScoreSommet()}, // Total du dessus
 			{"","", "", ""},
 			{"Plateau Individuel","" ,  "", ""},

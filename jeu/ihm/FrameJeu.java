@@ -33,6 +33,7 @@ public class FrameJeu extends JFrame implements ActionListener
 		this.setSize    ( 1300,1080 );
 		this.setLocation(  0, 0 );
 		this.ctrl = ctrl;
+		this.setResizable(false);
 
 
 		// Création et ajout du Panel
