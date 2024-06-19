@@ -41,6 +41,8 @@ public class Controleur
 	public static int nbSommets = 2;
 	private boolean premierLance;
 
+	private Route routeDepart;
+
 	/**
 	 * Constructeur du Controleur
 	 */
@@ -58,6 +60,7 @@ public class Controleur
 		this.nbScenario     = 0;	
 		this.estScenar      = false;
 		this.premierLance 	= true;
+		this.routeDepart 	= null;
 		
 		
 		this.lstMateriaux = new ArrayList<>(40);
@@ -239,6 +242,9 @@ public class Controleur
 					this.majFrameJoueur(this.j1, this);
 					r.setJoueur(this.j1);
 
+					if(this.routeDepart == null)
+						this.routeDepart = r;
+
 					this.j1.addJetons(r.getNbTroncons());
 					this.j1.ajouterScoreRoute(r.getNbTroncons());
 
@@ -256,7 +262,7 @@ public class Controleur
 				}
 				else
 				{
-					if ( this.estScenar == false )
+					if (!this.estScenar )
 						this.getEditionFichier().ecrireScenario(2,404,r.getSommetDep().getId(),r.getSommetArr().getId(),r.getNbTroncons());
 					
 					r.setJoueur(this.j2);
@@ -297,6 +303,11 @@ public class Controleur
 	{
 		this.frameDemarrage.getFrameChoix().getF1().setTitle(this.frameDemarrage.getFrameChoix().getF1().majTitre(this));
 		this.frameDemarrage.getFrameChoix().getF2().setTitle(this.frameDemarrage.getFrameChoix().getF2().majTitre(this));
+	}
+
+	public Route getRouteDepart()
+	{
+		return this.routeDepart;
 	}
 
 	public boolean estFin (Route r)
@@ -666,13 +677,6 @@ public class Controleur
 				return s;
 		}
 		return null;
-	}
-
-	public void viderFrameJoueur()
-	{
-		this.j1.setTableMateriaux(new Materiaux[this.j1.getTableMateriaux().length][this.j1.getTableMateriaux()[0].length]);
-		this.j2.setTableMateriaux(new Materiaux[this.j1.getTableMateriaux().length][this.j1.getTableMateriaux()[0].length]);
-		this.setTourJ1();
 	}
 
 
