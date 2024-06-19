@@ -195,7 +195,13 @@ public class FrameDemarrage extends JFrame implements ActionListener
 			System.exit(0);
 
 		File[] filesInfolderTheme = null;
-		File folderTheme = new File("jeu/src/images/" + this.ctrl.getNomThemePrincipal() );
+
+		File folderTheme;
+
+		if(this.ctrl.getNomThemePrincipal() != null)
+			folderTheme = new File("jeu/src/images/" + this.ctrl.getNomThemePrincipal() );
+		else
+			folderTheme = new File("jeu/src/images/Espace");
 
 		if ( folderTheme.isDirectory()   )
 		{

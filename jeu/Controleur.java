@@ -743,7 +743,9 @@ public class Controleur
 
 	public String getNomThemePrincipal()
 	{
-		return this.elementsTheme[0];
+		if(this.elementsTheme != null)
+			return this.elementsTheme[0];
+		return null;
 	}
 
 	public String getNomThemeJ1()
