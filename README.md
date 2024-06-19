@@ -7,7 +7,8 @@ Menu prncipal :
  - Ouverture de la frame de démarrage 
  - la menuBar contient "Ouvrir", tester avec un fichier. Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.
  - Quitter et Alt F4 fonctionnent
- - Pour les autres boutons il faut montrer que lorsque aucun thème n’est choisi il y a le labelErreur
+ - Pour les autres boutons il faut montrer que lorsque aucun thème n'est choisi, ou qu'il n'est pas valide il y a le labelErreur
+ - L'ajout d'un thème de test fonctionne bien tant qu'il est bien écrit avec ses images
  - Quand on en choisi un il disparait
  - Ouverture de la frame de modification :
  - Montrer que l’on peut déplacer les sommets,
