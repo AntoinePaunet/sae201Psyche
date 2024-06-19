@@ -233,7 +233,6 @@ public class EditionFichier
 		{
 			if ( smtInfo[6].equals( "J1" ) )
 			{
-				System.out.println("test");
 				this.tabSommet.add( new Sommet( num, nom, x, y, new Materiaux( nomMat ), false, this.ctrl.getJoueur1(), id ) );
 				this.ctrl.getJoueur1().addSommetRecup(this.tabSommet.get(this.tabSommet.size()-1));
 				this.tabSommet.get(this.tabSommet.size()-1).setJoueur(this.ctrl.getJoueur1());
@@ -247,6 +246,16 @@ public class EditionFichier
 				}
 				else
 					this.tabSommet.add(new Sommet(num, nom, x, y, new Materiaux(nomMat), false, null, id));
+
+
+			for(String s : this.ctrl.getLstMateriaux())
+			{
+				if(s.equals(this.ctrl.getTabSommet().get(this.ctrl.getTabSommet().size()-1).getMateriaux().getNom()))
+				{
+					this.ctrl.getLstMateriaux().remove(s);
+					break;
+				}
+			}
 		}
 
 		this.ctrl.setTabSommet(this.tabSommet);
