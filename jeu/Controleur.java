@@ -27,6 +27,7 @@ public class Controleur
 	protected        ArrayList<Sommet>  tabSommet;
 	protected        ArrayList<Route>	 tabRoute ;
 
+	private          boolean            estSauvegarde ;
 	private          boolean            estScenar;
 	private          boolean            estJeu   ;
 	private          boolean            tourJ1        ;
@@ -61,7 +62,12 @@ public class Controleur
 		this.initMateriaux();
 
 		this.frameDemarrage = new FrameDemarrage(this);
-		this.editionFichier.lectureFichier("data.txt", false);
+
+		if( this.editionFichier.lectureFichier("data.txt", false) )
+			this.estSauvegarde = false;
+		else
+			this.estSauvegarde = true;
+
 		this.initJetonPossession();
 	}
 
@@ -127,6 +133,13 @@ public class Controleur
 	 * @param estJeu le Jeu
 	 */
 	public void setEstJeu(boolean estJeu) { this.estJeu = estJeu; }
+
+	/**
+	 * A completer.
+	 * @param estJeu le Jeu
+	 */
+	public boolean getEstSauvegarde() { return this.estSauvegarde; }
+
 
 	/**
 	 * Renvoie l'instance de la classe EditionFichier qui est lié au controleur.
