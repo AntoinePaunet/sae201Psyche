@@ -74,20 +74,15 @@ Frame Score Final
 Scénario 1 : Lancement de jeu + Déroulement d'une partie
 
  - Lancement de l’application
-<<<<<<< HEAD
- - Lancer sans choisir un scénario et sans theme
- - Lancer en choisissant le scénario
-=======
  - Lancer sans choisir un thème
  - Lancer en choisissant le thème
->>>>>>> 7ea8de26463b794f3cf1c2bc63e2b41fc7205a26
  - Entrer le nom des joueurs puis cliquer sur annuler ( echap )
  - Cliquer sur jouer, mettre le nom des joueurs et cliquer sur entrer.
 -----
  - Faire des déplacements
 		(DETAILLER A L'ORAL LE CHANGEMENT DES POINTS EN TEMPS REEL)
  - Essayer de faire des déplacements impossibles
-		(DETAILLER A L'ORAL QUELS VERIFICATIONS SONT EFFECTUEES)
+		(DETAILLER A L'ORAL QUELS VERIFICATIONS SONT EFFECTUEES) -> on verifie si au moins un des sommet possede un joueur / on verifi si la route a deja un joueur
 	- Cliquer sur un chemin non connecté au départ
 	- Cliquer sur un chemin déjà pris
  - Faire un déplacement
