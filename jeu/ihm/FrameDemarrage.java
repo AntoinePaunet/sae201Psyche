@@ -24,7 +24,6 @@ public class FrameDemarrage extends JFrame implements ActionListener
 {
 	private Controleur ctrl;
 
-	private JMenuItem    menuiOuvrir           ;
 	private JMenuItem    menuiScenario         ;
 	private JMenuItem    menuiQuitter          ;
 	private PanelBoutons panelBoutons          ;
@@ -50,19 +49,15 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		
 		// Création et ajout de la barre de menu
 		JMenuBar  menuBar  = new JMenuBar(         );
-		JMenu menuOuvrir   = new JMenu("Ouvrir"  );
 		JMenu menuScenario = new JMenu("Scénario");
 		JMenu menuQuitter  = new JMenu("Quitter" );
 
-		this.menuiOuvrir        = new JMenuItem("Importer une carte" );
 		this.menuiScenario      = new JMenuItem("Lancer un scénario" );
 		this.menuiQuitter       = new JMenuItem("Quitter"            );
 
-		menuOuvrir  .add(this.menuiOuvrir       );
 		menuScenario.add(this.menuiScenario     );
 		menuQuitter .add(this.menuiQuitter      );
 
-		menuBar.add(menuOuvrir  );
 		menuBar.add(menuScenario);
 		menuBar.add(menuQuitter );
 
@@ -71,22 +66,20 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		//Création et ajout du Panel Jouer
 
 		this.add(panelFond);
-
 		panelFond.add(this.panelBoutons);
 
 
 
 		// Création des raccourcis clavier
-		menuOuvrir.setMnemonic('O');
 		menuScenario.setMnemonic('S');
-		menuQuitter.setMnemonic('Q');
+		menuQuitter .setMnemonic('Q');
 
-		this.menuiOuvrir.setAccelerator   (KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK) );
+
 		this.menuiScenario.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK) );
 		this.menuiQuitter.setAccelerator  (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
 		// Activation des composants
-		this.menuiOuvrir        .addActionListener( this );
+
 		this.menuiQuitter       .addActionListener( this );
 		this.menuiScenario      .addActionListener( this );
 		this.panelBoutons.btnJouer.addActionListener( this );
@@ -124,52 +117,12 @@ public class FrameDemarrage extends JFrame implements ActionListener
 		}
 	}
 
-		
-
 	/**
 	 * Réalise une action lorsqu'on clique sur la menubar
 	 * @param e est un événement lié à un composant du panel
 	 */
 	public void actionPerformed ( ActionEvent e )
-	{
-			// Importation des fichiers
-			if( e.getSource() == this.menuiOuvrir )
-			{
-				String cheminFichier;
-				JFileChooser fc = new JFileChooser();
-				File chooserFile = new File(System.getProperty("user.dir") + "/jeu/src");
-				
-				try 
-			{
-				chooserFile = chooserFile.getCanonicalFile();
-			} 
-			catch (Exception i) 
-			{
-				/*
-				// En cas d'erreur, imprimer le message d'erreur
-				System.out.println(i.getMessage());
-				// Utiliser le répertoire actuel par défaut
-				*/
-			}
-			fc.setCurrentDirectory(chooserFile);
-			
-			int returnVal = fc.showOpenDialog(this);
-			
-			if (returnVal == JFileChooser.APPROVE_OPTION)
-			{
-				cheminFichier = fc.getSelectedFile().getAbsolutePath();
-				try
-				{
-					this.ctrl.getEditionFichier().lectureFichier(cheminFichier, true);
-				}
-				catch( IOException ex )
-				{
-					JOptionPane.showMessageDialog(this, "Erreur d'entrée/sortie : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-				}
-				
-			}
-		}
-		
+	{		
 		// Lecture des scénarios
 		if( e.getSource() == this.menuiScenario )
 		{
