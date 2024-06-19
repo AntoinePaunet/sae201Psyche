@@ -33,6 +33,7 @@ public class PanelImage extends JPanel
 	public PanelImage (Controleur ctrl,String	nomCoul)
 	{
 		this.nomCoul=nomCoul;
+		this.ctrl=ctrl;
 
 	}
 
