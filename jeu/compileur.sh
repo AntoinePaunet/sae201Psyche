@@ -13,3 +13,6 @@ fi
 cp -r "src" "class/jeu/"
 
 # sed -i -e 's/\r$//'
+
+cd class
+java jeu.Controleur
