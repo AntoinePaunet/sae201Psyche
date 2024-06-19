@@ -342,6 +342,8 @@ public class Controleur
 		int rndm;
 		Materiaux tmpMat;
 
+		Controleur.nbSommets = 2;
+
 		String[] tabNomSmt = new String[] { "V4", "V8", "V2", "V3", "V6", "B6", "B8", "R5", "R3", "R1", "G2", "B3", "B4", "B2", "G4", "J3", "R4", "R2", "M2", "G0", "J1", "J4", "M5", "M3", "M4", "M1", "G3", "G1", "J5", "J2" };
 		int[] tabCooX = new int[] {  543, 370, 506, 691, 262, 409, 673, 113, 245, 289, 784, 367, 533, 672, 783, 956, 126, 178, 551, 888, 1194, 1080, 248, 362, 477, 639, 872, 801, 1069, 979 };
 		int[] tabCooY = new int[] {   83, 115, 273, 71, 175, 428, 299, 322, 354, 478, 322, 657, 543, 469, 103, 146, 509, 621, 685, 314, 498, 318, 736, 824, 873, 857, 663, 861, 819, 498 };
@@ -625,8 +627,8 @@ public class Controleur
 		this.j1 = new Joueur(this);
 		this.j2 = new Joueur(this);
 		this.tabSommet = new ArrayList<Sommet>(30);
-		Controleur.nbSommets = 1;
-		this.tabSommet.add(new Sommet(0,"DEPART", 500, 500, null, true,null, 1));
+		Controleur.nbSommets = 2;
+		this.tabSommet.add(new Sommet(0,"DEPART", 769, 543, null, true,null, 1));
 		this.tabRoute  = new ArrayList<Route>(40);
 		this.editionFichier.sauvegarde();
 
