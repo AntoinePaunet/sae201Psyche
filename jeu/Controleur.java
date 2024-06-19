@@ -670,8 +670,8 @@ public class Controleur
 
 	public void viderFrameJoueur()
 	{
-		this.j1 = new Joueur(this);
-		this.j2 = new Joueur(this);
+		this.j1.setTableMateriaux(new Materiaux[this.j1.getTableMateriaux().length][this.j1.getTableMateriaux()[0].length]);
+		this.j2.setTableMateriaux(new Materiaux[this.j1.getTableMateriaux().length][this.j1.getTableMateriaux()[0].length]);
 		this.setTourJ1();
 	}
 
