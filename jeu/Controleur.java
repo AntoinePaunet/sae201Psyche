@@ -305,8 +305,8 @@ public class Controleur
 	public void setTourJ2()
 	{
 		this.tourJ1 = false;
-		this.j1.reset();
 		this.j2.reset();
+		this.j1.reset();
 	}
 
 	public void setTourJ1()

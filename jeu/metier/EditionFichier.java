@@ -83,8 +83,6 @@ public class EditionFichier
 			return;
 		}
 
-
-
 		tmpFichier = new File(nomFichier);
 		fichier = new File(emplacementData);
 
@@ -125,11 +123,13 @@ public class EditionFichier
 					if (etapeLecture == 1 && !ligne.equals("[SOMMET]")) {
 						if (!ligne.isEmpty()) {
 							lireSommet(ligne);
+							// System.out.println(ligne);
 						}
 					}
 					if (etapeLecture == 2) {
 						if (!ligne.isEmpty() && !ligne.equals("[ROUTES]")) {
 							lireRoute(ligne);
+							//System.out.println(ligne);
 						}
 					}
 
