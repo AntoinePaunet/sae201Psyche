@@ -67,24 +67,13 @@ public class Joueur
 					nbRouteDetenu++;
 
 				}
-
-		
-		// for ( Materiaux p : lstRoute )
-		// 	if ( r.getJoueur() != null )
-		// 		if ( r.getJoueur().equals(this) )
-		// 			{
-		// 				this.nbJetonsUtiliser += r.getNbTroncons();
-		// 				nbRouteDetenu++;
 	
-		// 			}
-
-		
-		
-
-
 		if ( nbRouteDetenu == 0 && this.equals(this.ctrl.getJoueur1()) && this.ctrl.getEstScenar())
+		{
 			this.nbJetonsUtiliser = -2 ;
-			System.out.println(this.tabPiece.length);
+			
+		}
+		
 				
 		
 
@@ -232,8 +221,8 @@ public class Joueur
 	 */
 	public void scoreFin()
 	{
-		int[] scoresLig   = {0,4,9,16,25,36,49,64};
-		int[] tabScoreCol = {0, 2, 10, 20};
+		int[] tabScoreLig = {0, 2, 5 , 9 , 14, 20, 32, 46};
+		int[] tabScoreCol = {0, 2, 10, 20                };
 		//Affichage des détails
 		int  scoreMonnaie, scoreCol, scoreLig;
 
@@ -267,23 +256,27 @@ public class Joueur
 		}
 			
 
-
-		//Compteur pour le score des lignes
+		//Compteur pour le score des lignes tabPlateau est [4][8]
+		//scoresLig   = {0,4,9,16,25,36,49,64};
 		int cptRessource= 0;		
 
-		for(int i = 0; i < this.tabPlateau.length ; i++) //0 - 4
+		for(int p = 0; p < this.tabPlateau.length ; p++) //0 - 3
 		{
 			scoreLig = 0;
 			cptRessource=0;
-			for(int j = 0 ; j < this.tabPlateau[i].length ; j++) //0 - 8
+			for(int s = 0 ; s < this.tabPlateau[p].length ; s++) //0 - 7
 			{
-				if(this.tabPlateau[i][j] != null)
+				if(this.tabPlateau[p][s] != null)
+				{
 					cptRessource++;
+					System.out.println(this.tabPlateau[p][s]);
+				}
+					
 			}
-
+			System.out.println("valeur de cptRes " + cptRessource );
 			if (cptRessource!=0)
 			{
-				scoreLig += scoresLig[cptRessource-1];
+				scoreLig += tabScoreLig[cptRessource-1];
 				this.tabScore[2]  += scoreLig;
 			}
 		}
@@ -327,9 +320,25 @@ public class Joueur
 	public int getSommeScore     ()
 	{
 		int totalScore = 0;
-		for (int i = 0; i < this.getTabScore().length ; i++)
+		for (int i = 0; i < this.getTabScore().length - 1 ; i++)
 			totalScore += this.getTabScore()[i];
 		return totalScore;
+	}
+
+	public int getSommeScorePlateau()
+	{
+		int totalPlateau = 0;
+		for (int i = 0; i <= 2 ; i++)
+			totalPlateau += this.getTabScore()[i];
+		return totalPlateau;
+	}
+
+	public int getSommeScoreSommet()
+	{
+		int totalSommet = 0;
+		for (int i = 4; i <= 9 ; i++)
+			totalSommet += this.getTabScore()[i];
+		return totalSommet;
 	}
 
 	public static int getNbMaxJetonsPossession()

@@ -1,6 +1,7 @@
 package jeu.ihm;
 
 import jeu.Controleur;
+import jeu.metier.Joueur;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -42,6 +43,9 @@ public class PanelScore extends JPanel
 		this.ctrl.getJoueur1().scoreSommet();
 		this.ctrl.getJoueur2().scoreSommet();
 
+		int bonusJ1 = this.getBonus(this.ctrl.getJoueur1(), this.ctrl.getJoueur2());
+		int bonusJ2 = this.getBonus(this.ctrl.getJoueur2(), this.ctrl.getJoueur1());
+
 		setLayout(new BorderLayout(10, 10));
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 
@@ -64,17 +68,17 @@ public class PanelScore extends JPanel
 			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Vert.png"), this.ctrl.getJoueur1().getScoreVert  (), this.ctrl.getJoueur2().getScoreVert  () }, // point Vert
 			{"",new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/Rouge.png"), this.ctrl.getJoueur1().getScoreRouge (), this.ctrl.getJoueur2().getScoreRouge ()}, // point Rouge
 			{"","", this.ctrl.getJoueur1().getScoreMarron(), this.ctrl.getJoueur2().getScoreMarron()}, // point Marron
-			{"S/Total","", "", ""}, // Total du dessus
+			{"S/Total","", this.ctrl.getJoueur1().getSommeScoreSommet(), this.ctrl.getJoueur2().getSommeScoreSommet()}, // Total du dessus
 			{"","", "", ""},
-			{"Plateau Individuel","" , "", ""},
+			{"Plateau Individuel","" ,  "", ""},
 			{"Score Pièces"       ,new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/NR.png"), this.ctrl.getJoueur1().getScorePiece  (), this.ctrl.getJoueur2().getScorePiece  () }, //scorePieceJ1
 			{"Scores des Colonnes","", this.ctrl.getJoueur1().getScoreColonne()-1, this.ctrl.getJoueur2().getScoreColonne() -1}, //scoreColJ1
 			{"Scores des Lignes"  ,"", this.ctrl.getJoueur1().getScoreLigne  (), this.ctrl.getJoueur2().getScoreLigne  () }, //scoreLigJ1
-			{"S/Total"            ,"", "", ""},
-			{"", "", ""},
-			{"Jetons Possession restants","", this.ctrl.getJoueur1().getJetons(), this.ctrl.getJoueur2().getJetons()}, //jetonPossessJ1
-			{"Bonus (10)", "","", ""},
-			{"Total"     , "",this.ctrl.getJoueur1().getSommeScore(), this.ctrl.getJoueur2().getSommeScore()} //Total
+			{"S/Total"            ,"", this.ctrl.getJoueur1().getSommeScorePlateau(), this.ctrl.getJoueur2().getSommeScorePlateau()},
+			{"", "", "", ""},
+			{"Jetons Possession restants", "", 25 - this.ctrl.getJoueur1().getJetons(), 25 - this.ctrl.getJoueur2().getJetons()                  }, //jetonPossessJ1
+			{"Bonus (10)"                , "", bonusJ1 , bonusJ2                                                                                 },
+			{"Total"                     , "", this.ctrl.getJoueur1().getSommeScore() + bonusJ1, this.ctrl.getJoueur2().getSommeScore() + bonusJ2} //Total
 		};
 
 		// Creating the table
@@ -108,5 +112,13 @@ public class PanelScore extends JPanel
 		// Adding the table to a scroll pane
 		JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane, BorderLayout.CENTER);
+	}
+
+	public int getBonus(Joueur j1, Joueur j2)
+	{
+		if (j1.getJetons()<j2.getJetons())
+			return 10;
+		else
+			return 0;
 	}
 }
