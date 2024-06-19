@@ -104,7 +104,7 @@ public class FrameJeu extends JFrame implements ActionListener
 	 */
 	public void actionPerformed ( ActionEvent e )
 	{
-		if ( e.getSource() == this.menuiAbandonner )
+		if ( e.getSource() == this.menuiAbandonner ) // CTRL + Q
 		{
 			if( JOptionPane.showConfirmDialog(null,"Êtes-vous sur ?\nVotre partie ne sera pas sauvegardée.") == JOptionPane.YES_OPTION )
 			System.exit(0);
