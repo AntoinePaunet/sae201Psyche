@@ -278,8 +278,8 @@ public class Controleur
 		}
 		//this.frameDemarrage.getFrameChoix().getFrameJeu().majIHM();
 		this.frameDemarrage.getFrameChoix().getFrameJeu().repaint();
-		// this.frameDemarrage.getFrameChoix().getF2().refresh();
-		// this.frameDemarrage.getFrameChoix().getF1().refresh();
+		this.frameDemarrage.getFrameChoix().getF2().refresh();
+		this.frameDemarrage.getFrameChoix().getF1().refresh();
 		
 		
 		/*if (r.getJoueur()==this.getJoueur1())
@@ -332,6 +332,8 @@ public class Controleur
 	{
 		this.tourJ1 = true;
 
+		
+
 		for (Sommet s : this.tabSommet)
 		{
 			s.setJoueur(null);
@@ -344,6 +346,8 @@ public class Controleur
 
 		this.j1.reset();
 		this.j2.reset();
+
+		
 
 		
 		
@@ -354,6 +358,8 @@ public class Controleur
 	{
 		this.tourJ1 = false;
 
+		
+
 		for (Sommet s : this.tabSommet)
 		{
 			s.setJoueur(null);
@@ -366,6 +372,7 @@ public class Controleur
 
 		this.j1.reset();
 		this.j2.reset();
+		
 
 	}
 
