@@ -104,6 +104,14 @@ Scénario 3 : Modification + ajout de thèmes
 	- Modifier une route
 	- Supprimer une route
 
--
-
-
+ - Cliquer sur Enregistrer et quitter
+ - Ouvrir le même thème
+ - Effectuer de nouvaux changements 
+ - Cliquer sur Quitter sans sauvegarder
+ - Ouvrir le même thème
+ - Cliquer sur Réinitialiser
+ - Cliquer sur Supprimer
+ - Sauvegarder + fermer, puis ouvrir
+-----
+ - Ouvrir un autre thème 
+ - Importer un autre thème
