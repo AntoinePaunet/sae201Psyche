@@ -26,6 +26,7 @@ import java.awt.*;
 public class PanelScore extends JPanel
 {
 	private Controleur ctrl      ;
+	private FrameScore frame     ;
 
 	private JTable     table     ;
 	private Object[][] tabDonnees;
@@ -33,9 +34,10 @@ public class PanelScore extends JPanel
 	/**
 	 * Constructeur du Panel d'édition des routes.
 	*/
-	public PanelScore(Controleur ctrl) 
+	public PanelScore(Controleur ctrl, FrameScore frame) 
 	{
 		this.ctrl = ctrl;
+		this.frame = frame;
 		this.ctrl.getJoueur1().scoreFin();
 		this.ctrl.getJoueur2().scoreFin();
 		this.ctrl.getJoueur1().scoreSommet();
@@ -45,7 +47,7 @@ public class PanelScore extends JPanel
 		int bonusJ2 = this.getBonus(this.ctrl.getJoueur2(), this.ctrl.getJoueur1());
 
 		setLayout(new BorderLayout(10, 10));
-		setBorder(new EmptyBorder(10, 10, 10, 10));
+		setBorder(new EmptyBorder(10, 10, 10, 10));		
 
 		// Title Label
 		/*JLabel titleLabel = new JLabel("Fiche de Score", SwingConstants.CENTER);
@@ -53,7 +55,7 @@ public class PanelScore extends JPanel
 		add(titleLabel, BorderLayout.NORTH);*/
 
 		// Table Data
-		String[] columnNames = { "x","images", this.ctrl.getNomThemeJ1(), this.ctrl.getNomThemeJ2() };
+		String[] colonnes = { "x","images", this.ctrl.getNomThemeJ1(), this.ctrl.getNomThemeJ2() };
 
 		Object[][] data = {
 			{"",new ImageIcon(""), "", ""},
@@ -80,13 +82,23 @@ public class PanelScore extends JPanel
 		};
 
 		// Creating the table
-		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		DefaultTableModel model = new DefaultTableModel(data, colonnes);
+
+		if( this.ctrl.getJoueur1().getSommeScore() + bonusJ1 > this.ctrl.getJoueur2().getSommeScore() + bonusJ2 )
+			this.frame.setTitle(this.ctrl.getJoueur1().getNomJoueur() + " à gagné !");
+		else if( this.ctrl.getJoueur1().getSommeScore() + bonusJ1 < this.ctrl.getJoueur2().getSommeScore() + bonusJ2 )
+			this.frame.setTitle(this.ctrl.getJoueur2().getNomJoueur() + " à gagné !");
+		else
+			this.frame.setTitle("Egalité !");
+
+
+
 
 		this.table = new JTable(model)
 		{
-			public Class getColumnClass(int columnNames) 
+			public Class getColumnClass(int colonnes) 
 			{
-				return (columnNames == 1) ? Icon.class : Object.class;
+				return (colonnes == 1) ? Icon.class : Object.class;
 			}
 		};
 
