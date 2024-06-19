@@ -222,6 +222,7 @@ public class Controleur
 		System.out.println( " Etat Joueur     :  " + (r.getSommetDep().getJoueur()==null && r.getSommetDep().getMateriaux() != null));
 		System.out.println( " Etat Matérieaux :  " + (r.getSommetArr().getJoueur()==null && r.getSommetArr().getMateriaux() != null));
 
+
 		
 		this.finPartie=estFin(r);
 		

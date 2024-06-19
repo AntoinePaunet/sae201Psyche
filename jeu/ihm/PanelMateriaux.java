@@ -64,9 +64,8 @@ public class PanelMateriaux extends JPanel
 				if(this.joueur.getTableMateriaux()[i][j] != null)
 				{
 					g2.drawImage(getToolkit().getImage("../src/images/"+ this.ctrl.getNomThemePrincipal() +"/"+this.joueur.getTableMateriaux()[i][j].getNom()+".png"), x,y,this);
-					x += 54;
 				}
-				
+				x += 53;
 			}
 			y += 54;
 			x= 65;
