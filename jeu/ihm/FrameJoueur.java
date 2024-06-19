@@ -42,6 +42,11 @@ public class FrameJoueur extends JFrame
 		this.setTitle( this.majTitre(this.ctrl) );
 		this.setSize( 680, 500 );
 
+		if(j == ctrl.getJoueur1())
+			this.setLocation(1250, 0);
+		else
+			this.setLocation(1250,600);
+
 		this.panelFond = new PanelMateriaux(this.ctrl,j);
 		this.add( this.panelFond, BorderLayout.CENTER );
 
