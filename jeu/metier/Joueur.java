@@ -47,22 +47,33 @@ public class Joueur
 		this.nbJetonsUtiliser+=i;
 	}
 
-	public void suppJetons(int i)
-	{
-		this.nbJetonsUtiliser-=i;
-	}
-
 	public void reset()
 	{
-		this.nbJetonsUtiliser=0;
+		this.tabPlateau = new Materiaux [4][8];
+		this.tabPiece   = new Materiaux [8];
 		this.tabSommetRecup = new ArrayList<Sommet>();
+		this.nbJetonsUtiliser=0;
+		this.tabScore = new int[11];
 
-		//ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
+		ArrayList<Route> lstRoute = this.ctrl.getTabRoute();
 
-		// for ( Route r : lstRoute )
-		// 	if ( this != null && r.getJoueur() != null )
-		// 		if ( r.getJoueur().equals(this) )
-		// 			this.nbJetonsUtiliser += r.getNbTroncons();
+		int cpt = 0;
+
+		for ( Route r : lstRoute )
+			if ( r.getJoueur() != null )
+				if ( r.getJoueur().equals(this) )
+				{
+					this.nbJetonsUtiliser += r.getNbTroncons();
+					cpt++;
+
+				}
+
+
+		if ( cpt == 0 && this.equals(this.ctrl.getJoueur1()))
+			this.nbJetonsUtiliser = -2 ;
+				
+		
+
 	}
 
 	public int getJetons()

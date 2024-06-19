@@ -3,6 +3,7 @@ package jeu.ihm;
 import jeu.Controleur;
 import jeu.metier.Route;
 import jeu.metier.Joueur;
+import jeu.ihm.FrameJoueur;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -29,17 +30,19 @@ public class PanelJetons extends JPanel
 	private Graphics2D  g2;
 	private int 		j;
 	private Joueur		joueur;
+	private FrameJoueur fmJoueur;
 
 
-	public PanelJetons (Controleur ctrl, Joueur	joueur)
+	public PanelJetons (FrameJoueur frame,Controleur ctrl, Joueur	joueur)
 	{
 		this.ctrl=ctrl;
 		this.joueur=joueur;
+		this.fmJoueur =frame;
 
 		this.setPreferredSize(new Dimension(300, 50));
 		this.setBackground (new Color (208,208,208));
 
-		if (this.joueur == this.ctrl.getJoueur1())
+		if (this.joueur==this.ctrl.getJoueur1())
 			this.j=1;
 		else
 			this.j=2;
@@ -51,7 +54,6 @@ public class PanelJetons extends JPanel
 	{
 		super.paintComponent(g);
 		this.g2 = (Graphics2D) g;
-		// this.joueur = this.ctrl.getFrameDemarrage().getFrameChoix().getF1().getJoueur();
 		int temp=0;
 
 		this.g2.setBackground(new Color (208,208,208));
@@ -60,9 +62,14 @@ public class PanelJetons extends JPanel
 		Font font = new Font("Arial", Font.BOLD, 25);
 		g2.setFont(font);
 
-		temp = Joueur.getNbMaxJetonsPossession() - this.joueur.getJetons();
+		
 
-		System.out.println("Panel jeton sccore" + temp );
+		temp = this.fmJoueur.calculeScore();
+
+
+		
+		
+		System.out.println( "PannelCarte : " + temp );
 
 		if (this.j==1)
 			this.g2.drawString("×  "+temp, 40, 30);
