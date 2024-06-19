@@ -63,6 +63,7 @@ Frame Score Final
 
  - Calcul de score correct
 	- toutes les catégories de score sont bonnes
+	- Montrer une fin de partie avec une égalité
 
 
 

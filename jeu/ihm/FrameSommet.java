@@ -26,6 +26,7 @@ public class FrameSommet extends JFrame
 		this.setTitle   ( "Sommet"  );
 		this.setSize    ( 800, 200 );
 		this.setLocation( 50,50    );
+		this.setResizable(false);
 
 		this.panelDesSommets = new PanelSommet( ctrl );
 
