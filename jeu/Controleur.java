@@ -586,6 +586,7 @@ public class Controleur
 				{
 					Controleur.nbSommets--;
 				}
+				this.lstMateriaux.add(rt.getMateriaux().getNom());
 				this.tabSommet.remove(rt);
 				tempEstSup = true;
 				break;

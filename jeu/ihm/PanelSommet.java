@@ -10,10 +10,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 
+import java.awt.*;
 import java.awt.event.*;
 
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +34,7 @@ public class PanelSommet extends JPanel  implements ActionListener
 	private JPanel     panelInput       ;
 	private JTextField txtNumero        ;
 	private JComboBox<String> lstCouleur;
+	private JComboBox<String> lstMateriaux;
 	private JTextField txtX             ;
 	private JTextField txtY             ;
 
@@ -66,10 +67,19 @@ public class PanelSommet extends JPanel  implements ActionListener
 	
 		this.txtNumero     = new JTextField();
 		this.lstCouleur    = new JComboBox<String>(new String[]{"Vert","Jaune","Rouge","Bleu","Gris","Marron"});
+
+		String[] tmp = new String[this.ctrl.getLstMateriaux().size()+1];
+		ctrl.getLstMateriaux().toArray(tmp);
+		String tmpS = tmp[0];
+		tmp[0] = "Aleatoire";
+
+		tmp[this.ctrl.getLstMateriaux().size()] = tmpS;
+		this.lstMateriaux  = new JComboBox<String>(tmp);
+
 		this.txtX          = new JTextField();
 		this.txtY          = new JTextField();
 		
-		this.panelInput.setLayout( new GridLayout( 5 , 2 ) );
+		this.panelInput.setLayout( new GridLayout( 6 , 2 ) );
 			
 
 		this.btnAjouterSommet = new JButton( "Ajouter / Supprimer" );
@@ -80,6 +90,9 @@ public class PanelSommet extends JPanel  implements ActionListener
 
 		this.panelInput.add( new JLabel("Couleur : "),  JPanel.RIGHT_ALIGNMENT );
 		this.panelInput.add( this.lstCouleur);
+
+		this.panelInput.add( new JLabel("Matériaux : "),  JPanel.RIGHT_ALIGNMENT );
+		this.panelInput.add( this.lstMateriaux);
 				
 		this.panelInput.add( new JLabel("X : "      ),  JPanel.RIGHT_ALIGNMENT  );
 		this.panelInput.add( this.txtX         );
@@ -217,15 +230,21 @@ public class PanelSommet extends JPanel  implements ActionListener
 				{
 					if(this.ctrl.getTabSommet().size() < 41)
 					{
-						int rndm = (int)(Math.random()*(this.ctrl.getLstMateriaux().size()));
+						String matNom = (String) this.lstMateriaux.getSelectedItem();
+						Materiaux tmpMat;
 
-						Materiaux tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(rndm));
+						if(matNom.equals("Aleatoire"))
+						{
+							int rndm = (int)(Math.random()*(this.ctrl.getLstMateriaux().size()));
+							tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(rndm));
+						}else{
+							tmpMat = new Materiaux(this.ctrl.getLstMateriaux().remove(this.ctrl.getLstMateriaux().indexOf(matNom)));
+						}
 
 						this.ctrl.ajouterOuSupprimerSommet(Controleur.nbSommets++ , numVille, nomVile,x,y,tmpMat,false);
 					}
 					else
 					{
-						System.out.println(this.ctrl.getLstMateriaux() +" FIN");
 						this.lblErreur.setText("<html>Nombre de sommets maximum <br> dépassé. </html>");
 						return;
 					}
