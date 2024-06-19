@@ -247,9 +247,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 				if( !this.ctrl.getEstSauvegarde() )
 				{
-				String[] options ={ "Continuer la partie sauvegardée" , "Recommencer une nouvelle partie" };
-
-				
+					String[] options ={ "Continuer la partie sauvegardée" , "Recommencer une nouvelle partie" };
 
 					if( JOptionPane.showOptionDialog(null, "Une partie en cours est déjà sauvegardée. Voulez vous continuer cette partie, ou écraser cete sauvegarde et recommencer une nouvelle partie ?", "Sauvegarde détectée !", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null) == JOptionPane.NO_OPTION )
 					{
