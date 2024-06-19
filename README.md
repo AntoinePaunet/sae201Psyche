@@ -4,34 +4,30 @@ sae201Psyche
 Fonctionnalités à démontrer :
 
 Menu prncipal : 
- - Ouverture de la frame de démarrage	(FAIT)
- - Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.		(FAIT)
- - Quitter et Alt F4 fonctionnent		(FAIT)
- - Pour les autres boutons il faut montrer que lorsque aucun thème n'est choisi, ou qu'il n'est pas valide il y a le labelErreur
- - L'ajout d'un thème de test fonctionne bien tant qu'il est bien écrit avec ses images
- - Quand on en choisi un il disparait
- - Ouverture de la frame de modification :
- - Montrer que l’on peut déplacer les sommets,
+ - Ouverture de la frame de démarrage
+ - Faire la même chose avec "Scenario" qui utilise un fichier de scénario. Les raccourcis fonctionnent et ouvrent les fenetres.
+ - Quitter et Alt F4 fonctionnent
+ - Bouton jouer et modifier
 
 
 Editeur de carte
 
 Frame Modification : 
 
- - Modification de la position des sommets avec la souris ( et ajustement es routes en fonction )
+ - Modification de la position des sommets avec la souris ( et ajustement des routes en fonction )		(FAIT)
 
- - Créer un sommet
- - Créer une route
+ - Importer un thème 	(FAIT)
 
- - Ouvrir tester avec un fichier
+ - Créer un sommet		(FAIT)
+ - Créer une route		(FAIT)
 
- - Supprimer
- - Réinitialiser
+ - Supprimer			(FAIT)
+ - Réinitialiser		(FAIT)
 
- - Enregistrer et quitter
- - Quitter sans enregistrer
+ - Enregistrer et quitter	(FAIT)
+ - Quitter sans enregistrer		(FAIT)
 
-Montrer que le système de sauvegarde des modifications marche correctement.
+Montrer que le système de sauvegarde des modifications marche correctement.		(FAIT)
 
 
 Jeu 
