@@ -51,7 +51,7 @@ public class PanelScore extends JPanel
 		add(titleLabel, BorderLayout.NORTH);*/
 
 		// Table Data
-		String[] columnNames = { "x","images", this.ctrl.getJoueur1().getNomJoueur(), this.ctrl.getJoueur2().getNomJoueur() };
+		String[] columnNames = { "catégorie","sous-catégorie", this.ctrl.getJoueur1().getNomJoueur(), this.ctrl.getJoueur2().getNomJoueur() };
 
 		Object[][] data = {
 			{"",new ImageIcon(""), "", ""},
@@ -67,7 +67,7 @@ public class PanelScore extends JPanel
 			{"S/Total","", this.ctrl.getJoueur1().getSommeScoreSommet(), this.ctrl.getJoueur2().getSommeScoreSommet()}, // Total du dessus
 			{"","", "", ""},
 			{"Plateau Individuel","" ,  "", ""},
-			{"Score Pièces"       ,new ImageIcon("../src/images/"+ ctrl.getNomThemePrincipal() +"/NR.png"), this.ctrl.getJoueur1().getScorePiece  (), this.ctrl.getJoueur2().getScorePiece  () }, //scorePieceJ1
+			{"Score Pièces"       ,new ImageIcon("jeu/src/images/"+ ctrl.getNomThemePrincipal() +"/NR.png"), this.ctrl.getJoueur1().getScorePiece  (), this.ctrl.getJoueur2().getScorePiece  () }, //scorePieceJ1
 			{"Scores des Colonnes","", this.ctrl.getJoueur1().getScoreColonne()-1, this.ctrl.getJoueur2().getScoreColonne() -1}, //scoreColJ1
 			{"Scores des Lignes"  ,"", this.ctrl.getJoueur1().getScoreLigne  (), this.ctrl.getJoueur2().getScoreLigne  () }, //scoreLigJ1
 			{"S/Total"            ,"", this.ctrl.getJoueur1().getSommeScorePlateau(), this.ctrl.getJoueur2().getSommeScorePlateau()},

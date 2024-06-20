@@ -159,6 +159,7 @@ public class FrameJeu extends JFrame implements ActionListener
 				int action = Integer.parseInt( JOptionPane.showInputDialog("Entrez le numéro de l'action : "));
 
 				this.ctrl.getEditionFichier().lireScenario(this.ctrl.getNbScenario(), action,true);
+				this.ctrl.setNbEtapeScenario(this.ctrl.getNbEtapeScenario() + action);
 
 			}
 			catch( Exception exp )
