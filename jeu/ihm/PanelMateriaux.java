@@ -1,18 +1,10 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.metier.Sommet;
 import jeu.metier.Joueur;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-
-
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Cette classe correspond au Jetons sur lequel est affiché le panel des joueurs
@@ -26,7 +18,6 @@ import java.io.IOException;
 public class PanelMateriaux extends JPanel
 {
 	private Graphics2D  g2;
-	private String 		nomCoul;
 	private Controleur  ctrl;
 	private Joueur 		joueur;
 

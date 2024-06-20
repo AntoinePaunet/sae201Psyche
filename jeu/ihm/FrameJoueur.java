@@ -23,7 +23,6 @@ public class FrameJoueur extends JFrame
 	private JPanel panelFond;
 	private JPanel 		 panelDroite;
 	private JPanel 		 panelBas;
-	private Graphics2D  g2;
 
 	private Controleur ctrl;
 	private Joueur joueur;

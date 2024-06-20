@@ -2,8 +2,6 @@ package jeu.ihm;
 
 import jeu.Controleur;
 import jeu.metier.Joueur;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,9 +25,7 @@ public class PanelScore extends JPanel
 {
 	private Controleur ctrl      ;
 	private FrameScore frame     ;
-
 	private JTable     table     ;
-	private Object[][] tabDonnees;
 
 	/**
 	 * Constructeur du Panel d'édition des routes.
@@ -94,13 +90,8 @@ public class PanelScore extends JPanel
 
 
 
-		this.table = new JTable(model)
-		{
-			public Class getColumnClass(int colonnes) 
-			{
-				return (colonnes == 1) ? Icon.class : Object.class;
-			}
-		};
+		this.table = new JTable(model);
+
 
 		table.setRowHeight(50);
 		table.getColumnModel().getColumn(0).setPreferredWidth(200);

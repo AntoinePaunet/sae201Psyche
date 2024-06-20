@@ -55,8 +55,10 @@ public class EditionFichier
 			sc.nextLine();
 			if (sc.nextLine().equals(""))
 			{
+				sc.close();
 				return true;
 			}
+			sc.close();
 		} catch (Exception e)
 		{
 			return true;
@@ -165,6 +167,7 @@ public class EditionFichier
 			}
 
 			fr.close();
+			sc.close();
 		}
 		catch (Exception e){ e.printStackTrace(); }
 		return nomThemes;
@@ -194,7 +197,7 @@ public class EditionFichier
 			}
 			String[] elementsTheme = ligneTheme.split("\t");
 			ctrl.setElementsTheme(elementsTheme);
-
+			sc.close();
 			fr.close();
 		}
 		catch (Exception e){ e.printStackTrace(); }
@@ -489,15 +492,13 @@ public class EditionFichier
 	
 	public void lireScenario( int nbScenario, int numEtape, boolean autoSkip) throws IOException
 	{
-
 		try {
 			FileReader fr = new FileReader("./jeu/src/scenario/"+ nbScenario + ".txt");
 			Scanner sc = new Scanner(fr);
 
 			int etapeLecture = 1;
 			Sommet sommetDep;
-			Sommet sommetArr; 
-			int    nbTroncons;
+			Sommet sommetArr;
 			String joueurEnCour;
 
 			
@@ -512,7 +513,6 @@ public class EditionFichier
 				joueurEnCour = action[0];
 				sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
 				sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
-				nbTroncons = Integer.parseInt( action[4] );
 				
 				if ( joueurEnCour.equals("J1"))
 					this.ctrl.setTourJ1();
@@ -522,17 +522,16 @@ public class EditionFichier
 			}
 			
 			while (sc.hasNextLine()) 
-			{	
-				
+			{
 				ligne = sc.nextLine();
 				action = ligne.split(" ");			
 				joueurEnCour = action[0];
 				sommetDep  = this.ctrl.getSommet( Integer.parseInt( action[1] ) );
 				sommetArr  = this.ctrl.getSommet( Integer.parseInt( action[3] ) );
-				nbTroncons = Integer.parseInt( action[4] );			
 				
 				if ( etapeLecture > numEtape && numEtape < -1 )
 				{
+					sc.close();
 					return;
 				}
 				
@@ -553,7 +552,6 @@ public class EditionFichier
 				{
 					if ( etapeLecture == numEtape )
 					{
-						
 						this.ctrl.jouer( this.ctrl.getRoute(sommetDep, sommetArr) );
 						break;
 					}

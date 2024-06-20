@@ -1,8 +1,6 @@
 package jeu.metier;
 
 import java.util.ArrayList;
-import java.util.ResourceBundle.Control;
-import java.util.concurrent.ConcurrentHashMap;
 import jeu.Controleur;
 
 /**
@@ -280,7 +278,7 @@ public class Joueur
 				}
 					
 			}
-			System.out.println("valeur de cptRes " + cptRessource );
+
 			if (cptRessource!=0)
 			{
 				scoreLig += tabScoreLig[cptRessource-1];

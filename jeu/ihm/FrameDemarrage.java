@@ -160,7 +160,7 @@ public class FrameDemarrage extends JFrame implements ActionListener
 
 				try
 				{
-					Timer timerSpawn = new Timer(17, new ActionListener() //Vitesse de déplacement du mob
+					new Timer(17, new ActionListener() //Vitesse de déplacement du mob
 					{
 						@Override
 						public void actionPerformed(ActionEvent e)

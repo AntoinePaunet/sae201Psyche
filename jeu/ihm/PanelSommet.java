@@ -1,7 +1,6 @@
 package jeu.ihm;
 
 import jeu.Controleur;
-import jeu.metier.Couleur;
 import jeu.metier.Materiaux;
 import jeu.metier.Sommet;
 
@@ -13,8 +12,6 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -41,7 +38,6 @@ public class PanelSommet extends JPanel  implements ActionListener
 	private JLabel     lblErreur        ;
 
 	private JButton    btnAjouterSommet ;
-	private JButton    btnModifierSommet;
 
 	/**
 	 * Constructeur du Panel de modification ou création des sommets.

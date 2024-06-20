@@ -175,9 +175,6 @@ public class PanelCarte extends JPanel
 	 */
 	private class GereSouris extends MouseAdapter
 	{
-		private Sommet villeChoisie ;
-		private Route  routeChoisie;
-
 		private Point ptSmt1;
 		private Point ptSmt2;
 
@@ -242,15 +239,6 @@ public class PanelCarte extends JPanel
 				// Rafréchire la frame
 				PanelCarte.this.repaint();
 			}
-		}
-
-	/**
-	 * Méthode qui gêre le relâchement du bouton de la souris.
-	 * @param e l'action de la souris
-	 */
-		public void mouseRelease(MouseEvent e) 
-		{
-			this.sommetChoisi = null;
 		}
 
 	/**
