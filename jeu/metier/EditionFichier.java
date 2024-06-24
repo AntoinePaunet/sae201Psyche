@@ -227,7 +227,7 @@ public class EditionFichier
 				this.ctrl.setTourJ2HorsScena();
 			else
 				this.ctrl.setTourJ1HorsScena();
-			this.tabSommet.add( new Sommet( num, nom, x, y, null, true, this.ctrl.getJoueur1(), 1 ) );
+			this.tabSommet.add( new Sommet( num, nom, x, y, null, true, this.ctrl.getJoueur1(), 0 ) );
 		}
 		else
 		{
